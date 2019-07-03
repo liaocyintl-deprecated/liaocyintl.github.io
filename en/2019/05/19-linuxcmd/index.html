@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans,ja,en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="KWEKu7-400JMONtPKXdBIPQ4ICpSLiomHWycMvJiiUw">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="wR0oqfu7r3">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next_bk.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,CentOS,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Liao's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="环境 CentOS 7  笔记User OperationsProfileman : Show manual of the following commandformat:1$ man &amp;#123;command&amp;#125; e.g:1$ man date whereis : show path of the following commandformat:1$ man &amp;#123;command">
+<meta name="keywords" content="Linux,CentOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 命令速查">
+<meta property="og:url" content="https://liaocy.net/en/2019/05/19-linuxcmd/index.html">
+<meta property="og:site_name" content="Liao&#39;s Blog">
+<meta property="og:description" content="环境 CentOS 7  笔记User OperationsProfileman : Show manual of the following commandformat:1$ man &amp;#123;command&amp;#125; e.g:1$ man date whereis : show path of the following commandformat:1$ man &amp;#123;command">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-03T04:51:44.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 命令速查">
+<meta name="twitter:description" content="环境 CentOS 7  笔记User OperationsProfileman : Show manual of the following commandformat:1$ man &amp;#123;command&amp;#125; e.g:1$ man date whereis : show path of the following commandformat:1$ man &amp;#123;command">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://liaocy.net/en/2019/05/19-linuxcmd/">
+
+
+
+
+
+  <title>Linux 命令速查 | Liao's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0974e06186820775f8d51e33bc87d4dd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Development & Research</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-vocabulary">
+          <a href="/tags/Vocabulary/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-language"></i> <br>
+            
+            vocabulary
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_zh-hans">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            Chinese
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_en">
+          <a href="/en/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            English
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_ja">
+          <a href="/ja/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            Japanese
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/en/2019/05/19-linuxcmd/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Linux 命令速查</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-19T20:00:00+09:00">
+                2019-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/en/2019/05/19-linuxcmd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="en/2019/05/19-linuxcmd/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>CentOS 7</li>
+</ul>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="User-Operations"><a href="#User-Operations" class="headerlink" title="User Operations"></a>User Operations</h2><h3 id="Profile"><a href="#Profile" class="headerlink" title="Profile"></a>Profile</h3><h4 id="man-Show-manual-of-the-following-command"><a href="#man-Show-manual-of-the-following-command" class="headerlink" title="man : Show manual of the following command"></a>man : Show manual of the following command</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man &#123;command&#125;</span><br></pre></td></tr></table></figure></p>
+<p>e.g:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man date</span><br></pre></td></tr></table></figure></p>
+<h4 id="whereis-show-path-of-the-following-command"><a href="#whereis-show-path-of-the-following-command" class="headerlink" title="whereis : show path of the following command"></a>whereis : show path of the following command</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man &#123;command&#125;</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ whereis passwd</span><br></pre></td></tr></table></figure></p>
+<h4 id="id-show-current-user-identifications"><a href="#id-show-current-user-identifications" class="headerlink" title="id : show current user identifications"></a>id : show current user identifications</h4><h4 id="who-show-current-user-information"><a href="#who-show-current-user-information" class="headerlink" title="who : show current user information"></a>who : show current user information</h4><h4 id="whoami-show-current-user-name"><a href="#whoami-show-current-user-name" class="headerlink" title="whoami: show current user name"></a>whoami: show current user name</h4><h4 id="who-am-i-show-current-user-name-and-last-login"><a href="#who-am-i-show-current-user-name-and-last-login" class="headerlink" title="who am i: show current user name  and last login"></a>who am i: show current user name  and last login</h4><h4 id="date-show-current-system-date-time"><a href="#date-show-current-system-date-time" class="headerlink" title="date: show current system date time"></a>date: show current system date time</h4><h4 id="etc-passwd-saving-user-identifications"><a href="#etc-passwd-saving-user-identifications" class="headerlink" title="/etc/passwd/: saving user identifications"></a>/etc/passwd/: saving user identifications</h4><h4 id="etc-group-saving-group-identifications"><a href="#etc-group-saving-group-identifications" class="headerlink" title="/etc/group/: saving group identifications"></a>/etc/group/: saving group identifications</h4><h4 id="clear-clear-current-screen"><a href="#clear-clear-current-screen" class="headerlink" title="clear: clear current screen"></a>clear: clear current screen</h4><h4 id="echo-print-information-on-the-screen"><a href="#echo-print-information-on-the-screen" class="headerlink" title="echo: print information on the screen"></a>echo: print information on the screen</h4><h4 id="pwd-show-current-directory-Print-Working-Directory"><a href="#pwd-show-current-directory-Print-Working-Directory" class="headerlink" title="pwd: show current directory (Print Working Directory)"></a>pwd: show current directory (Print Working Directory)</h4><h4 id="opt-save-the-APPs-and-products"><a href="#opt-save-the-APPs-and-products" class="headerlink" title="/opt: save the APPs and products"></a>/opt: save the APPs and products</h4><h4 id="bin-save-the-basic-linux-operation-files"><a href="#bin-save-the-basic-linux-operation-files" class="headerlink" title="/bin: save the basic linux operation files"></a>/bin: save the basic linux operation files</h4><h4 id="usr-lib-user-library"><a href="#usr-lib-user-library" class="headerlink" title="/usr/lib: user library"></a>/usr/lib: user library</h4><h4 id="sbin-save-commands-running-when-system-startup-and-shutdown"><a href="#sbin-save-commands-running-when-system-startup-and-shutdown" class="headerlink" title="/sbin: save commands running when system startup and shutdown"></a>/sbin: save commands running when system startup and shutdown</h4><h4 id="etc-system-file"><a href="#etc-system-file" class="headerlink" title="/etc: system file"></a>/etc: system file</h4><h4 id="dev-containing-hardware-device-files"><a href="#dev-containing-hardware-device-files" class="headerlink" title="/dev: containing hardware device files"></a>/dev: containing hardware device files</h4><h4 id="var-system-log-and-spool-file"><a href="#var-system-log-and-spool-file" class="headerlink" title="/var: system log and spool file"></a>/var: system log and spool file</h4><h4 id="current-directory"><a href="#current-directory" class="headerlink" title=".: current directory"></a>.: current directory</h4><h4 id="parent-directory"><a href="#parent-directory" class="headerlink" title="..: parent directory"></a>..: parent directory</h4><h3 id="File-Director-Operations"><a href="#File-Director-Operations" class="headerlink" title="File/Director Operations"></a>File/Director Operations</h3><h4 id="ls-show-filenames-and-directory-names"><a href="#ls-show-filenames-and-directory-names" class="headerlink" title="ls: show filenames and directory names"></a>ls: show filenames and directory names</h4><p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-a: show hidden files (dot files)</span><br><span class="line">-d: show directory status</span><br><span class="line">-l: show file detailed information</span><br><span class="line">-F: show files in types. Executable file with * and directory with /ls</span><br><span class="line">-R: show all children files under this directory in Recursive</span><br><span class="line">-i: show inode infomation</span><br></pre></td></tr></table></figure></p>
+<h4 id="cd-change-current-directory"><a href="#cd-change-current-directory" class="headerlink" title="cd: change current directory"></a>cd: change current directory</h4><h4 id="find-search-something-in-the-PC"><a href="#find-search-something-in-the-PC" class="headerlink" title="find: search something in the PC"></a>find: search something in the PC</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find &#123;options&#125; &#123;conditions&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-name: search file name</span><br></pre></td></tr></table></figure></p>
+<p>E.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find . -name &quot;*file&quot; // search in current folder</span><br></pre></td></tr></table></figure></p>
+<h4 id="mkdir-create-a-directory"><a href="#mkdir-create-a-directory" class="headerlink" title="mkdir: create a directory"></a>mkdir: create a directory</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir [-options] &#123;path&#125;</span><br></pre></td></tr></table></figure></p>
+<p>operations:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-p: create all directories in the path if not exists</span><br><span class="line">-m &#123;mod&#125;: create and with &#123;mod&#125; (755, 644) permission.</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### rm: remove a file/directory</span><br><span class="line">format:</span><br><span class="line">```text</span><br><span class="line">$ rm [-options] path</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-r: directory</span><br><span class="line">-f: forced delete</span><br></pre></td></tr></table></figure></p>
+<h4 id="cat-show-file-content"><a href="#cat-show-file-content" class="headerlink" title="cat: show file content"></a>cat: show file content</h4><h4 id="more-show-file-content-in-pages"><a href="#more-show-file-content-in-pages" class="headerlink" title="more: show file content in pages"></a>more: show file content in pages</h4><h4 id="tail-show-the-tail-in-some-files"><a href="#tail-show-the-tail-in-some-files" class="headerlink" title="tail: show the tail in some files"></a>tail: show the tail in some files</h4><p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-n: set how many lines will be showed (default 10)</span><br><span class="line">-f: show the file (real time)</span><br></pre></td></tr></table></figure></p>
+<h4 id="lrp-insert-the-file-into-printing-queue"><a href="#lrp-insert-the-file-into-printing-queue" class="headerlink" title="lrp: insert the file into printing queue"></a>lrp: insert the file into printing queue</h4><h4 id="rm-remove"><a href="#rm-remove" class="headerlink" title="rm: remove"></a>rm: remove</h4><p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-f: force remove</span><br><span class="line">-r: remove all directory</span><br><span class="line">-i: interaction</span><br></pre></td></tr></table></figure></p>
+<h4 id="chmod-change-file-dir-pomission"><a href="#chmod-change-file-dir-pomission" class="headerlink" title="chmod: change file/dir pomission"></a>chmod: change file/dir pomission</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod [options] &#123;mod&#125; &#123;filename&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-R: for directory permission</span><br><span class="line">4 (100): write</span><br><span class="line">2 (010): read</span><br><span class="line">1 (001): excute</span><br><span class="line">u+x: user (owner) for excute</span><br><span class="line">u=rw: user (owner) for read/write permissions</span><br><span class="line">g=rw: group for read/write permissions</span><br><span class="line">o=: other for nothing</span><br></pre></td></tr></table></figure></p>
+<h4 id="umask-set-default-permission-when-file-created-Mask-code-002-gt-775"><a href="#umask-set-default-permission-when-file-created-Mask-code-002-gt-775" class="headerlink" title="umask: set default permission when file created (Mask code: 002-&gt;775)"></a>umask: set default permission when file created (Mask code: 002-&gt;775)</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ umask [-options] &#123;mod&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-S: show current status</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ umask 775</span><br></pre></td></tr></table></figure></p>
+<h4 id="touch-update-file-timestamp"><a href="#touch-update-file-timestamp" class="headerlink" title="touch: update file timestamp"></a>touch: update file timestamp</h4><p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-a: update access datetime</span><br><span class="line">-m: update modified datetime</span><br><span class="line">-t: update access and modified datetimes</span><br><span class="line">-c: create if file not exists</span><br></pre></td></tr></table></figure></p>
+<h4 id="su-change-user-ID-Group-ID"><a href="#su-change-user-ID-Group-ID" class="headerlink" title="su: change user ID/Group ID"></a>su: change user ID/Group ID</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ su &#123;username&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="alias-give-alias-for-command"><a href="#alias-give-alias-for-command" class="headerlink" title="alias: give alias for command"></a>alias: give alias for command</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ alias dir=ls</span><br><span class="line">$ alias mstat=/home/abc/scv/</span><br><span class="line">$ alias copy=&apos;cp -i&apos;</span><br><span class="line">$ alias (show all alias)</span><br></pre></td></tr></table></figure></p>
+<h4 id="umalias-remove-alias"><a href="#umalias-remove-alias" class="headerlink" title="umalias: remove alias"></a>umalias: remove alias</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unalias dir</span><br></pre></td></tr></table></figure></p>
+<h4 id="history-how-history-commands"><a href="#history-how-history-commands" class="headerlink" title="history: how history commands"></a>history: how history commands</h4><h4 id="env-show-environment"><a href="#env-show-environment" class="headerlink" title="env: show environment"></a>env: show environment</h4><h4 id="wc-count-words-in-the-file"><a href="#wc-count-words-in-the-file" class="headerlink" title="wc: count words in the file"></a>wc: count words in the file</h4><p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-l: lines count</span><br><span class="line">-w: words count</span><br><span class="line">-c: count Byte</span><br><span class="line">-m: count charactors</span><br></pre></td></tr></table></figure></p>
+<h4 id="grep-global-search-regular-expression-RE-and-print-out-the-line"><a href="#grep-global-search-regular-expression-RE-and-print-out-the-line" class="headerlink" title="grep: global search regular expression(RE) and print out the line"></a>grep: global search regular expression(RE) and print out the line</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ grep [-options] &#123;keyword&#125; &#123;target path&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-e: multiple keywords: grep -e i -e love /root/funfile.txt</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ef | grep java : search all proceess about the Java</span><br></pre></td></tr></table></figure></p>
+<h4 id="left-as-the-stdout-right-as-the-stdin-get-information-from-left-and-process-on-right"><a href="#left-as-the-stdout-right-as-the-stdin-get-information-from-left-and-process-on-right" class="headerlink" title="|: left as the stdout, right as the stdin; get information from left and process on right"></a>|: left as the stdout, right as the stdin; get information from left and process on right</h4><h4 id="cut-show-file-indented-content"><a href="#cut-show-file-indented-content" class="headerlink" title="cut: show file indented content"></a>cut: show file indented content</h4><h4 id="tr-change-text"><a href="#tr-change-text" class="headerlink" title="tr: change text"></a>tr: change text</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ who | tr -s &quot; &quot; : remove all spaces</span><br></pre></td></tr></table></figure></p>
+<h4 id="tee-output-strout-and-print-on-screen"><a href="#tee-output-strout-and-print-on-screen" class="headerlink" title="tee: output strout and print on screen"></a>tee: output strout and print on screen</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat 1.txt | tee 3.txt</span><br></pre></td></tr></table></figure></p>
+<h2 id="Management"><a href="#Management" class="headerlink" title="Management"></a>Management</h2><h3 id="Disk-Management"><a href="#Disk-Management" class="headerlink" title="Disk Management"></a>Disk Management</h3><h4 id="dmesg-show-hardware-information"><a href="#dmesg-show-hardware-information" class="headerlink" title="dmesg: show hardware information"></a>dmesg: show hardware information</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dmesg | preg usb</span><br></pre></td></tr></table></figure></p>
+<h4 id="parted-Partition"><a href="#parted-Partition" class="headerlink" title="parted: Partition"></a>parted: Partition</h4><p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- unit GB: Change to GB display</span><br><span class="line">- print: Print partition status</span><br><span class="line">- mkpart: Make partition</span><br><span class="line">- rm Number: Remove partition</span><br></pre></td></tr></table></figure></p>
+<h4 id="pvcreate-instant-the-partition"><a href="#pvcreate-instant-the-partition" class="headerlink" title="pvcreate: instant the partition"></a>pvcreate: instant the partition</h4><h4 id="mkfs-xfs-init-file-system"><a href="#mkfs-xfs-init-file-system" class="headerlink" title="mkfs.xfs: init file system"></a>mkfs.xfs: init file system</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkfs.xfs /dev/sda7</span><br></pre></td></tr></table></figure></p>
+<h4 id="mount-mount-partition-to-direction"><a href="#mount-mount-partition-to-direction" class="headerlink" title="mount: mount partition to direction"></a>mount: mount partition to direction</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mount [options] &#123;partition&#125; &#123;direction&#125;</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /mountdir1</span><br><span class="line">$ mount /dev/sda7 /mountdir1</span><br></pre></td></tr></table></figure></p>
+<h4 id="mount-forever"><a href="#mount-forever" class="headerlink" title="mount forever"></a>mount forever</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/mtab</span><br><span class="line"># cat /proc/mounts</span><br><span class="line"># cat /etc/fstab</span><br><span class="line"># mount -o remount /mountdir1</span><br><span class="line"># cat /etc/fstab</span><br><span class="line"># blkid /dev/sda7</span><br><span class="line">confirm UUID</span><br></pre></td></tr></table></figure>
+<h4 id="df-monitoring-file-system-status"><a href="#df-monitoring-file-system-status" class="headerlink" title="df: monitoring file system status"></a>df: monitoring file system status</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ df -h</span><br></pre></td></tr></table></figure></p>
+<h4 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h4><p>create swap:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mkswap /dev/sda8/</span><br></pre></td></tr></table></figure></p>
+<p>activate swap:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># swapon /dev/sda8/</span><br></pre></td></tr></table></figure></p>
+<h3 id="User-Management"><a href="#User-Management" class="headerlink" title="User Management"></a>User Management</h3><h4 id="etc-passwd-user-register-file"><a href="#etc-passwd-user-register-file" class="headerlink" title="/etc/passwd : user register file"></a>/etc/passwd : user register file</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/passwd</span><br></pre></td></tr></table></figure></p>
+<h4 id="etc-shadow-user-password-file"><a href="#etc-shadow-user-password-file" class="headerlink" title="/etc/shadow : user password file"></a>/etc/shadow : user password file</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/shadow</span><br></pre></td></tr></table></figure></p>
+<h4 id="etc-group-group-register-file"><a href="#etc-group-group-register-file" class="headerlink" title="/etc/group : group register file"></a>/etc/group : group register file</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/group</span><br></pre></td></tr></table></figure></p>
+<h4 id="useradd-add-a-user"><a href="#useradd-add-a-user" class="headerlink" title="useradd : add a user"></a>useradd : add a user</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># useradd [options] &lt;username&gt;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-u : UID</span><br><span class="line">-g : GID</span><br><span class="line">-G : GID,GID</span><br><span class="line">-d : /home/path</span><br><span class="line">-m : make new home directory</span><br><span class="line">-s : indicate login shell e.g. /bin/bash</span><br><span class="line">-c : comment</span><br><span class="line">-D : set/change default value</span><br></pre></td></tr></table></figure></p>
+<h4 id="etc-skel-this-folder-will-be-copied-as-home-folder-when-user-created"><a href="#etc-skel-this-folder-will-be-copied-as-home-folder-when-user-created" class="headerlink" title="/etc/skel : this folder will be copied as home folder when user created"></a>/etc/skel : this folder will be copied as home folder when user created</h4><h4 id="usermod-change-user-profile"><a href="#usermod-change-user-profile" class="headerlink" title="usermod : change user profile"></a>usermod : change user profile</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># usermod [options] &lt;username&gt;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-u : UID</span><br><span class="line">-g : GID</span><br><span class="line">-G : GID,GID</span><br><span class="line">-d : /home/path</span><br><span class="line">-m : make new home directory</span><br><span class="line">-s : indicate login shell</span><br><span class="line">-l : new user name</span><br><span class="line">-L : lock password</span><br><span class="line">-U : unlock password</span><br></pre></td></tr></table></figure></p>
+<h4 id="userdel-delete-user"><a href="#userdel-delete-user" class="headerlink" title="userdel : delete user"></a>userdel : delete user</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># userdel [options] &lt;username&gt;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-r : delete the home folder</span><br></pre></td></tr></table></figure></p>
+<h3 id="Boot-and-Shutdown-Management"><a href="#Boot-and-Shutdown-Management" class="headerlink" title="Boot and Shutdown Management"></a>Boot and Shutdown Management</h3><h4 id="etc-default-grub-change-bootloader-configration"><a href="#etc-default-grub-change-bootloader-configration" class="headerlink" title="/etc/default/grub : change bootloader configration"></a>/etc/default/grub : change bootloader configration</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/default/grub</span><br><span class="line">// activate setting</span><br><span class="line"># grub2-mkconfig -o /boot/grub2/grub.cfg</span><br></pre></td></tr></table></figure></p>
+<h4 id="systemd-unit-rescue-target-rescue-mode"><a href="#systemd-unit-rescue-target-rescue-mode" class="headerlink" title="systemd.unit=rescue.target : rescue mode"></a>systemd.unit=rescue.target : rescue mode</h4><p>steps:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">e</span><br><span class="line">[quiet] systemd.unit=rescue.target</span><br><span class="line">ctrl + x</span><br></pre></td></tr></table></figure></p>
+<h4 id="systemctl-confirm-change-target"><a href="#systemctl-confirm-change-target" class="headerlink" title="systemctl : confirm/change target"></a>systemctl : confirm/change target</h4><p>e.g.:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># systemctl get-default //show current target</span><br><span class="line"># systemctl set-default multi-user.target //startup in console</span><br><span class="line"># systemctl isolate multi-user.target //change current target</span><br><span class="line"># systemctl list-units --type=target // show all roaded targets</span><br><span class="line"># systemctl list-dependencies graphical.target // show dependence of indicated target</span><br><span class="line"></span><br><span class="line"># systemctl start httpd.service //start apache</span><br><span class="line"># systemctl status httpd.service //show apache status</span><br><span class="line"># systemctl enable/disable httpd.service // run/or not apache when system startup</span><br><span class="line"># systemctl is-enable httpd.service // show is apache.service enable</span><br><span class="line"># systemctl list-unit-files // show all auto running services</span><br><span class="line"></span><br><span class="line"># systemctl status systemd-journald //show system status</span><br></pre></td></tr></table></figure>
+<h4 id="usr-lib-systemd-system-unit-setting"><a href="#usr-lib-systemd-system-unit-setting" class="headerlink" title="/usr/lib/systemd/system : unit setting"></a>/usr/lib/systemd/system : unit setting</h4><h4 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h4><p>e.g.:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># shutdown -h //shutdown immediately</span><br><span class="line"># shutdown -r //reboot</span><br></pre></td></tr></table></figure>
+<h3 id="Package-Management"><a href="#Package-Management" class="headerlink" title="Package Management"></a>Package Management</h3><h4 id="rpm-package-management"><a href="#rpm-package-management" class="headerlink" title="rpm :  package management"></a>rpm :  package management</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm [-options] &#123;package name&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-i : package name</span><br><span class="line">-v : show detail information</span><br><span class="line">-h : show processbar</span><br><span class="line">--nodeps : do not check depandence</span><br><span class="line">--force : forced install</span><br><span class="line">--test : install to sandbox</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh &#123;package name&#125; //install package</span><br><span class="line"># rpm -Fvh &#123;package name&#125; //upgrade : do not install if package has not installed</span><br><span class="line"># rpm -Uvh &#123;package name&#125; //upgrade : newly install if package has not installed</span><br><span class="line"></span><br><span class="line"># rpm -qa | grep bash //search package about bash</span><br><span class="line"># rpm -e &#123;package name&#125; //remove package</span><br></pre></td></tr></table></figure></p>
+<h3 id="Software-Management"><a href="#Software-Management" class="headerlink" title="Software Management"></a>Software Management</h3><h4 id="yum-package-management"><a href="#yum-package-management" class="headerlink" title="yum : package management"></a>yum : package management</h4><p>config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/yum.conf //Yum basic config</span><br><span class="line"></span><br><span class="line"># vim /etc/yum.repos.d/*.repo //repository config</span><br></pre></td></tr></table></figure></p>
+<p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum [options] &#123;package name&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">install : install</span><br><span class="line">remove : remove</span><br><span class="line">update : update a package</span><br><span class="line">check-update</span><br><span class="line">info : show package information</span><br><span class="line">search : search a package</span><br><span class="line">grouplist : show list of package group</span><br><span class="line">groupinstall: install all packages in the group</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install system-config-kickstart</span><br></pre></td></tr></table></figure></p>
+<h3 id="Log-Management"><a href="#Log-Management" class="headerlink" title="Log Management"></a>Log Management</h3><h4 id="journalctl-operating-log-database"><a href="#journalctl-operating-log-database" class="headerlink" title="journalctl : operating log database"></a>journalctl : operating log database</h4><p>format :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ journalctl [-options] &#123;condition&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-b : boot logs</span><br><span class="line">-k : kernal logs</span><br><span class="line">-f : show logs on real time</span><br><span class="line">-u &#123;unit name&#125; : show unit logs</span><br><span class="line">--since=&#123;yyyy-MM-dd hh:mm::ss&#125; : since datetime</span><br><span class="line">--until=&#123;yyyy-MM-dd hh:mm::ss&#125; : until datetime</span><br><span class="line">_PID=&#123;process ID&#125; : show logs of process</span><br><span class="line">--no-pager : do not paging</span><br></pre></td></tr></table></figure></p>
+<p>Persistence:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mkdir /var/log/journal</span><br><span class="line"># vim /etc/systemd/journald.conf</span><br><span class="line"># systemctl restart systemd-journald</span><br></pre></td></tr></table></figure></p>
+<h4 id="etc-rsyslog-conf-config-rsyslog"><a href="#etc-rsyslog-conf-config-rsyslog" class="headerlink" title="/etc/rsyslog.conf : config rsyslog"></a>/etc/rsyslog.conf : config rsyslog</h4><h4 id="logger-save-a-message"><a href="#logger-save-a-message" class="headerlink" title="logger: save a message"></a>logger: save a message</h4><p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># logger [options] &#123;message&#125;</span><br></pre></td></tr></table></figure></p>
+<p>options:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-p facility.level</span><br><span class="line">-t tag</span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># logger -p daemon.err -t rsyslogd Test Test Test</span><br><span class="line"># tail /var/log/messages</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/13-centosswap/" rel="next" title="CentOS系统设置虚拟内存SWAP">
+                <i class="fa fa-chevron-left"></i> CentOS系统设置虚拟内存SWAP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/19-linuxjaen/" rel="prev" title="Linux 日语英语词汇">
+                Linux 日语英语词汇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Chenyi Liao">
+            
+              <p class="site-author-name" itemprop="name">Chenyi Liao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaocyintl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://theme-next.iissnan.com/" title="Hexo Next Theme" target="_blank">Hexo Next Theme</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#笔记"><span class="nav-number">2.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Operations"><span class="nav-number">2.1.</span> <span class="nav-text">User Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Profile"><span class="nav-number">2.1.1.</span> <span class="nav-text">Profile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#man-Show-manual-of-the-following-command"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">man : Show manual of the following command</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#whereis-show-path-of-the-following-command"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">whereis : show path of the following command</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-show-current-user-identifications"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">id : show current user identifications</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#who-show-current-user-information"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">who : show current user information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#whoami-show-current-user-name"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">whoami: show current user name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#who-am-i-show-current-user-name-and-last-login"><span class="nav-number">2.1.1.6.</span> <span class="nav-text">who am i: show current user name  and last login</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#date-show-current-system-date-time"><span class="nav-number">2.1.1.7.</span> <span class="nav-text">date: show current system date time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-passwd-saving-user-identifications"><span class="nav-number">2.1.1.8.</span> <span class="nav-text">/etc/passwd/: saving user identifications</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-group-saving-group-identifications"><span class="nav-number">2.1.1.9.</span> <span class="nav-text">/etc/group/: saving group identifications</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clear-clear-current-screen"><span class="nav-number">2.1.1.10.</span> <span class="nav-text">clear: clear current screen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echo-print-information-on-the-screen"><span class="nav-number">2.1.1.11.</span> <span class="nav-text">echo: print information on the screen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pwd-show-current-directory-Print-Working-Directory"><span class="nav-number">2.1.1.12.</span> <span class="nav-text">pwd: show current directory (Print Working Directory)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#opt-save-the-APPs-and-products"><span class="nav-number">2.1.1.13.</span> <span class="nav-text">/opt: save the APPs and products</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bin-save-the-basic-linux-operation-files"><span class="nav-number">2.1.1.14.</span> <span class="nav-text">/bin: save the basic linux operation files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#usr-lib-user-library"><span class="nav-number">2.1.1.15.</span> <span class="nav-text">/usr/lib: user library</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sbin-save-commands-running-when-system-startup-and-shutdown"><span class="nav-number">2.1.1.16.</span> <span class="nav-text">/sbin: save commands running when system startup and shutdown</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-system-file"><span class="nav-number">2.1.1.17.</span> <span class="nav-text">/etc: system file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dev-containing-hardware-device-files"><span class="nav-number">2.1.1.18.</span> <span class="nav-text">/dev: containing hardware device files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#var-system-log-and-spool-file"><span class="nav-number">2.1.1.19.</span> <span class="nav-text">/var: system log and spool file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#current-directory"><span class="nav-number">2.1.1.20.</span> <span class="nav-text">.: current directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parent-directory"><span class="nav-number">2.1.1.21.</span> <span class="nav-text">..: parent directory</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Director-Operations"><span class="nav-number">2.1.2.</span> <span class="nav-text">File/Director Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ls-show-filenames-and-directory-names"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">ls: show filenames and directory names</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cd-change-current-directory"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">cd: change current directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-search-something-in-the-PC"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">find: search something in the PC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkdir-create-a-directory"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">mkdir: create a directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cat-show-file-content"><span class="nav-number">2.1.2.5.</span> <span class="nav-text">cat: show file content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#more-show-file-content-in-pages"><span class="nav-number">2.1.2.6.</span> <span class="nav-text">more: show file content in pages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tail-show-the-tail-in-some-files"><span class="nav-number">2.1.2.7.</span> <span class="nav-text">tail: show the tail in some files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lrp-insert-the-file-into-printing-queue"><span class="nav-number">2.1.2.8.</span> <span class="nav-text">lrp: insert the file into printing queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rm-remove"><span class="nav-number">2.1.2.9.</span> <span class="nav-text">rm: remove</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chmod-change-file-dir-pomission"><span class="nav-number">2.1.2.10.</span> <span class="nav-text">chmod: change file/dir pomission</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#umask-set-default-permission-when-file-created-Mask-code-002-gt-775"><span class="nav-number">2.1.2.11.</span> <span class="nav-text">umask: set default permission when file created (Mask code: 002-&gt;775)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#touch-update-file-timestamp"><span class="nav-number">2.1.2.12.</span> <span class="nav-text">touch: update file timestamp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#su-change-user-ID-Group-ID"><span class="nav-number">2.1.2.13.</span> <span class="nav-text">su: change user ID/Group ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#alias-give-alias-for-command"><span class="nav-number">2.1.2.14.</span> <span class="nav-text">alias: give alias for command</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#umalias-remove-alias"><span class="nav-number">2.1.2.15.</span> <span class="nav-text">umalias: remove alias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#history-how-history-commands"><span class="nav-number">2.1.2.16.</span> <span class="nav-text">history: how history commands</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#env-show-environment"><span class="nav-number">2.1.2.17.</span> <span class="nav-text">env: show environment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wc-count-words-in-the-file"><span class="nav-number">2.1.2.18.</span> <span class="nav-text">wc: count words in the file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#grep-global-search-regular-expression-RE-and-print-out-the-line"><span class="nav-number">2.1.2.19.</span> <span class="nav-text">grep: global search regular expression(RE) and print out the line</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#left-as-the-stdout-right-as-the-stdin-get-information-from-left-and-process-on-right"><span class="nav-number">2.1.2.20.</span> <span class="nav-text">|: left as the stdout, right as the stdin; get information from left and process on right</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cut-show-file-indented-content"><span class="nav-number">2.1.2.21.</span> <span class="nav-text">cut: show file indented content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tr-change-text"><span class="nav-number">2.1.2.22.</span> <span class="nav-text">tr: change text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tee-output-strout-and-print-on-screen"><span class="nav-number">2.1.2.23.</span> <span class="nav-text">tee: output strout and print on screen</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Management"><span class="nav-number">2.2.</span> <span class="nav-text">Management</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Disk-Management"><span class="nav-number">2.2.1.</span> <span class="nav-text">Disk Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dmesg-show-hardware-information"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">dmesg: show hardware information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parted-Partition"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">parted: Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pvcreate-instant-the-partition"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">pvcreate: instant the partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkfs-xfs-init-file-system"><span class="nav-number">2.2.1.4.</span> <span class="nav-text">mkfs.xfs: init file system</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mount-mount-partition-to-direction"><span class="nav-number">2.2.1.5.</span> <span class="nav-text">mount: mount partition to direction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mount-forever"><span class="nav-number">2.2.1.6.</span> <span class="nav-text">mount forever</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#df-monitoring-file-system-status"><span class="nav-number">2.2.1.7.</span> <span class="nav-text">df: monitoring file system status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swap"><span class="nav-number">2.2.1.8.</span> <span class="nav-text">swap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Management"><span class="nav-number">2.2.2.</span> <span class="nav-text">User Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-passwd-user-register-file"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">/etc/passwd : user register file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-shadow-user-password-file"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">/etc/shadow : user password file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-group-group-register-file"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">/etc/group : group register file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#useradd-add-a-user"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">useradd : add a user</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-skel-this-folder-will-be-copied-as-home-folder-when-user-created"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">/etc/skel : this folder will be copied as home folder when user created</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#usermod-change-user-profile"><span class="nav-number">2.2.2.6.</span> <span class="nav-text">usermod : change user profile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#userdel-delete-user"><span class="nav-number">2.2.2.7.</span> <span class="nav-text">userdel : delete user</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boot-and-Shutdown-Management"><span class="nav-number">2.2.3.</span> <span class="nav-text">Boot and Shutdown Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-default-grub-change-bootloader-configration"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">/etc/default/grub : change bootloader configration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#systemd-unit-rescue-target-rescue-mode"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">systemd.unit=rescue.target : rescue mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#systemctl-confirm-change-target"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">systemctl : confirm/change target</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#usr-lib-systemd-system-unit-setting"><span class="nav-number">2.2.3.4.</span> <span class="nav-text">/usr/lib/systemd/system : unit setting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shutdown"><span class="nav-number">2.2.3.5.</span> <span class="nav-text">shutdown</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-Management"><span class="nav-number">2.2.4.</span> <span class="nav-text">Package Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm-package-management"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">rpm :  package management</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Management"><span class="nav-number">2.2.5.</span> <span class="nav-text">Software Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#yum-package-management"><span class="nav-number">2.2.5.1.</span> <span class="nav-text">yum : package management</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log-Management"><span class="nav-number">2.2.6.</span> <span class="nav-text">Log Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#journalctl-operating-log-database"><span class="nav-number">2.2.6.1.</span> <span class="nav-text">journalctl : operating log database</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-rsyslog-conf-config-rsyslog"><span class="nav-number">2.2.6.2.</span> <span class="nav-text">/etc/rsyslog.conf : config rsyslog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logger-save-a-message"><span class="nav-number">2.2.6.3.</span> <span class="nav-text">logger: save a message</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenyi Liao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> and <a href="https://github.com/" style="font-weight: bold">Github</a></p></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://liaocy-net.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://liaocy.net/2019/05/19-linuxcmd/';
+          this.page.identifier = 'en/2019/05/19-linuxcmd/';
+          this.page.title = 'Linux 命令速查';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liaocy-net.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

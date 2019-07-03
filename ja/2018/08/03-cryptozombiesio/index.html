@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans,ja,en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="KWEKu7-400JMONtPKXdBIPQ4ICpSLiomHWycMvJiiUw">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="wR0oqfu7r3">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next_bk.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="以太坊 Ethereum (ETH),区块链 Block Chain,Solidity,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Liao's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="参考资料本文用作 https://cryptozombies.io 中 Solidity 代码带注释的笔记 整理函数修饰符   修饰符 说明     private 只能被合约内部调用   internal 就像 private 但是也能被继承的合约调用   external 只能从合约外部调用   public 可以在任何地方调用，不管是内部还是外部   view 告诉我们运行这个函数不会更改和">
+<meta name="keywords" content="以太坊 Ethereum (ETH),区块链 Block Chain,Solidity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cryptozombies.io Solidity 代码注释笔记">
+<meta property="og:url" content="https://liaocy.net/ja/2018/08/03-cryptozombiesio/index.html">
+<meta property="og:site_name" content="Liao&#39;s Blog">
+<meta property="og:description" content="参考资料本文用作 https://cryptozombies.io 中 Solidity 代码带注释的笔记 整理函数修饰符   修饰符 说明     private 只能被合约内部调用   internal 就像 private 但是也能被继承的合约调用   external 只能从合约外部调用   public 可以在任何地方调用，不管是内部还是外部   view 告诉我们运行这个函数不会更改和">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-07-03T04:51:44.528Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cryptozombies.io Solidity 代码注释笔记">
+<meta name="twitter:description" content="参考资料本文用作 https://cryptozombies.io 中 Solidity 代码带注释的笔记 整理函数修饰符   修饰符 说明     private 只能被合约内部调用   internal 就像 private 但是也能被继承的合约调用   external 只能从合约外部调用   public 可以在任何地方调用，不管是内部还是外部   view 告诉我们运行这个函数不会更改和">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '著者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://liaocy.net/ja/2018/08/03-cryptozombiesio/">
+
+
+
+
+
+  <title>cryptozombies.io Solidity 代码注释笔记 | Liao's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0974e06186820775f8d51e33bc87d4dd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ja">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Development & Research</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            ホーム
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            アーカイブ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            タグ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            カテゴリ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-vocabulary">
+          <a href="/tags/Vocabulary/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-language"></i> <br>
+            
+            単語表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_zh-hans">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            中国語
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_en">
+          <a href="/en/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            英語
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_ja">
+          <a href="/ja/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            日本語
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            検索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/ja/2018/08/03-cryptozombiesio/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">cryptozombies.io Solidity 代码注释笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">投稿日</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T15:05:21+09:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Solidity/" itemprop="url" rel="index">
+                    <span itemprop="name">Solidity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/ja/2018/08/03-cryptozombiesio/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="ja/2018/08/03-cryptozombiesio/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>本文用作 <a href="https://cryptozombies.io" target="_blank" rel="noopener">https://cryptozombies.io</a> 中 Solidity 代码带注释的笔记</p>
+<h2 id="整理"><a href="#整理" class="headerlink" title="整理"></a>整理</h2><h3 id="函数修饰符"><a href="#函数修饰符" class="headerlink" title="函数修饰符"></a>函数修饰符</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private</td>
+<td>只能被合约内部调用</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>就像 private 但是也能被继承的合约调用</td>
+</tr>
+<tr>
+<td>external</td>
+<td>只能从合约外部调用</td>
+</tr>
+<tr>
+<td>public</td>
+<td>可以在任何地方调用，不管是内部还是外部</td>
+</tr>
+<tr>
+<td>view</td>
+<td>告诉我们运行这个函数不会更改和保存任何数据</td>
+</tr>
+<tr>
+<td>pure</td>
+<td>告诉我们这个函数不但不会往区块链写数据，它甚至不从区块链读取数据。这两种在被从合约外部调用的时候都不花费任何gas（但是它们在被内部其他函数调用的时候将会耗费gas）</td>
+</tr>
+<tr>
+<td>modifiers</td>
+<td>自定义其对函数的约束逻辑</td>
+</tr>
+<tr>
+<td>payable</td>
+<td>可以接收以太的特殊函数</td>
+</tr>
+</tbody>
+</table>
+<p>修饰符可以同时作用于一个函数定义上</p>
+<h3 id="ERC721-标准"><a href="#ERC721-标准" class="headerlink" title="ERC721 标准"></a>ERC721 标准</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">contract ERC721 &#123;</span><br><span class="line">  event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);</span><br><span class="line">  event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);</span><br><span class="line"></span><br><span class="line">  function balanceOf(address _owner) public view returns (uint256 _balance);</span><br><span class="line">  function ownerOf(uint256 _tokenId) public view returns (address _owner);</span><br><span class="line">  function transfer(address _to, uint256 _tokenId) public;</span><br><span class="line">  function approve(address _to, uint256 _tokenId) public;</span><br><span class="line">  function takeOwnership(uint256 _tokenId) public;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="标准注释"><a href="#标准注释" class="headerlink" title="标准注释"></a>标准注释</h3><p>Solidity 社区所使用的一个标准是使用一种被称作 natspec 的格式，看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/// @title 一个简单的基础运算合约</span><br><span class="line">/// @author H4XF13LD MORRIS 💯💯😎💯💯</span><br><span class="line">/// @notice 现在，这个合约只添加一个乘法</span><br><span class="line">contract Math &#123;</span><br><span class="line">  /// @notice 两个数相乘</span><br><span class="line">  /// @param x 第一个 uint</span><br><span class="line">  /// @param y  第二个 uint</span><br><span class="line">  /// @return z  (x * y) 的结果</span><br><span class="line">  /// @dev 现在这个方法不检查溢出</span><br><span class="line">  function multiply(uint x, uint y) returns (uint z) &#123;</span><br><span class="line">    // 这只是个普通的注释，不会被 natspec 解释</span><br><span class="line">    z = x * y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@title（标题） 和 @author （作者）很直接了.</p>
+<p>@notice （须知）向 用户 解释这个方法或者合约是做什么的。 @dev （开发者） 是向开发者解释更多的细节。</p>
+<p>@param （参数）和 @return （返回） 用来描述这个方法需要传入什么参数以及返回什么值。</p>
+<p>注意你并不需要每次都用上所有的标签，它们都是可选的。不过最少，写下一个 @dev 注释来解释每个方法是做什么的。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>zombiefactory.sol :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.19;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line">    </span><br><span class="line">    uint dnaDigits = 16;</span><br><span class="line">    uint dnaModulus = 10 ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    mapping (uint =&gt; address) public zombieToOwner;</span><br><span class="line">    mapping (address =&gt; uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    // 除 public 和 private 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：internal（内部） 和 external（外部）。</span><br><span class="line">    // internal 和 private 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。</span><br><span class="line">    // external 与public 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 external 和 public。</span><br><span class="line">    // 将 _createZombie() 函数的属性从 private 改为 internal ， 使得其他的合约也能访问到它。</span><br><span class="line">    //function _createZombie(string _name, uint _dna) private &#123;</span><br><span class="line">    function _createZombie(string _name, uint _dna) internal &#123; </span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - 1;</span><br><span class="line">        </span><br><span class="line">        // 在 Solidity 中，有一些全局变量可以被所有函数调用。 其中一个就是 msg.sender，它指的是当前调用者（或智能合约）的 address。</span><br><span class="line">        // 首先，在得到新的僵尸 id 后，更新 zombieToOwner 映射，在 id 下面存入 msg.sender。</span><br><span class="line">        // 然后，我们为这个 msg.sender 名下的 ownerZombieCount 加 1。</span><br><span class="line">        // 如果Key不存在，该value默认为0，因此直接++就可以</span><br><span class="line">        zombieToOwner[id] = msg.sender;</span><br><span class="line">        ownerZombieCount[msg.sender]++;</span><br><span class="line">        </span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _generateRandomDna(string _str) private view returns (uint) &#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        return rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function createRandomZombie(string _name) public &#123;</span><br><span class="line">        // require使得函数在执行过程中，当不满足某些条件时抛出错误，并停止执行：</span><br><span class="line">        // 敲黑板: Solidity 并不支持原生的字符串比较, 我们只能通过比较两字符串的 keccak256 哈希值来进行判断</span><br><span class="line">        // 我们使用了 require 来确保这个函数只有在每个用户第一次调用它的时候执行，用以创建初始僵尸。</span><br><span class="line">        // 在 createRandomZombie 的前面放置 require 语句。 使得函数先检查 ownerZombieCount [msg.sender] 的值为 0 ，不然就抛出一个错误。</span><br><span class="line">        require(ownerZombieCount[msg.sender] == 0);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>zombiefeeding.sol :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 在 Solidity 中，当你有多个文件并且想把一个文件导入另一个文件时，可以使用 import 语句：</span><br><span class="line">// 将 zombiefactory.sol 导入到我们的新文件 zombiefeeding.sol 中。</span><br><span class="line"></span><br><span class="line">import &quot;./zombiefactory.sol&quot;;</span><br><span class="line"></span><br><span class="line">//参考 CryptoKitties 源代码</span><br><span class="line">//定义一个名为 KittyInterface 的接口。 请注意，因为我们使用了 contract 关键字， 这过程看起来就像创建一个新的合约一样。</span><br><span class="line">contract KittyInterface &#123;</span><br><span class="line">    //在interface里定义了 getKitty 函数（不过是复制/粘贴上面的函数，但在 returns 语句之后用分号，而不是大括号内的所有内容。</span><br><span class="line">    function getKitty(uint256 _id)external view returns (</span><br><span class="line">        bool isGestating,</span><br><span class="line">        bool isReady,</span><br><span class="line">        uint256 cooldownIndex,</span><br><span class="line">        uint256 nextActionAt,</span><br><span class="line">        uint256 siringWithId,</span><br><span class="line">        uint256 birthTime,</span><br><span class="line">        uint256 matronId,</span><br><span class="line">        uint256 sireId,</span><br><span class="line">        uint256 generation,</span><br><span class="line">        uint256 genes</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 我们的游戏代码越来越长。 当代码过于冗长的时候，最好将代码和逻辑分拆到多个不同的合约中，以便于管理。</span><br><span class="line">// 有个让 Solidity 的代码易于管理的功能，就是合约 inheritance (继承)</span><br><span class="line">// 由于 子类 是从 父类 那里 inherits （继承)过来的。 这意味着当你编译和部署了 子类，它将可以访问我们在 父类 中定义的其他 **公共** 函数。</span><br><span class="line">// 在 ZombieFactory 下创建一个叫 ZombieFeeding 的合约，它是继承自 `ZombieFactory 合约的。</span><br><span class="line">contract ZombieFactory is ZombieFactory&#123;</span><br><span class="line">    //我已经将代码中 CryptoKitties 合约的地址保存在一个名为 ckAddress 的变量中。在下一行中，请创建一个名为 kittyContract 的 KittyInterface，并用 ckAddress 为它初始化 —— 就像我们为 numberContract所做的一样。</span><br><span class="line">    address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;</span><br><span class="line">    KittyInterface kittyContract = KittyInterface(ckAddress);</span><br><span class="line"></span><br><span class="line">    // 在 Solidity 中，有两个地方可以存储变量 —— storage 或 memory。</span><br><span class="line">    // Storage 变量是指永久存储在区块链中的变量。 Memory 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。</span><br><span class="line">    // 大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。</span><br><span class="line">    // 是时候给我们的僵尸增加“猎食”和“繁殖”功能了！</span><br><span class="line">    // 当一个僵尸猎食其他生物体时，它自身的DNA将与猎物生物的DNA结合在一起，形成一个新的僵尸DNA。</span><br><span class="line">    // 创建一个名为 feedAndMultiply 的函数。 使用两个参数：_zombieId（ uint类型 ）和_targetDna （也是 uint 类型）。 设置属性为 public 的。</span><br><span class="line">    // function feedAndMultiply(uint _zombieId, uint _targetDna) public &#123;</span><br><span class="line">    // 首先，我们修改下 feedAndMultiply 函数的定义，给它传入第三个参数：一条名为 _species 的字符串。</span><br><span class="line">    function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) public &#123;</span><br><span class="line">        // 我们不希望别人用我们的僵尸去捕猎。 首先，我们确保对自己僵尸的所有权。 通过添加一个require 语句来确保 msg.sender 只能是这个僵尸的主人（类似于我们在 createRandomZombie 函数中做过的那样）。</span><br><span class="line">        require(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">        </span><br><span class="line">        //在我们计算出新的僵尸的DNA之后，添加一个 if 语句来比较 _species 和字符串 &quot;kitty&quot; 的 keccak256 哈希值。</span><br><span class="line">        if (keccak256(_species) == keccak256(&quot;kitty&quot;)) &#123;</span><br><span class="line">            // 在 if 语句中，我们用 99 替换了新僵尸DNA的最后两位数字。可以这么做：newDna = newDna - newDna％100 + 99;。</span><br><span class="line">            // 解释：假设 newDna 是 334455。那么 newDna％100 是 55，所以 newDna - newDna％100 得到 334400。最后加上 99 可得到 334499。</span><br><span class="line">            newDna = newDna - newDna % 100 + 99;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        //为了获取这个僵尸的DNA，我们的函数需要声明一个名为 myZombie 数据类型为Zombie的本地变量（这是一个 storage 型的指针）。 将其值设定为在 zombies 数组中索引为_zombieId所指向的值。</span><br><span class="line">        Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">        </span><br><span class="line">        // 获取新的僵尸DNA的公式很简单：计算猎食僵尸DNA和被猎僵尸DNA之间的平均值。</span><br><span class="line">        // 首先我们确保 _targetDna 不长于16位。要做到这一点，我们可以设置 _targetDna 为 _targetDna％dnaModulus ，并且只取其最后16位数字。</span><br><span class="line">        _targetDna = _targetDna % dnaModulus;</span><br><span class="line">        // 接下来为我们的函数声明一个名叫 newDna 的 uint类型的变量，并将其值设置为 myZombie的 DNA 和 _targetDna 的平均值（如上例所示）。</span><br><span class="line">        uint newDna = (myZombie.dna + _targetDna) / 2;</span><br><span class="line">        // 一旦我们计算出新的DNA，再调用 _createZombie 就可以生成新的僵尸了。</span><br><span class="line">        // 注意：这段代码编译的时候编译器就会报错。 错误在于，我们尝试从 ZombieFeeding 中调用 _createZombie 函数，但 _createZombie 却是 ZombieFactory 的 private （私有）函数。这意味着任何继承自 ZombieFactory 的子合约都不能访问它。</span><br><span class="line">        _createZombie(&quot;NoName&quot;, newDna);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 参考 处理多返回值</span><br><span class="line">    // 我们来定义一个函数，从 kitty 合约中获取它的基因：</span><br><span class="line">    // 创建一个名为 feedOnKitty 的函数。它需要2个 uint 类型的参数，_zombieId 和_kittyId ，这是一个 public 类型的函数。</span><br><span class="line">    function feedOnKitty(uint _nombieId, uint _kittyId) public &#123;</span><br><span class="line">        // 函数首先要声明一个名为 kittyDna 的 uint。</span><br><span class="line">        // 注意：在我们的 KittyInterface 中，genes 是一个 uint256 类型的变量，但是如果你记得，我们在第一课中提到过，uint 是 uint256 的别名，也就是说它们是一回事。</span><br><span class="line">        uint kittyDna;</span><br><span class="line">        // 这个函数接下来调用 kittyContract.getKitty函数, 传入 _kittyId ，将返回的 genes 存储在 kittyDna 中。记住 —— getKitty 会返回一大堆变量。 （确切地说10个 - 我已经为你数过了，不错吧！）。但是我们只关心最后一个-- genes。数逗号的时候小心点哦！</span><br><span class="line">        (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);</span><br><span class="line">        // 最后，函数调用了 feedAndMultiply ，并传入了 _zombieId 和 kittyDna 两个参数。</span><br><span class="line">        //feedAndMultiply(_zombieId, kittyDna);</span><br><span class="line">        // 最后，我们修改了 feedOnKitty 中的函数调用。当它调用 feedAndMultiply 时，增加 “kitty” 作为最后一个参数。</span><br><span class="line">        feedAndMultiply(_zombieId, kittyDna, &quot;kitty&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><h3 id="关于-storage-和-memory变量："><a href="#关于-storage-和-memory变量：" class="headerlink" title="关于 storage 和 memory变量："></a>关于 storage 和 memory变量：</h3><p>在 Solidity 中，有两个地方可以存储变量 —— storage 或 memory。</p>
+<p>Storage 变量是指永久存储在区块链中的变量。 Memory 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。</p>
+<p>Storage 类似一个指针，可以修改指向的变量。</p>
+<p>大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。</p>
+<p>然而也有一些情况下，你需要手动声明存储类型，主要用于处理函数内的 结构体 和 数组 时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">contract SandwichFactory &#123;</span><br><span class="line">  struct Sandwich &#123;</span><br><span class="line">    string name;</span><br><span class="line">    string status;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Sandwich[] sandwiches;</span><br><span class="line"></span><br><span class="line">  function eatSandwich(uint _index) public &#123;</span><br><span class="line">    // Sandwich mySandwich = sandwiches[_index];</span><br><span class="line"></span><br><span class="line">    // ^ 看上去很直接，不过 Solidity 将会给出警告</span><br><span class="line">    // 告诉你应该明确在这里定义 `storage` 或者 `memory`。</span><br><span class="line"></span><br><span class="line">    // 所以你应该明确定义 `storage`:</span><br><span class="line">    Sandwich storage mySandwich = sandwiches[_index];</span><br><span class="line">    // ...这样 `mySandwich` 是指向 `sandwiches[_index]`的指针</span><br><span class="line">    // 在存储里，另外...</span><br><span class="line">    mySandwich.status = &quot;Eaten!&quot;;</span><br><span class="line">    // ...这将永久把 `sandwiches[_index]` 变为区块链上的存储</span><br><span class="line"></span><br><span class="line">    // 如果你只想要一个副本，可以使用`memory`:</span><br><span class="line">    Sandwich memory anotherSandwich = sandwiches[_index + 1];</span><br><span class="line">    // ...这样 `anotherSandwich` 就仅仅是一个内存里的副本了</span><br><span class="line">    // 另外</span><br><span class="line">    anotherSandwich.status = &quot;Eaten!&quot;;</span><br><span class="line">    // ...将仅仅修改临时变量，对 `sandwiches[_index + 1]` 没有任何影响</span><br><span class="line">    // 不过你可以这样做:</span><br><span class="line">    sandwiches[_index + 1] = anotherSandwich;</span><br><span class="line">    // ...如果你想把副本的改动保存回区块链存储</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="internal-和-external："><a href="#internal-和-external：" class="headerlink" title="internal 和 external："></a>internal 和 external：</h3><p>除 public 和 private 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：internal（内部） 和 external（外部）。</p>
+<p>internal 和 private 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。</p>
+<p>external 与public 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 external 和 public。</p>
+<p>声明函数 internal 或 external 类型的语法，与声明 private 和 public类 型相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract Sandwich &#123;</span><br><span class="line">  uint private sandwichesEaten = 0;</span><br><span class="line"></span><br><span class="line">  function eat() internal &#123;</span><br><span class="line">    sandwichesEaten++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract BLT is Sandwich &#123;</span><br><span class="line">  uint private baconSandwichesEaten = 0;</span><br><span class="line"></span><br><span class="line">  function eatWithBacon() public returns (string) &#123;</span><br><span class="line">    baconSandwichesEaten++;</span><br><span class="line">    // 因为eat() 是internal 的，所以我们能在这里调用</span><br><span class="line">    eat();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="与其他合约的交互"><a href="#与其他合约的交互" class="headerlink" title="与其他合约的交互"></a>与其他合约的交互</h3><p>如果我们的合约需要和区块链上的其他的合约会话，则需先定义一个 interface (接口)。</p>
+<p>先举一个简单的栗子。 假设在区块链上有这么一个合约：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract LuckyNumber &#123;</span><br><span class="line">  mapping(address =&gt; uint) numbers;</span><br><span class="line"></span><br><span class="line">  function setNum(uint _num) public &#123;</span><br><span class="line">    numbers[msg.sender] = _num;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getNum(address _myAddress) public view returns (uint) &#123;</span><br><span class="line">    return numbers[_myAddress];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是个很简单的合约，您可以用它存储自己的幸运号码，并将其与您的以太坊地址关联。 这样其他人就可以通过您的地址查找您的幸运号码了。</p>
+<p>现在假设我们有一个外部合约，使用 getNum 函数可读取其中的数据。</p>
+<p>首先，我们定义 LuckyNumber 合约的 interface ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract NumberInterface &#123;</span><br><span class="line">  function getNum(address _myAddress) public view returns (uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这个过程虽然看起来像在定义一个合约，但其实内里不同：</p>
+<p>首先，我们只声明了要与之交互的函数 —— 在本例中为 getNum —— 在其中我们没有使用到任何其他的函数或状态变量。</p>
+<p>其次，我们并没有使用大括号（{ 和 }）定义函数体，我们单单用分号（;）结束了函数声明。这使它看起来像一个合约框架。</p>
+<p>编译器就是靠这些特征认出它是一个 <strong>接口</strong> 的。</p>
+<p>在我们的 app 代码中使用这个接口，合约就知道其他合约的函数是怎样的，应该如何调用，以及可期待什么类型的返回值。</p>
+<p>在下一课中，我们将真正调用其他合约的函数。目前我们只要声明一个接口，用于调用 CryptoKitties 合约就行了。</p>
+<h3 id="CryptoKitties源代码"><a href="#CryptoKitties源代码" class="headerlink" title="CryptoKitties源代码"></a>CryptoKitties源代码</h3><p>我们已经为你查看过了 CryptoKitties 的源代码，并且找到了一个名为 getKitty的函数，它返回所有的加密猫的数据，包括它的“基因”（我们的僵尸游戏要用它生成新的僵尸）。</p>
+<p>该函数如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function getKitty(uint256 _id) external view returns (</span><br><span class="line">    bool isGestating,</span><br><span class="line">    bool isReady,</span><br><span class="line">    uint256 cooldownIndex,</span><br><span class="line">    uint256 nextActionAt,</span><br><span class="line">    uint256 siringWithId,</span><br><span class="line">    uint256 birthTime,</span><br><span class="line">    uint256 matronId,</span><br><span class="line">    uint256 sireId,</span><br><span class="line">    uint256 generation,</span><br><span class="line">    uint256 genes</span><br><span class="line">) &#123;</span><br><span class="line">    Kitty storage kit = kitties[_id];</span><br><span class="line"></span><br><span class="line">    // if this variable is 0 then it&apos;s not gestating</span><br><span class="line">    isGestating = (kit.siringWithId != 0);</span><br><span class="line">    isReady = (kit.cooldownEndBlock &lt;= block.number);</span><br><span class="line">    cooldownIndex = uint256(kit.cooldownIndex);</span><br><span class="line">    nextActionAt = uint256(kit.cooldownEndBlock);</span><br><span class="line">    siringWithId = uint256(kit.siringWithId);</span><br><span class="line">    birthTime = uint256(kit.birthTime);</span><br><span class="line">    matronId = uint256(kit.matronId);</span><br><span class="line">    sireId = uint256(kit.sireId);</span><br><span class="line">    generation = uint256(kit.generation);</span><br><span class="line">    genes = kit.genes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用接口"><a href="#使用接口" class="headerlink" title="使用接口"></a>使用接口</h3><p>继续前面 NumberInterface 的例子，我们既然将接口定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract NumberInterface &#123;</span><br><span class="line">  function getNum(address _myAddress) public view returns (uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以在合约中这样使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contract MyContract &#123;</span><br><span class="line">  address NumberInterfaceAddress = 0xab38...;</span><br><span class="line">  // ^ 这是FavoriteNumber合约在以太坊上的地址</span><br><span class="line">  NumberInterface numberContract = NumberInterface(NumberInterfaceAddress);</span><br><span class="line">  // 现在变量 `numberContract` 指向另一个合约对象</span><br><span class="line"></span><br><span class="line">  function someFunction() public &#123;</span><br><span class="line">    // 现在我们可以调用在那个合约中声明的 `getNum`函数:</span><br><span class="line">    uint num = numberContract.getNum(msg.sender);</span><br><span class="line">    // ...在这儿使用 `num`变量做些什么</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过这种方式，只要将您合约的可见性设置为public(公共)或external(外部)，它们就可以与以太坊区块链上的任何其他合约进行交互。</p>
+<h3 id="处理多返回值"><a href="#处理多返回值" class="headerlink" title="处理多返回值"></a>处理多返回值</h3><p>getKitty 是我们所看到的第一个返回多个值的函数。我们来看看是如何处理的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function multipleReturns() internal returns(uint a, uint b, uint c) &#123;</span><br><span class="line">  return (1, 2, 3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function processMultipleReturns() external &#123;</span><br><span class="line">  uint a;</span><br><span class="line">  uint b;</span><br><span class="line">  uint c;</span><br><span class="line">  // 这样来做批量赋值:</span><br><span class="line">  (a, b, c) = multipleReturns();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 或者如果我们只想返回其中一个变量:</span><br><span class="line">function getLastReturnValue() external &#123;</span><br><span class="line">  uint c;</span><br><span class="line">  // 可以对其他字段留空:</span><br><span class="line">  (,,c) = multipleReturns();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="kitty-和-web3-js-放在一起"><a href="#kitty-和-web3-js-放在一起" class="headerlink" title="kitty 和 web3.js 放在一起"></a>kitty 和 web3.js 放在一起</h3><p>我们只用编译和部署 ZombieFeeding，就可以将这个合约部署到以太坊了。我们最终完成的这个合约继承自 ZombieFactory，因此它可以访问自己和父辈合约中的所有 public 方法。</p>
+<p>我们来看一个与我们的刚部署的合约进行交互的例子， 这个例子使用了 JavaScript 和 web3.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> abi = <span class="comment">/* abi generated by the compiler */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFeedingContract = web3.eth.contract(abi)</span><br><span class="line"><span class="keyword">var</span> contractAddress = <span class="comment">/* our contract address on Ethereum after deploying */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFeeding = ZombieFeedingContract.at(contractAddress)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设我们有我们的僵尸ID和要攻击的猫咪ID</span></span><br><span class="line"><span class="keyword">let</span> zombieId = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> kittyId = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要拿到猫咪的DNA，我们需要调用它的API。这些数据保存在它们的服务器上而不是区块链上。</span></span><br><span class="line"><span class="comment">// 如果一切都在区块链上，我们就不用担心它们的服务器挂了，或者它们修改了API，</span></span><br><span class="line"><span class="comment">// 或者因为不喜欢我们的僵尸游戏而封杀了我们</span></span><br><span class="line"><span class="keyword">let</span> apiUrl = <span class="string">"https://api.cryptokitties.co/kitties/"</span> + kittyId</span><br><span class="line">$.get(apiUrl, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> imgUrl = data.image_url</span><br><span class="line">  <span class="comment">// 一些显示图片的代码</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当用户点击一只猫咪的时候:</span></span><br><span class="line">$(<span class="string">".kittyImage"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 调用我们合约的 `feedOnKitty` 函数</span></span><br><span class="line">  ZombieFeeding.feedOnKitty(zombieId, kittyId)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 侦听来自我们合约的新僵尸事件好来处理</span></span><br><span class="line">ZombieFactory.NewZombie(<span class="function"><span class="keyword">function</span>(<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span></span><br><span class="line">  <span class="comment">// 这个函数用来显示僵尸:</span></span><br><span class="line">  generateZombie(result.zombieId, result.name, result.dna)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/以太坊-Ethereum-ETH/" rel="tag"># 以太坊 Ethereum (ETH)</a>
+          
+            <a href="/tags/区块链-Block-Chain/" rel="tag"># 区块链 Block Chain</a>
+          
+            <a href="/tags/Solidity/" rel="tag"># Solidity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/01-pythonlinuxwinpath/" rel="next" title="解决Python在Linux环境、Mac环境或Windows环境下，文件路径不同的问题">
+                <i class="fa fa-chevron-left"></i> 解决Python在Linux环境、Mac环境或Windows环境下，文件路径不同的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/20-phpmaxinputvars/" rel="prev" title="调整PHP的POST数量限制">
+                调整PHP的POST数量限制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            見出し
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Chenyi Liao">
+            
+              <p class="site-author-name" itemprop="name">Chenyi Liao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">ポスト</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">カテゴリ</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">タグ</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaocyintl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://theme-next.iissnan.com/" title="Hexo Next Theme" target="_blank">Hexo Next Theme</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整理"><span class="nav-number">2.</span> <span class="nav-text">整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数修饰符"><span class="nav-number">2.1.</span> <span class="nav-text">函数修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ERC721-标准"><span class="nav-number">2.2.</span> <span class="nav-text">ERC721 标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准注释"><span class="nav-number">2.3.</span> <span class="nav-text">标准注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例代码"><span class="nav-number">4.</span> <span class="nav-text">示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-storage-和-memory变量："><span class="nav-number">4.1.</span> <span class="nav-text">关于 storage 和 memory变量：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#internal-和-external："><span class="nav-number">4.2.</span> <span class="nav-text">internal 和 external：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与其他合约的交互"><span class="nav-number">4.3.</span> <span class="nav-text">与其他合约的交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CryptoKitties源代码"><span class="nav-number">4.4.</span> <span class="nav-text">CryptoKitties源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用接口"><span class="nav-number">4.5.</span> <span class="nav-text">使用接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理多返回值"><span class="nav-number">4.6.</span> <span class="nav-text">处理多返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kitty-和-web3-js-放在一起"><span class="nav-number">4.7.</span> <span class="nav-text">kitty 和 web3.js 放在一起</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenyi Liao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> and <a href="https://github.com/" style="font-weight: bold">Github</a></p></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://liaocy-net.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://liaocy.net/2018/08/03-cryptozombiesio/';
+          this.page.identifier = 'ja/2018/08/03-cryptozombiesio/';
+          this.page.title = 'cryptozombies.io Solidity 代码注释笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liaocy-net.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans,ja,en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="KWEKu7-400JMONtPKXdBIPQ4ICpSLiomHWycMvJiiUw">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="wR0oqfu7r3">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next_bk.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SQL,PostgreSQL,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Liao's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="问题背景PostgreSQL那些忘却的事 Basic Commands (PSQL)psql -U postgres :  Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i">
+<meta name="keywords" content="SQL,PostgreSQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQL那些忘却的事">
+<meta property="og:url" content="https://liaocy.net/ja/2019/05/27-postgresqlnote/index.html">
+<meta property="og:site_name" content="Liao&#39;s Blog">
+<meta property="og:description" content="问题背景PostgreSQL那些忘却的事 Basic Commands (PSQL)psql -U postgres :  Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-07-03T04:51:44.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PostgreSQL那些忘却的事">
+<meta name="twitter:description" content="问题背景PostgreSQL那些忘却的事 Basic Commands (PSQL)psql -U postgres :  Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '著者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://liaocy.net/ja/2019/05/27-postgresqlnote/">
+
+
+
+
+
+  <title>PostgreSQL那些忘却的事 | Liao's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0974e06186820775f8d51e33bc87d4dd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ja">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Development & Research</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            ホーム
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            アーカイブ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            タグ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            カテゴリ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-vocabulary">
+          <a href="/tags/Vocabulary/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-language"></i> <br>
+            
+            単語表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_zh-hans">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            中国語
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_en">
+          <a href="/en/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            英語
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-switch_lang_ja">
+          <a href="/ja/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-globe"></i> <br>
+            
+            日本語
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            検索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/ja/2019/05/27-postgresqlnote/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">PostgreSQL那些忘却的事</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">投稿日</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T09:25:00+09:00">
+                2019-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/ja/2019/05/27-postgresqlnote/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="ja/2019/05/27-postgresqlnote/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>PostgreSQL那些忘却的事</p>
+<h1 id="Basic-Commands-PSQL"><a href="#Basic-Commands-PSQL" class="headerlink" title="Basic Commands (PSQL)"></a>Basic Commands (PSQL)</h1><h4 id="psql-U-postgres-Access-to-DBMS-engine"><a href="#psql-U-postgres-Access-to-DBMS-engine" class="headerlink" title="psql -U postgres :  Access to DBMS engine"></a>psql -U postgres :  Access to DBMS engine</h4><h4 id="l-show-databases"><a href="#l-show-databases" class="headerlink" title="\l : show databases"></a>\l : show databases</h4><h4 id="c-database-name-use-database"><a href="#c-database-name-use-database" class="headerlink" title="\c {database name}: use database"></a>\c {database name}: use database</h4><h4 id="d-show-tables"><a href="#d-show-tables" class="headerlink" title="\d : show tables"></a>\d : show tables</h4><h4 id="d-table-name-show-table-structure"><a href="#d-table-name-show-table-structure" class="headerlink" title="\d {table name} : show table structure"></a>\d {table name} : show table structure</h4><h4 id="q-quit"><a href="#q-quit" class="headerlink" title="\q : quit"></a>\q : quit</h4><h4 id="i-SQL-file-run-the-SQL-file"><a href="#i-SQL-file-run-the-SQL-file" class="headerlink" title="\i {SQL file} : run the SQL file"></a>\i {SQL file} : run the SQL file</h4><h1 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h1><h4 id="pset-null-NULL-show-null-as-‘NULL’-when-SELECT"><a href="#pset-null-NULL-show-null-as-‘NULL’-when-SELECT" class="headerlink" title="\pset null NULL : show null as ‘NULL’ when SELECT"></a>\pset null NULL : show null as ‘NULL’ when SELECT</h4><h4 id="or-ESCAPE"><a href="#or-ESCAPE" class="headerlink" title="@ or \ : ESCAPE"></a>@ or \ : ESCAPE</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># SELECT * FROM a WHERE A LIKE &quot;%10@%%&quot; //means extract record where includes 10%</span><br></pre></td></tr></table></figure></p>
+<h4 id="UNION-UNION-ALL-combine-the-result-set-of-two-or-more-SELECT-statements-vertically"><a href="#UNION-UNION-ALL-combine-the-result-set-of-two-or-more-SELECT-statements-vertically" class="headerlink" title="UNION / UNION ALL: combine the result-set of two or more SELECT statements vertically"></a>UNION / UNION ALL: combine the result-set of two or more SELECT statements vertically</h4><p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> Websites</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> apps</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> country;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> Websites</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> apps</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> country;</span><br></pre></td></tr></table></figure>
+<h4 id="All-joins"><a href="#All-joins" class="headerlink" title="All joins:"></a>All joins:</h4><p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LEFT JOIN b ON &lt;conditions&gt;</span><br><span class="line">RIGHT JOIN b ON &lt;conditions&gt;</span><br><span class="line">INNER JOIN b ON</span><br></pre></td></tr></table></figure></p>
+<h4 id="type-conversion-Only-for-postgres"><a href="#type-conversion-Only-for-postgres" class="headerlink" title=":: : type conversion (Only for postgres)"></a>:: : type conversion (Only for postgres)</h4><p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">'2013-05-03'</span>::<span class="built_in">date</span>;</span><br></pre></td></tr></table></figure></p>
+<p>result:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    date</span><br><span class="line">------------</span><br><span class="line"> 2018-01-01</span><br></pre></td></tr></table></figure></p>
+<h4 id="ALL-父查询中的结果集大于子查询中每一个结果集中的值-则为真"><a href="#ALL-父查询中的结果集大于子查询中每一个结果集中的值-则为真" class="headerlink" title="ALL : 父查询中的结果集大于子查询中每一个结果集中的值,则为真"></a>ALL : 父查询中的结果集大于子查询中每一个结果集中的值,则为真</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM T2 WHERE N &gt; ALL (SELECT N FROM T1)</span><br></pre></td></tr></table></figure></p>
+<h4 id="ANY-SOME-父查询中的结果集大于子查询中任意一个结果集中的值-则为真"><a href="#ANY-SOME-父查询中的结果集大于子查询中任意一个结果集中的值-则为真" class="headerlink" title="ANY,SOME : 父查询中的结果集大于子查询中任意一个结果集中的值,则为真"></a>ANY,SOME : 父查询中的结果集大于子查询中任意一个结果集中的值,则为真</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM T2 WHERE N &gt; ANY(SELECT N FROM T1)</span><br><span class="line">SELECT * FROM T2 WHERE N &gt; SOME(SELECT N FROM T1)</span><br></pre></td></tr></table></figure></p>
+<h4 id="ANY-IN-ANY-与子查询IN相同"><a href="#ANY-IN-ANY-与子查询IN相同" class="headerlink" title="ANY, IN : ANY 与子查询IN相同"></a>ANY, IN : ANY 与子查询IN相同</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM T2 WHERE N = ANY (SELECT N FROM T1)</span><br><span class="line">SELECT * FROM T2 WHERE N IN (SELECT N FROM T1)</span><br></pre></td></tr></table></figure></p>
+<h4 id="lt-gt-ANY-NOT-IN"><a href="#lt-gt-ANY-NOT-IN" class="headerlink" title="&lt;&gt;ANY, NOT IN"></a>&lt;&gt;ANY, NOT IN</h4><h4 id="‘-“-and"><a href="#‘-“-and" class="headerlink" title="‘ “ and `"></a>‘ “ and `</h4><ul>
+<li>‘ : definition of a variate</li>
+<li>“ : definition of a column name</li>
+<li>` : definition of a column name (MySQL)</li>
+</ul>
+<h4 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h4><p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">\<span class="keyword">set</span> AUTOCOMMIT <span class="keyword">off</span> <span class="comment">-- shutdown autocommit</span></span><br><span class="line">\echo :AUTOCOMMIT</span><br><span class="line"></span><br><span class="line"><span class="keyword">BEGIN</span>; <span class="comment">-- or [start transaction]</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> hoge <span class="keyword">VALUE</span>(<span class="string">'hoge'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> hoge; <span class="comment">-- results hoge</span></span><br><span class="line"><span class="keyword">ROLLBACK</span>;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> hoge; <span class="comment">-- results nothing</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> hoge <span class="keyword">VALUES</span>(<span class="string">'hoge2'</span>);</span><br><span class="line"><span class="keyword">SAVEPOINT</span> hoge2;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> hoge; <span class="comment">-- results hoge2</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> hoge2 <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">'hoge2'</span>;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> hoge; <span class="comment">-- results nothing</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ROLLBACK</span> <span class="keyword">TO</span> hoge2; <span class="comment">-- goto SAVEPOINT hoge2</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> hoge; <span class="comment">-- results hoge2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- transaction end</span></span><br></pre></td></tr></table></figure></p>
+<p>attention: The lock is started then first INSERT, UPDATE, or DELETE but not START;</p>
+<h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><h4 id="CREATE-TEMPORARY-table…-create-a-in-memory-database"><a href="#CREATE-TEMPORARY-table…-create-a-in-memory-database" class="headerlink" title="CREATE TEMPORARY table… : create a in-memory-database"></a>CREATE TEMPORARY table… : create a in-memory-database</h4><h4 id="SERIAL-Auto-increased-ID-in-postgres"><a href="#SERIAL-Auto-increased-ID-in-postgres" class="headerlink" title="SERIAL : Auto-increased ID in postgres"></a>SERIAL : Auto-increased ID in postgres</h4><p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">sample</span> (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  <span class="string">"value"</span> <span class="built_in">integer</span></span><br><span class="line">) ;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SEQUENCE</span> orders_seq;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> XXX <span class="keyword">VALUES</span>(<span class="keyword">NEXTVAL</span>(orders_seq));</span><br><span class="line"></span><br><span class="line">CURRVAL(orders_seq) <span class="comment">-- current value</span></span><br><span class="line"><span class="keyword">SELECT</span> SETVAL(orders_seq, <span class="keyword">value</span>); <span class="comment">-- set a value for orders_seq</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SEQUENCE</span> orders_seq;</span><br></pre></td></tr></table></figure>
+<h4 id="Foreign-key"><a href="#Foreign-key" class="headerlink" title="Foreign key"></a>Foreign key</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> hoge4(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>, </span><br><span class="line">    staff_id <span class="built_in">INT</span> FOREIGN <span class="keyword">KEY</span> <span class="keyword">REFERENCES</span> staff(pno)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="ALTER"><a href="#ALTER" class="headerlink" title="ALTER"></a>ALTER</h4><p>format:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span> <span class="keyword">name</span>&gt; <span class="keyword">RENAME</span> <span class="keyword">TO</span> &lt;<span class="keyword">new</span> <span class="keyword">table</span> <span class="keyword">name</span>&gt; <span class="comment">-- change table name</span></span><br></pre></td></tr></table></figure></p>
+<p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> hoge4 <span class="keyword">RENAME</span> <span class="keyword">TO</span> hoge5; <span class="comment">-- change table name.</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> hoge4 <span class="keyword">ADD</span> addr <span class="built_in">varchar</span>(<span class="number">50</span>); <span class="comment">-- add a column "addr" at the end of table hoge4.</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> hoge4 <span class="keyword">DROP</span> addr; <span class="comment">-- drop column "addr" in the table hoge4.</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> hoge4 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> people_pkey; <span class="comment">-- drop a constraint "people_pkey" in the table hoge4.</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> hoge4 <span class="keyword">ALTER</span> addr <span class="keyword">DROP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>; <span class="comment">-- drop "NOT NULL" attribute of column "addr" in the table hoge4.</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> hoge4; <span class="comment">-- drop the table hoge4;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="View"><a href="#View" class="headerlink" title="View"></a>View</h4><p>Format:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> xxx_view <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> .......;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h4><p>format:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> &lt;index_name&gt; <span class="keyword">ON</span> &lt;table_name&gt; (&lt;column1, column2&gt;); <span class="comment">-- create a index</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> &lt;index_name&gt;; <span class="comment">-- drop a index</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h1><h4 id="Role"><a href="#Role" class="headerlink" title="Role"></a>Role</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> training LOGIN <span class="keyword">PASSWORD</span> <span class="string">'training'</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">ROLE</span> training <span class="keyword">RENAME</span> <span class="keyword">TO</span> dbtraining;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">ROLE</span> dbtraining <span class="keyword">PASSWORD</span> <span class="string">'password'</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">ROLE</span> dbtraining <span class="keyword">WITH</span> SUPERUSER CREATEDB CREATEROLE;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">ROLE</span> dbtraining;</span><br></pre></td></tr></table></figure>
+<h4 id="GRAND"><a href="#GRAND" class="headerlink" title="GRAND"></a>GRAND</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">ON</span> <span class="keyword">DATABASE</span> mydb00 <span class="keyword">TO</span> dbtraining;</span><br><span class="line"><span class="keyword">GRANT</span> &lt;privilege1&gt;, &lt;privilege2&gt; <span class="keyword">ON</span> &lt;table_name&gt; <span class="keyword">TO</span> &lt;user_name&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+            <a href="/tags/PostgreSQL/" rel="tag"># PostgreSQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27-sqljaen/" rel="next" title="SQL 日语英语词汇">
+                <i class="fa fa-chevron-left"></i> SQL 日语英语词汇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/awesome/sys/" rel="prev" title="Awesome System">
+                Awesome System <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            見出し
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Chenyi Liao">
+            
+              <p class="site-author-name" itemprop="name">Chenyi Liao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">ポスト</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">カテゴリ</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">タグ</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaocyintl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://theme-next.iissnan.com/" title="Hexo Next Theme" target="_blank">Hexo Next Theme</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题背景"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Commands-PSQL"><span class="nav-number">2.</span> <span class="nav-text">Basic Commands (PSQL)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#psql-U-postgres-Access-to-DBMS-engine"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">psql -U postgres :  Access to DBMS engine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#l-show-databases"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">\l : show databases</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-database-name-use-database"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">\c {database name}: use database</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-show-tables"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">\d : show tables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-table-name-show-table-structure"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">\d {table name} : show table structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#q-quit"><span class="nav-number">2.0.0.6.</span> <span class="nav-text">\q : quit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i-SQL-file-run-the-SQL-file"><span class="nav-number">2.0.0.7.</span> <span class="nav-text">\i {SQL file} : run the SQL file</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#DML"><span class="nav-number">3.</span> <span class="nav-text">DML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pset-null-NULL-show-null-as-‘NULL’-when-SELECT"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">\pset null NULL : show null as ‘NULL’ when SELECT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#or-ESCAPE"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">@ or \ : ESCAPE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UNION-UNION-ALL-combine-the-result-set-of-two-or-more-SELECT-statements-vertically"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">UNION / UNION ALL: combine the result-set of two or more SELECT statements vertically</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#All-joins"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">All joins:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-conversion-Only-for-postgres"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">:: : type conversion (Only for postgres)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ALL-父查询中的结果集大于子查询中每一个结果集中的值-则为真"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">ALL : 父查询中的结果集大于子查询中每一个结果集中的值,则为真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ANY-SOME-父查询中的结果集大于子查询中任意一个结果集中的值-则为真"><span class="nav-number">3.0.0.7.</span> <span class="nav-text">ANY,SOME : 父查询中的结果集大于子查询中任意一个结果集中的值,则为真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ANY-IN-ANY-与子查询IN相同"><span class="nav-number">3.0.0.8.</span> <span class="nav-text">ANY, IN : ANY 与子查询IN相同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-gt-ANY-NOT-IN"><span class="nav-number">3.0.0.9.</span> <span class="nav-text">&lt;&gt;ANY, NOT IN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#‘-“-and"><span class="nav-number">3.0.0.10.</span> <span class="nav-text">‘ “ and `</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transaction"><span class="nav-number">3.0.0.11.</span> <span class="nav-text">Transaction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DDL"><span class="nav-number">4.</span> <span class="nav-text">DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CREATE-TEMPORARY-table…-create-a-in-memory-database"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">CREATE TEMPORARY table… : create a in-memory-database</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SERIAL-Auto-increased-ID-in-postgres"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">SERIAL : Auto-increased ID in postgres</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Foreign-key"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">Foreign key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ALTER"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">ALTER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#View"><span class="nav-number">4.0.0.5.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Index"><span class="nav-number">4.0.0.6.</span> <span class="nav-text">Index</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DCL"><span class="nav-number">5.</span> <span class="nav-text">DCL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Role"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">Role</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GRAND"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">GRAND</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenyi Liao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> and <a href="https://github.com/" style="font-weight: bold">Github</a></p></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://liaocy-net.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://liaocy.net/2019/05/27-postgresqlnote/';
+          this.page.identifier = 'ja/2019/05/27-postgresqlnote/';
+          this.page.title = 'PostgreSQL那些忘却的事';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liaocy-net.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
