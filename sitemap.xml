@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liaocy.net/2019/07/03-javareview/</loc>
+    
+    <lastmod>2019-07-03T06:23:00.714Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liaocy.net/2018/07/24-ubuntuscws/</loc>
     
     <lastmod>2019-07-03T04:51:45.300Z</lastmod>
@@ -156,13 +163,6 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2019/06/03-javareview/</loc>
-    
-    <lastmod>2019-07-03T04:51:44.212Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liaocy.net/2018/10/17-tensorflowtutorial03/</loc>
     
     <lastmod>2019-07-03T04:51:44.208Z</lastmod>
@@ -233,14 +233,14 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2019/06/03-javajaen/</loc>
+    <loc>https://liaocy.net/2019/05/englishvocab/</loc>
     
     <lastmod>2019-07-03T04:51:44.104Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://liaocy.net/2019/05/englishvocab/</loc>
+    <loc>https://liaocy.net/2019/06/03-javajaen/</loc>
     
     <lastmod>2019-07-03T04:51:44.104Z</lastmod>
     
@@ -502,13 +502,6 @@
     <loc>https://liaocy.net/awesome/dev/</loc>
     
     <lastmod>2019-07-03T04:51:43.716Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://liaocy.net/2019/06/japanesehello/</loc>
-    
-    <lastmod>2019-07-03T04:50:13.256Z</lastmod>
     
   </url>
   
