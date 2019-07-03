@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[JAVA 日语英语词汇]]></title>
+    <url>%2F2019%2F06%2F03-javajaen%2F</url>
+    <content type="text"><![CDATA[日本語 English 中文 インデント indent 缩进 マークアップ言語 Markup Language 标记语言 手続き形言語 Procedure-oriented Language 面向过程编程 オブジェクト指向言語 Object-oriented Language 面向对象语言 クラスファイル Class File class文件 コンパイル Compile 编译 コンパイラ Compiler 编译器 カプセル化 Encapsulation 封装 継承（けいしょう） Inheritance 继承 ポリモーフィズム Polymorphism [ˌpɑˌliˈmɔrfɪzm] 多态 オーバーロード Overload 重载 エントリーポイント Entry Point 进入点（主方法） フィールド Field 域（乘员变量） キャメルケース camel case 骆驼命名法 スネークケース snake case 蛇形命名法（下划线） パスカルケース pascal case 帕斯卡命名法（首字母大写） 基本型変数 Basic Type Variate 基本类型变量 参照型変数 Reference Type Variate 引用类型变量 インスタンス化 instantiation 实例化 コンストラクタ constructor 构造方法 イニシャライズ initialize 初始化 ガベージコレクション garbage collection 垃圾回收 ラッパークラス Wrapper Class 包装类（类型转换用） 抽象（ちゅしょう）クラス Abstract Class 抽象类 具象（ぐしょう）サブクラス 具象类（一般类） ジェネリックス(総称型) Generics 泛型 配列 Array 数组 コレクション Collection 集合 イテレータ Iterator 迭代器 カーソル Cursor 指针 マルチスレッド multi-thread [‘mʌlti - θrɛd] 多线程 シグニチャー signature 签名 シリアライズ serialize [‘sɪrɪəlaɪz] 序列化 ロードバランサ load balancer 负载平衡器 アーカイブ archive [‘ɑrkaɪv] n. 档案馆；档案文件 vt. 把…存档 見出し 显示 ディスパッチング dispatching [dɪ’spætʃ] n. [交] 调度；配送；安排作业 サイバー cyber n. 高技术 サイバー犯罪 高技术犯罪]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java8那些忘却的事]]></title>
+    <url>%2F2019%2F06%2F03-javareview%2F</url>
+    <content type="text"><![CDATA[问题背景Java8那些忘却的事 CMD ModeCompile and Run Java in CMD1234# compile$ javac Hello.java# run$ java Hello Parameters1234# export as java package$ java --jar Hello# run$ java Hello Basic GrammarNaming rule1234567891011Class TheClassNameUsingPascalCase&#123; public static final int TheConstant; int theVariateUsingCamelCase; void theFunctionNameUsingCamelCase(int theVariateUsingCamelCase)&#123; &#125;&#125; Variate Default Value123456short, byte, int, long a = 0;float, double a = 0.0;char a = '\u0000';boolean a = falseOther a = null; Metric Variable1230.1F; //A float variable100000000L; //A long variable Array12345678int arr[] = &#123;10, 20, 30, 40&#125;;for (int i : arr)&#123; sout(i);&#125;sout(arr.length); Comment1234567891011// comment/* comment1 comment2*//** document1 document2*/ Class and ObjectStringBuffer : for String modification1234567public static void main(String args[])&#123; StringBuffer sBuffer = new StringBuffer("google："); sBuffer.append("www"); sBuffer.append(".google"); sBuffer.append(".com"); System.out.println(sBuffer);&#125; JVM CLASSPATH: a path of class files (Library) Type Autoboxing: Boxing a basic type into reference type 123Integer i = 100;==Integer i = new Integer(100); Unboxing: Unbox a reference type to basic type 1234Integer i = 100;rs = i + 200;==rs = i.value() + 200; Object.hashCode() : Hash code of the class12 Inheritanceinstanceof :12345ParentClass p1 = new ParentClass();Object o = (Object)p1;if (o instanceof ParentClass)&#123; ParentClass p2 = (ParentClass)o;&#125; IsA, HasAHuman is a Animal :Human has a Head : 123class Human extends Animal&#123; private Head head;&#125; InterfaceAn Interface can extends another interface or other interfaces.ExceptionException Class Structure12345678&#123; "Throwable": &#123; "Exception": &#123; "RunTimeException": &#123;&#125; &#125;, "Error":&#123;&#125; &#125;&#125; RunTimeException: Do not checked by compiler.CollectionGenerics:1234567public class SomeClass&lt;T&gt;&#123; private T t; private List&lt;T&gt; list = new List&lt;T&gt;(); public T someMethod(T arg)&#123; return new T(arg); &#125;&#125; enumeration: implements iteratorHashMap Iterate:123for(Map.Entry&lt;String, String&gt; entry : weekdays.entrySet()) &#123; System.out.println(entry.getKey() + " =&gt; " + entry.getValue());&#125; Documentationformat1234567891011/** * This is a sample */public class Sample()&#123; /** * Say "Hello" */ public void hello() &#123; System.out.println("Hello"); &#125;&#125; tags12345678910/** * @author 作者 * @version 版本号 * 当前版本号 * @since 版本号 * 前置版本号 * @see 参考标签 * @deprecated 说明 * 说明过期的情况 */ Sample1234567/** This class shows a Sample * @version 1.0 * @author Chenyi Liao */public class Sample()&#123;&#125; generator1$ javadoc -d &lt;output dir&gt; &lt;source.java&gt; Access Same Class Same Package Sub-class Different Class public ○ ○ ○ ○ protected ○ ○ ○ × (default) ○ ○ × × private ○ × × × Overload and Override Override: between super class and sub-class. If a class inherits a method from its superclass, then there is a chance to override the method provided that it is not marked final. Overload (Overloading): in the same class. #JUnit setUP() and tearDown() setUP(): run before all test methods. tearDown(): run after all test methods. Serialize12345import java.io.Serializable;public class Employee implements Serializable&#123;&#125; Java Web ApplicationFolder Structure DocumentRoot: the root directory for web server ContextRoot: JSP files, HTML… WEB-INF: web.xml Classes… lib: JAR files classes: not opening to the Internet. Java Classes web.xml Forced close tomcat in CMD (Windows)12$ netstat -nao$ taskkill /F /pid 3144 Tomcat Reload Automatically when source-code modifiedIn server.xml, there is a:1&lt;Context docBase="labhttp" path="/labhttp" reloadable="false" source="org.eclipse.jst.jee.server:labhttp"/&gt;&lt;/Host&gt; Modify it as:1&lt;Context docBase="labhttp" path="/labhttp" reloadable="true" source="org.eclipse.jst.jee.server:labhttp"/&gt;&lt;/Host&gt; which can be reload automatically. Cookie123456Cookie[] cookies = request.getCookies();for (Cookie cookie : cookies)&#123; String name = cookie.getName(); String value = cookie.getValue(); String utfValue = URLDecoder.decode(cookie.getValue(), "UTF-8");&#125; JSP &amp; ServletJAVA code123&lt;% String msg = "helloworld";%&gt; Ouput1:1&lt;%=msg%&gt; Ouput2:123&lt;%out.println("HelloWorld");%&gt; Definition:12345678&lt;%!int b = 1;%&gt;&lt;%!private int add(int a, int b)&#123; return a + b;&#125;%&gt; Page Directive:12345678910111213141516&lt;%@ page [ language="java" ] [ extends="package.class" ] [ import="&#123;package.class | package.*&#125;, ..." ] [ session="true|false" ] [ buffer="none|8kb|sizekb" ] [ autoFlush="true|false" ] [ isThreadSafe="true|false" ] [ info="text" ] [ errorPage="relativeURL" ] [ contentType="mimeType [ ; charset=characterSet ]" | "text/html ; charset=ISO-8859-1" ] [ isErrorPage="true|false" ] [ pageEncoding="characterSet | ISO-8859-1" ] [ isELIgnored="true|false"]%&gt; taglib:1234&lt;%@ taglib prefix="c" url="http://java.sun.com/jstl/core"%&gt;&lt;c:forEach begin="1" end="9" var="i"&gt; &lt;c:out value="$&#123;i&#125;" /&gt;&lt;/c:forEach&gt; Dispatcher reference Servlet:12345678910111213141516171819public class UsersServlet extends HttpServlet &#123; private static final long serialVersionUID = 1L ; protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException &#123; /*****************一般实际开发这些用户数据都是从数据库查出来的*********/ List &lt;User &gt; users = new ArrayList &lt;&gt; (); User u1 = new User () ; u1 .setAge ( 20) ; u1 .setName ( "Bob") ; User u2 = new User () ; u2 .setAge ( 21) ; u2 .setName ( "Tony") ; users .add ( u1) ; users .add ( u2) ; /*********************************************/ request .setAttribute ( "users", users) ; //对request 进制预处理准备工作 request .getRequestDispatcher ( "users.jsp").forward( request , response );//转发到users.jsp，让他去具体响应 &#125; &#125; JSP:1234567891011121314151617&lt;%@ page contentType= "text/html; charset=UTF-8" pageEncoding ="UTF-8" trimDirectiveWhitespaces= "true" session ="true" %&gt;&lt;%@ taglib prefix= "c" uri = "http://java.sun.com/jstl/core_rt" %&gt;&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;meta http-equiv = "Content-Type" content ="text/html; charset=UTF-8"&gt; &lt;title&gt; Users List&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt; c:forEach var ="user" items= " $&#123;users&#125;" &gt; UserName:$&#123;user.name&#125; UserAge:$&#123;user.age&#125; &lt;br /&gt; &lt;/ c:forEach&gt; &lt;/body&gt;&lt;/html&gt; JDBCPreparedStatement12345678PreparedStatement pstmt = con.prepareStatement("INSERT INTO table VALUES(?,?)");pstmt.setInt(1, 11);pstmt.setString(2, "abc");ResultSet res = pstmt.executeQuery();//orInteger count = pstmt.executeUpdate(); Transaction12345678910conn.setAutoCommit(false);try&#123; stmt.executeUpdate("sql1"); stmt.executeUpdate("sql2"); conn.commit();&#125; catch(Exception ex)&#123; conn.rollback();&#125; finally&#123; conn.setAutoCommit(true);&#125; Datatype: Java VS RDBMS Java RDBMS String CHAR VARCHAR java.math.BigDecimal NUMERIC boolean BIT byte TINYINT short SMALLINT int INTEGER long BIGINT float REAL double DOUBLE byte[] BINARY VARBINARY java.sql.Date DATE java.sql.Time TIME java.sql.Timestamp TIMESTAMP MVCCreate Database and Tables1create table customer(id serial, name varchar(100)); Bean:Create Bean class according to : CustomerBean.java12345public class CustomerBean implements Serializable()&#123; private int id; private String name; // setter, getter&#125; DAO: Data Access Objects: IDao.java12345678interface ICustomerDao&#123; void insert(Customer customer); void update(Customer customer); void delete(Customer customer); List&lt;Customer&gt; findAll(Customer customer); Customer findById(int customerId);&#125; : CustomerDao.java123456789public class CustomerDao implements ICustomerDao&#123; Connection con = null; PreparedStatement pstmt = null; ResultSet res = null; CustomerDao&#123; con = DBManager.getConnection("xxxxx"); &#125;&#125; Servlet :123456String name = request.getParameter("name");Customer customer = new Customer(name);request.setAttribute("customer", customer);forward("customer", "xx.jsp"); JSP123&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;The name is : $&#123;customer.name&#125; Foreach12345678910111213&lt;% String[] strs = &#123; "最初の行", "真ん中の行", "最後の行", &#125;; request.setAttribute("list", strs);%&gt;&lt;table&gt; &lt;c:forEach var="v" items="$&#123;list&#125;" varStatus="st"&gt; &lt;tr&gt;&lt;td&gt;$&#123;st.count&#125;番目&lt;/td&gt;&lt;td&gt;$&#123;v&#125;&lt;/td&gt;&lt;/tr&gt; &lt;/c:forEach&gt;&lt;/table&gt;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年06月英语词汇]]></title>
+    <url>%2F2019%2F06%2Fenglishvocab%2F</url>
+    <content type="text"><![CDATA[单词 注音 词性词义 Management Buyout 管理层收购 Merger and Acquisitions [,ækwɪ’zɪʃən] 并购 flush [flʌʃ] n. 激动，洋溢；面红；萌芽；旺盛；奔流 vt. 使齐平；发红，使发亮；用水冲洗；使激动 vi. 发红，脸红；奔涌；被冲洗 adj. 大量的；齐平的；丰足的，洋溢的；挥霍的 例： flush with 由于…而脸红；因…而兴奋 flush out 冲掉，排出；驱赶出来 in the first flush ◎一时兴起 , ◎处于盛年，青春焕发的时期 flush toilet 抽水马桶 flush water 冲洗水 align [ə’laɪn] vt. 使结盟；使成一行；匹配 vi. 排列；排成一行 例： How can I align these bricks with the rest of the wall? 我怎么才能将这些砖与其余的墙对齐（排成直线）? cascade [kæ’sked] n. 小瀑布，瀑布状物；串联 facade [fə’sɑd] n. 正面；表面；外观 例： The facade of a building. decorator [‘dɛkəretɚ] n. 装饰者；室内装潢师；装饰模式 enumeration [ɪ,njʊmə’reʃən] n. 列举；[数] 计算；细目 upcast [‘ʌpkæst] n. 向上投掷之物；上抛；排气竖坑 adj. 向上的；向上抛的 v. 向上投掷，向上抛 例： When a class has implemented an interface, objects created from that class can be upcast （上溯） to the interface type. dedicate [‘dɛdɪket] vt. 致力；献身；题献 例： dedicated 有奉献精神的 tournament [ˈtɝ​nəmənt] n. 锦标赛，联赛；比赛 merchandise [‘mɝtʃəndaɪs] n. 商品；货物 vt. 买卖；推销 vi. 经商 例： We guarantee the quality of our merchandise for life. furniture [‘fɝnɪtʃɚ] n.家具 attendee [ə’tɛn’di] n.出席者 showcase v.陈列 imperial [ɪm’pɪrɪəl] adj. 帝国的； 威严的 例： imperial units 英制单位]]></content>
+      <categories>
+        <category>英语 English</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Vocabulary</tag>
+        <tag>英语词汇</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年06月日语词汇]]></title>
+    <url>%2F2019%2F06%2Fjapanesevocab%2F</url>
+    <content type="text"><![CDATA[单词 注音 词性词义 オピニオンリーダ opinion leader 意见领袖 アンチテーゼ antithesis 对立，对立面 根気 こんき 耐心 私には負けん気と根気がある 戦 いくさ 战争 チェックディジット check digit 校验码 伺いを立てる うかがいをたてる 请示 明日の会議についてお伺いを立てさせていただきたいのですが、少しお時間よろしいでしょうか。 なりすまし なりすまし n. 他人の名前を勝手に拝借してお金儲けしたり、他人のふりをして活動することである。 管轄 かんかつ 「名・ス他」権限によって支配すること。 暗黙 あんもく 口に出さないで黙っていること。 擬似 ぎじ ［名］本物によく似ていてまぎらわしいこと。また、そのもの。 注ぐ そそ-ぐ 「五自他」流れ込む。 川が海に注ぐ。 迫る せま-る 「五自」間が狭くなる。「五他」押しつけるようにして相手に求める。 早急の解決を迫る。 補う おぎな-う 「五他」不足をみたす。埋め合わせる。 欠員を補う。 整る ととのう 「動」形を正しくそろえる。。 小刻み こきざみ 「名ノナ」間を小さく速くきざむこと。 「小刻みに歩く」徐々に少しずつ出すさま。 鋼 はがね 「名」钢铁 鋼の錬金術師（はがねのれんきんじゅつし） 兼ねる かねる 「下一他」 兼用 隐蔽 いんぺい 隐蔽 グリーンIT green IT 绿色IT 节能减碳 ダイバーシティ Diversity and Inclusion 雇佣机会均等化 人种，性别，年龄，国籍等雇佣均等化等 もたらす 带来，带去 「幸福を－・す」 「新知識を－・す」 マトリクス Matrix 母体・基盤，矩阵 占い うらない 占卜 ダブルオート 双引号 幕府 ばくふ 幕府 前置 ぜんち 前置 後置 ごち 后置 ややこしい 繁杂 恩賜 おんし 恩赐 猿江（さるえ）恩賜公園 帰結 きけつ 恩赐 狭義 きょうぎ 「名・形動」 広義 こうぎ 「名・形動」 袖机 そでづくえ 「名」办公桌的抽屉柜 忖度(cǔn duó) そんたく 揣测上司、或上位者的心思及意图，并通过积极响应来表现自己。 推し量る おしはがる 「動」推测揣测 状況を推し量ることができる。 衝突 しょうとつ 「名・形動・サ自」碰撞，冲突 規格 きかく 「名」规格 記述 きじゅつ 「名・サ他」记述 修饰 しゅうしょく 「名・サ他」修饰 概ね・大旨 おおむね 「名・副」大概 事の概ねを知る 齟齬 そご 「名・ス自」意見や事柄が、くいちがって、合わないこと。 理解の齟齬に合わせる]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Vocabulary</tag>
+        <tag>日语词汇</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Website]]></title>
+    <url>%2Fawesome%2Fweb%2F</url>
+    <content type="text"><![CDATA[IT NewsPicks: 一个介绍日本IT业界以及经济相关信息的网站 Markdown HackMD: 用Markdown做笔记的网站 OA 石墨: 在线办公协助系统，支持PC和移动端。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>网站 Website</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome System]]></title>
+    <url>%2Fawesome%2Fsys%2F</url>
+    <content type="text"><![CDATA[CRM Sugar CRM: 一个开源的客户关系管理系统]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>系统 UI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PostgreSQL那些忘却的事]]></title>
+    <url>%2F2019%2F05%2F27-postgresqlnote%2F</url>
+    <content type="text"><![CDATA[问题背景PostgreSQL那些忘却的事 Basic Commands (PSQL)psql -U postgres : Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i {SQL file} : run the SQL fileDML\pset null NULL : show null as ‘NULL’ when SELECT@ or \ : ESCAPEe.g.:1# SELECT * FROM a WHERE A LIKE &quot;%10@%%&quot; //means extract record where includes 10% UNION / UNION ALL: combine the result-set of two or more SELECT statements verticallye.g.:1234SELECT country FROM WebsitesUNIONSELECT country FROM appsORDER BY country; 1234SELECT country FROM WebsitesUNION ALLSELECT country FROM appsORDER BY country; All joins:e.g.:123LEFT JOIN b ON &lt;conditions&gt;RIGHT JOIN b ON &lt;conditions&gt;INNER JOIN b ON :: : type conversion (Only for postgres)e.g.:1SELECT '2013-05-03'::date; result:123 date------------ 2018-01-01 ALL : 父查询中的结果集大于子查询中每一个结果集中的值,则为真e.g.:1SELECT * FROM T2 WHERE N &gt; ALL (SELECT N FROM T1) ANY,SOME : 父查询中的结果集大于子查询中任意一个结果集中的值,则为真e.g.:12SELECT * FROM T2 WHERE N &gt; ANY(SELECT N FROM T1)SELECT * FROM T2 WHERE N &gt; SOME(SELECT N FROM T1) ANY, IN : ANY 与子查询IN相同e.g.:12SELECT * FROM T2 WHERE N = ANY (SELECT N FROM T1)SELECT * FROM T2 WHERE N IN (SELECT N FROM T1) &lt;&gt;ANY, NOT IN‘ “ and ` ‘ : definition of a variate “ : definition of a column name ` : definition of a column name (MySQL) Transactione.g.:1234567891011121314151617181920\set AUTOCOMMIT off -- shutdown autocommit\echo :AUTOCOMMITBEGIN; -- or [start transaction]INSERT INTO hoge VALUE('hoge');SELECT * FROM hoge; -- results hogeROLLBACK;SELECT * FROM hoge; -- results nothingINSERT INTO hoge VALUES('hoge2');SAVEPOINT hoge2;SELECT * FROM hoge; -- results hoge2DELETE FROM hoge2 WHERE name = 'hoge2';SELECT * FROM hoge; -- results nothingROLLBACK TO hoge2; -- goto SAVEPOINT hoge2SELECT * FROM hoge; -- results hoge2COMMIT; -- transaction end attention: The lock is started then first INSERT, UPDATE, or DELETE but not START; DDLCREATE TEMPORARY table… : create a in-memory-databaseSERIAL : Auto-increased ID in postgrese.g.:1234create table sample ( id SERIAL PRIMARY KEY, "value" integer) ; 123456CREATE SEQUENCE orders_seq;INSERT INTO XXX VALUES(NEXTVAL(orders_seq));CURRVAL(orders_seq) -- current valueSELECT SETVAL(orders_seq, value); -- set a value for orders_seqDROP SEQUENCE orders_seq; Foreign key1234CREATE TABLE hoge4( id SERIAL PRIMARY KEY, staff_id INT FOREIGN KEY REFERENCES staff(pno)); ALTERformat:1ALTER TABLE &lt;table name&gt; RENAME TO &lt;new table name&gt; -- change table name e.g.:123456ALTER TABLE hoge4 RENAME TO hoge5; -- change table name.ALTER TABLE hoge4 ADD addr varchar(50); -- add a column "addr" at the end of table hoge4.ALTER TABLE hoge4 DROP addr; -- drop column "addr" in the table hoge4.ALTER TABLE hoge4 DROP CONSTRAINT people_pkey; -- drop a constraint "people_pkey" in the table hoge4.ALTER TABLE hoge4 ALTER addr DROP NOT NULL; -- drop "NOT NULL" attribute of column "addr" in the table hoge4.DROP TABLE hoge4; -- drop the table hoge4; ViewFormat:12CREATE VIEW xxx_view AS SELECT .......; Indexformat:123CREATE INDEX &lt;index_name&gt; ON &lt;table_name&gt; (&lt;column1, column2&gt;); -- create a indexDROP INDEX &lt;index_name&gt;; -- drop a index DCLRole123456CREATE ROLE training LOGIN PASSWORD 'training';ALTER ROLE training RENAME TO dbtraining;ALTER ROLE dbtraining PASSWORD 'password';ALTER ROLE dbtraining WITH SUPERUSER CREATEDB CREATEROLE;DROP ROLE dbtraining; GRAND12GRANT ALL ON DATABASE mydb00 TO dbtraining;GRANT &lt;privilege1&gt;, &lt;privilege2&gt; ON &lt;table_name&gt; TO &lt;user_name&gt;]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>PostgreSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SQL 日语英语词汇]]></title>
+    <url>%2F2019%2F05%2F27-sqljaen%2F</url>
+    <content type="text"><![CDATA[日本語 English 中文 マイクロサービス アーキテクチャ Micro Service Architecture 微服务架构 集計（しゅうけい） Count 合计 則る（のっとる） Follow 依照 抽象化 Abstraction 一貫性（いっかんせい） Consistent 一致性 省く（はぶく） omit 节省 ストアドプロシージャ stored procedure 存储过程 トリガ Trigger 触发器 ファンクション function 函数 インスタンス Instance 实例 主キー Primary Key 主键 外部キー Foreign Key 外部键 一意 Unique 唯一的 トランザクション transaction 事务 データ制御（せいぎょ） Data Control 数据控制 ミドルウェア Middleware 中间件 演算子（えんざんし） Operator 运算符 曖昧検索 Ambiguous Search 模糊检索 和結合 UNION 联合 結合 JOIN 结合 問い合わせ Query 查询 カラム column 列 再帰（さいき） Recursion 递归 ロールバック rollback 回滚 副問合せ Sub-select 子查询 マイグレーション migration 迁移 索引 index 索引 CRUD処理 クラッド処理 Create, Read, Update, Delete スキーマ Scheme （数据库）模式 入れ子 Nesting 类似于俄罗斯套娃那种构造 オラクル Oracle 甲骨文 関数従属性（かんすうじゅうぞくせい） Functional Dependency 函数依赖 完全関数従属 full functional dependency 完全函数依赖 部分関数従属 partial functional dependency 部分函数依赖 第一（二、三）正規化 1NF, 2NF, 3NF 第一（二，三）范式]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Vocabulary</tag>
+        <tag>SQL</tag>
+        <tag>PostgresSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker运行Coder时 code-server is unable to watch for file changes in this large workspace 的解决方案]]></title>
+    <url>%2F2019%2F05%2F26-maxuserwatches%2F</url>
+    <content type="text"><![CDATA[问题背景使用Docker安装Web版本VScode，既Coder，的时候。如果按照官方的安装命令：1# docker run -it -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth 程序运行以后IDE会提示错误信息：1code-server is unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue. 按照官方解决方案,需要修改 /etc/sysctl.conf ，在里面添加：1fs.inotify.max_user_watches=524288 但是，如果Coder是通过Docker运行的，在运行 sudo sysctl -p 会显示错误信息:1sysctl: setting key &quot;fs.inotify.max_user_watches&quot;: Read-only file system 本文说明如何解决这个问题。 参考资料资料1资料2资料3 解决方法1在启动Docker的时候添加 –privileged 参数：1# docker run -it --privileged -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth 解决方法2如果是已经运行的Docker容器，先导出其镜像，再重新加载并添加 –privileged 参数：12# docker commit coder mycoder# docker run -it --privileged -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" mycoder --allow-http --no-auth 最后之后按照官方文档要求:123456789Run this in terminal:# sudo vim /etc/sysctl.confScroll to the bottom and paste:fs.inotify.max_user_watches=524288Save and clode the editor, then run this:# sudo sysctl -pTo check your success:# cat /proc/sys/fs/inotify/max_user_watchesThis should return 524288 完成]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>IDE</category>
+        <category>VSCode</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Coder</tag>
+        <tag>IDE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vi 命令速查]]></title>
+    <url>%2F2019%2F05%2F25-vim%2F</url>
+    <content type="text"><![CDATA[环境 CentOS 7 VIMinsert mode i: change to input mode (insert) a: change to input mode (append) A: change to input mode (append at end of current row) O: change to input mode (Add a row over current row) o: change to input mode (Add a row under current row) command mode ESC: escape to command mode u: undo ZZ: save and quit (2)dd: delete (2)a row (2)x: delete (2)a cheractor (2)dw: delete (2)a word dG: delete all rows under this row yw: yank(copy) a word p/P: pause deleted/yanked content r + cheractor: replace a cheractor .: repeat last operation /, ?, n, N: search, next, previous cursor control h, j, k, l: left, top, bottom, right; w: next term ^: cursor goes to head of the row G: cursor goes to the last row 3G: cursor goes to 3rd row ex command mode :: ex command mode :q: quit this document :q!: quit without save :wq: save and quit]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>vi</category>
+      </categories>
+      <tags>
+        <tag>vi</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 日语英语词汇]]></title>
+    <url>%2F2019%2F05%2F19-linuxjaen%2F</url>
+    <content type="text"><![CDATA[环境 CentOS 7 词汇 日本語 English 中文 ポストオンリーアダプタ Host Only Adapter 仅主机模式 タイムシェアリングシステム Time Sharing System 分时系统 モジューラ哲学 Modular Philosophy 组合式哲学 シェル Shell 命令行 インタプリタ Interpreter 解释器 Bash (Bourne Again Shell) Slackware系 (openSUSE) Debain系 (Debain, Ubuntu) Red Hat系 (Red Hat Enterprise Linux, Cent OS) 階層化ファイルシステム Layered file system 分层文件系统 マルチタスキング Multitasking 多任务 マルチユーザ Multi-user 多用户 コンテナ Container 容器 ディレクトリ Directory 目录 ワークグループ Work Group 工作组 POSIX Portable Operating System Interface 可移植操作系统接口 シェルプロンプト Shell Prompt Shell提示 キーシーケンス Key Sequence 键序列 ファイルキャビネット File Cabinet 文件柜 アーカイブファイル Archive File 存档文件 ベンダ vendor 供应商 スプールファイル Spool File 假脱机文件; 临时文件; 打印文件; 道筋（みちすじ） Path 路径 カレントディレクトリ Current directory 当前目录 パーミッション Permission 权限 アスキーテキスト ASCIIファイル ASCII文本 シンボリック・リンク・ファイル Symbolic Link File 软连接文件 キャラクタ・デバイス・ファイル Character device file 字符设备文件、也表示硬件设备，但是数据是以字节流发送的，这些设备包括终端设备和串口设备、 ブロック・デバイス・ファイル Block device file 阻值设备文件 returnキー return key 回车 シンボリックリンク Symbolic link 软连接 たどる Follow 跟随 ダイジェスト認証 Digest access authentication HTTP摘要认证 枯渴（こかつ） drying up 枯竭 リバースプロキシ Reverse proxy 反向代理]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Vocabulary</tag>
+        <tag>Linux</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 命令速查]]></title>
+    <url>%2F2019%2F05%2F19-linuxcmd%2F</url>
+    <content type="text"><![CDATA[环境 CentOS 7 笔记User OperationsProfileman : Show manual of the following commandformat:1$ man &#123;command&#125; e.g:1$ man date whereis : show path of the following commandformat:1$ man &#123;command&#125; e.g.:1$ whereis passwd id : show current user identificationswho : show current user informationwhoami: show current user namewho am i: show current user name and last logindate: show current system date time/etc/passwd/: saving user identifications/etc/group/: saving group identificationsclear: clear current screenecho: print information on the screenpwd: show current directory (Print Working Directory)/opt: save the APPs and products/bin: save the basic linux operation files/usr/lib: user library/sbin: save commands running when system startup and shutdown/etc: system file/dev: containing hardware device files/var: system log and spool file.: current directory..: parent directoryFile/Director Operationsls: show filenames and directory namesoptions:123456-a: show hidden files (dot files)-d: show directory status-l: show file detailed information-F: show files in types. Executable file with * and directory with /ls-R: show all children files under this directory in Recursive-i: show inode infomation cd: change current directoryfind: search something in the PCformat:1$ find &#123;options&#125; &#123;conditions&#125; options:1-name: search file name E.g.:1$ find . -name &quot;*file&quot; // search in current folder mkdir: create a directoryformat:1$ mkdir [-options] &#123;path&#125; operations:123456789-p: create all directories in the path if not exists-m &#123;mod&#125;: create and with &#123;mod&#125; (755, 644) permission.``` #### rm: remove a file/directoryformat:```text$ rm [-options] path options:12-r: directory-f: forced delete cat: show file contentmore: show file content in pagestail: show the tail in some filesoptions:12-n: set how many lines will be showed (default 10)-f: show the file (real time) lrp: insert the file into printing queuerm: removeoptions:123-f: force remove-r: remove all directory-i: interaction chmod: change file/dir pomissionformat:1$ chmod [options] &#123;mod&#125; &#123;filename&#125; options:12345678-R: for directory permission4 (100): write2 (010): read1 (001): excuteu+x: user (owner) for excuteu=rw: user (owner) for read/write permissionsg=rw: group for read/write permissionso=: other for nothing umask: set default permission when file created (Mask code: 002-&gt;775)format:1$ umask [-options] &#123;mod&#125; options:1-S: show current status e.g.:1$ umask 775 touch: update file timestampoptions:1234-a: update access datetime-m: update modified datetime-t: update access and modified datetimes-c: create if file not exists su: change user ID/Group IDformat:1$ su &#123;username&#125; alias: give alias for commande.g.:1234$ alias dir=ls$ alias mstat=/home/abc/scv/$ alias copy=&apos;cp -i&apos;$ alias (show all alias) umalias: remove aliase.g.:1$ unalias dir history: how history commandsenv: show environmentwc: count words in the fileoptions:1234-l: lines count-w: words count-c: count Byte-m: count charactors grep: global search regular expression(RE) and print out the lineformat:1$ grep [-options] &#123;keyword&#125; &#123;target path&#125; options:1-e: multiple keywords: grep -e i -e love /root/funfile.txt e.g.:1$ ps -ef | grep java : search all proceess about the Java |: left as the stdout, right as the stdin; get information from left and process on rightcut: show file indented contenttr: change texte.g.:1$ who | tr -s &quot; &quot; : remove all spaces tee: output strout and print on screene.g.:1$ cat 1.txt | tee 3.txt ManagementDisk Managementdmesg: show hardware informatione.g.:1$ dmesg | preg usb parted: Partitionoptions:1234- unit GB: Change to GB display- print: Print partition status- mkpart: Make partition- rm Number: Remove partition pvcreate: instant the partitionmkfs.xfs: init file systeme.g.:1$ mkfs.xfs /dev/sda7 mount: mount partition to directionformat:1$ mount [options] &#123;partition&#125; &#123;direction&#125; e.g.:12$ mkdir /mountdir1$ mount /dev/sda7 /mountdir1 mount forever1234567# cat /etc/mtab# cat /proc/mounts# cat /etc/fstab# mount -o remount /mountdir1# cat /etc/fstab# blkid /dev/sda7confirm UUID df: monitoring file system statuse.g.:1$ df -h swapcreate swap:1# mkswap /dev/sda8/ activate swap:1# swapon /dev/sda8/ User Management/etc/passwd : user register filee.g.:1# cat /etc/passwd /etc/shadow : user password filee.g.:1# cat /etc/shadow /etc/group : group register filee.g.:1# cat /etc/group useradd : add a userformat:1# useradd [options] &lt;username&gt; options:12345678-u : UID-g : GID-G : GID,GID-d : /home/path-m : make new home directory-s : indicate login shell e.g. /bin/bash-c : comment-D : set/change default value /etc/skel : this folder will be copied as home folder when user createdusermod : change user profileformat:1# usermod [options] &lt;username&gt; options:123456789-u : UID-g : GID-G : GID,GID-d : /home/path-m : make new home directory-s : indicate login shell-l : new user name-L : lock password-U : unlock password userdel : delete userformat:1# userdel [options] &lt;username&gt; options:1-r : delete the home folder Boot and Shutdown Management/etc/default/grub : change bootloader configratione.g.:123# vim /etc/default/grub// activate setting# grub2-mkconfig -o /boot/grub2/grub.cfg systemd.unit=rescue.target : rescue modesteps:123e[quiet] systemd.unit=rescue.targetctrl + x systemctl : confirm/change targete.g.: 12345678910111213# systemctl get-default //show current target# systemctl set-default multi-user.target //startup in console# systemctl isolate multi-user.target //change current target# systemctl list-units --type=target // show all roaded targets# systemctl list-dependencies graphical.target // show dependence of indicated target# systemctl start httpd.service //start apache# systemctl status httpd.service //show apache status# systemctl enable/disable httpd.service // run/or not apache when system startup# systemctl is-enable httpd.service // show is apache.service enable# systemctl list-unit-files // show all auto running services# systemctl status systemd-journald //show system status /usr/lib/systemd/system : unit settingshutdowne.g.: 12# shutdown -h //shutdown immediately# shutdown -r //reboot Package Managementrpm : package managementformat:1# rpm [-options] &#123;package name&#125; options:123456-i : package name-v : show detail information-h : show processbar--nodeps : do not check depandence--force : forced install--test : install to sandbox e.g.:123456# rpm -ivh &#123;package name&#125; //install package# rpm -Fvh &#123;package name&#125; //upgrade : do not install if package has not installed# rpm -Uvh &#123;package name&#125; //upgrade : newly install if package has not installed# rpm -qa | grep bash //search package about bash# rpm -e &#123;package name&#125; //remove package Software Managementyum : package managementconfig:123# vim /etc/yum.conf //Yum basic config# vim /etc/yum.repos.d/*.repo //repository config format:1# yum [options] &#123;package name&#125; options:12345678install : installremove : removeupdate : update a packagecheck-updateinfo : show package informationsearch : search a packagegrouplist : show list of package groupgroupinstall: install all packages in the group e.g.:1# yum install system-config-kickstart Log Managementjournalctl : operating log databaseformat :1$ journalctl [-options] &#123;condition&#125; options:12345678-b : boot logs-k : kernal logs-f : show logs on real time-u &#123;unit name&#125; : show unit logs--since=&#123;yyyy-MM-dd hh:mm::ss&#125; : since datetime--until=&#123;yyyy-MM-dd hh:mm::ss&#125; : until datetime_PID=&#123;process ID&#125; : show logs of process--no-pager : do not paging Persistence:123# mkdir /var/log/journal# vim /etc/systemd/journald.conf# systemctl restart systemd-journald /etc/rsyslog.conf : config rsysloglogger: save a messageformat:1# logger [options] &#123;message&#125; options:12-p facility.level-t tag e.g.:12# logger -p daemon.err -t rsyslogd Test Test Test# tail /var/log/messages]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS系统设置虚拟内存SWAP]]></title>
+    <url>%2F2019%2F05%2F13-centosswap%2F</url>
+    <content type="text"><![CDATA[问题背景CentOS默认是没有设定虚拟内存SWAP的，系统运行到内存不足的时候，oom killer机制会保护性的杀掉某些进程。所以设置虚拟内存SWAP绝对是有意义的。 参考资料参考资料1参考资料2 系统环境 CentOS 解决方案查看目前内存状态12345$ free -m total used free shared buff/cache availableMem: 957 136 441 0 379 639Swap: 0 0 0 可以看到目前SWAP的量是0。 创建SWAP文件在CentOS里，SWAP是以文件的形式存在的。 1、下面的例子用来创建1GB的SWAP文件（每个Block 1MB，一共创建1,024个）：12345[root@localhost ~]# dd if=/dev/zero of=/swapfile bs=1M count=10241024+0 records in1024+0 records out1073741824 bytes (1.1 GB) copied, 2.56416 s, 419 MB/s 一般建议创建虚拟内存大小为无力内存的2倍。比如1GB的机器，可以创建2GB的虚拟内存。 ２、变更SWAP文件的权限：1[root@localhost ~]# chmod 600 /swapfile ３、将文件类型转换为SWAP1234[root@localhost ~]# mkswap /swapfileSetting up swapspace version 1, size = 1048572 KiBno label, UUID=d0519bf6-8abf-4c0d-9375-8068c9e5e9a1 4、激活SWAP 1[root@localhost ~]# swapon /swapfile 确认：12345[root@localhost ~]# free -m total used free shared buff/cache availableMem: 741 76 57 9 606 537Swap: 1023 0 1023 5、持久化SWAP 上面的过程创建的SWAP，一旦系统重启就消失了，因此我们通过下面的步骤来对SWAP进行持久化。 编辑 /etc/fstab 在其中追加一行： 1/swapfile swap swap defaults 0 0]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>CentOS</category>
+        <category>SWAP</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>SWAP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年05月英语词汇]]></title>
+    <url>%2F2019%2F05%2Fenglishvocab%2F</url>
+    <content type="text"><![CDATA[单词 注音 词性词义 notation [noʊˈteɪʃən] n. 符号；乐谱；注释；记号法 例： scientific notation [数] 科学记数法. velocity [vəˈlɑsəti] n. 【物】速度 例： The anomaly migration velocity does not increase linearly. toggle [‘tɑɡl] n. 拴扣；切换键，开关；套索钉 v. 切换；拴牢，系紧 例： He toggled (切换) the com to talk to air traffic control. grant [ɡrænt] vt. 授予；允许；承认 vi. 同意 n. 拨款；[法] 授予物 例： France has agreed to grant him political asylum (政治庇护). revoke [rɪ’vok] vt. 撤回，取消；废除 vi. 有牌不跟 n. 有牌不跟 例： Your school may revoke your student visa. privilege [ˈprɪvəlɪdʒ] n. 权限；特权；优待 vt. 给予…特权；特免 例： that is their privilege. debate [dɪ’bet] vi. 辩论，争论，讨论 n. 辩论；辩论会 例： people debate a topic perspective [pɚ’spɛktɪv] n. 观点；远景；透视图 adj. 透视的 compensate [‘kɑmpɛnset] vt. 补偿，赔偿；付报酬 例： compensate for a lack of something warranty [‘wɔrənti] n. 保证；担保；授权；（正当）理由 例： a twelve-month warranty. 为期12个月的保修单。 constraint [kən’strent] n. [数] 约束；局促，态度不自然；强制 例： constraint condition migration [maɪ’ɡreʃən] n. 迁移；移民；移动 例： data migration fortune [‘fɔrtʃən] n. 财富；命运；运气 vt. 给予财富 dilation [daɪˈleɪʃn] n. 扩张，扩大；膨胀；详述 variate [‘vɛrɪet] n. [数] 变量；改变 vertically [‘vɝtɪkli] ADV.垂直地 volcano [vɑl’keno] N.火山 stage [stedʒ] N.舞台 V.上演 V.暂存区(GIT) stash [stæʃ] N.藏匿物 V.藏起来 V.储藏(GIT) semicolon [‘sɛmɪkolən] N.分号 quotation [kwo’teʃən] N.引号 enumeration [ɪ,njʊmə’reʃən] n. 列举；[数] 计算；细目]]></content>
+      <categories>
+        <category>英语 English</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Vocabulary</tag>
+        <tag>英语词汇</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年05月日语词汇]]></title>
+    <url>%2F2019%2F05%2Fjapanesevocab%2F</url>
+    <content type="text"><![CDATA[单词 注音 词性词义 お似合い おにあい （两个人，情侣）很合适 お似合いのカップル 捕（捉）らえる とらえる 五他 取得 均衡 きんこう 名詞 均衡を保つ 前兆 ぜんちょう 名詞 嵐の前兆 ポテンシャル potential 「形動」潜在 重力ポテンシャル（重力位） 閉鎖 へいさ さ変他 駐車場を閉鎖する]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>Vocabulary</tag>
+        <tag>日语词汇</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker容器内设置全局代理]]></title>
+    <url>%2F2019%2F04%2F30-containerproxy%2F</url>
+    <content type="text"><![CDATA[问题背景通过在Docker容器内设置全局代理，可以让容器内的应用程序通过代理获取网络资源 参考资料参考资料1参考资料2 系统环境 Docker 18.09 解决方案创建Dockerfile文件Dockerfile12345678FROM Ubuntu:18.04ENV MY_PROXY_URL=&quot;http://&#123;username&#125;:&#123;password&#125;@&#123;proxy_ip&#125;:&#123;proxy_port&#125;/&quot;ENV HTTP_PROXY=$MY_PROXY_URL \ HTTPS_PROXY=$MY_PROXY_URL \ FTP_PROXY=$MY_PROXY_URL \ http_proxy=$MY_PROXY_URL \ https_proxy=$MY_PROXY_URL \ ftp_proxy=$MY_PROXY_URL 其中： {username}: 代理服务器用户名 {password}: 代理服务器密码 {proxy_ip}: 代理服务器IP地址 {proxy_port}: 代理服务器端口 注意：这个程序段应该放在RUN apt-get … 和 CMD 之间，这样每次更改代理服务器不会影响编译速度。 编译容器1$ docker build -t proxy-test . 运行容器1$ docker run -it --rm --name proxy-test proxy-test /bin/bash 测试1$ curl cip.cc 输出： 结果代理设置成功，容器内的应用程序可以通过代理访问互联网了]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu上用Apache运行Flask网站]]></title>
+    <url>%2F2019%2F04%2F20-ubuntuapacheslask%2F</url>
+    <content type="text"><![CDATA[问题背景本文介绍如何通过Apache2在Ubuntu上部署Flask网站 参考资料参考资料1 系统环境 Ubuntu 18.04 Apache 2 Python 3.7.2 解决方案我们假设网站文件保存在 /var/www/flask/ 文件夹中。 首先建立网页应用程序 /var/www/flask/server.py 文件：12345678from flask import Flaskapp = Flask(__name__)@app.route("/")def hello(): return "Hello world!"if __name__ == "__main__": app.run() 首先建立 /var/www/flask/server.wsgi 文件：123import os,syssys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))from server import app as application 建立apache配置 /etc/apache2/sites-available/flask.conf 文件：1234567891011121314&lt;virtualhost *:80&gt; ServerName your.server.name WSGIDaemonProcess server user=www-data group=www-data threads=5 WSGIScriptAlias / /var/www/flask/server.wsgi &lt;directory /var/www/flask&gt; WSGIProcessGroup flask WSGIApplicationGroup %&#123;GLOBAL&#125; WSGIScriptReloading On Order deny,allow Allow from all &lt;/directory&gt;&lt;/virtualhost&gt; 启动插件和服务：12345apt-get install libapache2-mod-wsgi-py3a2enmod wsgisudo a2ensite flaskserver apache2 restart]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Apache</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Apache</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS设置Apache的HTTP与HTTPS反向代理]]></title>
+    <url>%2F2019%2F03%2F13-centosapacheproxy%2F</url>
+    <content type="text"><![CDATA[问题背景以前写过一篇在Ubuntu下配置Apache反向代理的文章。这里介绍如何在CentOS环境下配置Apache反向代理。 假设你有一台门户服务器，内网有若干台网页服务器。你需要将域名proxy.liaocy.net反向代理到IP地址为192.168.0.2的网页服务器上，分别代理HTTP（80端口）和HTTPS（443端口）。 参考资料参考资料1参考资料2 系统环境 CentOS Apache 2 解决方案安装Apache在CentOS下，Apache不叫Apache，叫httpd。通过yum命令安装： 1$ sudo yum install -y httpd 启动Apache：1$ sudo service httpd start 查看Apache版本：1$ httpd -v 安装Apache代理插件首先通过命令查看已经Apache插件状态： 1$ httpd -M 会看到一个可用的插件列表，其中作为代理服务器需要用到下面四个： 12345678910Output. . . proxy_module (shared). . . lbmethod_byrequests_module (shared). . . proxy_balancer_module (shared). . . proxy_http_module (shared). . . CentOS下插件的启用是通过在配置文件中反注释插件路径的弱智方法实现的，因此，我们先打开配置文件（这个文件应该已经存在）： 1$ sudo nano /etc/httpd/conf.modules.d/00-proxy.conf 在该文件中讲下面插件前面的 # 井号去掉，并保存：/etc/httpd/conf.modules.d/00-proxy.conf123456789. . . LoadModule proxy_module modules/mod_proxy.so. . . LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so. . . LoadModule proxy_balancer_module modules/mod_proxy_balancer.so. . . LoadModule proxy_http_module modules/mod_proxy_http.so. . . 然后重启Apache，没错误的话插件就启用成功了。 1$ sudo systemctl restart httpd 配置门户服务器Apache的HTTP与HTTPS配置文件配置HTTP： Apache会读取/etc/httpd/conf.d/目录下面全部.conf配置文件。 1sudo nano /etc/httpd/conf.d/http.conf 输入以下配置： 1234567891011121314&lt;VirtualHost *:80&gt; ServerAdmin info@liaocy.net ServerName proxy.liaocy.net ServerAlias proxy.liaocy.net ProxyRequests Off ProxyMaxForwards 100 ProxyPreserveHost On ProxyPass / http://192.168.0.2/ ProxyPassReverse / http://192.168.0.2/ &lt;Proxy *&gt; Order Deny,Allow Allow from all &lt;/Proxy&gt;&lt;/VirtualHost&gt; 配置HTTPS： 1sudo nano /etc/httpd/conf.d/https.conf 输入以下配置： 1234567891011121314151617181920&lt;IfModule mod_ssl.c&gt; &lt;VirtualHost *:443&gt; ServerAdmin info@liaocy.net ServerName proxy.liaocy.net ServerAlias proxy.liaocy.net SSLEngine on SSLProxyEngine On SSLProxyVerify none SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key &lt;Proxy *&gt; Order deny,allow Allow from all &lt;/Proxy&gt; ProxyPreserveHost On ProxyRequests Off ProxyPass / https://192.168.0.2:443/ ProxyPassReverse / https://192.168.0.2:443/ &lt;/VirtualHost&gt;&lt;/IfModule&gt; 注：被认证的SSL加密证书配置在门户机即可，似乎不用配置在被代理服务器上 然后重启Apache，没错误的话再使用proxy.liaocy.net访问进行测试。 1$ sudo systemctl restart httpd 被代理机设置被代理机正常设置网页服务即可，不一定非得是Apache。服务开通 HTTP 80 端口和 HTTPS 443 端口即可。 结果和感想]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Apache</category>
+      </categories>
+      <tags>
+        <tag>Apache</tag>
+        <tag>反向代理 Reverse Proxy</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Laravel命令快查]]></title>
+    <url>%2F2019%2F02%2F18-laravel%2F</url>
+    <content type="text"><![CDATA[参考资料 Laravel 5.7 文档 Database and Eloquent建立数据库迁移文件：php artisan make:migration flight –create=flight 同时建立模型和数据库迁移文件：12php artisan make:model Flight --migrationphp artisan make:model Flight -m 建表： Blueprint1234567891011Schema::create('users', function (Blueprint $table) &#123; $table-&gt;increments('id'); $table-&gt;string('name'); $table-&gt;string('email')-&gt;unique(); $table-&gt;timestamp('email_verified_at')-&gt;nullable(); $table-&gt;string('password'); $table-&gt;rememberToken(); $table-&gt;timestamps(); // forengn key $table-&gt;foreign('user_id')-&gt;references('id')-&gt;on('users'); &#125;); 修改表：1234567Schema::table('users', function (Blueprint $table) &#123; $table-&gt;string('nickname', 100)-&gt;after('name')-&gt;nullable()-&gt;comment('用户昵称'); // index $table-&gt;primary('id'); $table-&gt;index('name'); $table-&gt;unique('email');&#125;); 执行迁移：1php artisan migrate 生成填充器：1php artisan make:seeder UsersTableSeeder 编写填充器：12345DB::table('users')-&gt;insert([ 'name' =&gt; str_random(10), 'email' =&gt; str_random(10).'@gmail.com', 'password' =&gt; bcrypt('secret'),]); 填充数据：1php artisan db:seed --class=UsersTableSeeder 原生SQL：123456789101112131415161718//增加$name = str_random(10);$email = str_random(10) . '@163.com';$password = bcrypt('secret');$flag = DB::insert('insert into `users` (`name`, `email`, `password`) values (?, ?, ?)', [$name, $email, $password]);//删除$id = 8;$affectedRows = DB::delete('delete from `users` where id = ?', [$id]);//修改$name = str_random(8);$id = 8;$affectedRows = DB::update('update `users` set `name` = ? where id = ?', [$name, $id]);//查询$name = '学院君';$users = DB::select('select * from `users` where `name` = ?', [$name]); SQL构建器：12345678910111213141516171819202122232425262728//增加$userId = DB::table('users')-&gt;insertGetId([ 'name' =&gt; str_random(10), 'email' =&gt; str_random(8) . '@qq.com', 'password' =&gt; bcrypt('secret')]);//删除$affectedRows = DB::table('users')-&gt;delete();$affectedRows = DB::table('users')-&gt;truncate(); //重制ID//修改$id = 11;$affectedRows = DB::table('users')-&gt;where('id', '&gt;', $id)-&gt;update(['name' =&gt; str_random(8)]);//查询$name = '学院君';$users = DB::table('users')-&gt;select('id', 'name', 'email')-&gt;where('name', $name)-&gt;get();DB::table('posts')-&gt;where('views', 0)-&gt;get(); # 此处等号可以省略DB::table('posts')-&gt;where('views', '&gt;', 0)-&gt;get(); DB::table('posts')-&gt;where('views', '&lt;&gt;', 0)-&gt;get();// - andDB::table('posts')-&gt;where([ ['id', '&lt;', 10], ['views', '&gt;', 0]])-&gt;get();// - orDB::table('posts')-&gt;where('id', '&lt;', 10)-&gt;orWhere('views', '&gt;', 0)-&gt;get(); 建立模型：1php artisan make:model Post ORM映射：12345678910111213141516171819202122class Post extends Model&#123; // 表名 protected $table = 'post'; // 是否包含自增ID protected $incrementing = True; // 主键值类型 protected $keyType = int; // 是否创建 'created_at' and 'updated_at' timestamps public $timestamps = True; // Customize names of 'created_at' and 'updated_at' const CREATED_AT = 'created_at'; const UPDATED_AT = 'updated_at'; // Customize database link in config/database.php // protected $connection = 'mysql'; //UNIX时间戳 protected $dateFormat = 'U';&#125; ORM查询：1234567891011121314151617181920212223242526272829303132//插入$post = new App\Post;$post-&gt;title = '测试文章标题';$post-&gt;content = '测试文章内容';$post-&gt;user_id = 1;$post-&gt;save();//删除$post = Post::find(31);$post-&gt;delete();//修改$post = Post::find(31);$post-&gt;title = '测试文章标题更新';$post-&gt;save();//查询$posts = Post:all();// - chunk分块Post::chunk(10, function ($posts) &#123; foreach ($posts as $post) &#123; if ($post-&gt;views == 0) &#123; continue; &#125; else &#123; dump($post-&gt;title . ':' . $post-&gt;views); &#125; &#125;&#125;);// - Lazy查询foreach (Post::cursor() as $post) &#123; dump($post-&gt;title . ':' . $post-&gt;content);&#125;]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Development Tools]]></title>
+    <url>%2Fawesome%2Fdev%2F</url>
+    <content type="text"><![CDATA[FrameworkNodeJS Angular: 一个基于node.js和MVC框架 PHP Laravel: PHP的MVC框架 教程 从入门到精通 前端Javascript Tempus Dominus Bootstrap 4: 一个兼容Bootstrap4的时间选择器 Web DataTable: 一个跟后台联动的HTML表格封装 Mobile Cordova: Cordova 是用于使用HTML，CSS和JS构建移动应用的平台。我们可以认为Cordova是一个容器，用于将我们的网络应用程序与本机移动功能连接。 Cordova教程 Desktop electronjs: 一个可以用HTML和JAVASCRIPT来开发桌面应用程序的框架。VSCODE使用的框架。 语言Javascript TypeScript: 一个JavaScript的扩展集 文档 Java Gradle: 编译管理，有点像Maven。 设计 PlantUML: 一个免费的UML作图工具 draw.io: 在线拖拽式绘图工具 Astah: UML所见即所得绘图工具。 通信 socket.io: 一个WebSocket封装，用于跨平台通信。 gRPC: 一个基于ProtoBuf的跨平台通信框架。 IDEEclipseplugins emmet: html代码自动完成工具 部署 Jenkins: Jenkins 是一个开源自动化服务器… Jenkins是开源CI&amp;CD软件领导者,提供超过1000个插件来支持构建、部署、自动化,满足任何项目的需要。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome UI]]></title>
+    <url>%2Fawesome%2Fui%2F</url>
+    <content type="text"><![CDATA[Web UI Bootstrap: 一个基于angular和Bootstrap的UI Bootsnipp: 各种Bootstrap的例子 Tools Sketch: Sketch is a design toolkit built to help you create your best work — from your earliest ideas, through to final artwork.]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>用户接口 UI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Computer Vision]]></title>
+    <url>%2Fawesome%2Fcv%2F</url>
+    <content type="text"><![CDATA[Face Recognition face_recognition: 一个基于python和OpenCV的配置简单的人脸识别系统 Pose Recognition 3d-pose-baseline: 一个基于Tensorflow的姿势识别系统 OpenPose: 经典的姿势识别系统 Deep Fake Faceswap-GAN: 换脸换脸]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉 Computer Vision</tag>
+        <tag>Awesome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Data Science]]></title>
+    <url>%2Fawesome%2Fos%2F</url>
+    <content type="text"><![CDATA[Command tldr: 一个提示命令用法的工具]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Data Science]]></title>
+    <url>%2Fawesome%2Fdata%2F</url>
+    <content type="text"><![CDATA[Tutorials pandas_note: 一份关于 Pandas 学习的系列教程 Numpy 100 Question: 100道 Numpy 的官方例题 Visualization OpenRefine: Google开发的关系型数据可视化工具 Tensorflow Colabratory: 谷歌在线的Jupyter notebook，支持Tensorflow，似乎支持GPU加速 OpenStreetMap OL-ext: OpenLayers扩展包 Workflow &amp; Data Pipeline WireCloud: 给予Web的拖拽式数据流处理工具。 Data WarehouseNoSQL Redis: 有名的KVS数据库 Neo4j: 一个节点，图，网络构造数据库，]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>Data Science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Japanese 常用日语表达]]></title>
+    <url>%2Fawesome%2Fjp%2F</url>
+    <content type="text"><![CDATA[============================ 中文：您要亲自过来，真是诚惶诚恐。 日语：ご足労(そくろう)いただくことになり、大変恐縮(きょうしゅく)です。(大変恐れ入ります) 参考：ご足労くださいはＮＧ？ ============================ ============================ 中文：期待与您相见 日语：お目にかかれるのを心待ちにしております 参考：「お目にかかる」の意味とは？類語と正しい敬語表現での使い方]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>写作 Writing</category>
+      </categories>
+      <tags>
+        <tag>日语 Japanese</tag>
+        <tag>写作 Writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu设置守护进程systemd（例：后台启动JupyterHub）]]></title>
+    <url>%2F2019%2F01%2F09-ubuntusystemd%2F</url>
+    <content type="text"><![CDATA[背景在Ubuntu上安装JupyterHub以后，需要用守护进程启动该服务。本文介绍使用systemd建立守护进程并在后台启动JupyterHub。 参考资料 Tutorials/Ubuntu startup script How to enable service to run on boot in Ubuntu 18.04? 环境 Ubuntu: 18.04 LTS 步骤编辑文件：文件名为xx.service1sudo nano /etc/systemd/system/jupyterhub.service 在该文件中写入(后面的井号和注释要删掉)：12345678910111213141516171819202122232425[Unit] Description=start and stop the jupyterhub #描述要启动的进程[Service]WorkingDirectory=/opt/jupyterhub #启动进程的文件夹User=root #你想用什么用户启动该进程Group=root #你希望用什么用户组启动该进程Restart=on-failure #进程错误时重启RestartSec=20 5ExecStart=/home/root/.pyenv/shims/jupyterhub #启动命，要用绝对路径，否则会报错[Install]WantedBy=multi-user.target 启动jupyterhub：（没有报错就是启动成功了）1sudo service jupyterhub start 设置开机自启动该服务：1sudo systemctl enable jupyterhub.service 停止jupyterhub：1sudo service jupyterhub stop]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Python</tag>
+        <tag>Jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Jupyter里用断点（Break Point）调试Python程序]]></title>
+    <url>%2F2019%2F01%2F08-jupyterbreakpoint%2F</url>
+    <content type="text"><![CDATA[背景在Jupyter开发Python程序的过程中，也可以使用断点（Break Point）方式进行调试。 参考资料 What is the right way to debug in iPython notebook? ipdb （python调试工具） 环境 Ubuntu: 18.04 LTS Python: 3.7.0 步骤 安装 ipdb 1pip install ipdb 用法 1234def fun(a): import ipdb; ipdb.set_trace() # 在这里开始调试 return do_some_thing_about(b)fun(a) 快捷键 n：下一个 ENTER：重复上次命令 q：退出 p &lt;变量&gt;：打印变量 c：继续 l：查找当前在哪里 s：进入子程序 r：运行直到子程序结束]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[论文笔记 The Design and Implementation of XiaoIce, an Empathetic Social Chatbot]]></title>
+    <url>%2F2018%2F12%2F28-1812.08989%2F</url>
+    <content type="text"><![CDATA[背景本周重磅论文：L. Zhou, J.F. Gao, D, Li, and H.Y. Shum, “The Design and Implementation of XiaoIce, an Empathetic Social Chatbot Li”, arXiv:1812.08989v1, 链接 Abstract 他们说小冰具有IQ和EQ的设计 聊天使用马卡罗夫决策过程 Markov Decision Processes (MDPs) 微软给的评价标准叫做 Conversation-turns Per Session (CPS: 每会话对话转换) 参考 意思是”聊天机器人与用户在对话场景中的平均对话转换次数”，可能意思是说聊的越长吧，会不会聊天？那种。 小冰是2014年发布的，积累了6亿6千万聊天数据。 平均CPS居然能达到23，可见人们有多闲。 Section 1 Introduction 小冰英文名叫 XiaoIce 在五个国家落地 中国 日本 美国 印度 印度尼西亚，名字各不相同，比如在日本叫 Rinna 进驻超过40个平台，Wechat Facebook LINE啥的 目的是和人类建立长期的感情链接。然后举了个例子，就是一个人类跟小冰的聊天吧，刚开始的时候偶尔聊一聊，到了第九周就无话不谈了。 小冰采用一个”情感植入计算（empathetic computing）”框架，所以能够了解人的感受。当一个人类喜欢他和小冰之间的关系，我们就认为这个机器是能够”情感植入的”。 Section 2 Design Principle2.1 IQ + EQ + 人格 IQ：包括：知识与记忆能力，图像与自然语言理解，推理，Generation（生成话语？），推测。 过去五年小冰开发了230项技能（回答问题，推荐电影等） EQ：共鸣和社交能力。能够理解人类的感受。可以换位思考。 对话例子： 这个很厉害了，小冰说每一句话都知道这一句话的潜在语言功能。比如 unconscious 闲聊； Drive 驾驭对话，转移话题； Active Listener 主动聆听； Question 提问； Affirmative 附和 等等。 人格：小冰的人格设定是一位18岁的姑娘。有同情心，慈爱，幽默。不任性，只显示她的才智和创造性。 2.2 Social Chatbot Metric: CPS 评价标准 微软定义了一个Conversation-turns Per Session (CPS，每会话对话转换)用来评价聊天机器人的性能，其意义是每场聊天中平均的对话次数。CPS越高，则聊天机器人的性能越好 2.3 Social Chat as Hierarchical Decision-Making 将聊天看作分层决策 上图是说小冰可以采用多样化的聊天模型保持用户兴趣。比如，在第1行使用”基本聊天模型”；在第4行用”音乐聊天模型”选择一个新的主题；在第15行使用”音乐提供技能”：在第18行使用”订票技能”。 小冰采用一种分层的决策机制： 顶层处理：选择聊天模型（问答模型，订票模型等等）。 低层处理：受顶层控制并产生聊天片段。 这种决策机制在数学上是通过马尔可夫决策处理（Markov Decision Processes）实现的。在每一个对话中，机器人观察当前状态，然后选择一个技能形成一个回复。 未完待续]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>机器学习 Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习 Machine Learning</tag>
+        <tag>研究 Research</tag>
+        <tag>小冰 XiaoIce</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[用Apache运行Wordpress时 设置permalink后发生404未相应的处理方法]]></title>
+    <url>%2F2018%2F12%2F14-apachewordpresspermalink404%2F</url>
+    <content type="text"><![CDATA[介绍为了对搜索引擎友好，我们往往要设置自定义的permalink。例如 http://www.mysite.net/mydoc。本文介绍如何配置permalink环境。 参考资料 パーマリンクの設定 / 404エラー対応メモ 环境 Ubuntu: 18.04 LTS Apache: 2+ Wordpress: 4+ 步骤 打开Apache的rewrite模块 12a2enmod rewriteservice apache2 restart 编辑网站目录下的.htaccess文件，保证包含下面内容 123456RewriteEngine OnRewriteBase /wordpress/ RewriteRule ^index.php$ - [L]RewriteCond %&#123;REQUEST_FILENAME&#125; !-fRewriteCond %&#123;REQUEST_FILENAME&#125; !-dRewriteRule . /index.php [L] 在网站配置文件中，让Apache读取.htaccess文件 1nano /etc/apache2/sites-available/000-default.conf 保证有： 123&lt;Directory /var/www/html&gt; AllowOverride All&lt;/Directory&gt; 重启服务器即可。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Wordpress</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>MariaDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日语书信模板（学校篇）]]></title>
+    <url>%2F2018%2F12%2F14-japaneselettercollege%2F</url>
+    <content type="text"><![CDATA[给老师的书信场景1：给老师递交材料，老师不在，于是你把材料放在秘书那里，之后用邮件通知老师。 参考资料：先生が不在時のメモについて…。 模板： 12345678910XX先生XXです。 #我是XXお世話になっております。 #承蒙您的关照先ほど、先生の研究室に伺いましたが、 #刚才拜访老师的实验室ご不在でしたので、 #由于您不在XXの資料を秘書室にお渡ししました。 #我将资料递交给秘书室了よろしくお願い致します。 #请多关照 场景2：老师帮你修改了论文，给老师回信 参考资料：教授へのメールの書き方と文例が丸わかり！ 返信時のポイントも解説 注意： 邮件名用 Re:xxx 即可。 老师发的邮件必须要回复。 模板： 1234567891011XX先生XXです。ご指導いただき、ありがとうございます。お忙しい時期で、論文にご指導をいただきまして、ありがとうございました。XX先生ご教授いただいた内容を追加し、論文原稿を直します。今後ともご指導のほど、何卒よろしくお願い致します。]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>写作 Writing</category>
+      </categories>
+      <tags>
+        <tag>日语 Japanese</tag>
+        <tag>写作 Writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python透过SSH访问数据库]]></title>
+    <url>%2F2018%2F10%2F30-pythonsshdb%2F</url>
+    <content type="text"><![CDATA[介绍有时候我们需要透过SSH通道访问服务器里的数据库，这个功能在很多DBMS-GUI上都有集成，然而如何通过Python代码实现呢？本文进行讨论。 参考资料 PythonでSSH経由のMySQLアクセスをして、WordPressの投稿情報を取得する 环境 Ubuntu: 18.04 LTS MariaDB: 5.5 代码首先需要python安装了sshtunnel库：1pip install sshtunnel 123456789101112131415# -*- coding: utf-8 -*-# 使用SSH隧道的包from sshtunnel import SSHTunnelForwarder# 连接数据库用的包import pymysql.cursors# SSH相关设定with SSHTunnelForwarder( ("SSH服务器的IP地址", 22（SSH服务的端口号）), ssh_host_key="SSH主机钥匙（如果没有使用的话写None）", ssh_pkey="SSH密钥路径", ssh_username="在服务器上的用户名（如果没有的话写None）", ssh_password="在服务器上的密码 或者 密钥的指纹密码（没有的话写None）", remote_bind_address=("127.0.0.1（绑定以后连接数据库的地址）", 3306（MySQL数据库的端口）) ) as ssh: 之后就可以正常地操作数据库了： 1234567891011121314151617181920# 接上面的代码conn = pymysql.connect(host='127.0.0.1', # 由于是透过SSH进行本地连接 user='数据库用户名', password='数据库密码', db='数据库名称', charset='utf8', cursorclass=pymysql.cursors.DictCursor)# 执行selectcursor = conn.cursor()sql = "show tables"cursor.execute(sql)# 读出Select的结果rets = cursor.fetchall()for r in rets: print(r)# 切断连接conn.close()]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>MySQL</tag>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu上配置MariaDB并设置通过密码访问]]></title>
+    <url>%2F2018%2F10%2F30-ubuntumariadb%2F</url>
+    <content type="text"><![CDATA[介绍自从Oracle收购SUN之后，越来越多的人使用MariaDB代替MySQL。MariaDB没有被收费的风险，据说效率也要比MySQL高一些。 本文我们介绍如何在Ubuntu上安装配置MariaDB，特别是安装之后如何配置通过账号密码访问数据库。 参考资料 Ubunt 16.04でMariaDBをインストールするとパスワードが変 环境 Ubuntu: 18.04 LTS MariaDB: 5.5 步骤安装MariaDB服务器端：1apt install mariadb-server 启动服务：1service mysql start 可以看到MariaDB和MySql几乎一模一样。 配置安全项目：1mysql_secure_installation 配置安全项目分别是：12345Change the root password? [Y/n] #是否改变root密码Remove anonymous users? [Y/n] #是否删除匿名账户Disallow root login remotely? [Y/n] #是否不允许root账户远程登录Remove test database and access to it? [Y/n] #是否删除谁都能登录的测试数据库Reload privilege tables now? [Y/n] #是否重加载权限表 这里我推荐全选Y。 以上，服务器就配置好了。但是此时root采用一种叫做unix_socket的登录方式，因此无法用用户名/密码的形式登录数据库，需要进行以下操作： 使用root登录数据库：1mysql -u root 设定使用密码登录：123MariaDB [(none)]&gt; USE mysql;MariaDB [(mysql)]&gt; UPDATE user SET plugin=&apos;&apos; WHERE User=&apos;root&apos;;MariaDB [(mysql)]&gt; flush privileges; 之后就可以用用户名和密码登录了，测试：1mysql -rroot -proot]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>MariaDB</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>MariaDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu上配置PPTP]]></title>
+    <url>%2F2018%2F10%2F22-ubuntupptp%2F</url>
+    <content type="text"><![CDATA[介绍本文我们介绍在Ubuntu上配置PPTP VPN。 参考资料： Ubuntu 搭建VPN（PPTP）并开机自启 ubuntu10.4 server 配置VPN 安装pptp无法连接外网解决 环境 Ubuntu: 16.04 LTS 步骤安装PPTP服务器 1sudo apt-get install pptpd 配置pptpd.conf文件 1sudo nano /etc/pptpd.conf 去掉下面两行的注释： 12localip 192.168.0.1remoteip 192.168.0.234-238,192.168.0.245 设置VPN的账号和密码：1sudo nano /etc/ppp/chap-secrets 账号和密码按照下面方式配置：myusername为你的用户名mypassword为你的密码，第一个星号代表可以用PPTP也可以用L2TP，最后的号表示允许在任意IP连接到服务。1myusername * mypassword * 这样VPN服务器就配置好了，但是这时候还上不了外网，于是要进行下面配置： 开启内核IP转发: 1sudo nano /etc/sysctl.conf 取消 net.ipv4.ip_forward=1 的注释然后执行1sudo sysctl -p 配置iptables：注意这里的eth0是你的网卡名称，用ifconfig确认1iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE 如果网页打开很慢的话，执行下面的命令1iptables -A FORWARD -p tcp --syn -s 192.168.0.0/24 -j TCPMSS --set-mss 1356 保存iptables配置：1iptables-save 注意事项 PPTP的端口是1723 注意打开防火墙]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>VPN</tag>
+        <tag>PPTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Tensorflow学习（四） -- 基本回归任务]]></title>
+    <url>%2F2018%2F10%2F19-tensorflowtutorial04%2F</url>
+    <content type="text"><![CDATA[介绍前文：Tensorflow学习（三） – 基本文本分类任务 后文：待续 练习使用Tensorflow并对官方文档做一些翻译 实验环境 Tensorflow-gpu: 1.11.0 Ubuntu: 18.04 LTS Anaconda: 5.2.0 Python: 3.6.5 相关连接 原文 代码 代码：]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>深度学习 Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Tensorflow</tag>
+        <tag>深度学习 Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Tensorflow学习（三） -- 基本文本分类任务]]></title>
+    <url>%2F2018%2F10%2F17-tensorflowtutorial03%2F</url>
+    <content type="text"><![CDATA[介绍前文：Tensorflow学习（二） – 基本分类器 后文：Tensorflow学习（四） – 基本回归 练习使用Tensorflow并对官方文档做一些翻译 实验环境 Tensorflow-gpu: 1.11.0 Ubuntu: 18.04 LTS Anaconda: 5.2.0 Python: 3.6.5 相关连接 原文 代码 代码：]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>深度学习 Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Tensorflow</tag>
+        <tag>深度学习 Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[创建本地OSRM实例，用OSM做导航数据]]></title>
+    <url>%2F2018%2F10%2F08-osrmlocalinstance%2F</url>
+    <content type="text"><![CDATA[介绍Open Source Routing Machine (OSRM) 是一个导航路径计算库。给定两个地理坐标，通过OSRM可以计算其间的路径、距离、交通时间，并提供 HTTP 和 C++ 的接口。由于它是一个开源的库，你可以把它的实例安装在本地，以构成一个导航服务。这样可以避免官方服务器的限额问题。 参考文献 Building a Local OSRM Instance 系统环境 Ubuntu: 18.04 LTS (OSRM对于内存的要求较高，因此至少保证4GB的swap空间) 构建OSRM安装系统依赖：123apt updateapt install -y git cmake build-essential jq htopapt install -y liblua5.2-dev libboost-all-dev libprotobuf-dev libtbb-dev libstxxl-dev libbz2-dev 克隆代码：1git clone https://github.com/Project-OSRM/osrm-backend.git 进入文件夹：1cd osrm-backend/ 我们测试的时候使用版本v5.18.0，因此我们将代码切换到v5.18.0：1git checkout v5.18.0 创建build文件夹并编译代码：1234mkdir buildcd build/cmake ..make 安装编译好的程序：1make install 导入Open Street Map地图数据打开导出地图数据的网页，在这个页面里，可见地图的坐标范围显示在左面： 通过下面的命令，下载相应的地图数据： 1wget -O map.xml http://overpass-api.de/api/map?bbox=114.4306,22.1327,113.8607,22.5398 其中四个坐标分别是 右，下，左，上。 将下载好的map.xml文件放在osrm-backend文件夹下面。 提取导航数据在osrm-backend文件夹下执行：1osrm-extract map.xml -p profiles/car.lua 创建数据创建结构化数据以支持高速提取导航最短路径：1osrm-contract map.xml.osrm 启动服务之后我们就可以启动HTTP服务： 1osrm-routed map.xml.osrm 调用接口之后我们就可以按照OSRM的接口进行调用了。只要把URL改成我们服务器的地址，默认为：http://127.0.0.1:5000/]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Open Street Map (OSM)</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>深度学习 Deep Learning</tag>
+        <tag>OSRM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Tensorflow学习（二） -- 基本分类器]]></title>
+    <url>%2F2018%2F09%2F20180930-tensorflowtutorial02%2F</url>
+    <content type="text"><![CDATA[介绍前一篇：Tensorflow学习（一） – 开篇 后一篇：Tensorflow学习（三） – 基本文本分类任务 练习使用Tensorflow并对官方文档做一些翻译 实验环境 Tensorflow-gpu: 1.11.0 Ubuntu: 18.04 LTS Anaconda: 5.2.0 Python: 3.6.5 相关连接 原文 代码 代码：]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>深度学习 Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Tensorflow</tag>
+        <tag>深度学习 Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Tensorflow学习（一） -- 开篇]]></title>
+    <url>%2F2018%2F09%2F20180929-tensorflowtutorial01%2F</url>
+    <content type="text"><![CDATA[介绍前一篇：无 后一篇：Tensorflow学习（二） – 基本分类器 练习使用Tensorflow并对官方文档做一些翻译 实验环境 Tensorflow-gpu: 1.11.0 Ubuntu: 18.04 LTS Anaconda: 5.2.0 Python: 3.6.5 相关连接 原文 代码 代码：]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>深度学习 Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Tensorflow</tag>
+        <tag>深度学习 Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[dbHash，检查MongoDB数据库一致性或数据变更]]></title>
+    <url>%2F2018%2F09%2F20180928-mongodbhash%2F</url>
+    <content type="text"><![CDATA[背景在做数据备份或回复，或做数据流（Data Pipline）时，我们常常要检查前后数据的一致性，数据是否发生了变换。这时候需要从数据库的某一个Collection导出其中数据的散列值，作为该数据的指纹。MongoDB提供了一个dbHash方法，用来实现这个功能。 参考文献 dbHash 实现：命令格式：1db.runCommand ( &#123; dbHash: 1, collections: [ &lt;collection1&gt;, ... ] &#125; ) 注意： collection是可选项，省略则输出整个数据库和全部collection的散列值，当然速度要慢一些。 实例，检索test表的散列值：1db.runCommand(&#123;dbHash:1,collections:[&quot;test&quot;]&#125;) 关于性能对于1,672,321个文档，大小3,503,632,319的数据表计算散列值，我的笔记本大约需要10秒左右，这个性能相当可观。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python 计算给定值在给定高斯分布中的概率]]></title>
+    <url>%2F2018%2F09%2F20180918-calprobinnormaldistribution%2F</url>
+    <content type="text"><![CDATA[背景当我们用数据拟合一个符合高斯分布的概率密度函数之后，常常需要把另一个值带入该密度函数计算其概率。我们使用Python可以轻松计算出这个数据。 参考资料 Calculate probability in normal distribution given mean, std in Python scipy.stats.norm 实现12345678910111213141516import numpy as npimport scipy.stats#训练数据data = [1, 2, 2, 3, 3, 3, 4, 4, 5]#测试数据test_value = 2#平均值mu = np.mean(data)#标准差std = np.std(data)#概率prob = scipy.stats.norm(mu, std).pdf(test_value)print("prob.", prob)#output： prob. 0.23745442481665455]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>数据挖掘 Data Mining</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android 朗读字符串]]></title>
+    <url>%2F2018%2F09%2F20180915-androidspeaker%2F</url>
+    <content type="text"><![CDATA[背景在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。本文通过使用android.speech.tts.TextToSpeech来实现这个功能。 参考资料 Register Application class in Manifest? TextToSpeech : deprecated speak function in API Level 21 让Android朗读文字我们创建一个类Speaker.java来实现朗读功能： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546package net.liaocy.smartcar.biz;import android.app.Application;import android.speech.tts.TextToSpeech;import android.util.Log;import java.util.LinkedList;import java.util.Locale;import java.util.Queue;public class Speaker&#123; private TextToSpeech speech; private final String TAG = "Speaker"; public Speaker(Application context)&#123; super(); //init speech this.speech = new TextToSpeech(context, new TextToSpeech.OnInitListener() &#123; @Override public void onInit(int status) &#123; // TODO Auto-generated method stub if (status == TextToSpeech.SUCCESS) &#123; int result = speech.setLanguage(Locale.ENGLISH); if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) &#123; Log.e(TAG, "Not support this language."); &#125; else &#123; Log.i(TAG, "Speaker activated!"); &#125; &#125; &#125; &#125;); //init speech -- end &#125; // 在前文朗读完之后，朗读text中的内容 public void Speak(String text)&#123; this.speech.speak(text, TextToSpeech.QUEUE_ADD, null, null); &#125; // 即使前文没有朗读完，也强制朗读text中的内容 public void SpeakNow(String text)&#123; this.speech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null); &#125;&#125; 源代码：点击这里 将Speaker作为全局变量加入Application我们将Speaker作为全局变量加入Application，可以在APP的任何位置调用朗读方法。 我们首先创建一个AppContext.java，这是自定义个Application类： 12345678910111213141516171819202122232425262728293031323334package net.liaocy.smartcar;import android.app.Application;import net.liaocy.smartcar.biz.Speaker;public class AppContext extends Application &#123; private static AppContext instance; private Speaker speaker; //取得朗读器对象 public Speaker getSpeaker()&#123; return this.speaker; &#125; //在任何地方都可以取得这个类的实例 public static AppContext getInstance() &#123; return instance; &#125; @Override public void onCreate() &#123; // TODO Auto-generated method stub super.onCreate(); instance = this; //init and start speaker speaker = new Speaker(this); speaker.Speak("System activated"); //init and start speaker -- end &#125;&#125; 源代码：点击这里 将自定义Application注册到AndroidManifest.xml：12345678910111213141516171819202122&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.liaocy.smartcar"&gt; &lt;application android:name=".AppContext" android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme"&gt; &lt;activity android:name=".activity.Dashboard"&gt; &lt;intent-filter&gt; &lt;action android:name="android.intent.action.MAIN" /&gt; &lt;category android:name="android.intent.category.LAUNCHER" /&gt; &lt;/intent-filter&gt; &lt;/activity&gt; &lt;/application&gt;&lt;/manifest&gt; 这里的”android:name”要和注册类名称相同，用来声明注册类。源代码：点击这里 在Activity测试朗读1234567891011this.btnSpeak = this.findViewById(R.id.btnSpeak);this.btnSpeak.setOnClickListener(new View.OnClickListener() &#123; @Override public void onClick(View v) &#123; Log.i(TAG, "speak"); appContext.getSpeaker().Speak("System Activated."); txtMsg.setText("here"); &#125;&#125;); 源代码：点击这里 感想我是想做一个车载的安卓应用，集成导航，OBD车况检测，传感器数据手机和在线分析等一系列功能。有兴趣的朋友欢迎一起讨论。代码库：https://github.com/liaocyintl/SmartCar]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>安卓 Android</category>
+      </categories>
+      <tags>
+        <tag>安卓 Android</tag>
+        <tag>TextToSpeech</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[用区块链和智能合约做遗产继承]]></title>
+    <url>%2F2018%2F08%2F27-blockchainheritage%2F</url>
+    <content type="text"><![CDATA[参考资料 Interacting With Ethereum Smart Contracts Through Web3.js 源代码 源代码Github 测试环境 Node JS 介绍该项目是属于OPERA（人間機械協奏）2018黑客松的Demo。 由于区块链具有不可篡改性，我们考虑将区块链用于遗产继承问题。用户可以将他们的遗言上载到区块链上，当他们去世以后，他们的遗言和资产会通过智能合约自动转移到指定用户账户。 团队成员Daikichi Mukoyama, Wataru Nagai, Yuji Hayashi, Toshiyuki Aso, Kanta Kurazumi, Chenyi Liao 用法克隆源代码:123456git clone https://github.com/liaocyintl/writelastwordonblockchain.git``` 用Node JS安装并运行:```textnpm installnode app.js 用浏览器浏览：1http://localhost:3000 流程 ↑用户留下他们的遗言和去世以后资产转移的地址和转移资产数量。点击蓝色按钮，这些数据将被上载到区块链（以太坊）上。 （要先安装配置MetaMask） ↑这里模拟一个生物传感器。用来监视人类心跳并给出客观的死亡判断。你可以点Die按钮来模拟这个人死亡。 ↑这个人死亡后，他的遗言将被转移到指定的用户地址。但我们没有实现资产的转移。 智能合约12345678910111213141516pragma solidity ^0.4.17;contract Heritage &#123; string lastWord; address to; uint money; function writeLastWords(string x, address y, uint z) public &#123; lastWord = x; to = y; money = z; &#125; function loadLastWords() public view returns (string x) &#123; return lastWord; &#125;&#125;]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>区块链 Block Chain</category>
+      </categories>
+      <tags>
+        <tag>区块链 Block Chain</tag>
+        <tag>以太坊 Ethereum</tag>
+        <tag>智能合约 Smart Contract</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[相同的长字符串PHP比较结果不同的解决办法]]></title>
+    <url>%2F2018%2F08%2F24-phpstrcompare%2F</url>
+    <content type="text"><![CDATA[参考资料 PHP下如何过滤掉除了汉字、数字和字母外的所有字符？包括过滤掉特殊字符 测试环境 PHP 7.2 问题背景由于各种原因，例如编码问题，PHP在比较一些长字符串，比如从数据库中取出的字符串和用户输入的字符串做比较时，只用等号==，明明完全相同的两个字符串有时也会返回false。 解决方案我们采用一个非完全解决方法，既通过正则表达式抽取出字符串中的 中文、字母、和数字，然后进行比较。 123456789101112function strcomp($str1,$str2)&#123; $pattern = '/[\x&#123;4e00&#125;-\x&#123;9fa5&#125;a-zA-Z0-9]/u' preg_match_all($pattern, $str1, $matches); $str1 = join('', $matches[0]); preg_match_all($pattern, $str2, $matches); $str2 = join('', $matches[0]); return ($str1 == $str2);&#125; 感想这是一种非完整的解决方案，在需要比较符号的时候就没法使用了，但是能解决一定范围的问题。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[调整PHP的POST数量限制]]></title>
+    <url>%2F2018%2F08%2F20-phpmaxinputvars%2F</url>
+    <content type="text"><![CDATA[参考资料 How to Increase max_input_vars value in PHP in Ubuntu 测试环境 Ubuntu 18.04 LTS PHP 7.2 问题背景当POST的数量很多的时候，PHP服务器会莫名其妙的不响应。网页正常打开，但用var_dump($_POST)查看时，POST只被提交一部分。特别是在POST变量（提交的表单）特别多的时候会出现这种问题，例如在导入某个大表格时。这是由于PHP设置里有一个 max-input-vars 参数，会限制每次POST时的数量，我们调整这个参数以增加POST最大容许数量。 解决方案12# 编辑PHP配置文件nano /etc/php/7.2/apache2/php.ini 修改 max-input-vars 参数： 保存后重载网页服务器即可解决问题。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cryptozombies.io Solidity 代码注释笔记]]></title>
+    <url>%2F2018%2F08%2F03-cryptozombiesio%2F</url>
+    <content type="text"><![CDATA[参考资料本文用作 https://cryptozombies.io 中 Solidity 代码带注释的笔记 整理函数修饰符 修饰符 说明 private 只能被合约内部调用 internal 就像 private 但是也能被继承的合约调用 external 只能从合约外部调用 public 可以在任何地方调用，不管是内部还是外部 view 告诉我们运行这个函数不会更改和保存任何数据 pure 告诉我们这个函数不但不会往区块链写数据，它甚至不从区块链读取数据。这两种在被从合约外部调用的时候都不花费任何gas（但是它们在被内部其他函数调用的时候将会耗费gas） modifiers 自定义其对函数的约束逻辑 payable 可以接收以太的特殊函数 修饰符可以同时作用于一个函数定义上 ERC721 标准12345678910contract ERC721 &#123; event Transfer(address indexed _from, address indexed _to, uint256 _tokenId); event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId); function balanceOf(address _owner) public view returns (uint256 _balance); function ownerOf(uint256 _tokenId) public view returns (address _owner); function transfer(address _to, uint256 _tokenId) public; function approve(address _to, uint256 _tokenId) public; function takeOwnership(uint256 _tokenId) public;&#125; 标准注释Solidity 社区所使用的一个标准是使用一种被称作 natspec 的格式，看起来像这样： 1234567891011121314/// @title 一个简单的基础运算合约/// @author H4XF13LD MORRIS 💯💯😎💯💯/// @notice 现在，这个合约只添加一个乘法contract Math &#123; /// @notice 两个数相乘 /// @param x 第一个 uint /// @param y 第二个 uint /// @return z (x * y) 的结果 /// @dev 现在这个方法不检查溢出 function multiply(uint x, uint y) returns (uint z) &#123; // 这只是个普通的注释，不会被 natspec 解释 z = x * y; &#125;&#125; @title（标题） 和 @author （作者）很直接了. @notice （须知）向 用户 解释这个方法或者合约是做什么的。 @dev （开发者） 是向开发者解释更多的细节。 @param （参数）和 @return （返回） 用来描述这个方法需要传入什么参数以及返回什么值。 注意你并不需要每次都用上所有的标签，它们都是可选的。不过最少，写下一个 @dev 注释来解释每个方法是做什么的。 代码zombiefactory.sol : 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455pragma solidity ^0.4.19;contract ZombieFactory &#123; event NewZombie(uint zombieId, string name, uint dna); uint dnaDigits = 16; uint dnaModulus = 10 ** dnaDigits; struct Zombie &#123; string name; uint dna; &#125; Zombie[] public zombies; mapping (uint =&gt; address) public zombieToOwner; mapping (address =&gt; uint) ownerZombieCount; // 除 public 和 private 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：internal（内部） 和 external（外部）。 // internal 和 private 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。 // external 与public 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 external 和 public。 // 将 _createZombie() 函数的属性从 private 改为 internal ， 使得其他的合约也能访问到它。 //function _createZombie(string _name, uint _dna) private &#123; function _createZombie(string _name, uint _dna) internal &#123; uint id = zombies.push(Zombie(_name, _dna)) - 1; // 在 Solidity 中，有一些全局变量可以被所有函数调用。 其中一个就是 msg.sender，它指的是当前调用者（或智能合约）的 address。 // 首先，在得到新的僵尸 id 后，更新 zombieToOwner 映射，在 id 下面存入 msg.sender。 // 然后，我们为这个 msg.sender 名下的 ownerZombieCount 加 1。 // 如果Key不存在，该value默认为0，因此直接++就可以 zombieToOwner[id] = msg.sender; ownerZombieCount[msg.sender]++; NewZombie(id, _name, _dna); &#125; function _generateRandomDna(string _str) private view returns (uint) &#123; uint rand = uint(keccak256(_str)); return rand % dnaModulus; &#125; function createRandomZombie(string _name) public &#123; // require使得函数在执行过程中，当不满足某些条件时抛出错误，并停止执行： // 敲黑板: Solidity 并不支持原生的字符串比较, 我们只能通过比较两字符串的 keccak256 哈希值来进行判断 // 我们使用了 require 来确保这个函数只有在每个用户第一次调用它的时候执行，用以创建初始僵尸。 // 在 createRandomZombie 的前面放置 require 语句。 使得函数先检查 ownerZombieCount [msg.sender] 的值为 0 ，不然就抛出一个错误。 require(ownerZombieCount[msg.sender] == 0); uint randDna = _generateRandomDna(_name); _createZombie(_name, randDna); &#125;&#125; zombiefeeding.sol : 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182// 在 Solidity 中，当你有多个文件并且想把一个文件导入另一个文件时，可以使用 import 语句：// 将 zombiefactory.sol 导入到我们的新文件 zombiefeeding.sol 中。import &quot;./zombiefactory.sol&quot;;//参考 CryptoKitties 源代码//定义一个名为 KittyInterface 的接口。 请注意，因为我们使用了 contract 关键字， 这过程看起来就像创建一个新的合约一样。contract KittyInterface &#123; //在interface里定义了 getKitty 函数（不过是复制/粘贴上面的函数，但在 returns 语句之后用分号，而不是大括号内的所有内容。 function getKitty(uint256 _id)external view returns ( bool isGestating, bool isReady, uint256 cooldownIndex, uint256 nextActionAt, uint256 siringWithId, uint256 birthTime, uint256 matronId, uint256 sireId, uint256 generation, uint256 genes );&#125;// 我们的游戏代码越来越长。 当代码过于冗长的时候，最好将代码和逻辑分拆到多个不同的合约中，以便于管理。// 有个让 Solidity 的代码易于管理的功能，就是合约 inheritance (继承)// 由于 子类 是从 父类 那里 inherits （继承)过来的。 这意味着当你编译和部署了 子类，它将可以访问我们在 父类 中定义的其他 **公共** 函数。// 在 ZombieFactory 下创建一个叫 ZombieFeeding 的合约，它是继承自 `ZombieFactory 合约的。contract ZombieFactory is ZombieFactory&#123; //我已经将代码中 CryptoKitties 合约的地址保存在一个名为 ckAddress 的变量中。在下一行中，请创建一个名为 kittyContract 的 KittyInterface，并用 ckAddress 为它初始化 —— 就像我们为 numberContract所做的一样。 address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d; KittyInterface kittyContract = KittyInterface(ckAddress); // 在 Solidity 中，有两个地方可以存储变量 —— storage 或 memory。 // Storage 变量是指永久存储在区块链中的变量。 Memory 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。 // 大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。 // 是时候给我们的僵尸增加“猎食”和“繁殖”功能了！ // 当一个僵尸猎食其他生物体时，它自身的DNA将与猎物生物的DNA结合在一起，形成一个新的僵尸DNA。 // 创建一个名为 feedAndMultiply 的函数。 使用两个参数：_zombieId（ uint类型 ）和_targetDna （也是 uint 类型）。 设置属性为 public 的。 // function feedAndMultiply(uint _zombieId, uint _targetDna) public &#123; // 首先，我们修改下 feedAndMultiply 函数的定义，给它传入第三个参数：一条名为 _species 的字符串。 function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) public &#123; // 我们不希望别人用我们的僵尸去捕猎。 首先，我们确保对自己僵尸的所有权。 通过添加一个require 语句来确保 msg.sender 只能是这个僵尸的主人（类似于我们在 createRandomZombie 函数中做过的那样）。 require(msg.sender == zombieToOwner[_zombieId]); //在我们计算出新的僵尸的DNA之后，添加一个 if 语句来比较 _species 和字符串 &quot;kitty&quot; 的 keccak256 哈希值。 if (keccak256(_species) == keccak256(&quot;kitty&quot;)) &#123; // 在 if 语句中，我们用 99 替换了新僵尸DNA的最后两位数字。可以这么做：newDna = newDna - newDna％100 + 99;。 // 解释：假设 newDna 是 334455。那么 newDna％100 是 55，所以 newDna - newDna％100 得到 334400。最后加上 99 可得到 334499。 newDna = newDna - newDna % 100 + 99; &#125; //为了获取这个僵尸的DNA，我们的函数需要声明一个名为 myZombie 数据类型为Zombie的本地变量（这是一个 storage 型的指针）。 将其值设定为在 zombies 数组中索引为_zombieId所指向的值。 Zombie storage myZombie = zombies[_zombieId]; // 获取新的僵尸DNA的公式很简单：计算猎食僵尸DNA和被猎僵尸DNA之间的平均值。 // 首先我们确保 _targetDna 不长于16位。要做到这一点，我们可以设置 _targetDna 为 _targetDna％dnaModulus ，并且只取其最后16位数字。 _targetDna = _targetDna % dnaModulus; // 接下来为我们的函数声明一个名叫 newDna 的 uint类型的变量，并将其值设置为 myZombie的 DNA 和 _targetDna 的平均值（如上例所示）。 uint newDna = (myZombie.dna + _targetDna) / 2; // 一旦我们计算出新的DNA，再调用 _createZombie 就可以生成新的僵尸了。 // 注意：这段代码编译的时候编译器就会报错。 错误在于，我们尝试从 ZombieFeeding 中调用 _createZombie 函数，但 _createZombie 却是 ZombieFactory 的 private （私有）函数。这意味着任何继承自 ZombieFactory 的子合约都不能访问它。 _createZombie(&quot;NoName&quot;, newDna); &#125; // 参考 处理多返回值 // 我们来定义一个函数，从 kitty 合约中获取它的基因： // 创建一个名为 feedOnKitty 的函数。它需要2个 uint 类型的参数，_zombieId 和_kittyId ，这是一个 public 类型的函数。 function feedOnKitty(uint _nombieId, uint _kittyId) public &#123; // 函数首先要声明一个名为 kittyDna 的 uint。 // 注意：在我们的 KittyInterface 中，genes 是一个 uint256 类型的变量，但是如果你记得，我们在第一课中提到过，uint 是 uint256 的别名，也就是说它们是一回事。 uint kittyDna; // 这个函数接下来调用 kittyContract.getKitty函数, 传入 _kittyId ，将返回的 genes 存储在 kittyDna 中。记住 —— getKitty 会返回一大堆变量。 （确切地说10个 - 我已经为你数过了，不错吧！）。但是我们只关心最后一个-- genes。数逗号的时候小心点哦！ (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId); // 最后，函数调用了 feedAndMultiply ，并传入了 _zombieId 和 kittyDna 两个参数。 //feedAndMultiply(_zombieId, kittyDna); // 最后，我们修改了 feedOnKitty 中的函数调用。当它调用 feedAndMultiply 时，增加 “kitty” 作为最后一个参数。 feedAndMultiply(_zombieId, kittyDna, &quot;kitty&quot;); &#125; &#125; 示例代码关于 storage 和 memory变量：在 Solidity 中，有两个地方可以存储变量 —— storage 或 memory。 Storage 变量是指永久存储在区块链中的变量。 Memory 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。 Storage 类似一个指针，可以修改指向的变量。 大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。 然而也有一些情况下，你需要手动声明存储类型，主要用于处理函数内的 结构体 和 数组 时： 1234567891011121314151617181920212223242526272829303132contract SandwichFactory &#123; struct Sandwich &#123; string name; string status; &#125; Sandwich[] sandwiches; function eatSandwich(uint _index) public &#123; // Sandwich mySandwich = sandwiches[_index]; // ^ 看上去很直接，不过 Solidity 将会给出警告 // 告诉你应该明确在这里定义 `storage` 或者 `memory`。 // 所以你应该明确定义 `storage`: Sandwich storage mySandwich = sandwiches[_index]; // ...这样 `mySandwich` 是指向 `sandwiches[_index]`的指针 // 在存储里，另外... mySandwich.status = &quot;Eaten!&quot;; // ...这将永久把 `sandwiches[_index]` 变为区块链上的存储 // 如果你只想要一个副本，可以使用`memory`: Sandwich memory anotherSandwich = sandwiches[_index + 1]; // ...这样 `anotherSandwich` 就仅仅是一个内存里的副本了 // 另外 anotherSandwich.status = &quot;Eaten!&quot;; // ...将仅仅修改临时变量，对 `sandwiches[_index + 1]` 没有任何影响 // 不过你可以这样做: sandwiches[_index + 1] = anotherSandwich; // ...如果你想把副本的改动保存回区块链存储 &#125;&#125; internal 和 external：除 public 和 private 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：internal（内部） 和 external（外部）。 internal 和 private 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。 external 与public 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 external 和 public。 声明函数 internal 或 external 类型的语法，与声明 private 和 public类 型相同： 1234567891011121314151617contract Sandwich &#123; uint private sandwichesEaten = 0; function eat() internal &#123; sandwichesEaten++; &#125;&#125;contract BLT is Sandwich &#123; uint private baconSandwichesEaten = 0; function eatWithBacon() public returns (string) &#123; baconSandwichesEaten++; // 因为eat() 是internal 的，所以我们能在这里调用 eat(); &#125;&#125; 与其他合约的交互如果我们的合约需要和区块链上的其他的合约会话，则需先定义一个 interface (接口)。 先举一个简单的栗子。 假设在区块链上有这么一个合约： 1234567891011contract LuckyNumber &#123; mapping(address =&gt; uint) numbers; function setNum(uint _num) public &#123; numbers[msg.sender] = _num; &#125; function getNum(address _myAddress) public view returns (uint) &#123; return numbers[_myAddress]; &#125;&#125; 这是个很简单的合约，您可以用它存储自己的幸运号码，并将其与您的以太坊地址关联。 这样其他人就可以通过您的地址查找您的幸运号码了。 现在假设我们有一个外部合约，使用 getNum 函数可读取其中的数据。 首先，我们定义 LuckyNumber 合约的 interface ： 123contract NumberInterface &#123; function getNum(address _myAddress) public view returns (uint);&#125; 请注意，这个过程虽然看起来像在定义一个合约，但其实内里不同： 首先，我们只声明了要与之交互的函数 —— 在本例中为 getNum —— 在其中我们没有使用到任何其他的函数或状态变量。 其次，我们并没有使用大括号（{ 和 }）定义函数体，我们单单用分号（;）结束了函数声明。这使它看起来像一个合约框架。 编译器就是靠这些特征认出它是一个 接口 的。 在我们的 app 代码中使用这个接口，合约就知道其他合约的函数是怎样的，应该如何调用，以及可期待什么类型的返回值。 在下一课中，我们将真正调用其他合约的函数。目前我们只要声明一个接口，用于调用 CryptoKitties 合约就行了。 CryptoKitties源代码我们已经为你查看过了 CryptoKitties 的源代码，并且找到了一个名为 getKitty的函数，它返回所有的加密猫的数据，包括它的“基因”（我们的僵尸游戏要用它生成新的僵尸）。 该函数如下所示： 1234567891011121314151617181920212223242526function getKitty(uint256 _id) external view returns ( bool isGestating, bool isReady, uint256 cooldownIndex, uint256 nextActionAt, uint256 siringWithId, uint256 birthTime, uint256 matronId, uint256 sireId, uint256 generation, uint256 genes) &#123; Kitty storage kit = kitties[_id]; // if this variable is 0 then it&apos;s not gestating isGestating = (kit.siringWithId != 0); isReady = (kit.cooldownEndBlock &lt;= block.number); cooldownIndex = uint256(kit.cooldownIndex); nextActionAt = uint256(kit.cooldownEndBlock); siringWithId = uint256(kit.siringWithId); birthTime = uint256(kit.birthTime); matronId = uint256(kit.matronId); sireId = uint256(kit.sireId); generation = uint256(kit.generation); genes = kit.genes;&#125; 使用接口继续前面 NumberInterface 的例子，我们既然将接口定义为： 123contract NumberInterface &#123; function getNum(address _myAddress) public view returns (uint);&#125; 我们可以在合约中这样使用： 123456789101112contract MyContract &#123; address NumberInterfaceAddress = 0xab38...; // ^ 这是FavoriteNumber合约在以太坊上的地址 NumberInterface numberContract = NumberInterface(NumberInterfaceAddress); // 现在变量 `numberContract` 指向另一个合约对象 function someFunction() public &#123; // 现在我们可以调用在那个合约中声明的 `getNum`函数: uint num = numberContract.getNum(msg.sender); // ...在这儿使用 `num`变量做些什么 &#125;&#125; 通过这种方式，只要将您合约的可见性设置为public(公共)或external(外部)，它们就可以与以太坊区块链上的任何其他合约进行交互。 处理多返回值getKitty 是我们所看到的第一个返回多个值的函数。我们来看看是如何处理的： 123456789101112131415161718function multipleReturns() internal returns(uint a, uint b, uint c) &#123; return (1, 2, 3);&#125;function processMultipleReturns() external &#123; uint a; uint b; uint c; // 这样来做批量赋值: (a, b, c) = multipleReturns();&#125;// 或者如果我们只想返回其中一个变量:function getLastReturnValue() external &#123; uint c; // 可以对其他字段留空: (,,c) = multipleReturns();&#125; kitty 和 web3.js 放在一起我们只用编译和部署 ZombieFeeding，就可以将这个合约部署到以太坊了。我们最终完成的这个合约继承自 ZombieFactory，因此它可以访问自己和父辈合约中的所有 public 方法。 我们来看一个与我们的刚部署的合约进行交互的例子， 这个例子使用了 JavaScript 和 web3.js： 123456789101112131415161718192021222324252627282930var abi = /* abi generated by the compiler */var ZombieFeedingContract = web3.eth.contract(abi)var contractAddress = /* our contract address on Ethereum after deploying */var ZombieFeeding = ZombieFeedingContract.at(contractAddress)// 假设我们有我们的僵尸ID和要攻击的猫咪IDlet zombieId = 1;let kittyId = 1;// 要拿到猫咪的DNA，我们需要调用它的API。这些数据保存在它们的服务器上而不是区块链上。// 如果一切都在区块链上，我们就不用担心它们的服务器挂了，或者它们修改了API，// 或者因为不喜欢我们的僵尸游戏而封杀了我们let apiUrl = "https://api.cryptokitties.co/kitties/" + kittyId$.get(apiUrl, function(data) &#123; let imgUrl = data.image_url // 一些显示图片的代码&#125;)// 当用户点击一只猫咪的时候:$(".kittyImage").click(function(e) &#123; // 调用我们合约的 `feedOnKitty` 函数 ZombieFeeding.feedOnKitty(zombieId, kittyId)&#125;)// 侦听来自我们合约的新僵尸事件好来处理ZombieFactory.NewZombie(function(error, result) &#123; if (error) return // 这个函数用来显示僵尸: generateZombie(result.zombieId, result.name, result.dna)&#125;)]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Solidity</category>
+      </categories>
+      <tags>
+        <tag>以太坊 Ethereum (ETH)</tag>
+        <tag>区块链 Block Chain</tag>
+        <tag>Solidity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[解决Python在Linux环境、Mac环境或Windows环境下，文件路径不同的问题]]></title>
+    <url>%2F2018%2F08%2F01-pythonlinuxwinpath%2F</url>
+    <content type="text"><![CDATA[参考资料本文参考：Python 3 Quick Tip: The easy way to deal with file paths on Windows, Mac and Linux 实验环境 Python 3.6.5 pathlib 11.1文档 问题背景操作系统，文件的路径也是不同的： 12345Windows的文件路径:C:\some_folder\some_file.txt很过其它操作系统的文件:/some_folder/some_file.txt 这其实是从上个世纪80年代，从MS-DOS系统遗留下来的疑难杂症。 这就造成一个问题，如果包含文件路径的Python代码是在Linux上测试的，那Windows下面可能就没法用了。 还好，可以用一个叫做 pathlib 的库来解决。 解决方案安装pathlib1pip install pathlib 让路径兼容假如你的python代码写在my_program.py里，你要定位到下面这个叫raw_data.txt的文件： 你可以这样写： 12345from pathlib import Pathdata_folder = Path("source_data/text_files/")file_to_open = data_folder / "raw_data.txt"f = open(file_to_open)print(f.read()) 或者你可以直接写绝对路径： 12from pathlib import Pathfilename = Path("source_data/text_files/raw_data.txt") 它甚至可以直接取文件名，扩展名，判断文件是否存在： 12345678910111213from pathlib import Pathfilename = Path("source_data/text_files/raw_data.txt")print(filename.name)# 输出全部文件名："raw_data.txt"print(filename.suffix)# 输出文件扩展名："txt"print(filename.stem)# 输出文件名："raw_data"if not filename.exists(): print("奥普斯，文件不存在！")else: print("耶，文件存在！") 可以返回Windows格式的路径： 123456from pathlib import Path, PureWindowsPathfilename = Path("source_data/text_files/raw_data.txt")# 转换为 Windows 格式path_on_windows = PureWindowsPath(filename)print(path_on_windows)# 输出： "source_data\text_files\raw_data.txt" 便利文件夹里的全部json文件： 12for file in Path("dir/dir/").glob('*.json'): open(file)]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[以太坊学习资料汇总]]></title>
+    <url>%2F2018%2F07%2F31-ethresource%2F</url>
+    <content type="text"><![CDATA[官方一些的资料以太坊白皮书 系统学习的资料官方文档中文版 Solidityhttps://cryptozombies.io/ https://cryptozombies.io/是一个新手友好型的以太坊编程教学网站。网站通过互动教程的方式，让学习者在编写以太坊游戏的过程中，学习到 Solidity 的用法。cryptozombies 的意思就是，密码僵尸。来吧，创建一个密码僵尸的游戏吧。 博客与实例学习私链GETH &amp; ETH Installation 以太坊区块链学习之搭建私链 虚拟币 一步步教你在以太坊发行自己的数字货币 该作者通过智能合约，创建了一个属于自己的虚拟货币，实现了ERC20 Token标准。approve(): 允许用户可花费的代币数。 基于以太坊发布属于自己的数字货币（代币）完整版 比上一篇更加详细一些，同样是实现ERC20 Token标准。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>区块链 Block Chain</category>
+      </categories>
+      <tags>
+        <tag>以太坊 Ethereum (ETH)</tag>
+        <tag>区块链 Block Chain</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用 Data Brewery 挖掘A股数据之Cubes篇（持续更新）]]></title>
+    <url>%2F2018%2F07%2F30-stockdatamining%2F</url>
+    <content type="text"><![CDATA[问题背景本文并非股票量化交易教程，而是通过股票数据挖掘的例子，来学习 Cubes 的笔记。目前关于Cubes的中文资料不多，当然本文也不可能包含Cubes的全部特性，只能通过例子介绍一部分常用功能。希望对读者有所帮助。 参考资料Data Brewery 官网 Cubes Cubes 文档 数据挖掘教科书: Data Mining. Concepts and Techniques, 3rd Edition 实验环境及说明 Python 3.6.1 Cubes 1.1 Cubes是一个轻量级的Python框架，也是一个工具集。用来开发数据报告与数据分析应用、在线分析(OLAP)、多维度数据分析和数据聚合。它是Data Brewery项目的一个子集。 SQLLite 3 Tushare 0.4.3 Tushare是一个免费、开源的python财经数据接口包。主要实现对股票等金融数据从数据采集、清洗加工 到 数据存储的过程，能够为金融分析人员提供快速、整洁、和多样的便于分析的数据，为他们在数据获取方面极大地减轻工作量，使他们更加专注于策略和模型的研究与实现上。 Cubes介绍为什么要使用CubesCubes 是一个框架，该框架面向分析师和用户终端程序，提供对于数据立方体（多维数据实体）可理解的、自然的途径。它可以被提供分析方法的应用程序设计师利用。 特点: 被分析数据的逻辑视图： 分析师如何看待数据而不是数据物理地存放在存储器中。 在线数据处理（OLAP）和聚合浏览，默认的后端是关系型数据库 - ROLAP。 层次维度： 属性可以按层次独立存在，例如类-子类，国家-地区。 一个维度上创建多个分层。 可定位的元数据（metadata）与数据 数据立方体包含数据的认可。 可拖拽的数据仓库： 拽入其它的数据集 该框架是可扩展的。 数据立方体， 多维度， Facts， 与度量本框架提供对多维度数据立方体的建模。 Fact是指数据最基本的单元。Fact可以是一个合同，发货单，开销，任务等等。每一个Fact拥有一个度量：度量是一个可以被测量的属性，比如说价格，数量，收益，持续时间，税，折扣，等等。 维度为Fact提供上下文，例如： 过滤检索或报告 控制Fact聚合的范围 用于排序 定义主明细式关系 维度可以包含多个分层，比如一个时间维度可以按年分层，按月分层，和按天分层。 特征概览 工作空间：立方体分析工作空间。 模型：定义数据与Meta数据，包括：数据立方体，维度，分层，属性，标签，定位。 浏览器：聚合浏览，切片，下钻。 后端：具体实现聚合的应用方法。 服务器：基于WSGI的HTTP服务器。 格式化器：可对数据进行格式化。 slicer： 命令行工具 模型逻辑模型从分析师的透视图定义数据，包括数据如何度量、聚合和报告。模型独立于数据的物理结构。这种独立使得分析师可以更加专注于数据，而不是如何从难以理解的表单中获取数据。 浏览器数据立方体分析功能的核心是聚合浏览器。这个浏览器模型包含实用的类和方法。 后端后端提供实际的数据聚合与浏览方法。数据立方体被创建为 关系型在线数据分析过程 ROLAP 后端，该后端实用以 SQLAlchemy 驱动的 SQL 数据库。 该框架是模块化的，因此可以支持多数据库后端，可以有多种立方体计算方法与数据聚合浏览方法。 服务器Cubes有一个内置的WSGI HTTP服务器，叫做 slicer 命令行工具。对于大多数的框架功能，它都提供JSON API。这个服务器基于Werkzeug WSGI框架。 安装 Cubes 并测试使用pip安装：1234567891011121314151617# 安装cubes， 包含全部模块pip install cubes[all]# 克隆代码并进入例子git clone git://github.com/DataBrewery/cubes.gitcd cubescd examples/hello_world# 准备数据并运行OLAP服务器：python prepare_data.pyslicer serve slicer.ini# 尝试一些查询：curl "http://localhost:5000/cube/irbd_balance/aggregate"curl "http://localhost:5000/cube/irbd_balance/aggregate?drilldown=year"curl "http://localhost:5000/cube/irbd_balance/aggregate?drilldown=item"curl "http://localhost:5000/cube/irbd_balance/aggregate?drilldown=item&amp;cut=item:e" 或使用源代码安装：12345git clone git://github.com/DataBrewery/cubes.gitcd cubespip install -r requirements.txtpip install -r requirements-optional.txtpython setup.py install 对股票数据挖掘在同一文件夹下创建 stock_model.json ，这是模型的配置文件，并输入下面内容并保存： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&#123; "dimensions": [ &#123; "# 日期作为第一个维度": "", "name": "date", "# 设置这个维度的规则为时间，目前也仅有时间这一个规则 https://cubes.readthedocs.io/en/latest/model.html?highlight=role": "Comment", "role": "time" &#125;, &#123; "# 收盘价作为另一个维度": "", "name": "close" &#125; ], "cubes": [ &#123; "# 数据立方体名称，需要和数据库中那个表统一": "", "name": "stock_601398", "dimensions": [ ], "# 我们暂时只测量收盘价": "", "measures": [ &#123; "name":"close", "label":"close" &#125; ], "aggregates": [ &#123; "# 聚合记录数量（日线数据的话表示交易天数）": "function For example: sum, min, max.", "name": "record_count", "function": "count" &#125;, &#123; "# 聚合收盘价最大值": "", "name": "close_max", "function": "max", "# 这个就是我们的测量值": "", "measure": "close" &#125;, &#123; "# 聚合收盘价最小值": "", "name": "close_min", "function": "min", "measure": "close" &#125; ], "mappings": &#123; &#125; &#125; ]&#125; 在同一文件夹下，用下面的Notebook执行挖掘任务： 可以看到，从2015年1月1日至今（2018年7月31日），工商银行共交易了872天，收盘价最高7.421元/股，最低3.383元/股 (未完待续)]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>数据挖掘 Data Mining</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Data Mining</tag>
+        <tag>Data Brewery</tag>
+        <tag>Cubes</tag>
+        <tag>SQLLite</tag>
+        <tag>在线数据分析 OLAP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu 18.04设置Apache的HTTP与HTTPS反向代理]]></title>
+    <url>%2F2018%2F07%2F25-ubuntuapacheproxy%2F</url>
+    <content type="text"><![CDATA[问题背景假设你有一台门户服务器，内网有若干台网页服务器。你需要将域名proxy.liaocy.net反向代理到IP地址为192.168.0.2的网页服务器上，分别代理HTTP（80端口）和HTTPS（443端口）。 参考资料参考资料1参考资料2参考资料3 系统环境 Ubuntu 18.04 Apache 2 解决方案安装Apache代理插件12# 安装Apache2sudo apt-get install apache2 启动插件： 123456# 启动各种插件hexsudo a2enmod sslsudo a2enmod proxysudo a2enmod proxy_httpsudo a2enmod proxy_balancersudo a2enmod lbmethod_byrequests 配置门户服务器Apache的HTTP与HTTPS配置文件配置HTTP： 1sudo nano /etc/apache2/sites-available/000-default.conf 输入以下配置： 1234567891011121314151617181920&lt;VirtualHost *:80&gt; #管理员邮件地址 ServerAdmin info@liaocy.net #要代理的域名 ServerName proxy.liaocy.net #要代理的域名别名 ServerAlias proxy.liaocy.net ProxyRequests Off #允许的最大并发数 ProxyMaxForwards 100 ProxyPreserveHost On #要代理到的主机地址 ProxyPass / http://192.168.0.2/ #要代理到的主机地址 ProxyPassReverse / http://192.168.0.2/ &lt;Proxy *&gt; Order Deny,Allow Allow from all &lt;/Proxy&gt;&lt;/VirtualHost&gt; 配置HTTPS： 1sudo nano /etc/apache2/sites-available/default-ssl.conf 输入以下配置： 1234567891011121314151617181920212223&lt;IfModule mod_ssl.c&gt; &lt;VirtualHost *:443&gt; #管理员邮件地址 ServerAdmin info@liaocy.net #要代理的域名 ServerName proxy.liaocy.net #要代理的域名别名 ServerAlias proxy.liaocy.net SSLEngine on SSLProxyEngine On SSLProxyVerify none SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key &lt;Proxy *&gt; Order deny,allow Allow from all &lt;/Proxy&gt; ProxyPreserveHost On ProxyRequests Off ProxyPass / https://192.168.0.2:443/ ProxyPassReverse / https://192.168.0.2:443/ &lt;/VirtualHost&gt;&lt;/IfModule&gt; 注：被认证的SSL加密证书配置在门户机即可，似乎不用配置在被代理服务器上 被代理机设置被代理机正常设置网页服务即可，不一定非得是Apache。服务开通 HTTP 80 端口和 HTTPS 443 端口即可。 结果和感想]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Apache</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Apache</tag>
+        <tag>反向代理 Reverse Proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu 18.04部署SCWS-1.2.3中文分词与PHP支持]]></title>
+    <url>%2F2018%2F07%2F24-ubuntuscws%2F</url>
+    <content type="text"><![CDATA[问题背景需要用PHP系统全文检索时，通常要先对文本进行分词操作。本文介绍一个Linux环境下，支持PHP分词的工具——SCWS，以及其安装部署。 本文参考 系统环境 Ubuntu 18.04 SCWS 1.2.3 PHP 7.2 解决方案安装依赖包12345678# 更新源sudo apt update# 安装编译依赖包sudo apt install build-essential# 安装PHP环境sudo apt install php7.2# 安装Apache服务器sudo apt install apache2 注意，如果已配置有Apache和PHP，则可省略后两部。 下载、编译、安装 SCWS 1.2.3 到系统123456789101112131415# 下载SCWS的源码wget http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2# 解压缩tar xvjf scws-1.2.3.tar.bz2# 进入目录cd # 编译./configure --prefix=/usr/local/scwsmake# 安装sudo make install# 验证安装ls -al /usr/local/scws/lib/libscws.la# 试执行scws-cli文件/usr/local/scws/bin/scws -h 注意，prefix为SCWS的安装目录。试执行scws-cli文件后，如出现：123scws (scws-cli/1.2.3)Simple Chinese Word Segmentation - Command line usage.Copyright (C)2007 by hightman. 表示安装正确！ 安装词库12345678# 进入目录cd /usr/local/scws/etc# 安装GBK编码词库sudo wget http://www.xunsearch.com/scws/down/scws-dict-chs-gbk.tar.bz2sudo tar xvjf scws-dict-chs-gbk.tar.bz2# 安装UTF-8编码词库sudo wget http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2sudo tar xvjf scws-dict-chs-utf8.tar.bz2 安装PHP支持123456789101112131415161718# 回到源码目录cd ~/scws-1.2.3/phpext/# 执行phpize （如果没有这个命令，可能要求安装php7.2-dev，sudo apt install php7.2-dev）phpize# 设定安装目录./configure --with-scws=/usr/local/scws# 编译make# 安装sudo make install# 在php.ini中启用插件sudo nano /etc/php/7.2/apache2/php.ini# 在最下面加入extension = scws.soscws.default.charset = utf-8scws.default.fpath = /usr/local/scws/etc# 重启Apachesudo service apache2 restart 之后如果进入phpinfo()页面可以看到： 尝试用PHP分词建立PHP分词页面12cd /var/www/html/sudo nano scws.php 输入以下PHP代码，尝试经典分词案例： 123456789101112131415161718&lt;?php ini_set('display_errors', 1); $so = scws_new(); $so-&gt;set_charset('utf-8'); $so-&gt;add_dict(ini_get('scws.default.fpath') . '/dict.utf8.xdb'); $so-&gt;set_rule(ini_get('scws.default.fpath') . '/rules.utf8.ini'); $so-&gt;set_ignore(true); $so-&gt;set_multi(false); $so-&gt;set_duality(false); $so-&gt;send_text("武汉市长江大桥，我们中出了一个叛徒。"); $words_array = $so-&gt;get_result(); $words = ""; foreach ($words_array as $v) &#123; // 输出分词结果 echo var_dump($v) . "&lt;br /&gt;"; &#125; $so-&gt;close();?&gt; 用浏览器访问： 分词成功！（我这儿是因为nano编辑器的原因，所以顺序有点怪） 说明： word： 词，Surface表层格 off： 词偏移量 len： 词长度 idf： 逆向文件频率，未做归一化，越大说明该词越重要。应该是训练文本中的频率。 attr： 词性 参考资料SCWS 参考资料 PHP插件参考资料 结果和感想在海外下载资源真慢。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>SCWS</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>PHP</tag>
+        <tag>SCWS</tag>
+        <tag>形态分析 Morphological Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[自动为Word文档中的日文汉字注音(ふりがな)的VBA脚本]]></title>
+    <url>%2F2018%2F20180720-wordautofurigana%2F</url>
+    <content type="text"><![CDATA[介绍本文代码基于きぬあさ的代码进行改良，向原作者表示致敬，转发此文请一并转发原作者地址。 注：原作者的代码遇到找不到注音的汉字会死循环卡在那里。我修正了这个问题。修正后的版本如果遇到找不到注音的汉字，就跳过它而不是卡在那里。当然这种情况很少，完全不影响阅读，因此可以无人值守地转换Word长文。 问题背景众所周知Word有自动给日文汉字注音的功能： 点击确定以后，相应的汉字就被注音了： 这种方法对日语学习者很有帮助。但是可以发现，这种方法无法对大段的文字同时注音，每次只能注音一两句话。即使你选择了大段的文字，也只能对前一两句话进行注音。为了解决这个问题，我们写一个Word文档内置的Visual Basic for Applications (VBA)脚本，来实现对大段文字或全文的注音。 开发及测试环境 Microsoft Office Word 2013 解决方案首先，我们设置文章的语言为日语，否则某些汉字可能被当做中文后标记为汉语拼音。按Ctrl+A全选文本，点击“审阅”选项卡，点击“语言”按钮，在弹出的菜单中选择“设置校对语言”选项。 在弹出的“语言”对话框中，选择日语，勾选“不检查拼写或语法”，不要勾选“自动检测语言”，点击确定保存： 这样一来，全体文本就被设置为日语了。之后，根据下面步骤对文本进行注音： 1、 打开Word的“开发工具”菜单部分Word的“开发工具”默认是不显示的，我们在设置里打开它： 首先，点击word左上角的“文件”按钮： 然后，点击“选项”： 之后，在弹开的“Word选项”对话框中，依次选择“自定义功能区”，勾选“开发工具”，并点击“确定”保存设置： 最后，可以在Word的顶部菜单中看到“开发工具”选项卡，选择它，并点击按钮“Visual Basic”打开VBA编辑器： 2、代码在打开的VBA编辑器中，粘贴以下代码（按代码下面的图示）：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566Option Explicit Public Sub FuriganaSelectedRange() SetPhoneticRange Selection.RangeEnd Sub Public Sub FuriganaAllDocument() SetPhoneticRange ActiveDocument.RangeEnd Sub Private Sub SetPhoneticRange(ByVal rng As Word.Range) Dim r As Word.Range Dim past_r As String For Each r In rng.Words If r.Fields.Count &lt; 1 Then If ChkKanjiRange(r) = True And r &lt;&gt; past_r Then past_r = r r.Select Application.Dialogs(wdDialogPhoneticGuide).Show 1 End If End If Next For Each r In rng.Characters If r.Fields.Count &lt; 1 Then If ChkKanjiRange(r) = True Then r.Select Application.Dialogs(wdDialogPhoneticGuide).Show 1 End If End If NextEnd Sub Private Function ChkKanjiRange(ByVal rng As Word.Range) As Boolean Dim ret As Boolean Dim i As Long ret = True For i = 1 To Len(rng.Text) If IsKanji(Mid(rng.Text, i, 1)) = False Then ret = False Exit For End If Next ChkKanjiRange = retEnd Function Private Function IsKanji(ByVal char As String) As Boolean Dim cc As Variant Dim ret As Boolean ret = True cc = Val("&amp;H" &amp; Hex(AscW(char)) &amp; "&amp;") Select Case cc Case 63744 To 64255 Case 13312 To 19903 Case 19968 To 40959 Case 131072 To 173791 Case 173824 To 177983 Case 177984 To 178207 Case 194560 To 195103 Case Else ret = False End Select IsKanji = retEnd Function 将上面代码粘贴在代码区域，并点击绿色三角形“运行”按钮： 3、运行点击点击绿色三角形“运行”按钮后，出现对话框： 选择“FuriganaAllDocument”的话则会对全文档注音（推荐） 选择“FuriganaSelectedRange”的话则只会对选择文字注音选择完成后点击“运行”： 点击“运行”后开始注音： 注音过程中点击键盘“ESC”键可以中途退出。该算法支持断点重新开始，所以不用担心中途退出。 参考资料代码参考资料 开发工具菜单开启引用资料 结果和感想关于执行效率： 注音夏目漱石的「吾輩は猫である」第一章，包含13,622个字符（包含假名），执行一遍大约需要15分钟。]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>阅读 Reading</category>
+      </categories>
+      <tags>
+        <tag>VBA</tag>
+        <tag>Word</tag>
+        <tag>Office</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git子项目的创建与克隆]]></title>
+    <url>%2F2018%2F20180717-gitsubmodule%2F</url>
+    <content type="text"><![CDATA[问题背景在你的项目中引用一个另外的项目。并且在以后，别人克隆你的项目时，自动地把你引用依赖的项目也克隆下来。 参考资料 解决方案在项目中引用另一个项目引入项目“rack”到我的项目，于是在项目文件夹下，输入：1git submodule add git://github.com/chneukirchen/rack.git rack 克隆时同时克隆依赖项目1234git clone git://github.com/schacon/myproject.gitcd myprojectgit submodule initgit submodule update 结果和感想]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker常用命令笔记]]></title>
+    <url>%2F2018%2F20180717-dockercommon%2F</url>
+    <content type="text"><![CDATA[参考资料Docker PracticeDocker如何固定IP设置的方法 全局基本查看Docker的占用空间1$ docker system df 镜像基本检索Ubuntu有关的镜像1docker search ubuntu 拉取Ubuntu 18.04到本地1docker pull ubuntu:18.04 列出已拉取到本地的镜像 -a 显示中间层镜像 ubuntu 显示仓库名为ubuntu的镜像 -q 列出镜像ID –format 显示ID+仓库名+标签 –digests 镜像摘要 123456$ docker image ls$ docker image ls -a$ docker image ls ubuntu$ docker image ls -q$ docker image ls --format "&#123;&#123;.ID&#125;&#125;: &#123;&#123;.Repository&#125;&#125;\t&#123;&#123;.Tag&#125;&#125;"$ docker image ls --digests 删除全部虚悬镜像 (dangling image)1docker image prune 删除ID以5e8开头的镜像1$ docker image rm 5e8 删除所有仓库名为ubuntu的镜像（Windows和Ubuntu的命令形式不一样）1$ docker image rm (docker image ls -q ubuntu) 容器基本启动并运行ubuntu 16.04容器： -it 交互操作+终端 –rm 退出时删除容器 bash 启动交互式Shell 1$ docker run -it --rm ubuntu:18.04 bash 启动一个nginx网页服务器容器 –name 启动后容器名称 80:80 宿主端口：容器端口映射 -d 守护程序后台运行模式 nginx 要启动的镜像名 1docker run --name webserver -d -p 80:80 -p 8080:8080 nginx 停止容器1docker container stop webserver 查看Docker容器状态： -a：包括终止的容器 12$ docker ps$ docker ps -a 接入已启动的容器命令行1$ docker exec -it ubuntu:18.04 bash 查看容器的改动1docker diff webserver 将容器的存储层保存下来成为镜像 –author 作者 –message 信息 webserver 保存为镜像名 nginx:v2 仓库和标签 1$ docker commit --author "Chenyi Liao &lt;info@liaocy.net&gt;" --message "practice" webserver ubuntu:v2 删除容器1docker container rm webserver 网络基本创建一个新的Docker网络命名为docker-net -d：指定Docker的网络类型，有bridge和Overlay 1docker network create -d bridge docker-net 运行容器时加入网络1docker run -it --rm --name busybox1 --network docker-net busybox sh 查看指定容器网址12345# Linux:docker inspect &lt;container id&gt; | grep &quot;IPAddress&quot;# Windows:docker inspect --format &apos;&#123;&#123; .NetworkSettings.IPAddress &#125;&#125;&apos; &lt;container id&gt; 容器例子 启动一个ubuntu容器，加入docker-net网络，映射SSH端口，以守护进程启动 1docker run --name my-container -dit --network docker-net -p 2000:22 ubuntu:18.04 /bin/bash 固定IPdocker run –name my-container -dit –network host -ip 172.17.0.1 -p 2000:22 ubuntu:18.04 /bin/bash 映射本地文件夹 1docker run --name my-container -dit -v d:/:/data ubuntu:18.04 /bin/bash 容器迁移建立容器快照：1docker commit -p 30b8f18f20b4 container-backup 导出镜像到文件：1docker save -o bk.tar container-backup 导入文件到镜像：1docker load &lt; bk.tar DockerFile脚本以启动Ubuntu18.04服务器上的Azkaban为例：123456789FROM ubuntu:18.04MAINTAINER Chenyi Liao &lt;info@liaocy.net&gt;RUN apt-get update \ &amp;&amp; apt-get install -y openjdk-8-jdk \ &amp;&amp; apt-get install -y git \ &amp;&amp; cd /opt/ \ &amp;&amp; git clone https://github.com/azkaban/azkaban.git \ &amp;&amp; cd azkaban \ &amp;&amp; ./gradlew build -x test installDist 在Ubuntu18.04上安装LMAP（Linux, MySQL, Apache, PHP）12345678FROM ubuntu:18.04MAINTAINER Chenyi Liao &lt;info@liaocy.net&gt;RUN apt-get update \ &amp;&amp; apt install -y apache2 \ &amp;&amp; apt install -y php7.2 \ &amp;&amp; apt install -y mysql-server-5.7 \ &amp;&amp; service mysql start \ &amp;&amp; service mysql apache2 ※Azkaban安装参考资料 使用脚本构建镜像在 Dockerfile 文件所在目录执行： 1docker build -t azkaban:v3 . 查看容器日志1$ docker logs &lt;container&gt;]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在 Ubuntu 18.04 上安装部署 Airflow 1.9.0]]></title>
+    <url>%2F2018%2F20180714-airflowdeploy%2F</url>
+    <content type="text"><![CDATA[问题背景Apache Airflow 是Airbnb公司开源的，是用 Python 实现的任务管理、调度、监控工作流的平台[1]。 因依调度赖于 crontab，Airflow 目前只支持在安装在Linux系统平台。Airflow可以用做data pipeline和 Extract, Transform, Load（ETL），消息队列等监控。本文介绍如何将Airflow 1.9.0 部署在 Ubuntu 18.04 LTS 平台上。 [1]参考资料：Airflow 1.8 工作流平台搭建 环境 Ubuntu 18.04 LTS Python 3.6.5 + pip Airflow 1.9.0 (20180714最新) 解决方案官方文档 使用pip安装Airflow root登录 12sudo sucd 启用测试网页服务器 12345678910111213# airflow需要一个家目录（home）, 默认为~/airflow,# 你也可以把它改成你希望的目录# (可选项目)export AIRFLOW_HOME=~/airflow# 使用pip安装Airflowpip install apache-airflow# 初始化数据库airflow initdb# 开启Web服务，默认端口8080airflow webserver -p 8080 网页服务器已经启动，可以通过浏览器测试： 网页能够正常打开证明服务器正常 在守护程序中后台运行Airflow参考档案1 参考档案2 注意：由于版本和环境不同，实际执行步骤和参考档案略有不同，请读者举一反三地理解。 root登录 12sudo sucd 创建airflow用户和airflow用户组 1adduser airflow 初始化数据文件 12su airflowairflow initdb 系统会自动创建用户airflow并加入用户组airflow 把airflow的代码从github上克隆下来 1git clone https://github.com/apache/incubator-airflow.git 部署服务文件 1234567891011121314151617181920# 定位到服务文件cd incubator-airflow/scripts/systemd/# 建立Airflow可执行文件的软连接ln -s /usr/local/bin/airflow /bin/airflow# 建立线程存放文件的目录并修改权限mkdir /run/airflowchmod 0775 /run/airflow/chown airflow:airflow /run/airflow/# 部署airflow.confcp airflow.conf /etc/tmpfiles.d/# 部署airflow文件mkdir /etc/sysconfigcp airflow /etc/sysconfig# 配置airflow-*.service文件，你可以设定你想让守护进程启动的用户和用户组，我们这里使用默认的airflow用户cp airflow-*.service /etc/systemd/system/ 启动守护进程 12345678# 启动网页服务器service airflow-webserver start# 启动后台服务service airflow-worker start# 启动定时服务service airflow-scheduler start# 启动Flower服务（可选）service airflow-flower start 终止守护进程 12345678# 终止网页服务器service airflow-webserver stop# 终止后台服务service airflow-worker stop# 终止定时服务service airflow-scheduler stop# 终止Flower服务service airflow-flower stop 测试服务浏览器输入网址，端口号8080，网页显示正常： 常见问题Airflow中无法添加用户 现象：在网页中添加用户(Admin -&gt; User -&gt; Create)时出现Ooops.错误页面 原因：sqlalchemy版本过高 解决方法：降级sqlalchemy版本1pip3 install 'sqlalchemy&gt;=1.1.15, &lt;1.2.0' 结果和感想之后写一些关于Airflow配置的文章。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Ariflow</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Python</tag>
+        <tag>数据挖掘 Data Mining</tag>
+        <tag>Airflow</tag>
+        <tag>Data Pipeline &amp; ETL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu 16.04 上部署微软机器学习服务器]]></title>
+    <url>%2F2018%2F20180712-ubuntuwindowsmlserver%2F</url>
+    <content type="text"><![CDATA[问题背景环境 Ubuntu 16.04 Server，Desktop版应该也可以。但是，Ubuntu 18.04 LTS安装不了，不要浪费时间了。 硬件要求（官方）：最小2GB内存，500MB硬盘（推荐8GB以上硬盘） 解决方案原文地址 软件包列表全部软件包的列表： 1234567891011121314microsoft-mlserver-packages-r-9.3.0 ** 核心 microsoft-mlserver-python-9.3.0 ** 核心 microsoft-mlserver-packages-py-9.3.0 ** 核心 microsoft-mlserver-mml-r-9.3.0 ** microsoftml for R (可选) microsoft-mlserver-mml-py-9.3.0 ** microsoftml for Python (可选) microsoft-mlserver-mlm-r-9.3.0 ** pre-trained models (需要 mml) microsoft-mlserver-mlm-py-9.3.0 ** pre-trained models (需要 mml) microsoft-mlserver-hadoop-9.3.0 ** hadoop (需要 for hadoop) microsoft-mlserver-adminutil-9.3 ** operationalization (可选) microsoft-mlserver-computenode-9.3 ** operationalization (可选) microsoft-mlserver-config-rserve-9.3 ** operationalization (可选) microsoft-mlserver-dotnet-9.3 ** operationalization (可选) microsoft-mlserver-webnode-9.3 ** operationalization (可选) azure-cli-2.0.25-1.el7.x86_64 ** operationalization (可选) 安装步骤12345678910111213141516171819202122232425262728293031323334353637383940414243# 以root方式安装sudo su# 可选步骤, 如果你的系统没有https apt transport的话apt-get install apt-transport-https# 增加 **azure-cli** 仓库到你的apt资源列表AZ_REPO=$(lsb_release -cs)echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list# 这里的例子特指ubuntu 16.04， 你可以把16.04更换成你希望的系统版本wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb# 注册该库dpkg -i packages-microsoft-prod.deb# 确认"microsoft-prod.list"配置文件存在ls -la /etc/apt/sources.list.d/# 增加微软公共签名 Secure APTapt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893# 更新apt软件包列表apt-get update# 安装服务器，全部软件包，大约10GB左右，实际上不需要这么安装# apt-get install microsoft-mlserver-all-9.3.0# 安装服务器，只安装python包，其它包参考上面软件包列表apt-get install microsoft-mlserver-python-9.3.0apt-get install microsoft-mlserver-packages-py-9.3.0# 激活Python版本服务器，根据提示按[Enter]看协议，按住[Ctrl+v]一直跳到最后，按[q]跳出，输入[y]同意协议/opt/microsoft/mlserver/9.3.0/bin/python/activate.sh# 或者，激活R版本服务器# /opt/microsoft/mlserver/9.3.0/bin/R/activate.sh# 列出安装好的列表以确认apt list --installed | grep microsoft# 输出某个特定安装包的信息dpkg --status microsoft-mlserver-packages-py-9.3.0 显示已安装的软件包结果： 常见问题 dpkg: error processing package microsoft-mlserver-hadoop-9.3.0 (–configure): 原因： microsoft-mlserver-hadoop-9.3.0软件包需要hadoop，如果系统上没有就会报错解决方案：不要安装microsoft-mlserver-hadoop-9.3.0软件包或者实现安装hadoop 有效化Web服务部署与远程连接当你确认完成了上述的基本安装之后，继续下面的步骤部署Web服务： 在终端输入 operationalization 输入密码： 结果和感想注意：Ubuntu 18.04 LTS 无法通过上面步骤部署，不要浪费时间了! 微软做的东西还是做得很方便的。]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>机器学习 Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>微软机器学习服务器 Microsoft Machine Learning Server</tag>
+        <tag>机器学习 Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu 18.04 LTS 设置为默认启动命令行模式]]></title>
+    <url>%2F2018%2F20180712-ubuntureboottoterminal%2F</url>
+    <content type="text"><![CDATA[问题背景使用Desktop版安装Ubuntu非常方便，但如果作为服务器使用，启动Desktop未必太累赘了，因此要将Ubuntu设置成默认启动时进入命令行，不加载Desktop程序。以前的版本可以通过修改 /etc/default/grub 来实现，但18.04LTS版本下似乎不太管用。本文解决这两个问题。 解决方案原文地址 原理众多操作系统，例如RHEL/CentOS 7, Fedora, Ubuntu，使用systemd代替init作为系统初始化。用户可以按“GUI”或“Text”模式启动系统。在以前，可以通过修改‘/etc/inittab’来更改启动级别，但这种方法在sytemd系统上无效。本文介绍一种在sytemd系统上修改“运行级（runlevels）”的方法，以默认启动命令行。 对于systemd系统，运行级的概念被替换为组（term）的“targets”。这是一种初始化运行级与初始化目标（targets）的对应关系： 运行级 初始化目标 0 poweroff.target 1 rescue.target 2, 3, 4 multi-user.target 5 graphical.target 6 reboot.target 其中两个Targets是最常用的 multi-user.target：属于运行级 3， 文字模式（命令行模式） graphical.target：属于运行级 5， GUI 模式或桌面模式（X server） 改变启动后的运行级当Linux系统启动并进入一个目标系统后，你可以改变其目标系统及运行级。比如说，改变当前目标系统到“multi-user”： 1# systemctl isolate multi-user.target 单独使用该命令，它将启动一个命令行并关闭其他全部应用。 永久改变开机启动运行级与目标系统我们尝试改变默认开机启动目标系统。比如，我们让“multi-user.target”成为开机默认运行级别： 123# systemctl enable multi-user.target# systemctl set-default multi-user.target# reboot 这样，重启后就会进入命令行模式而不是GUI模式。 复原123# systemctl enable graphical.target# systemctl set-default graphical.target# reboot 这样，重启后就会默认进入GUI模式。 结果和感想]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一种网页分割算法 Web Segment]]></title>
+    <url>%2F2018%2F20180708-websegment%2F</url>
+    <content type="text"><![CDATA[介绍HTML文档是一种半结构化（semi-structured）数据，这种数据直接处理是很困难的。我们设计一种网页分割算法，试图自动地将半结构化的HTML文档转换为结构化数据。通过这个算法，一个HTML文档被分割成“分割（Segment）”与“记录（Record）”，分别对应结构化数据库中的“表”和“行”。 例如下面的事例，一张网页被分割成 Segment 1，其中包含Record 1-6；和Segment 2，其中包括Record 7-12。 对应到关系型数据库，表示为： Segment 1: Record ID Images Texts 1 https://img.alicdn.com/imgextr... 优美喇叭袖清新碎花… 2 https://img.alicdn.com/imgextr... D&amp;G紫色手提包 … … … Segment 2: Record ID Images Texts 7 https://img.alicdn.com/imgextr... 潮范时光机 8 https://img.alicdn.com/imgextr... 放飞自我的兔小姐 … … … 我们的算法可以自动地将网页转换成上面的形式。 快速开始 我们的测试环境（本算法也可以兼容Linux或Mac） 操作系统： Microsoft Windows 10 Pro Python： 3.6.5 Chrome： 67.0.3396.79 (Official Build) (64-bit) Chrome-driver: 2.4 用下面的命令从Github上克隆代码 1$ git clone --recursive https://github.com/liaocyintl/WebSegment.git 调整 setting.py CHROME_BINARY_LOCATION 是Chrome的应用程序路径 Windows默认安装的情况下是 “C:\Program Files (x86)\Google\Chrome\Application\chrome.exe” Linux默认情况下是 “/usr/bin/google-chrome”，安装方法参考这里 Mac OS默认情况下是 “/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary”，安装方法参考这里 DRIVER_PATH: 这是Chrome无头浏览器的驱动，您需要下载对应您操作系统的版本。 完成上面的步骤，您可以使用 demo.py 中的代码尝试分割一个网页 123from segment import Segmentspliter = Segment()spliter.segment(url="http://www.sukiya.jp/", output_folder="data/sukiya", is_output_images=True) 参数设定： 参数 解释 url 您需要分割的网页地址 output_folder 输出分割结果的文件夹路径 is_output_images 是否输出网页图片，默认为”False” 输出结果result.jsonresult.json 是最主要的输出文件，其中包含转化为结构化数据的网页内容。其例子为： 1234567891011121314151617181920212223242526272829303132&#123; "title":"淘宝", "url":"http://taobao.com/", "segments": [ &#123; "records": [ &#123; "texts": ["淘宝网"], "css_selectors": [ "html &gt; body:nth-child(2) &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; div &gt; div &gt; div" ], "links": [ &#123; "href": "http://www.taobao.com/" &#125; ], "images": [ &#123; "alt": "", "src": "http://www.taobao.com/common/img/hd_logo.png", "path": "data/taobao/images/66_0.png", "bg_color": "255,255,255" &#125; ], "record_id": 66 &#125; ], "segment_id": 13, "css_selector": "html &gt; body:nth-child(2) &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; div &gt; div" &#125; ]&#125; 其结构为： title: 网页的标题 url: 网页的URL segments: Segment的集合，包含多个Record segment_id: 该Segment的ID，在result.json中的唯一标识 css_selector: 该Segment的css_selector路径（每个Segment仅有一个根节点） records: Record的集合，属于该Segment record_id: 该Record的ID，在result.json中的唯一标识 css_selectors: 该Record的css_selector路径（一个Record可能包含多个根节点） texts: Record中包含的文字的集合 links: Record中包含的超链接的集合 href: 超链接的URL (已全部转化为绝对URL) images: Record中包含的图片集合 alt: 图片的alt属性 src: 图片的URL (已全部转化为绝对URL) path: 图片在本地转存的路径（仅当设置is_output_images为True时） bg_color: 图片的背景颜色，表示为[R,G,B] screenshot.png网页截屏快照 images (文件夹)当设置is_output_images为True时，网页图片被下载并转存到这里，并全部转化为JPG格式（可在Setting中设置）。文件名格式为“RecodeID_序数.jpg” 一些算法细节 某些网页图片会隐藏在节点CSS的Background image当中，当其存在时我们的爬虫会抽取这些图片。 某些有透明背景的PNG图片会以自身颜色和背景颜色共同显示图案，例如白色文字绿色背景。我们的爬虫会探测其背景颜色，并抽取图层合并后的图片。 引用如果您喜欢我们的工作，请引用我们的论文： 12345678@article&#123;websegment, title=&#123;An Event Data Extraction Method Based on HTML Structure Analysis and Machine Learning&#125;, author=&#123;Liao, Chenyi and Hiroi, Kei and Kaji, Katsuhiko and Kawaguchi, Nobuo&#125;, journal=&#123;Computer Software and Applications Conference (COMPSAC)&#125;, volume=&#123;3&#125;, pages = &#123;217-222&#125;, year=&#123;2015&#125;&#125;]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>数据挖掘 Data Mining</category>
+      </categories>
+      <tags>
+        <tag>算法 Algorithm</tag>
+        <tag>Python</tag>
+        <tag>网页分割 Web Segment</tag>
+        <tag>数据挖掘 Data Mining</tag>
+        <tag>爬虫 Crawler</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一个可以输出具体变化字符的编辑距离改进算法]]></title>
+    <url>%2F2018%2F20180703-detaileditdistance%2F</url>
+    <content type="text"><![CDATA[代码https://github.com/liaocyintl/detail_edit_distance 介绍此算法为编辑距离（Edit Distance）又称莱文斯坦距离(Levenshtein distance, LD [1])算法的改良版本。传统的编辑距离算法，可以得出从原字符串source变更为目标target字符串，所需要最少的变更步骤，或称成本（cost）。我们的改良算法除了能够输出最小成本以外，还可以给出具体那些字符产生了变更，包括插入（insertions），删除（deletions）和交换（substitutions）. 例如, 字符串”kitten”与”sitting”的编辑距离是3。我们的算法可以具体地给出哪些字符发生了变更，如下： kitten → sitten (交换”k”为”s”) sitten → sittin (交换”e”为”i”) sittin → sitting (插入”g”在最后) 关于编辑距离:(Levenshtein distance)[https://en.wikipedia.org/wiki/Levenshtein_distance] 参考文献:[1] LEVENSHTEIN, Vladimir I. Binary codes capable of correcting deletions, insertions, and reversals. Soviet physics doklady. Vol.10, No.8, pp.707-710, 1966. 快速开始克隆代码到本地： 1git clone https://github.com/liaocyintl/detail_edit_distance 例1. 获取字符串”kitten”与”sitting”的详细变化: Python code:12345from distance import dedsource = "kitten"target = "sitting"rs = ded(source=source, target=target)print(rs) 输出 (rs):12345678910&#123; "detail": [ &#123;"type": "sub", "src_i": [0], "tgt": "s", "src": "k", "tgt_i": [0], "cost": 1&#125;, &#123;"type": "none", "src_i": [1, 2, 3], "tgt": "itt", "src": "itt", "tgt_i": [1, 2, 3], "cost": 0&#125;, &#123;"type": "sub", "src_i": [4], "tgt": "i", "src": "e", "tgt_i": [4], "cost": 1&#125;, &#123;"type": "none", "src_i": [5], "tgt": "n", "src": "n", "tgt_i": [5], "cost": 0&#125;, &#123;"type": "ins", "src_i": [], "tgt": "g", "src": "", "tgt_i": [6], "cost": 1&#125; ], "cost": 3&#125; “detail”: 字符串”kitten”与”sitting”的详细变化。 “type”的值可以是 [“none”, “ins”, “del”, “sub”]， 其中： ‘none”: 无变更 “ins”: 发生了插入 ‘del’: 发生了删除 “sub”: 发生了交换 “src” and “tgt”: 发生变化的子字符串（原字符串和目标字符串） “src_i” and “tgt_i”: 发生变化的子字符串（原字符串和目标字符串）的下脚标 “cost”: 该变更产生多少成本 “cost”: 总成本 例2. 获取分词后字符串的详细变化： 如果你需要以词为单位比较两个句子，可以把分好词的句子作为输入，例如：1234567from distance import dedsource = 'I have a dream'source = source.split(" ") #按空格将句子分成["I", "have", "a", "dream"]target = 'I had a dream about you'target = target.split(" ")rs = ded(source=source, target=target)print(rs) 输出:123456789&#123; "cost": 3, "detail": [ &#123;"src_i": [0], "src": "i", "tgt_i": [0], "tgt": "i", "type": "none", "cost": 0&#125;, &#123;"src_i": [1], "src": "have", "tgt_i": [1], "tgt": "had", "type": "sub", "cost": 1&#125;, &#123;"src_i": [2, 3], "src": "adream", "tgt_i": [2, 3], "tgt": "adream", "type": "none", "cost": 0&#125;, &#123;"src_i": [], "src": "", "tgt_i": [4, 5], "tgt": "aboutyou", "type": "ins", "cost": 2&#125; ]&#125; 例3. 按字符一个一个输出结果，不要把相邻相同的变更进行合并: 设定 ‘is_combine_LCS’ 为 ‘False’ 则按字符一个一个输出结果，不会把相邻相同的变更进行合并。默认为 ‘True’。 12345from distance import dedsource = "kitten"target = "sitting"rs = ded(source=source, target=target, is_combine_LCS=False)print(rs) 输出:1234567891011&#123; "cost": 3, "detail": [ &#123;"src": "k", "cost": 1, "type": "sub", "tgt_i": [0], "src_i": [0], "tgt": "s"&#125;, &#123;"src": "i", "cost": 0, "type": "none", "tgt_i": [1], "src_i": [1], "tgt": "i"&#125;, &#123;"src": "t", "cost": 0, "type": "none", "tgt_i": [2], "src_i": [2], "tgt": "t"&#125;, &#123;"src": "t", "cost": 0, "type": "none", "tgt_i": [3], "src_i": [3], "tgt": "t"&#125;, &#123;"src": "e", "cost": 1, "type": "sub", "tgt_i": [4], "src_i": [4], "tgt": "i"&#125;, &#123;"src": "n", "cost": 0, "type": "none", "tgt_i": [5], "src_i": [5], "tgt": "n"&#125;, &#123;"src": "", "cost": 1, "type": "ins", "tgt_i": [6], "src_i": [], "tgt": "g"&#125; ]&#125; 可以看出子字符串”itt”被拆分成一个一个单字 例4. 按照原字符串的最小成本输出: 例如在“打字练习”的应用中，我们需要计算用户有效输入的得分。打字练习的教材可能包含很长的内容，用户输入只是其中的一部分。 这时候，我们将用户输入内容作为source输入；将教材作为target输入；设置 ‘as_least_cost’ 为 ‘True’， 这样算法会按照在source字符串的最小成本进行输出： 12345from distance import dedsource = "I had a dream that my"target = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character."rs = ded(source=source.split(" "), target=target.split(" "), as_least_cost=True)print(rs) 12345678&#123; "detail": [ &#123;"tgt_i": [0], "src": "i", "type": "none", "src_i": [0], "tgt": "i", "cost": 0&#125;, &#123;"tgt_i": [1], "src": "had", "type": "sub", "src_i": [1], "tgt": "have", "cost": 1&#125;, &#123;"tgt_i": [2, 3, 4, 5], "src": "adreamthatmy", "type": "none", "src_i": [2, 3, 4, 5], "tgt": "adreamthatmy", "cost": 0&#125; ], "cost": 1&#125; 我们可以看到，其实在source里面，只有”had”一处错误。因此有效输入单词数量为 len(source) - rs[“cost”] = 6 - 1 = 5 引用如果该算法对您有帮助的话请引用我们的论文：1234567@article&#123;liao2013, title=&#123;Development of the Japanese Input Training System: Four Types of Training and the Fast Algorithm for Automatic Scoring&#125;, author=&#123;Liao, Chenyi and Minoura, Emiko and Takeoka, Saori and Ozaki Masahiro&#125;, journal=&#123;Proceedings of the 75th National Convention of IPSJ&#125;, pages=&#123;655--656&#125;, year=&#123;2013&#125;&#125;]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>语言处理 Language Processing</category>
+      </categories>
+      <tags>
+        <tag>编辑距离 Edit Distance</tag>
+        <tag>莱温斯坦距离 Levenshtein Distance</tag>
+        <tag>动态规划 Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[怀孕日语词汇]]></title>
+    <url>%2F2018%2F20180630-pregnantjapanese%2F</url>
+    <content type="text"><![CDATA[问题背景总结一些怀孕有关的日语词汇 词汇表※ 未标记中文表示日中同译 日本語 カナ 中文 分娩 ぶんべん 陣痛 じんつう 破水 はすい 出血 しゅっけつ 妊婦検診 にんぷけんしん 产检 帝王切開 ていおうせっかい 剖腹产 破水 はすい お産 さん 分娩 アロマセラピー Aromatherapy 芬香疗法 陣痛促進剤 じんつうそくしんざい 催产针 吸引鉗子 きゅういんかんし 产钳 バースプラン Birth Plan 助産 じょさん 吸引鉗子 きゅういんかんし 产钳 産み出す う だ 产出 産道 さんどう 会陰切開 えいんせっかい 侧切 無痛分娩 むつうぶんべん 圧迫 あっぱく リズム Rhythm 节奏 力を抜く ちから ぬ 不要用力 吸う す 吸气 吐く は 吐气 凹む へこむ 凹陷 膨らむ ふくらむ 膨胀 深呼吸 しんこきゅう 息みを逃す いき のが 憋气 ピーク peak 顶点，最高值 リード lead 引导 過換気症候群 かかんきしょうこうぐん 换气过度综合征 痺れる しび 【自】麻木 緩む ゆるむ 【自】松弛 和らげる やわ 【他】使缓和 骨盤 こつばん 骨盆 おしるし 表示第一过程预告，红色液体 硬膜外 こうまくがい 麻酔 ますい マタニティブルーズ Maternity Blues 产后抑郁 膀胱 ぼうこう 産褥 さんじょく “坐月子”，产后恢复 ワクチン Vaccine 疫苗 接種 せっしゅ 接种 说明换气过度综合征 换气过度综合症是由于换气过度超过生理代谢需要而引起的一组症侯群。没有任何病征性的特征，而发病时呼吸加快，产生动脉血二氧化碳分压低，呼吸性中毒，并有交感神经兴奋，临床上表现为各种各样的症状。所有症状都可以用过度通气和呼吸碱中毒解释。过度呼吸症候群/过度换气症候群(Hyperventilation syndrome)，是急性焦虑引起的生理、心理反应，发作的时候患者会感到心跳加速、心悸、出汗，因为感觉不到呼吸而加快呼吸，导致二氧化碳不断被排出而浓度过低，引起次发性的呼吸性碱中毒等症状。过呼吸就是呼吸过度，引起呼吸性碱中毒，造成手脚麻木，严重时四肢可以抽搐。解决方法：嘴上套一个袋子呼吸。]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>词汇 Vocabulary</category>
+      </categories>
+      <tags>
+        <tag>日语 Japanese</tag>
+        <tag>Vocabulary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu服务器上使用Apache2部署Django应用]]></title>
+    <url>%2F2018%2F20180626-djangoonapache%2F</url>
+    <content type="text"><![CDATA[问题背景在Ubuntu服务器上，使用Apache部署Django应用程序 解决方案安装Python12# apt install python3# apt install python3-pip 安装Python相关的软件包123# pip3 install -U pip# pip3 install django... Python配置好之后，通过命令行启动服务器测试是否正常：1# python3 manage.py runserver 8000 此时通过8000端口应该已经能够正常访问服务器 如果出现“Error: You don’t have permission to access that port.”，说明需要用sudo方式启动 安装Apache2, Django支持程序等等12# apt install apache2# apt-get -y install libapache2-mod-wsgi-py3 注意！如果是Python3环境，一定要安装libapache2-mod-wsgi-py3而不是libapache2-mod-wsgi 修改Apache配置文件1# nano /etc/apache2/sites-available/000-default.conf 12345678910111213141516171819&lt;VirtualHost *:80&gt; ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined # 服务器地址或域名 ServerName mydomain.net WSGIDaemonProcess mydomain.net python-path=/home/ubuntu/projectname WSGIScriptAlias / /home/ubuntu/projectname/projectname/wsgi.py WSGIProcessGroup mydomain.net &lt;Directory /home/ubuntu/projectname/projectname/&gt; &lt;Files wsgi.py&gt; Require all granted &lt;/Files&gt; &lt;/Directory&gt;&lt;/VirtualHost&gt; WSGIProcessGroup 的位置，要对应于 setting.py 文件中的 ALLOWED_HOSTS，在ALLOWED_HOSTS中必须包含 mydomain.net：1ALLOWED_HOSTS = [" mydomain.net", "127.0.0.1", "localhost"] 结果和感想有问题请留言]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Django</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Apache</tag>
+        <tag>Python</tag>
+        <tag>Django</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python 初始化 datetime.datetime 时设置时区]]></title>
+    <url>%2F2018%2F20180625-pythondatetimetimezone%2F</url>
+    <content type="text"><![CDATA[问题背景在有时区开发需求的情况下，比如将时间对象插入到MongoDB，默认会使用UTC时间。这时候，需要在初始化datetime对象时设置时区。 解决方案12345from datetime import datetime, timedelta, timezone# 定义时区，CST中国标准时间，+8区CST = timezone(timedelta(hours=+8), 'CST')# 创建时间对象并设置时区tzinfo为CSTt = dt.datetime(2018, 6, 25, 10, 51, 17, tzinfo=CST) 结果和感想在开发跨境的网络系统应用，或处理多个时区的时间数据时，时区的设定非常重要。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Datetime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL查询24小时内记录]]></title>
+    <url>%2F2018%2F20180623-selectrecordsfromlast24hours%2F</url>
+    <content type="text"><![CDATA[问题背景使用SQL语句筛选查询24小时内结果。 解决方案假设insert_datetime为待筛选的字段，使用以下SQL语句 1SELECT * FROM tablename WHERE insert_datetime &gt; DATE_SUB(NOW(), INTERVAL 24 HOUR); 结果和感想在MySQL中测试有效，应该适合大多数SQL标准。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Wordpress的wpdb查询时防止SQL注入的方法]]></title>
+    <url>%2F2018%2F20180622-wordpressantisqlinjection%2F</url>
+    <content type="text"><![CDATA[问题背景在Wordpress二次开发过程中，使用wpdb查询数据库，SQL语句中使用用户输入字段时有SQL注入的风险。本文介绍一种Wordpress推荐的防止SQL注入的方法。 解决方案使用$wpdb-&gt;prepare($sql)防止SQL注入，请参考下面代码： 12345678910function select_something($where)&#123; global $wpdb; $table_name = $wpdb-&gt;prefix . 'table_name'; //当$where为用户输入字段时，直接执行下面的SQL时会有被注入的风险 $sql = "SELECT * FROM &#123;$table_name&#125; WHERE &#123;%s&#125;"; //使用$wpdb-&gt;prepare($sql)方法避免SQL注入 $sql = $wpdb-&gt;prepare($sql, $where); return $wpdb-&gt;get_results($sql);&#125; 结果和感想]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Wordpress</category>
+      </categories>
+      <tags>
+        <tag>Wordpress</tag>
+        <tag>SQL注入 SQL injection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo下Next主题生成静态文件时报错no such file or directory, open themes\next\layout\_scripts\schemes\.swig]]></title>
+    <url>%2F2018%2F20180621-yamlvalidator%2F</url>
+    <content type="text"><![CDATA[问题背景Hexo下生成静态文件时报错： 12345678910111213141516Error: ENOENT: no such file or directory, open &apos;themes\next\layout\_scripts\schemes\.swig&apos; at Object.fs.openSync (fs.js:579:3) at Object.fs.readFileSync (fs.js:485:33) at Object.ret.load (node_modules\swig-templates\lib\loaders\filesystem.js:55:15) at exports.Swig.compileFile (node_modules\swig-templates\lib\swig.js:694:31) at Object.eval [as tpl] (eval at precompile (node_modules\swig-templates\lib\swig.js:497:13), &lt;anonymous&gt;:429:18) at compiled (node_modules\swig-templates\lib\swig.js:618:18) at Theme._View.View._compiled.locals [as _compiled] (node_modules\hexo\lib\theme\view.js:124:48) at Theme._View.View.View.render (node_modules\hexo\lib\theme\view.js:29:15) at route.set (node_modules\hexo\lib\hexo\index.js:386:29) at tryCatcher (node_modules\bluebird\js\release\util.js:16:23) at node_modules\bluebird\js\release\method.js:15:34 at RouteStream._read (node_modules\hexo\lib\hexo\router.js:134:3) at RouteStream.Readable.read (_stream_readable.js:449:10) at resume_ (_stream_readable.js:888:12) at process._tickCallback (internal/process/next_tick.js:63:19) 解决方案利用工具 YAML Validator 检查 站点配置文件 主题配置文件 _config.yml 参考：在主题配置文件配置友链后，hexo g报错 结果和感想yml文件中，key之前不可以有空格。否则会报上面错误信息]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+        <tag>YAML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python实现MQTT接收订阅数据]]></title>
+    <url>%2F2018%2F20180620-mqttclient%2F</url>
+    <content type="text"><![CDATA[问题背景物联网常使用 “消息队列遥测传输(Message Queuing Telemetry Transport, MQTT)” 协议订阅数据，这里用Python实现从MQTT服务器订阅数据。 解决方案环境 Python 3.6.1 paho.mqtt 包 pip install paho.mqtt 参考以下代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152import paho.mqtt.client as mqtt# 服务器地址host = 'xxx.xxx'# 通信端口port = 1883# 用户名username = 'username'# 密码password = 'password'# 订阅主题名topic = 'topic'# 连接后事件def on_connect(client, userdata, flags, respons_code): if respons_code == 0: # 连接成功 print('Connection Succeed!') else: # 连接失败并显示错误代码 print('Connect Error status &#123;0&#125;'.format(respons_code)) # 订阅信息 client.subscribe(topic)# 接收到数据后事件def on_message(client, userdata, msg): # 打印订阅消息主题 print("topic", msg.topic) # 打印消息数据 print("msg payload", str(msg.payload))if __name__=="__main__": # 初始化客户端，选择MQTT版本 client = mqtt.Client(protocol = mqtt.MQTTv311) # 注册事件 client.on_connect = on_connect client.on_message = on_message # 设置账号密码（如果需要的话） client.username_pw_set(username, password=password) # 连接到服务器 client.connect(host, port = port, keepalive=60) # 守护连接状态 client.loop_forever() 结果和感想]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>MQTT</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>消息队列遥测传输 MQTT</tag>
+        <tag>物联网 IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一个我常用的Python工具包]]></title>
+    <url>%2F2018%2F20180618-lcypytools%2F</url>
+    <content type="text"><![CDATA[Github地址https://github.com/liaocyintl/lcypytools common.py 包 load_csv(path): 从指定路径以二维数组形式返回csv文件。 load_lines(file): 从指定路径按行读取文件，并删除全部换行符。 prepare_clean_dir(directory): 当不存在时创建文件夹，并清空该文件夹。 prepare_dir(directory): 当不存在时创建文件夹。 get_filename_and_postfix_from_path(path): 抽取指定路径的文件名和扩展名 current_datetime(): 输出当前时间字符串 log (class): 写日志到run.log 123from common import logl = log()l.write("write a line of log") save_json(path, data): 将一个json对象存储到文件 load_json(path, encoding=”utf-8”): 从文件读取python对象 clean_folder(folder): 删除一个文件夹下的全部文件 save_pickle(path, obj): 将一个对象序列化存储到文件 load_pickle(path): 从文件读取序列化后的对象 get_hostname_from_url(url): 从URL中抽取主机名 is_path_exists(path): 检测路径是否存在 mongo,py MongoDB操作包 实例化类 12from mongo import Mongomdb = Mongo(db="test", server='localhost', port=27017) mdb.insert_with_seqid(col, doc): 插入文档doc到集合col, 并从1开始自增自动生成_id。 mdb.remove_all_documents(col): 删除集合col中的所有文档。 mdb.find_all(col): 查找集合col中的全部文档。 mdb.find_one(col, query): 通过query检索集合col中的第一个文档。 mdb.save(col, doc): 保存文档doc到集合col，如果_id已经存在则更新它。 mdb.find(col, query): 通过query在集合col中查询全部文档。 mdb.find_snapshot(col, query, timeout=False): 按快照方式通过query在集合col中查询全部文档。 mdb.find_sort(col, query, sortkey, sortorder): 通过query在集合col中查询全部文档并按照sortkey排序。 mdb.count(col, query): 按照query统计集合col中的文档数量 mdb.aggregate(col, pipeline): 聚合查询 mdb.close(): 关闭MongoDB连接 结果和感想我把开发中常用的方法封装在一起，比如读取json一般要两行，这样一行就可以搞定。增加了效率。 会持续更新。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>MongoDB</tag>
+        <tag>pickle</tag>
+        <tag>json</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用PHPExcel导入Excel数据]]></title>
+    <url>%2F2018%2F20180617-phpimportexcel%2F</url>
+    <content type="text"><![CDATA[问题背景需要上传并导入Excel数据 解决方案原料 PHP 7.0 PHPExcel 代码表单代码： 1234&lt;form method="post" action="http://xxx.com/importexcel" enctype="multipart/form-data"&gt; 选择Excel文件 &lt;input type="file" name="file_excel" hidden&gt; &lt;input class="btn btn-primary" type="submit" value="导入Excel"/&gt;&lt;/form&gt; 123456789101112131415161718192021222324252627282930if (!empty($_FILES ['file_excel'] ['name'])) &#123; $tmp_file = $_FILES ['file_excel'] ['tmp_name']; $file_types = explode(".", $_FILES ['file_excel'] ['name']); $file_type = $file_types [count($file_types) - 1]; // 用扩展名判断是不是.xlsx文件 if (strtolower($file_type) != "xlsx") &#123; $msg = '不是Excel文件，请重新上传'; exit(); &#125; else &#123; $objReader = PHPExcel_IOFactory::createReader('Excel2007'); $objReader-&gt;setReadDataOnly(true); // 打开Excel文件 $objPHPExcel = $objReader-&gt;load($tmp_file); // 打开工作表 $objWorksheet = $objPHPExcel-&gt;getActiveSheet(); $highestRow = $objWorksheet-&gt;getHighestRow(); $datarows = array(); //去掉表头，从第二行开始读取 for ($row = 2; $row &lt;= $highestRow; ++$row) &#123; // 读取第A列数据 $ID = $objWorksheet-&gt;getCellByColumnAndRow(0, $row)-&gt;getValue(); // 读取第B列数据 $name = $objWorksheet-&gt;getCellByColumnAndRow(1, $row)-&gt;getValue(); &#125; &#125;&#125;exit(); 结果和感想PHPExcel目前已经由PhpSpreadsheet代替，有兴趣的读者可以试试。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Wordpress</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Wordpress</tag>
+        <tag>PHPExcel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用PHPExcel将Wordpress数据库中的某个表导出成Excel表格并下载]]></title>
+    <url>%2F2018%2F20180616-phpexportdatatableexcel%2F</url>
+    <content type="text"><![CDATA[问题背景需要将Wordpress数据库中的某个表导出成Excel表格并下载。 解决方案原料 PHP 7.0 PHPExcel 代码1234567891011121314151617181920212223242526272829303132333435// 导入PHPExcelrequire_once get_template_directory() . '/functions/PHPExcel.php';$objPHPExcel = new PHPExcel();$objPHPExcel-&gt;setActiveSheetIndex(0);//定义表头$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue("A1", "ID");$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue("B1", "商品名");$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue("C1", "单价");//数据库查询global $wpdb;$table_products = $wpdb-&gt;prefix . 'products';$sql = "SELECT * FROM &#123;$table_products&#125;";$rows = $wpdb-&gt;get_results($sql);$rowCount = 2;//遍历数据库行foreach ($rows as $row) &#123; // 从表第二行开始写数据 $objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue('A' . $rowCount, $row-&gt;ID); $objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue('B' . $rowCount, $row-&gt;name); $objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue('C' . $rowCount, $row-&gt;price); $rowCount++;&#125;header('Content-Type: application/vnd.ms-excel');// filename：定义下载文件名header('Content-Disposition: attachment;filename="Products_' . date('Y_m_d') . '.xlsx"');header('Cache-Control: max-age=0');//输出下载数据$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);$objWriter-&gt;save('php://output');exit(); 结果和感想PHPExcel目前已经由PhpSpreadsheet代替，有兴趣的读者可以试试。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Wordpress</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Wordpress</tag>
+        <tag>PHPExcel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Brainjet 系列 IDE (PyCharm, PHPStorm, WebStorm)编写Markdown文档，直接粘贴图片的方法]]></title>
+    <url>%2F2018%2F20180615-markdownimage%2F</url>
+    <content type="text"><![CDATA[问题背景在MD(Markdown)文档中加入图片是一个很麻烦的事情。这里介绍一种在Brainjet 系列 IDE中，通过剪贴板自动增加图片的方法。 解决方案原料： Brainjet 系列 IDE： PyCharm, PHPStorm, WebStorm等 插件：Paste Images into Markdown 1.1.3 步骤： 下载插件 zip 文件 在IDE中找到File-&gt;Setting，如下图所示安装刚下载好的插件 复制图片到剪贴板后，在编辑区直接按Ctrl+V粘贴图片，选择好存储路径，点OK即可 结果和感想挺方便，用Hexo别把路径搞错了。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Brainjet</tag>
+        <tag>Markdown</tag>
+        <tag>Image</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[求若干坐标点最近邻区间分界线:用Python计算Voronoi图]]></title>
+    <url>%2F2018%2F20180614-voronoi%2F</url>
+    <content type="text"><![CDATA[问题背景 在地理空间数据处理中我们可能遇到这样的问题：如图1所示, 在某一区域中有N只狮子(Xn, n &gt; 1)，每只狮子都有自己的地盘，且每只狮子的制霸能力相同（即狮子和狮子之间画中垂线而统治）。目标是计算每只狮子制霸的区域和边界。 此问题还可以推广到飞机场、地铁站管辖的区域等问题。 Voronoi图此问题可以通过一个叫做Voronoi的数学模型解决。 “ Voronoi图是一组连续多边形组成，多边形的边界是由连接的垂直平分线组成。M 个在工平面上有区则的点。按照最近邻原则划分平面，每一个点与它最近邻的区域关联，与每个点相关联的区城(成多边用是唯一的，它由这些点的空网分布所决定。Ref.: 刘耀林．土地信息系统：中国农业出版社，2011 ” 关于Voronoi图的详细介绍请参考 百度百科。 给定若干点计算Voronoi图的算法，一般是通过叫做 “Delaunay三角剖分”。关于 “Delaunay三角剖分” 请参考博文 voronoi图的和Delaunay三角剖分，这里也不再赘述。 这里主要介绍Voronoi图的Python实现。 Voronoi图的Python实现可以通过Python的SciPy工具轻松计算Voronoi图： 文档点这里 测试环境 Python 3.6.1 SciPy 0.18.1 计算：123456import numpy as npfrom scipy.spatial import Voronoi# 初始化种子点points = np.array([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]])# 计算Voronoi图vor = Voronoi(points=points) 输入： points : 种子点集。ndarray float数组。shape (点数量, 维度)。 可视化：1234from scipy.spatial import voronoi_plot_2dimport matplotlib.pyplot as pltvoronoi_plot_2d(vor)plt.show() 输出：输入种子点[[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]后输出如下： 图像引用自: 《scipy Voronoi》 Voronoi([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]) max_bound: 种子点的最大边界 min_bound: 种子点的最小边界 ndim: 种子点维度 npoints: 种子点数量 point_region: 种子点所对应的区域下标 points: 种子点 regions: Voronoi区域 ridge_dict: 分界线字典 ridge_points: 分界线交点 ridge_vertices: vertices: 分界线交点，顶点 关系关系说明的时候从ridge_points开始，如下图 在ridge_points中，每一个ridge_index对应两个point_index，这两个点的连线就是相邻点的连接线 在points里面，每一个point_index对应一个point_coords 12345ridge_points = vor.ridge_pointspoints = vor.pointsfor ridge_point in ridge_points: plt.plot(points[ridge_point][:,0], points[ridge_point][:,1], "-", label="neighbor line") 在point_region里面，每一个point_index对应一个region_index 在regions里面，每一个region_index对应n各vertice_index 在vertices里面，每一个vertice_index对应一个vertice_coords 1234567891011point_region = vor.point_regionregions = vor.regionsvertices = vor.verticesfor point_index, region_index in enumerate(point_region): point = points[point_index] vertice_index = regions[region_index] for i in vertice_index: if i != -1: #注意除去vertice_index为0的情况，表示该种子点位于边界 print(vertices[i]) plt.plot(vertices[i], "o") print("") 在ridge_vertices里面，每一个ridge_index对应两个vertice_index 题外话：通过Mashgrid计算K-最近邻（kNN）的判别边界Voronoi可以认为是当k=1时的kNN模型，求其判别区域。当k &gt; 1时，一般是将区域分割成若干MashGrid，再分别对每个MashGrid归为其中一类进行可视化。请参考：Graph k-NN decision boundaries in Matplotlib]]></content>
+      <categories>
+        <category>研究 Research</category>
+        <category>位置数据处理 Spatial Data Processing</category>
+      </categories>
+      <tags>
+        <tag>算法 Algorithm</tag>
+        <tag>泰森多边形 Voronoi</tag>
+        <tag>三角剖分 Delaunay</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Win10 Linux 子系统(WSL)缓慢及卡顿的解决方法]]></title>
+    <url>%2F2018%2F20180613-wslslow%2F</url>
+    <content type="text"><![CDATA[Windows 10 Linux 子系统 (Windows Subsystem for Linux, WSL)允许在windows内建Ubuntu系统并使用Bash命令，极大地方便了用户特别是开发者。 但是，笔者在使用WSl时发现奇慢，卡顿非常严重。比如说在PowerShell中启动Ubuntu，竟然需要30秒以上；Apt-get更是慢的惊人，半小时以上甚至有时候直接卡死。 笔者通过以下方法解决了这个问题： 关闭 Antimalware Service ExcutableAntimalware Service Excutable (ASE) 是 Windows 内置的安全防护软件，在运行WSL时，可以看到ASE在后台运行占用CPU。 因此我们修改注册表把它关掉。 注意：关闭ASE会造成一定的安全风险，要慎重。 操作步骤： 按Win+R打开运行对话框，输入 regedit 点击确定打开注册表管理器； 在左侧找到 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender 目录； 在窗口左侧右击 Windows Defender ，选择 “新建”， 创建一个 DWORD 键值； 键值名称为 DisableAntiSpyware ， 其值设置为 1； 重启计算机。 参考：《How to kill “Antimalware Service Executable”》 卸载360安全卫士与360杀毒实话说360安全卫士与360杀毒都是非常好用的防护软件，这里卸载实属迫不得已。 另一个挡在WSL前面的进程是“360安全卫士主动防护”，我尝试将WSL加入到360木马防护白名单，但是没有改善。不得已将360安全卫士与360杀毒卸载了用别的杀毒软件代替。 希望以后360会针对WSL做优化，那时候再回来用。 结果和感想经过以上操作，WSL健步如飞。 作者不保证这些方法适合所有用户。遇到WSL缓慢或卡顿的读者还是要根据任务管理器中各进程的CPU占用率，自己分析阻碍WSL运行的进程，并采取相应的措施。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Windows</tag>
+        <tag>Windows子系统 WLS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Hexo + GithubPage中使用个人域名]]></title>
+    <url>%2F2018%2F20180612-privatedomain%2F</url>
+    <content type="text"><![CDATA[本文介绍通过Hexo创建Github Page时，如何解决每次提交后域名失效，必须手动在Github仓库根目录下添加CNAME文件的问题。 本文对博文 《github page 解析到个人网站》进行补充，解释在Hexo中，如何解决每次提交后域名失效的问题 前提条件 已经根据 《github page 解析到个人网站》 配置好域名解析； 已经根据 上文 配置好Github Page中的个人域名 添加CNAME文件 制作文件名为CNAME的文本文件，其中的内容是你的博客所使用的域名，如下例： 文件放在 /source/CNAME 的位置，这个位置的文件会被部署到仓库的根目录 1# hexo deploy 部署到github，问题解决]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Github页面 Github page</tag>
+        <tag>域名 Domain</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu下使用Let's Encrypt对Apache进行免费HTTPS加密的最简便方法]]></title>
+    <url>%2F2018%2F20180612-mostsimpleletsencrypt%2F</url>
+    <content type="text"><![CDATA[Let’s Encrypt 提供了免费的网站HTTPS加密证书。 本文介绍一种作者认为最简单的证书部署方法。 本文参考：Setup Let’s Encrypt With Apache on Ubuntu 16.04 测试环境OS: Ubuntu 18.04 LTSWeb Server: Apache2 部署Let’s Encrypt源文件12# apt-get install git# git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt 代码说明： 安装git 将Let’s Encrypt克隆到/opt/letsencrypt 部署前准备务必确认目前Apache已包含HTTP站点配置，并已经能通过HTTP方式成功访问。 启动apache的ssl组件1# sudo a2enmod ssl 创建HTTPS证书并部署到Apache12# cd /opt/letsencrypt/# ./letsencrypt-auto --apache -d yourubuntuserver.example 代码说明： 进入Let’s Encrypt源文件目录/opt/letsencrypt/ 执行自动创建证书并配置到apache，其中yourubuntuserver.example为你的域名 ※ 当存在多个域名时，可以执行以下代码 1# ./letsencrypt-auto --apache -d yourubuntuserver.example -d www.yourubuntuserver.example -d anotherwebsite.example 这一步的常见提示以及报错信息 域名DNS未设置或解析未生效： 解决办法：去域名提供商网站设置域名DNS，已经设置的等待域名解析生效。尝试在服务器Ping域名确认是否解析已生效。 是否重定向全部HTTP请求到HTTPS： 说明：如果选择2，则通过http方式访问网站时，请求会自动重定向到https。 部署成功信息： 成功访问加密的网站 用浏览器访问网站，显示加密成功 自动定期更新证书HTTPS证书默认有三个月的有效期，必须定期更新。 首先打开Cron： 1# crontab -e 在最下方添加： 115 5 * * 5 /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log 代码说明：在每周五上午5时15分自动更新证书，并写入日志/var/log/le-renew.log]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Apache</category>
+      </categories>
+      <tags>
+        <tag>Let&#39;s Encrypt</tag>
+        <tag>Ubuntu</tag>
+        <tag>Apache</tag>
+        <tag>HTTPS</tag>
+      </tags>
+  </entry>
+</search>
