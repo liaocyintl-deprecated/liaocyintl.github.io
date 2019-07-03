@@ -48,9 +48,9 @@
     
     </summary>
     
-      <category term="日语 Japanese" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
     
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
     
     
       <category term="Java" scheme="https://liaocy.net/tags/Java/"/>
@@ -76,7 +76,7 @@
     
     </summary>
     
-      <category term="Java" scheme="https://liaocy.net/:categories/Java/"/>
+      <category term="Java" scheme="https://liaocy.net/categories/Java/"/>
     
     
       <category term="Java" scheme="https://liaocy.net/tags/Java/"/>
@@ -116,14 +116,44 @@
     
     </summary>
     
-      <category term="英语 English" scheme="https://liaocy.net/:categories/%E8%8B%B1%E8%AF%AD-English/"/>
+      <category term="英语 English" scheme="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/"/>
     
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
     
     
       <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
     
       <category term="英语词汇" scheme="https://liaocy.net/tags/%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019年06月日语词汇</title>
+    <link href="https://liaocy.net/2019/06/japanesehello/"/>
+    <id>https://liaocy.net/2019/06/japanesehello/</id>
+    <published>2019-05-31T15:00:00.000Z</published>
+    <updated>2019-07-03T04:50:13.256Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hello Japanese Lang.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Hello Japanese Lang.&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+    
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+    
+    
+      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
+    
+      <category term="日语词汇" scheme="https://liaocy.net/tags/%E6%97%A5%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
     
   </entry>
   
@@ -157,39 +187,9 @@
     
     </summary>
     
-      <category term="日语 Japanese" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
     
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-    
-    
-      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
-    
-      <category term="日语词汇" scheme="https://liaocy.net/tags/%E6%97%A5%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019年06月日语词汇</title>
-    <link href="https://liaocy.net/2019/06/japanesehello/"/>
-    <id>https://liaocy.net/2019/06/japanesehello/</id>
-    <published>2019-05-31T15:00:00.000Z</published>
-    <updated>2019-07-03T04:50:13.256Z</updated>
-    
-    <content type="html"><![CDATA[<p>Hello Japanese Lang.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Hello Japanese Lang.&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-      <category term="日语 Japanese" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
-    
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
     
     
       <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
@@ -217,9 +217,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="Awesome" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+      <category term="Awesome" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
     
     
       <category term="Awesome" scheme="https://liaocy.net/tags/Awesome/"/>
@@ -247,9 +247,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="Awesome" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+      <category term="Awesome" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
     
     
       <category term="Awesome" scheme="https://liaocy.net/tags/Awesome/"/>
@@ -277,9 +277,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="SQL" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/SQL/"/>
+      <category term="SQL" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/SQL/"/>
     
     
       <category term="SQL" scheme="https://liaocy.net/tags/SQL/"/>
@@ -317,9 +317,9 @@
     
     </summary>
     
-      <category term="日语 Japanese" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
     
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
     
     
       <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
@@ -348,11 +348,11 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="IDE" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/IDE/"/>
+      <category term="IDE" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/IDE/"/>
     
-      <category term="VSCode" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/IDE/VSCode/"/>
+      <category term="VSCode" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/IDE/VSCode/"/>
     
     
       <category term="Docker" scheme="https://liaocy.net/tags/Docker/"/>
@@ -384,9 +384,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="vi" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/vi/"/>
+      <category term="vi" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/vi/"/>
     
     
       <category term="vi" scheme="https://liaocy.net/tags/vi/"/>
@@ -416,9 +416,9 @@
     
     </summary>
     
-      <category term="日语 Japanese" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
     
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
     
     
       <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
@@ -450,9 +450,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="Linux" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/Linux/"/>
+      <category term="Linux" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Linux/"/>
     
     
       <category term="Linux" scheme="https://liaocy.net/tags/Linux/"/>
@@ -479,57 +479,16 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="CentOS" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/CentOS/"/>
+      <category term="CentOS" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/CentOS/"/>
     
-      <category term="SWAP" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/CentOS/SWAP/"/>
+      <category term="SWAP" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/CentOS/SWAP/"/>
     
     
       <category term="CentOS" scheme="https://liaocy.net/tags/CentOS/"/>
     
       <category term="SWAP" scheme="https://liaocy.net/tags/SWAP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019年05月英语词汇</title>
-    <link href="https://liaocy.net/2019/05/englishvocab/"/>
-    <id>https://liaocy.net/2019/05/englishvocab/</id>
-    <published>2019-04-30T15:00:00.000Z</published>
-    <updated>2019-07-03T04:51:44.104Z</updated>
-    
-    <content type="html"><![CDATA[<table><thead><tr><th>单词</th><th>注音</th><th>词性词义</th></tr></thead><tbody><tr><td>notation</td><td>[noʊˈteɪʃən]</td><td>n. 符号；乐谱；注释；记号法</td></tr><tr><td>例：</td><td colspan="2"> scientific notation [数] 科学记数法.</td></tr><tr><td>velocity</td><td>[vəˈlɑsəti]</td><td>n. 【物】速度</td></tr><tr><td>例：</td><td colspan="2"> The anomaly migration velocity does not increase linearly.</td></tr><tr><td>toggle</td><td>[‘tɑɡl]</td><td>n. 拴扣；切换键，开关；套索钉 v. 切换；拴牢，系紧</td></tr><tr><td>例：</td><td colspan="2"> He toggled (切换) the com to talk to air traffic control.</td></tr><tr><td>grant</td><td>[ɡrænt]</td><td>vt. 授予；允许；承认 vi. 同意 n. 拨款；[法] 授予物</td></tr><tr><td>例：</td><td colspan="2"> France has agreed to grant him political asylum (政治庇护).</td></tr><tr><td>revoke</td><td>[rɪ’vok]</td><td>vt. 撤回，取消；废除 vi. 有牌不跟 n. 有牌不跟</td></tr><tr><td>例：</td><td colspan="2"> Your school may revoke your student visa.</td></tr><tr><td>privilege</td><td>[ˈprɪvəlɪdʒ]</td><td>n. 权限；特权；优待 vt. 给予…特权；特免</td></tr><tr><td>例：</td><td colspan="2"> that is their privilege.</td></tr><tr><td>debate</td><td>[dɪ’bet]</td><td>vi. 辩论，争论，讨论 n. 辩论；辩论会</td></tr><tr><td>例：</td><td colspan="2"> people debate a topic</td></tr><tr><td>perspective</td><td>[pɚ’spɛktɪv]</td><td>n. 观点；远景；透视图 adj. 透视的</td></tr><tr><td>compensate</td><td>[‘kɑmpɛnset]</td><td>vt. 补偿，赔偿；付报酬</td></tr><tr><td>例：</td><td colspan="2"> compensate for a lack of something</td></tr><tr><td>warranty</td><td>[‘wɔrənti]</td><td>n. 保证；担保；授权；（正当）理由</td></tr><tr><td>例：</td><td colspan="2"> a twelve-month warranty. 为期12个月的保修单。</td></tr><tr><td>constraint</td><td>[kən’strent]</td><td>n. [数] 约束；局促，态度不自然；强制</td></tr><tr><td>例：</td><td colspan="2"> constraint condition</td></tr><tr><td>migration</td><td>[maɪ’ɡreʃən]</td><td>n. 迁移；移民；移动</td></tr><tr><td>例：</td><td colspan="2"> data migration</td></tr><tr><td>fortune</td><td>[‘fɔrtʃən]</td><td>n. 财富；命运；运气 vt. 给予财富</td></tr><tr><td>dilation</td><td>[daɪˈleɪʃn]</td><td>n. 扩张，扩大；膨胀；详述</td></tr><tr><td>variate</td><td>[‘vɛrɪet]</td><td>n. [数] 变量；改变</td></tr><tr><td>vertically</td><td>[‘vɝtɪkli]</td><td>ADV.垂直地</td></tr><tr><td>volcano</td><td>[vɑl’keno]</td><td>N.火山</td></tr><tr><td>stage</td><td>[stedʒ]</td><td>N.舞台 V.上演 V.暂存区(GIT)</td></tr><tr><td>stash</td><td>[stæʃ]</td><td>N.藏匿物 V.藏起来 V.储藏(GIT)</td></tr><tr><td>semicolon</td><td>[‘sɛmɪkolən]</td><td>N.分号</td></tr><tr><td>quotation</td><td>[kwo’teʃən]</td><td>N.引号</td></tr><tr><td>enumeration</td><td>[ɪ,njʊmə’reʃən]</td><td>n. 列举；[数] 计算；细目</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;单词&lt;/th&gt;
-&lt;th&gt;注音&lt;/th&gt;
-&lt;th&gt;词性词义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;notation&lt;/td&gt;
-&lt;td&gt;[noʊˈteɪʃən]&lt;/td&gt;
-&lt;td&gt;n. 符号；乐谱；
-      
-    
-    </summary>
-    
-      <category term="英语 English" scheme="https://liaocy.net/:categories/%E8%8B%B1%E8%AF%AD-English/"/>
-    
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-    
-    
-      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
-    
-      <category term="英语词汇" scheme="https://liaocy.net/tags/%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
     
   </entry>
   
@@ -564,14 +523,55 @@
     
     </summary>
     
-      <category term="日语 Japanese" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
     
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/:categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
     
     
       <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
     
       <category term="日语词汇" scheme="https://liaocy.net/tags/%E6%97%A5%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019年05月英语词汇</title>
+    <link href="https://liaocy.net/2019/05/englishvocab/"/>
+    <id>https://liaocy.net/2019/05/englishvocab/</id>
+    <published>2019-04-30T15:00:00.000Z</published>
+    <updated>2019-07-03T04:51:44.104Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th>单词</th><th>注音</th><th>词性词义</th></tr></thead><tbody><tr><td>notation</td><td>[noʊˈteɪʃən]</td><td>n. 符号；乐谱；注释；记号法</td></tr><tr><td>例：</td><td colspan="2"> scientific notation [数] 科学记数法.</td></tr><tr><td>velocity</td><td>[vəˈlɑsəti]</td><td>n. 【物】速度</td></tr><tr><td>例：</td><td colspan="2"> The anomaly migration velocity does not increase linearly.</td></tr><tr><td>toggle</td><td>[‘tɑɡl]</td><td>n. 拴扣；切换键，开关；套索钉 v. 切换；拴牢，系紧</td></tr><tr><td>例：</td><td colspan="2"> He toggled (切换) the com to talk to air traffic control.</td></tr><tr><td>grant</td><td>[ɡrænt]</td><td>vt. 授予；允许；承认 vi. 同意 n. 拨款；[法] 授予物</td></tr><tr><td>例：</td><td colspan="2"> France has agreed to grant him political asylum (政治庇护).</td></tr><tr><td>revoke</td><td>[rɪ’vok]</td><td>vt. 撤回，取消；废除 vi. 有牌不跟 n. 有牌不跟</td></tr><tr><td>例：</td><td colspan="2"> Your school may revoke your student visa.</td></tr><tr><td>privilege</td><td>[ˈprɪvəlɪdʒ]</td><td>n. 权限；特权；优待 vt. 给予…特权；特免</td></tr><tr><td>例：</td><td colspan="2"> that is their privilege.</td></tr><tr><td>debate</td><td>[dɪ’bet]</td><td>vi. 辩论，争论，讨论 n. 辩论；辩论会</td></tr><tr><td>例：</td><td colspan="2"> people debate a topic</td></tr><tr><td>perspective</td><td>[pɚ’spɛktɪv]</td><td>n. 观点；远景；透视图 adj. 透视的</td></tr><tr><td>compensate</td><td>[‘kɑmpɛnset]</td><td>vt. 补偿，赔偿；付报酬</td></tr><tr><td>例：</td><td colspan="2"> compensate for a lack of something</td></tr><tr><td>warranty</td><td>[‘wɔrənti]</td><td>n. 保证；担保；授权；（正当）理由</td></tr><tr><td>例：</td><td colspan="2"> a twelve-month warranty. 为期12个月的保修单。</td></tr><tr><td>constraint</td><td>[kən’strent]</td><td>n. [数] 约束；局促，态度不自然；强制</td></tr><tr><td>例：</td><td colspan="2"> constraint condition</td></tr><tr><td>migration</td><td>[maɪ’ɡreʃən]</td><td>n. 迁移；移民；移动</td></tr><tr><td>例：</td><td colspan="2"> data migration</td></tr><tr><td>fortune</td><td>[‘fɔrtʃən]</td><td>n. 财富；命运；运气 vt. 给予财富</td></tr><tr><td>dilation</td><td>[daɪˈleɪʃn]</td><td>n. 扩张，扩大；膨胀；详述</td></tr><tr><td>variate</td><td>[‘vɛrɪet]</td><td>n. [数] 变量；改变</td></tr><tr><td>vertically</td><td>[‘vɝtɪkli]</td><td>ADV.垂直地</td></tr><tr><td>volcano</td><td>[vɑl’keno]</td><td>N.火山</td></tr><tr><td>stage</td><td>[stedʒ]</td><td>N.舞台 V.上演 V.暂存区(GIT)</td></tr><tr><td>stash</td><td>[stæʃ]</td><td>N.藏匿物 V.藏起来 V.储藏(GIT)</td></tr><tr><td>semicolon</td><td>[‘sɛmɪkolən]</td><td>N.分号</td></tr><tr><td>quotation</td><td>[kwo’teʃən]</td><td>N.引号</td></tr><tr><td>enumeration</td><td>[ɪ,njʊmə’reʃən]</td><td>n. 列举；[数] 计算；细目</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;单词&lt;/th&gt;
+&lt;th&gt;注音&lt;/th&gt;
+&lt;th&gt;词性词义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;notation&lt;/td&gt;
+&lt;td&gt;[noʊˈteɪʃən]&lt;/td&gt;
+&lt;td&gt;n. 符号；乐谱；
+      
+    
+    </summary>
+    
+      <category term="英语 English" scheme="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/"/>
+    
+      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+    
+    
+      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
+    
+      <category term="英语词汇" scheme="https://liaocy.net/tags/%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
     
   </entry>
   
@@ -594,9 +594,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="Docker" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/Docker/"/>
+      <category term="Docker" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Docker/"/>
     
     
       <category term="Docker" scheme="https://liaocy.net/tags/Docker/"/>
@@ -624,9 +624,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="Apache" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/Apache/"/>
+      <category term="Apache" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Apache/"/>
     
     
       <category term="Ubuntu" scheme="https://liaocy.net/tags/Ubuntu/"/>
@@ -655,9 +655,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="Apache" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/Apache/"/>
+      <category term="Apache" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Apache/"/>
     
     
       <category term="Apache" scheme="https://liaocy.net/tags/Apache/"/>
@@ -687,9 +687,9 @@
     
     </summary>
     
-      <category term="开发 Development" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/"/>
+      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
     
-      <category term="PHP" scheme="https://liaocy.net/:categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
+      <category term="PHP" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
     
     
       <category term="PHP" scheme="https://liaocy.net/tags/PHP/"/>
