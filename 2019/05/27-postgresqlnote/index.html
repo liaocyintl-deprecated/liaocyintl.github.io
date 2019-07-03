@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="Basic Commands (PSQL)psql -U postgres :  Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i {SQL file} : run the">
+<meta name="description" content="Postgres的叫法好像有好几个，PostgreSQL、Postgres、PostgresDB等等，身边有人用过，是因为Postgres有一个地理信息插件PostGIS，据说Postgres对于地理信息的处理有独到之处，因此他们做GIS的人用的比较多。我之前几乎没怎么用过Postgres，一直习惯用MySQL，最近用MariaDB多一些。这次培训碰巧学到了，基本语法还是标准的SQL，本文用于记录">
 <meta name="keywords" content="SQL,PostgreSQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PostgreSQL那些忘却的事">
 <meta property="og:url" content="https://liaocy.net/2019/05/27-postgresqlnote/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
-<meta property="og:description" content="Basic Commands (PSQL)psql -U postgres :  Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i {SQL file} : run the">
+<meta property="og:description" content="Postgres的叫法好像有好几个，PostgreSQL、Postgres、PostgresDB等等，身边有人用过，是因为Postgres有一个地理信息插件PostGIS，据说Postgres对于地理信息的处理有独到之处，因此他们做GIS的人用的比较多。我之前几乎没怎么用过Postgres，一直习惯用MySQL，最近用MariaDB多一些。这次培训碰巧学到了，基本语法还是标准的SQL，本文用于记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T06:27:50.724Z">
+<meta property="og:updated_time" content="2019-07-03T06:47:59.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PostgreSQL那些忘却的事">
-<meta name="twitter:description" content="Basic Commands (PSQL)psql -U postgres :  Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i {SQL file} : run the">
+<meta name="twitter:description" content="Postgres的叫法好像有好几个，PostgreSQL、Postgres、PostgresDB等等，身边有人用过，是因为Postgres有一个地理信息插件PostGIS，据说Postgres对于地理信息的处理有独到之处，因此他们做GIS的人用的比较多。我之前几乎没怎么用过Postgres，一直习惯用MySQL，最近用MariaDB多一些。这次培训碰巧学到了，基本语法还是标准的SQL，本文用于记录">
 
 
 
@@ -419,7 +419,7 @@
       
 
       
-        <a id="more"></a>
+        <p>Postgres的叫法好像有好几个，PostgreSQL、Postgres、PostgresDB等等，身边有人用过，是因为Postgres有一个地理信息插件PostGIS，据说Postgres对于地理信息的处理有独到之处，因此他们做GIS的人用的比较多。我之前几乎没怎么用过Postgres，一直习惯用MySQL，最近用MariaDB多一些。这次培训碰巧学到了，基本语法还是标准的SQL，本文用于记录一些我记得不太清楚的，以及Postgres特有的语法。<br><a id="more"></a></p>
 <h1 id="Basic-Commands-PSQL"><a href="#Basic-Commands-PSQL" class="headerlink" title="Basic Commands (PSQL)"></a>Basic Commands (PSQL)</h1><h4 id="psql-U-postgres-Access-to-DBMS-engine"><a href="#psql-U-postgres-Access-to-DBMS-engine" class="headerlink" title="psql -U postgres :  Access to DBMS engine"></a>psql -U postgres :  Access to DBMS engine</h4><h4 id="l-show-databases"><a href="#l-show-databases" class="headerlink" title="\l : show databases"></a>\l : show databases</h4><h4 id="c-database-name-use-database"><a href="#c-database-name-use-database" class="headerlink" title="\c {database name}: use database"></a>\c {database name}: use database</h4><h4 id="d-show-tables"><a href="#d-show-tables" class="headerlink" title="\d : show tables"></a>\d : show tables</h4><h4 id="d-table-name-show-table-structure"><a href="#d-table-name-show-table-structure" class="headerlink" title="\d {table name} : show table structure"></a>\d {table name} : show table structure</h4><h4 id="q-quit"><a href="#q-quit" class="headerlink" title="\q : quit"></a>\q : quit</h4><h4 id="i-SQL-file-run-the-SQL-file"><a href="#i-SQL-file-run-the-SQL-file" class="headerlink" title="\i {SQL file} : run the SQL file"></a>\i {SQL file} : run the SQL file</h4><h1 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h1><h4 id="pset-null-NULL-show-null-as-‘NULL’-when-SELECT"><a href="#pset-null-NULL-show-null-as-‘NULL’-when-SELECT" class="headerlink" title="\pset null NULL : show null as ‘NULL’ when SELECT"></a>\pset null NULL : show null as ‘NULL’ when SELECT</h4><h4 id="or-ESCAPE"><a href="#or-ESCAPE" class="headerlink" title="@ or \ : ESCAPE"></a>@ or \ : ESCAPE</h4><p>e.g.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># SELECT * FROM a WHERE A LIKE &quot;%10@%%&quot; //means extract record where includes 10%</span><br></pre></td></tr></table></figure></p>
 <h4 id="UNION-UNION-ALL-combine-the-result-set-of-two-or-more-SELECT-statements-vertically"><a href="#UNION-UNION-ALL-combine-the-result-set-of-two-or-more-SELECT-statements-vertically" class="headerlink" title="UNION / UNION ALL: combine the result-set of two or more SELECT statements vertically"></a>UNION / UNION ALL: combine the result-set of two or more SELECT statements vertically</h4><p>e.g.:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> Websites</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> apps</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> country;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> Websites</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line"><span class="keyword">SELECT</span> country <span class="keyword">FROM</span> apps</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> country;</span><br></pre></td></tr></table></figure>
@@ -487,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/awesome/sys/" rel="prev" title="Awesome System">
-                Awesome System <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/japanesevocab/" rel="prev" title="2019年06月日语词汇">
+                2019年06月日语词汇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -4,8 +4,206 @@
 
     
   <url>
+    <loc>https://liaocy.net/awesome/cv/</loc>
+    <lastmod>2019-07-03T06:59:08.695Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Computer Vision</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Awesome</tag>
+         
+        <tag>计算机视觉 Computer Vision</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/data/</loc>
+    <lastmod>2019-07-03T06:59:05.963Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Data Science</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Data Science</tag>
+         
+        <tag>Awesome</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/dev/</loc>
+    <lastmod>2019-07-03T06:59:01.503Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Development Tools</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Awesome</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/jp/</loc>
+    <lastmod>2019-07-03T06:58:55.415Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Japanese 常用日语表达</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>日语 Japanese</tag>
+         
+        <tag>写作 Writing</tag>
+         
+         
+           
+             
+              <breadCrumb title="日语 Japanese" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+          
+             
+              <breadCrumb title="写作 Writing" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E5%86%99%E4%BD%9C-Writing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/os/</loc>
+    <lastmod>2019-07-03T06:58:51.339Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Data Science</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Awesome</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/sys/</loc>
+    <lastmod>2019-07-03T06:58:47.895Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome System</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Awesome</tag>
+         
+        <tag>系统 UI</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/ui/</loc>
+    <lastmod>2019-07-03T06:58:43.287Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome UI</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Awesome</tag>
+         
+        <tag>用户接口 UI</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/awesome/web/</loc>
+    <lastmod>2019-07-03T06:58:37.759Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Website</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Awesome</tag>
+         
+        <tag>网站 Website</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2019/05/13-centosswap/</loc>
-    <lastmod>2019-07-03T06:28:54.100Z</lastmod>
+    <lastmod>2019-07-03T06:58:09.855Z</lastmod>
     <data>
         <display>
         <title>CentOS系统设置虚拟内存SWAP</title>
@@ -33,7 +231,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/05/19-linuxcmd/</loc>
-    <lastmod>2019-07-03T06:28:47.944Z</lastmod>
+    <lastmod>2019-07-03T06:57:37.087Z</lastmod>
     <data>
         <display>
         <title>Linux 命令速查</title>
@@ -58,7 +256,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/05/19-linuxjaen/</loc>
-    <lastmod>2019-07-03T06:28:43.784Z</lastmod>
+    <lastmod>2019-07-03T06:57:22.936Z</lastmod>
     <data>
         <display>
         <title>Linux 日语英语词汇</title>
@@ -85,7 +283,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/05/25-vim/</loc>
-    <lastmod>2019-07-03T06:28:37.344Z</lastmod>
+    <lastmod>2019-07-03T06:56:53.484Z</lastmod>
     <data>
         <display>
         <title>vi 命令速查</title>
@@ -110,7 +308,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/05/26-maxuserwatches/</loc>
-    <lastmod>2019-07-03T06:28:31.488Z</lastmod>
+    <lastmod>2019-07-03T06:55:09.096Z</lastmod>
     <data>
         <display>
         <title>Docker运行Coder时 code-server is unable to watch for file changes in this large workspace 的解决方案</title>
@@ -140,7 +338,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/05/27-postgresqlnote/</loc>
-    <lastmod>2019-07-03T06:27:50.724Z</lastmod>
+    <lastmod>2019-07-03T06:47:59.270Z</lastmod>
     <data>
         <display>
         <title>PostgreSQL那些忘却的事</title>
@@ -164,35 +362,8 @@
 
     
   <url>
-    <loc>https://liaocy.net/2019/05/27-sqljaen/</loc>
-    <lastmod>2019-07-03T06:27:37.012Z</lastmod>
-    <data>
-        <display>
-        <title>SQL 日语英语词汇</title>
-        <pubTime>2019-05-27T00:10:00.000Z</pubTime>
-        
-        <tag>Vocabulary</tag>
-         
-        <tag>SQL</tag>
-         
-        <tag>PostgresSQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="日语 Japanese" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
-          
-             
-              <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2019/05/englishvocab/</loc>
-    <lastmod>2019-07-03T06:27:23.012Z</lastmod>
+    <lastmod>2019-07-03T06:35:59.618Z</lastmod>
     <data>
         <display>
         <title>2019年05月英语词汇</title>
@@ -217,7 +388,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/05/japanesevocab/</loc>
-    <lastmod>2019-07-03T06:27:19.276Z</lastmod>
+    <lastmod>2019-07-03T06:35:46.186Z</lastmod>
     <data>
         <display>
         <title>2019年05月日语词汇</title>
@@ -226,6 +397,33 @@
         <tag>Vocabulary</tag>
          
         <tag>日语词汇</tag>
+         
+         
+           
+             
+              <breadCrumb title="日语 Japanese" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+          
+             
+              <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2019/05/27-sqljaen/</loc>
+    <lastmod>2019-07-03T06:27:37.012Z</lastmod>
+    <data>
+        <display>
+        <title>SQL 日语英语词汇</title>
+        <pubTime>2019-05-27T00:10:00.000Z</pubTime>
+        
+        <tag>Vocabulary</tag>
+         
+        <tag>SQL</tag>
+         
+        <tag>PostgresSQL</tag>
          
          
            
@@ -1197,31 +1395,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/awesome/data/</loc>
-    <lastmod>2019-07-03T04:51:43.972Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Data Science</title>
-        <pubTime>2019-01-28T03:46:00.000Z</pubTime>
-        
-        <tag>Data Science</tag>
-         
-        <tag>Awesome</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/20180616-phpexportdatatableexcel/</loc>
     <lastmod>2019-07-03T04:51:43.968Z</lastmod>
     <data>
@@ -1722,179 +1895,6 @@
           
              
               <breadCrumb title="机器学习 Machine Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/os/</loc>
-    <lastmod>2019-07-03T04:51:43.744Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Data Science</title>
-        <pubTime>2019-02-12T10:12:00.000Z</pubTime>
-        
-        <tag>Awesome</tag>
-         
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/ui/</loc>
-    <lastmod>2019-07-03T04:51:43.744Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome UI</title>
-        <pubTime>2019-02-15T04:17:00.000Z</pubTime>
-        
-        <tag>Awesome</tag>
-         
-        <tag>用户接口 UI</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/sys/</loc>
-    <lastmod>2019-07-03T04:51:43.740Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome System</title>
-        <pubTime>2019-05-29T04:17:00.000Z</pubTime>
-        
-        <tag>Awesome</tag>
-         
-        <tag>系统 UI</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/jp/</loc>
-    <lastmod>2019-07-03T04:51:43.736Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Japanese 常用日语表达</title>
-        <pubTime>2019-01-09T15:03:04.000Z</pubTime>
-        
-        <tag>日语 Japanese</tag>
-         
-        <tag>写作 Writing</tag>
-         
-         
-           
-             
-              <breadCrumb title="日语 Japanese" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
-          
-             
-              <breadCrumb title="写作 Writing" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E5%86%99%E4%BD%9C-Writing/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/web/</loc>
-    <lastmod>2019-07-03T04:51:43.736Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Website</title>
-        <pubTime>2019-05-29T05:17:00.000Z</pubTime>
-        
-        <tag>Awesome</tag>
-         
-        <tag>网站 Website</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/cv/</loc>
-    <lastmod>2019-07-03T04:51:43.716Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Computer Vision</title>
-        <pubTime>2019-02-12T10:17:00.000Z</pubTime>
-        
-        <tag>Awesome</tag>
-         
-        <tag>计算机视觉 Computer Vision</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/dev/</loc>
-    <lastmod>2019-07-03T04:51:43.716Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Development Tools</title>
-        <pubTime>2019-02-15T06:12:00.000Z</pubTime>
-        
-        <tag>Awesome</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
           
         </display>
     </data>

@@ -51,35 +51,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Awesome Website]]></title>
-    <url>%2Fawesome%2Fweb%2F</url>
-    <content type="text"><![CDATA[IT NewsPicks: 一个介绍日本IT业界以及经济相关信息的网站 Markdown HackMD: 用Markdown做笔记的网站 OA 石墨: 在线办公协助系统，支持PC和移动端。]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Awesome</tag>
-        <tag>网站 Website</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome System]]></title>
-    <url>%2Fawesome%2Fsys%2F</url>
-    <content type="text"><![CDATA[CRM Sugar CRM: 一个开源的客户关系管理系统]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Awesome</tag>
-        <tag>系统 UI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[PostgreSQL那些忘却的事]]></title>
     <url>%2F2019%2F05%2F27-postgresqlnote%2F</url>
-    <content type="text"><![CDATA[Basic Commands (PSQL)psql -U postgres : Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i {SQL file} : run the SQL fileDML\pset null NULL : show null as ‘NULL’ when SELECT@ or \ : ESCAPEe.g.:1# SELECT * FROM a WHERE A LIKE &quot;%10@%%&quot; //means extract record where includes 10% UNION / UNION ALL: combine the result-set of two or more SELECT statements verticallye.g.:1234SELECT country FROM WebsitesUNIONSELECT country FROM appsORDER BY country; 1234SELECT country FROM WebsitesUNION ALLSELECT country FROM appsORDER BY country; All joins:e.g.:123LEFT JOIN b ON &lt;conditions&gt;RIGHT JOIN b ON &lt;conditions&gt;INNER JOIN b ON :: : type conversion (Only for postgres)e.g.:1SELECT '2013-05-03'::date; result:123 date------------ 2018-01-01 ALL : 父查询中的结果集大于子查询中每一个结果集中的值,则为真e.g.:1SELECT * FROM T2 WHERE N &gt; ALL (SELECT N FROM T1) ANY,SOME : 父查询中的结果集大于子查询中任意一个结果集中的值,则为真e.g.:12SELECT * FROM T2 WHERE N &gt; ANY(SELECT N FROM T1)SELECT * FROM T2 WHERE N &gt; SOME(SELECT N FROM T1) ANY, IN : ANY 与子查询IN相同e.g.:12SELECT * FROM T2 WHERE N = ANY (SELECT N FROM T1)SELECT * FROM T2 WHERE N IN (SELECT N FROM T1) &lt;&gt;ANY, NOT IN‘ “ and ` ‘ : definition of a variate “ : definition of a column name ` : definition of a column name (MySQL) Transactione.g.:1234567891011121314151617181920\set AUTOCOMMIT off -- shutdown autocommit\echo :AUTOCOMMITBEGIN; -- or [start transaction]INSERT INTO hoge VALUE('hoge');SELECT * FROM hoge; -- results hogeROLLBACK;SELECT * FROM hoge; -- results nothingINSERT INTO hoge VALUES('hoge2');SAVEPOINT hoge2;SELECT * FROM hoge; -- results hoge2DELETE FROM hoge2 WHERE name = 'hoge2';SELECT * FROM hoge; -- results nothingROLLBACK TO hoge2; -- goto SAVEPOINT hoge2SELECT * FROM hoge; -- results hoge2COMMIT; -- transaction end attention: The lock is started then first INSERT, UPDATE, or DELETE but not START; DDLCREATE TEMPORARY table… : create a in-memory-databaseSERIAL : Auto-increased ID in postgrese.g.:1234create table sample ( id SERIAL PRIMARY KEY, "value" integer) ; 123456CREATE SEQUENCE orders_seq;INSERT INTO XXX VALUES(NEXTVAL(orders_seq));CURRVAL(orders_seq) -- current valueSELECT SETVAL(orders_seq, value); -- set a value for orders_seqDROP SEQUENCE orders_seq; Foreign key1234CREATE TABLE hoge4( id SERIAL PRIMARY KEY, staff_id INT FOREIGN KEY REFERENCES staff(pno)); ALTERformat:1ALTER TABLE &lt;table name&gt; RENAME TO &lt;new table name&gt; -- change table name e.g.:123456ALTER TABLE hoge4 RENAME TO hoge5; -- change table name.ALTER TABLE hoge4 ADD addr varchar(50); -- add a column "addr" at the end of table hoge4.ALTER TABLE hoge4 DROP addr; -- drop column "addr" in the table hoge4.ALTER TABLE hoge4 DROP CONSTRAINT people_pkey; -- drop a constraint "people_pkey" in the table hoge4.ALTER TABLE hoge4 ALTER addr DROP NOT NULL; -- drop "NOT NULL" attribute of column "addr" in the table hoge4.DROP TABLE hoge4; -- drop the table hoge4; ViewFormat:12CREATE VIEW xxx_view AS SELECT .......; Indexformat:123CREATE INDEX &lt;index_name&gt; ON &lt;table_name&gt; (&lt;column1, column2&gt;); -- create a indexDROP INDEX &lt;index_name&gt;; -- drop a index DCLRole123456CREATE ROLE training LOGIN PASSWORD 'training';ALTER ROLE training RENAME TO dbtraining;ALTER ROLE dbtraining PASSWORD 'password';ALTER ROLE dbtraining WITH SUPERUSER CREATEDB CREATEROLE;DROP ROLE dbtraining; GRAND12GRANT ALL ON DATABASE mydb00 TO dbtraining;GRANT &lt;privilege1&gt;, &lt;privilege2&gt; ON &lt;table_name&gt; TO &lt;user_name&gt;]]></content>
+    <content type="text"><![CDATA[Postgres的叫法好像有好几个，PostgreSQL、Postgres、PostgresDB等等，身边有人用过，是因为Postgres有一个地理信息插件PostGIS，据说Postgres对于地理信息的处理有独到之处，因此他们做GIS的人用的比较多。我之前几乎没怎么用过Postgres，一直习惯用MySQL，最近用MariaDB多一些。这次培训碰巧学到了，基本语法还是标准的SQL，本文用于记录一些我记得不太清楚的，以及Postgres特有的语法。 Basic Commands (PSQL)psql -U postgres : Access to DBMS engine\l : show databases\c {database name}: use database\d : show tables\d {table name} : show table structure\q : quit\i {SQL file} : run the SQL fileDML\pset null NULL : show null as ‘NULL’ when SELECT@ or \ : ESCAPEe.g.:1# SELECT * FROM a WHERE A LIKE &quot;%10@%%&quot; //means extract record where includes 10% UNION / UNION ALL: combine the result-set of two or more SELECT statements verticallye.g.:1234SELECT country FROM WebsitesUNIONSELECT country FROM appsORDER BY country; 1234SELECT country FROM WebsitesUNION ALLSELECT country FROM appsORDER BY country; All joins:e.g.:123LEFT JOIN b ON &lt;conditions&gt;RIGHT JOIN b ON &lt;conditions&gt;INNER JOIN b ON :: : type conversion (Only for postgres)e.g.:1SELECT '2013-05-03'::date; result:123 date------------ 2018-01-01 ALL : 父查询中的结果集大于子查询中每一个结果集中的值,则为真e.g.:1SELECT * FROM T2 WHERE N &gt; ALL (SELECT N FROM T1) ANY,SOME : 父查询中的结果集大于子查询中任意一个结果集中的值,则为真e.g.:12SELECT * FROM T2 WHERE N &gt; ANY(SELECT N FROM T1)SELECT * FROM T2 WHERE N &gt; SOME(SELECT N FROM T1) ANY, IN : ANY 与子查询IN相同e.g.:12SELECT * FROM T2 WHERE N = ANY (SELECT N FROM T1)SELECT * FROM T2 WHERE N IN (SELECT N FROM T1) &lt;&gt;ANY, NOT IN‘ “ and ` ‘ : definition of a variate “ : definition of a column name ` : definition of a column name (MySQL) Transactione.g.:1234567891011121314151617181920\set AUTOCOMMIT off -- shutdown autocommit\echo :AUTOCOMMITBEGIN; -- or [start transaction]INSERT INTO hoge VALUE('hoge');SELECT * FROM hoge; -- results hogeROLLBACK;SELECT * FROM hoge; -- results nothingINSERT INTO hoge VALUES('hoge2');SAVEPOINT hoge2;SELECT * FROM hoge; -- results hoge2DELETE FROM hoge2 WHERE name = 'hoge2';SELECT * FROM hoge; -- results nothingROLLBACK TO hoge2; -- goto SAVEPOINT hoge2SELECT * FROM hoge; -- results hoge2COMMIT; -- transaction end attention: The lock is started then first INSERT, UPDATE, or DELETE but not START; DDLCREATE TEMPORARY table… : create a in-memory-databaseSERIAL : Auto-increased ID in postgrese.g.:1234create table sample ( id SERIAL PRIMARY KEY, "value" integer) ; 123456CREATE SEQUENCE orders_seq;INSERT INTO XXX VALUES(NEXTVAL(orders_seq));CURRVAL(orders_seq) -- current valueSELECT SETVAL(orders_seq, value); -- set a value for orders_seqDROP SEQUENCE orders_seq; Foreign key1234CREATE TABLE hoge4( id SERIAL PRIMARY KEY, staff_id INT FOREIGN KEY REFERENCES staff(pno)); ALTERformat:1ALTER TABLE &lt;table name&gt; RENAME TO &lt;new table name&gt; -- change table name e.g.:123456ALTER TABLE hoge4 RENAME TO hoge5; -- change table name.ALTER TABLE hoge4 ADD addr varchar(50); -- add a column "addr" at the end of table hoge4.ALTER TABLE hoge4 DROP addr; -- drop column "addr" in the table hoge4.ALTER TABLE hoge4 DROP CONSTRAINT people_pkey; -- drop a constraint "people_pkey" in the table hoge4.ALTER TABLE hoge4 ALTER addr DROP NOT NULL; -- drop "NOT NULL" attribute of column "addr" in the table hoge4.DROP TABLE hoge4; -- drop the table hoge4; ViewFormat:12CREATE VIEW xxx_view AS SELECT .......; Indexformat:123CREATE INDEX &lt;index_name&gt; ON &lt;table_name&gt; (&lt;column1, column2&gt;); -- create a indexDROP INDEX &lt;index_name&gt;; -- drop a index DCLRole123456CREATE ROLE training LOGIN PASSWORD 'training';ALTER ROLE training RENAME TO dbtraining;ALTER ROLE dbtraining PASSWORD 'password';ALTER ROLE dbtraining WITH SUPERUSER CREATEDB CREATEROLE;DROP ROLE dbtraining; GRAND12GRANT ALL ON DATABASE mydb00 TO dbtraining;GRANT &lt;privilege1&gt;, &lt;privilege2&gt; ON &lt;table_name&gt; TO &lt;user_name&gt;]]></content>
       <categories>
         <category>开发 Development</category>
         <category>SQL</category>
@@ -106,7 +80,7 @@
   <entry>
     <title><![CDATA[Docker运行Coder时 code-server is unable to watch for file changes in this large workspace 的解决方案]]></title>
     <url>%2F2019%2F05%2F26-maxuserwatches%2F</url>
-    <content type="text"><![CDATA[问题背景使用Docker安装Web版本VScode，既Coder，的时候。如果按照官方的安装命令：1# docker run -it -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth 程序运行以后IDE会提示错误信息：1code-server is unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue. 按照官方解决方案,需要修改 /etc/sysctl.conf ，在里面添加：1fs.inotify.max_user_watches=524288 但是，如果Coder是通过Docker运行的，在运行 sudo sysctl -p 会显示错误信息:1sysctl: setting key &quot;fs.inotify.max_user_watches&quot;: Read-only file system 本文说明如何解决这个问题。 参考资料资料1资料2资料3 解决方法1在启动Docker的时候添加 –privileged 参数：1# docker run -it --privileged -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth 解决方法2如果是已经运行的Docker容器，先导出其镜像，再重新加载并添加 –privileged 参数：12# docker commit coder mycoder# docker run -it --privileged -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" mycoder --allow-http --no-auth 最后之后按照官方文档要求:123456789Run this in terminal:# sudo vim /etc/sysctl.confScroll to the bottom and paste:fs.inotify.max_user_watches=524288Save and clode the editor, then run this:# sudo sysctl -pTo check your success:# cat /proc/sys/fs/inotify/max_user_watchesThis should return 524288 完成]]></content>
+    <content type="text"><![CDATA[Coder是Visual Studio Code的Web版本。通过把Coder部署在服务器上，你就可以随时随地的用浏览器编程序了。用Docker部署Coder出奇的简单，我就不赘述了。本文要讲的是Docker Coder成功部署，并且登录IDE以后，会出现code-server is unable to watch for file changes in this large workspace的提示。那么如何在docker环境下，我们如何增加这个max_user_watches的数值。 问题背景使用Docker安装Web版本VScode，既Coder，的时候。如果按照官方的安装命令：1# docker run -it -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth 程序运行以后IDE会提示错误信息：1code-server is unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue. 按照官方解决方案,需要修改 /etc/sysctl.conf ，在里面添加：1fs.inotify.max_user_watches=524288 但是，如果Coder是通过Docker运行的，在运行 sudo sysctl -p 会显示错误信息:1sysctl: setting key &quot;fs.inotify.max_user_watches&quot;: Read-only file system 本文说明如何解决这个问题。 参考资料资料1资料2资料3 解决方法1在启动Docker的时候添加 –privileged 参数：1# docker run -it --privileged -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth 解决方法2如果是已经运行的Docker容器，先导出其镜像，再重新加载并添加 –privileged 参数：12# docker commit coder mycoder# docker run -it --privileged -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" mycoder --allow-http --no-auth 最后之后按照官方文档要求:123456789Run this in terminal:# sudo vim /etc/sysctl.confScroll to the bottom and paste:fs.inotify.max_user_watches=524288Save and clode the editor, then run this:# sudo sysctl -pTo check your success:# cat /proc/sys/fs/inotify/max_user_watchesThis should return 524288 完成]]></content>
       <categories>
         <category>开发 Development</category>
         <category>IDE</category>
@@ -121,7 +95,7 @@
   <entry>
     <title><![CDATA[vi 命令速查]]></title>
     <url>%2F2019%2F05%2F25-vim%2F</url>
-    <content type="text"><![CDATA[环境 CentOS 7 VIMinsert mode i: change to input mode (insert) a: change to input mode (append) A: change to input mode (append at end of current row) O: change to input mode (Add a row over current row) o: change to input mode (Add a row under current row) command mode ESC: escape to command mode u: undo ZZ: save and quit (2)dd: delete (2)a row (2)x: delete (2)a cheractor (2)dw: delete (2)a word dG: delete all rows under this row yw: yank(copy) a word p/P: pause deleted/yanked content r + cheractor: replace a cheractor .: repeat last operation /, ?, n, N: search, next, previous cursor control h, j, k, l: left, top, bottom, right; w: next term ^: cursor goes to head of the row G: cursor goes to the last row 3G: cursor goes to 3rd row ex command mode :: ex command mode :q: quit this document :q!: quit without save :wq: save and quit]]></content>
+    <content type="text"><![CDATA[我每天都在管理大量的Linux服务器，但是一直以来我竟然不会用vim！！！这次培训刚好有这个机会就顺便学了。说实话我不确定vim就一定比nano好用，有的时候只是为了照顾别的工程师的心情。 环境 CentOS 7 VIMinsert mode i: change to input mode (insert) a: change to input mode (append) A: change to input mode (append at end of current row) O: change to input mode (Add a row over current row) o: change to input mode (Add a row under current row) command mode ESC: escape to command mode u: undo ZZ: save and quit (2)dd: delete (2)a row (2)x: delete (2)a cheractor (2)dw: delete (2)a word dG: delete all rows under this row yw: yank(copy) a word p/P: pause deleted/yanked content r + cheractor: replace a cheractor .: repeat last operation /, ?, n, N: search, next, previous cursor control h, j, k, l: left, top, bottom, right; w: next term ^: cursor goes to head of the row G: cursor goes to the last row 3G: cursor goes to 3rd row ex command mode :: ex command mode :q: quit this document :q!: quit without save :wq: save and quit]]></content>
       <categories>
         <category>开发 Development</category>
         <category>vi</category>
@@ -134,7 +108,7 @@
   <entry>
     <title><![CDATA[Linux 日语英语词汇]]></title>
     <url>%2F2019%2F05%2F19-linuxjaen%2F</url>
-    <content type="text"><![CDATA[环境 CentOS 7 词汇 日本語 English 中文 ポストオンリーアダプタ Host Only Adapter 仅主机模式 タイムシェアリングシステム Time Sharing System 分时系统 モジューラ哲学 Modular Philosophy 组合式哲学 シェル Shell 命令行 インタプリタ Interpreter 解释器 Bash (Bourne Again Shell) Slackware系 (openSUSE) Debain系 (Debain, Ubuntu) Red Hat系 (Red Hat Enterprise Linux, Cent OS) 階層化ファイルシステム Layered file system 分层文件系统 マルチタスキング Multitasking 多任务 マルチユーザ Multi-user 多用户 コンテナ Container 容器 ディレクトリ Directory 目录 ワークグループ Work Group 工作组 POSIX Portable Operating System Interface 可移植操作系统接口 シェルプロンプト Shell Prompt Shell提示 キーシーケンス Key Sequence 键序列 ファイルキャビネット File Cabinet 文件柜 アーカイブファイル Archive File 存档文件 ベンダ vendor 供应商 スプールファイル Spool File 假脱机文件; 临时文件; 打印文件; 道筋（みちすじ） Path 路径 カレントディレクトリ Current directory 当前目录 パーミッション Permission 权限 アスキーテキスト ASCIIファイル ASCII文本 シンボリック・リンク・ファイル Symbolic Link File 软连接文件 キャラクタ・デバイス・ファイル Character device file 字符设备文件、也表示硬件设备，但是数据是以字节流发送的，这些设备包括终端设备和串口设备、 ブロック・デバイス・ファイル Block device file 阻值设备文件 returnキー return key 回车 シンボリックリンク Symbolic link 软连接 たどる Follow 跟随 ダイジェスト認証 Digest access authentication HTTP摘要认证 枯渴（こかつ） drying up 枯竭 リバースプロキシ Reverse proxy 反向代理]]></content>
+    <content type="text"><![CDATA[整理一些Linux会用到的日语和英语词汇 环境 CentOS 7 词汇 日本語 English 中文 ポストオンリーアダプタ Host Only Adapter 仅主机模式 タイムシェアリングシステム Time Sharing System 分时系统 モジューラ哲学 Modular Philosophy 组合式哲学 シェル Shell 命令行 インタプリタ Interpreter 解释器 Bash (Bourne Again Shell) Slackware系 (openSUSE) Debain系 (Debain, Ubuntu) Red Hat系 (Red Hat Enterprise Linux, Cent OS) 階層化ファイルシステム Layered file system 分层文件系统 マルチタスキング Multitasking 多任务 マルチユーザ Multi-user 多用户 コンテナ Container 容器 ディレクトリ Directory 目录 ワークグループ Work Group 工作组 POSIX Portable Operating System Interface 可移植操作系统接口 シェルプロンプト Shell Prompt Shell提示 キーシーケンス Key Sequence 键序列 ファイルキャビネット File Cabinet 文件柜 アーカイブファイル Archive File 存档文件 ベンダ vendor 供应商 スプールファイル Spool File 假脱机文件; 临时文件; 打印文件; 道筋（みちすじ） Path 路径 カレントディレクトリ Current directory 当前目录 パーミッション Permission 权限 アスキーテキスト ASCIIファイル ASCII文本 シンボリック・リンク・ファイル Symbolic Link File 软连接文件 キャラクタ・デバイス・ファイル Character device file 字符设备文件、也表示硬件设备，但是数据是以字节流发送的，这些设备包括终端设备和串口设备、 ブロック・デバイス・ファイル Block device file 阻值设备文件 returnキー return key 回车 シンボリックリンク Symbolic link 软连接 たどる Follow 跟随 ダイジェスト認証 Digest access authentication HTTP摘要认证 枯渴（こかつ） drying up 枯竭 リバースプロキシ Reverse proxy 反向代理]]></content>
       <categories>
         <category>日语 Japanese</category>
         <category>词汇 Vocabulary</category>
@@ -148,7 +122,7 @@
   <entry>
     <title><![CDATA[Linux 命令速查]]></title>
     <url>%2F2019%2F05%2F19-linuxcmd%2F</url>
-    <content type="text"><![CDATA[环境 CentOS 7 笔记User OperationsProfileman : Show manual of the following commandformat:1$ man &#123;command&#125; e.g:1$ man date whereis : show path of the following commandformat:1$ man &#123;command&#125; e.g.:1$ whereis passwd id : show current user identificationswho : show current user informationwhoami: show current user namewho am i: show current user name and last logindate: show current system date time/etc/passwd/: saving user identifications/etc/group/: saving group identificationsclear: clear current screenecho: print information on the screenpwd: show current directory (Print Working Directory)/opt: save the APPs and products/bin: save the basic linux operation files/usr/lib: user library/sbin: save commands running when system startup and shutdown/etc: system file/dev: containing hardware device files/var: system log and spool file.: current directory..: parent directoryFile/Director Operationsls: show filenames and directory namesoptions:123456-a: show hidden files (dot files)-d: show directory status-l: show file detailed information-F: show files in types. Executable file with * and directory with /ls-R: show all children files under this directory in Recursive-i: show inode infomation cd: change current directoryfind: search something in the PCformat:1$ find &#123;options&#125; &#123;conditions&#125; options:1-name: search file name E.g.:1$ find . -name &quot;*file&quot; // search in current folder mkdir: create a directoryformat:1$ mkdir [-options] &#123;path&#125; operations:123456789-p: create all directories in the path if not exists-m &#123;mod&#125;: create and with &#123;mod&#125; (755, 644) permission.``` #### rm: remove a file/directoryformat:```text$ rm [-options] path options:12-r: directory-f: forced delete cat: show file contentmore: show file content in pagestail: show the tail in some filesoptions:12-n: set how many lines will be showed (default 10)-f: show the file (real time) lrp: insert the file into printing queuerm: removeoptions:123-f: force remove-r: remove all directory-i: interaction chmod: change file/dir pomissionformat:1$ chmod [options] &#123;mod&#125; &#123;filename&#125; options:12345678-R: for directory permission4 (100): write2 (010): read1 (001): excuteu+x: user (owner) for excuteu=rw: user (owner) for read/write permissionsg=rw: group for read/write permissionso=: other for nothing umask: set default permission when file created (Mask code: 002-&gt;775)format:1$ umask [-options] &#123;mod&#125; options:1-S: show current status e.g.:1$ umask 775 touch: update file timestampoptions:1234-a: update access datetime-m: update modified datetime-t: update access and modified datetimes-c: create if file not exists su: change user ID/Group IDformat:1$ su &#123;username&#125; alias: give alias for commande.g.:1234$ alias dir=ls$ alias mstat=/home/abc/scv/$ alias copy=&apos;cp -i&apos;$ alias (show all alias) umalias: remove aliase.g.:1$ unalias dir history: how history commandsenv: show environmentwc: count words in the fileoptions:1234-l: lines count-w: words count-c: count Byte-m: count charactors grep: global search regular expression(RE) and print out the lineformat:1$ grep [-options] &#123;keyword&#125; &#123;target path&#125; options:1-e: multiple keywords: grep -e i -e love /root/funfile.txt e.g.:1$ ps -ef | grep java : search all proceess about the Java |: left as the stdout, right as the stdin; get information from left and process on rightcut: show file indented contenttr: change texte.g.:1$ who | tr -s &quot; &quot; : remove all spaces tee: output strout and print on screene.g.:1$ cat 1.txt | tee 3.txt ManagementDisk Managementdmesg: show hardware informatione.g.:1$ dmesg | preg usb parted: Partitionoptions:1234- unit GB: Change to GB display- print: Print partition status- mkpart: Make partition- rm Number: Remove partition pvcreate: instant the partitionmkfs.xfs: init file systeme.g.:1$ mkfs.xfs /dev/sda7 mount: mount partition to directionformat:1$ mount [options] &#123;partition&#125; &#123;direction&#125; e.g.:12$ mkdir /mountdir1$ mount /dev/sda7 /mountdir1 mount forever1234567# cat /etc/mtab# cat /proc/mounts# cat /etc/fstab# mount -o remount /mountdir1# cat /etc/fstab# blkid /dev/sda7confirm UUID df: monitoring file system statuse.g.:1$ df -h swapcreate swap:1# mkswap /dev/sda8/ activate swap:1# swapon /dev/sda8/ User Management/etc/passwd : user register filee.g.:1# cat /etc/passwd /etc/shadow : user password filee.g.:1# cat /etc/shadow /etc/group : group register filee.g.:1# cat /etc/group useradd : add a userformat:1# useradd [options] &lt;username&gt; options:12345678-u : UID-g : GID-G : GID,GID-d : /home/path-m : make new home directory-s : indicate login shell e.g. /bin/bash-c : comment-D : set/change default value /etc/skel : this folder will be copied as home folder when user createdusermod : change user profileformat:1# usermod [options] &lt;username&gt; options:123456789-u : UID-g : GID-G : GID,GID-d : /home/path-m : make new home directory-s : indicate login shell-l : new user name-L : lock password-U : unlock password userdel : delete userformat:1# userdel [options] &lt;username&gt; options:1-r : delete the home folder Boot and Shutdown Management/etc/default/grub : change bootloader configratione.g.:123# vim /etc/default/grub// activate setting# grub2-mkconfig -o /boot/grub2/grub.cfg systemd.unit=rescue.target : rescue modesteps:123e[quiet] systemd.unit=rescue.targetctrl + x systemctl : confirm/change targete.g.: 12345678910111213# systemctl get-default //show current target# systemctl set-default multi-user.target //startup in console# systemctl isolate multi-user.target //change current target# systemctl list-units --type=target // show all roaded targets# systemctl list-dependencies graphical.target // show dependence of indicated target# systemctl start httpd.service //start apache# systemctl status httpd.service //show apache status# systemctl enable/disable httpd.service // run/or not apache when system startup# systemctl is-enable httpd.service // show is apache.service enable# systemctl list-unit-files // show all auto running services# systemctl status systemd-journald //show system status /usr/lib/systemd/system : unit settingshutdowne.g.: 12# shutdown -h //shutdown immediately# shutdown -r //reboot Package Managementrpm : package managementformat:1# rpm [-options] &#123;package name&#125; options:123456-i : package name-v : show detail information-h : show processbar--nodeps : do not check depandence--force : forced install--test : install to sandbox e.g.:123456# rpm -ivh &#123;package name&#125; //install package# rpm -Fvh &#123;package name&#125; //upgrade : do not install if package has not installed# rpm -Uvh &#123;package name&#125; //upgrade : newly install if package has not installed# rpm -qa | grep bash //search package about bash# rpm -e &#123;package name&#125; //remove package Software Managementyum : package managementconfig:123# vim /etc/yum.conf //Yum basic config# vim /etc/yum.repos.d/*.repo //repository config format:1# yum [options] &#123;package name&#125; options:12345678install : installremove : removeupdate : update a packagecheck-updateinfo : show package informationsearch : search a packagegrouplist : show list of package groupgroupinstall: install all packages in the group e.g.:1# yum install system-config-kickstart Log Managementjournalctl : operating log databaseformat :1$ journalctl [-options] &#123;condition&#125; options:12345678-b : boot logs-k : kernal logs-f : show logs on real time-u &#123;unit name&#125; : show unit logs--since=&#123;yyyy-MM-dd hh:mm::ss&#125; : since datetime--until=&#123;yyyy-MM-dd hh:mm::ss&#125; : until datetime_PID=&#123;process ID&#125; : show logs of process--no-pager : do not paging Persistence:123# mkdir /var/log/journal# vim /etc/systemd/journald.conf# systemctl restart systemd-journald /etc/rsyslog.conf : config rsysloglogger: save a messageformat:1# logger [options] &#123;message&#125; options:12-p facility.level-t tag e.g.:12# logger -p daemon.err -t rsyslogd Test Test Test# tail /var/log/messages]]></content>
+    <content type="text"><![CDATA[Linux一些常用的命令整理 环境 CentOS 7 笔记User OperationsProfileman : Show manual of the following commandformat:1$ man &#123;command&#125; e.g:1$ man date whereis : show path of the following commandformat:1$ man &#123;command&#125; e.g.:1$ whereis passwd id : show current user identificationswho : show current user informationwhoami: show current user namewho am i: show current user name and last logindate: show current system date time/etc/passwd/: saving user identifications/etc/group/: saving group identificationsclear: clear current screenecho: print information on the screenpwd: show current directory (Print Working Directory)/opt: save the APPs and products/bin: save the basic linux operation files/usr/lib: user library/sbin: save commands running when system startup and shutdown/etc: system file/dev: containing hardware device files/var: system log and spool file.: current directory..: parent directoryFile/Director Operationsls: show filenames and directory namesoptions:123456-a: show hidden files (dot files)-d: show directory status-l: show file detailed information-F: show files in types. Executable file with * and directory with /ls-R: show all children files under this directory in Recursive-i: show inode infomation cd: change current directoryfind: search something in the PCformat:1$ find &#123;options&#125; &#123;conditions&#125; options:1-name: search file name E.g.:1$ find . -name &quot;*file&quot; // search in current folder mkdir: create a directoryformat:1$ mkdir [-options] &#123;path&#125; operations:123456789-p: create all directories in the path if not exists-m &#123;mod&#125;: create and with &#123;mod&#125; (755, 644) permission.``` #### rm: remove a file/directoryformat:```text$ rm [-options] path options:12-r: directory-f: forced delete cat: show file contentmore: show file content in pagestail: show the tail in some filesoptions:12-n: set how many lines will be showed (default 10)-f: show the file (real time) lrp: insert the file into printing queuerm: removeoptions:123-f: force remove-r: remove all directory-i: interaction chmod: change file/dir pomissionformat:1$ chmod [options] &#123;mod&#125; &#123;filename&#125; options:12345678-R: for directory permission4 (100): write2 (010): read1 (001): excuteu+x: user (owner) for excuteu=rw: user (owner) for read/write permissionsg=rw: group for read/write permissionso=: other for nothing umask: set default permission when file created (Mask code: 002-&gt;775)format:1$ umask [-options] &#123;mod&#125; options:1-S: show current status e.g.:1$ umask 775 touch: update file timestampoptions:1234-a: update access datetime-m: update modified datetime-t: update access and modified datetimes-c: create if file not exists su: change user ID/Group IDformat:1$ su &#123;username&#125; alias: give alias for commande.g.:1234$ alias dir=ls$ alias mstat=/home/abc/scv/$ alias copy=&apos;cp -i&apos;$ alias (show all alias) umalias: remove aliase.g.:1$ unalias dir history: how history commandsenv: show environmentwc: count words in the fileoptions:1234-l: lines count-w: words count-c: count Byte-m: count charactors grep: global search regular expression(RE) and print out the lineformat:1$ grep [-options] &#123;keyword&#125; &#123;target path&#125; options:1-e: multiple keywords: grep -e i -e love /root/funfile.txt e.g.:1$ ps -ef | grep java : search all proceess about the Java |: left as the stdout, right as the stdin; get information from left and process on rightcut: show file indented contenttr: change texte.g.:1$ who | tr -s &quot; &quot; : remove all spaces tee: output strout and print on screene.g.:1$ cat 1.txt | tee 3.txt ManagementDisk Managementdmesg: show hardware informatione.g.:1$ dmesg | preg usb parted: Partitionoptions:1234- unit GB: Change to GB display- print: Print partition status- mkpart: Make partition- rm Number: Remove partition pvcreate: instant the partitionmkfs.xfs: init file systeme.g.:1$ mkfs.xfs /dev/sda7 mount: mount partition to directionformat:1$ mount [options] &#123;partition&#125; &#123;direction&#125; e.g.:12$ mkdir /mountdir1$ mount /dev/sda7 /mountdir1 mount forever1234567# cat /etc/mtab# cat /proc/mounts# cat /etc/fstab# mount -o remount /mountdir1# cat /etc/fstab# blkid /dev/sda7confirm UUID df: monitoring file system statuse.g.:1$ df -h swapcreate swap:1# mkswap /dev/sda8/ activate swap:1# swapon /dev/sda8/ User Management/etc/passwd : user register filee.g.:1# cat /etc/passwd /etc/shadow : user password filee.g.:1# cat /etc/shadow /etc/group : group register filee.g.:1# cat /etc/group useradd : add a userformat:1# useradd [options] &lt;username&gt; options:12345678-u : UID-g : GID-G : GID,GID-d : /home/path-m : make new home directory-s : indicate login shell e.g. /bin/bash-c : comment-D : set/change default value /etc/skel : this folder will be copied as home folder when user createdusermod : change user profileformat:1# usermod [options] &lt;username&gt; options:123456789-u : UID-g : GID-G : GID,GID-d : /home/path-m : make new home directory-s : indicate login shell-l : new user name-L : lock password-U : unlock password userdel : delete userformat:1# userdel [options] &lt;username&gt; options:1-r : delete the home folder Boot and Shutdown Management/etc/default/grub : change bootloader configratione.g.:123# vim /etc/default/grub// activate setting# grub2-mkconfig -o /boot/grub2/grub.cfg systemd.unit=rescue.target : rescue modesteps:123e[quiet] systemd.unit=rescue.targetctrl + x systemctl : confirm/change targete.g.: 12345678910111213# systemctl get-default //show current target# systemctl set-default multi-user.target //startup in console# systemctl isolate multi-user.target //change current target# systemctl list-units --type=target // show all roaded targets# systemctl list-dependencies graphical.target // show dependence of indicated target# systemctl start httpd.service //start apache# systemctl status httpd.service //show apache status# systemctl enable/disable httpd.service // run/or not apache when system startup# systemctl is-enable httpd.service // show is apache.service enable# systemctl list-unit-files // show all auto running services# systemctl status systemd-journald //show system status /usr/lib/systemd/system : unit settingshutdowne.g.: 12# shutdown -h //shutdown immediately# shutdown -r //reboot Package Managementrpm : package managementformat:1# rpm [-options] &#123;package name&#125; options:123456-i : package name-v : show detail information-h : show processbar--nodeps : do not check depandence--force : forced install--test : install to sandbox e.g.:123456# rpm -ivh &#123;package name&#125; //install package# rpm -Fvh &#123;package name&#125; //upgrade : do not install if package has not installed# rpm -Uvh &#123;package name&#125; //upgrade : newly install if package has not installed# rpm -qa | grep bash //search package about bash# rpm -e &#123;package name&#125; //remove package Software Managementyum : package managementconfig:123# vim /etc/yum.conf //Yum basic config# vim /etc/yum.repos.d/*.repo //repository config format:1# yum [options] &#123;package name&#125; options:12345678install : installremove : removeupdate : update a packagecheck-updateinfo : show package informationsearch : search a packagegrouplist : show list of package groupgroupinstall: install all packages in the group e.g.:1# yum install system-config-kickstart Log Managementjournalctl : operating log databaseformat :1$ journalctl [-options] &#123;condition&#125; options:12345678-b : boot logs-k : kernal logs-f : show logs on real time-u &#123;unit name&#125; : show unit logs--since=&#123;yyyy-MM-dd hh:mm::ss&#125; : since datetime--until=&#123;yyyy-MM-dd hh:mm::ss&#125; : until datetime_PID=&#123;process ID&#125; : show logs of process--no-pager : do not paging Persistence:123# mkdir /var/log/journal# vim /etc/systemd/journald.conf# systemctl restart systemd-journald /etc/rsyslog.conf : config rsysloglogger: save a messageformat:1# logger [options] &#123;message&#125; options:12-p facility.level-t tag e.g.:12# logger -p daemon.err -t rsyslogd Test Test Test# tail /var/log/messages]]></content>
       <categories>
         <category>开发 Development</category>
         <category>Linux</category>
@@ -161,7 +135,7 @@
   <entry>
     <title><![CDATA[CentOS系统设置虚拟内存SWAP]]></title>
     <url>%2F2019%2F05%2F13-centosswap%2F</url>
-    <content type="text"><![CDATA[问题背景CentOS默认是没有设定虚拟内存SWAP的，系统运行到内存不足的时候，oom killer机制会保护性的杀掉某些进程。所以设置虚拟内存SWAP绝对是有意义的。 参考资料参考资料1参考资料2 系统环境 CentOS 解决方案查看目前内存状态12345$ free -m total used free shared buff/cache availableMem: 957 136 441 0 379 639Swap: 0 0 0 可以看到目前SWAP的量是0。 创建SWAP文件在CentOS里，SWAP是以文件的形式存在的。 1、下面的例子用来创建1GB的SWAP文件（每个Block 1MB，一共创建1,024个）：12345[root@localhost ~]# dd if=/dev/zero of=/swapfile bs=1M count=10241024+0 records in1024+0 records out1073741824 bytes (1.1 GB) copied, 2.56416 s, 419 MB/s 一般建议创建虚拟内存大小为无力内存的2倍。比如1GB的机器，可以创建2GB的虚拟内存。 ２、变更SWAP文件的权限：1[root@localhost ~]# chmod 600 /swapfile ３、将文件类型转换为SWAP1234[root@localhost ~]# mkswap /swapfileSetting up swapspace version 1, size = 1048572 KiBno label, UUID=d0519bf6-8abf-4c0d-9375-8068c9e5e9a1 4、激活SWAP 1[root@localhost ~]# swapon /swapfile 确认：12345[root@localhost ~]# free -m total used free shared buff/cache availableMem: 741 76 57 9 606 537Swap: 1023 0 1023 5、持久化SWAP 上面的过程创建的SWAP，一旦系统重启就消失了，因此我们通过下面的步骤来对SWAP进行持久化。 编辑 /etc/fstab 在其中追加一行： 1/swapfile swap swap defaults 0 0]]></content>
+    <content type="text"><![CDATA[CentOS默认是没有设定虚拟内存SWAP的，系统运行到内存不足的时候，oom killer机制会保护性的杀掉某些进程。所以设置虚拟内存SWAP绝对是有意义的。本文介绍如何设置CentOS的SWAP。 参考资料参考资料1参考资料2 系统环境 CentOS 解决方案查看目前内存状态12345$ free -m total used free shared buff/cache availableMem: 957 136 441 0 379 639Swap: 0 0 0 可以看到目前SWAP的量是0。 创建SWAP文件在CentOS里，SWAP是以文件的形式存在的。 1、下面的例子用来创建1GB的SWAP文件（每个Block 1MB，一共创建1,024个）：12345[root@localhost ~]# dd if=/dev/zero of=/swapfile bs=1M count=10241024+0 records in1024+0 records out1073741824 bytes (1.1 GB) copied, 2.56416 s, 419 MB/s 一般建议创建虚拟内存大小为无力内存的2倍。比如1GB的机器，可以创建2GB的虚拟内存。 ２、变更SWAP文件的权限：1[root@localhost ~]# chmod 600 /swapfile ３、将文件类型转换为SWAP1234[root@localhost ~]# mkswap /swapfileSetting up swapspace version 1, size = 1048572 KiBno label, UUID=d0519bf6-8abf-4c0d-9375-8068c9e5e9a1 4、激活SWAP 1[root@localhost ~]# swapon /swapfile 确认：12345[root@localhost ~]# free -m total used free shared buff/cache availableMem: 741 76 57 9 606 537Swap: 1023 0 1023 5、持久化SWAP 上面的过程创建的SWAP，一旦系统重启就消失了，因此我们通过下面的步骤来对SWAP进行持久化。 编辑 /etc/fstab 在其中追加一行： 1/swapfile swap swap defaults 0 0]]></content>
       <categories>
         <category>开发 Development</category>
         <category>CentOS</category>
@@ -175,7 +149,7 @@
   <entry>
     <title><![CDATA[2019年05月英语词汇]]></title>
     <url>%2F2019%2F05%2Fenglishvocab%2F</url>
-    <content type="text"><![CDATA[单词 注音 词性词义 notation [noʊˈteɪʃən] n. 符号；乐谱；注释；记号法 例： scientific notation [数] 科学记数法. velocity [vəˈlɑsəti] n. 【物】速度 例： The anomaly migration velocity does not increase linearly. toggle [‘tɑɡl] n. 拴扣；切换键，开关；套索钉 v. 切换；拴牢，系紧 例： He toggled (切换) the com to talk to air traffic control. grant [ɡrænt] vt. 授予；允许；承认 vi. 同意 n. 拨款；[法] 授予物 例： France has agreed to grant him political asylum (政治庇护). revoke [rɪ’vok] vt. 撤回，取消；废除 vi. 有牌不跟 n. 有牌不跟 例： Your school may revoke your student visa. privilege [ˈprɪvəlɪdʒ] n. 权限；特权；优待 vt. 给予…特权；特免 例： that is their privilege. debate [dɪ’bet] vi. 辩论，争论，讨论 n. 辩论；辩论会 例： people debate a topic perspective [pɚ’spɛktɪv] n. 观点；远景；透视图 adj. 透视的 compensate [‘kɑmpɛnset] vt. 补偿，赔偿；付报酬 例： compensate for a lack of something warranty [‘wɔrənti] n. 保证；担保；授权；（正当）理由 例： a twelve-month warranty. 为期12个月的保修单。 constraint [kən’strent] n. [数] 约束；局促，态度不自然；强制 例： constraint condition migration [maɪ’ɡreʃən] n. 迁移；移民；移动 例： data migration fortune [‘fɔrtʃən] n. 财富；命运；运气 vt. 给予财富 dilation [daɪˈleɪʃn] n. 扩张，扩大；膨胀；详述 variate [‘vɛrɪet] n. [数] 变量；改变 vertically [‘vɝtɪkli] ADV.垂直地 volcano [vɑl’keno] N.火山 stage [stedʒ] N.舞台 V.上演 V.暂存区(GIT) stash [stæʃ] N.藏匿物 V.藏起来 V.储藏(GIT) semicolon [‘sɛmɪkolən] N.分号 quotation [kwo’teʃən] N.引号 enumeration [ɪ,njʊmə’reʃən] n. 列举；[数] 计算；细目]]></content>
+    <content type="text"><![CDATA[五月份开始专门作了一个“背单词”栏目，主要是用来记录这一个月出现的还不会的日语和英语单词，督促我自己一有时间就拿出来背一背。 单词 注音 词性词义 notation [noʊˈteɪʃən] n. 符号；乐谱；注释；记号法 例： scientific notation [数] 科学记数法. velocity [vəˈlɑsəti] n. 【物】速度 例： The anomaly migration velocity does not increase linearly. toggle [‘tɑɡl] n. 拴扣；切换键，开关；套索钉 v. 切换；拴牢，系紧 例： He toggled (切换) the com to talk to air traffic control. grant [ɡrænt] vt. 授予；允许；承认 vi. 同意 n. 拨款；[法] 授予物 例： France has agreed to grant him political asylum (政治庇护). revoke [rɪ’vok] vt. 撤回，取消；废除 vi. 有牌不跟 n. 有牌不跟 例： Your school may revoke your student visa. privilege [ˈprɪvəlɪdʒ] n. 权限；特权；优待 vt. 给予…特权；特免 例： that is their privilege. debate [dɪ’bet] vi. 辩论，争论，讨论 n. 辩论；辩论会 例： people debate a topic perspective [pɚ’spɛktɪv] n. 观点；远景；透视图 adj. 透视的 compensate [‘kɑmpɛnset] vt. 补偿，赔偿；付报酬 例： compensate for a lack of something warranty [‘wɔrənti] n. 保证；担保；授权；（正当）理由 例： a twelve-month warranty. 为期12个月的保修单。 constraint [kən’strent] n. [数] 约束；局促，态度不自然；强制 例： constraint condition migration [maɪ’ɡreʃən] n. 迁移；移民；移动 例： data migration fortune [‘fɔrtʃən] n. 财富；命运；运气 vt. 给予财富 dilation [daɪˈleɪʃn] n. 扩张，扩大；膨胀；详述 variate [‘vɛrɪet] n. [数] 变量；改变 vertically [‘vɝtɪkli] ADV.垂直地 volcano [vɑl’keno] N.火山 stage [stedʒ] N.舞台 V.上演 V.暂存区(GIT) stash [stæʃ] N.藏匿物 V.藏起来 V.储藏(GIT) semicolon [‘sɛmɪkolən] N.分号 quotation [kwo’teʃən] N.引号 enumeration [ɪ,njʊmə’reʃən] n. 列举；[数] 计算；细目]]></content>
       <categories>
         <category>英语 English</category>
         <category>词汇 Vocabulary</category>
@@ -188,7 +162,7 @@
   <entry>
     <title><![CDATA[2019年05月日语词汇]]></title>
     <url>%2F2019%2F05%2Fjapanesevocab%2F</url>
-    <content type="text"><![CDATA[单词 注音 词性词义 お似合い おにあい （两个人，情侣）很合适 お似合いのカップル 捕（捉）らえる とらえる 五他 取得 均衡 きんこう 名詞 均衡を保つ 前兆 ぜんちょう 名詞 嵐の前兆 ポテンシャル potential 「形動」潜在 重力ポテンシャル（重力位） 閉鎖 へいさ さ変他 駐車場を閉鎖する]]></content>
+    <content type="text"><![CDATA[五月份开始专门作了一个“背单词”栏目，主要是用来记录这一个月出现的还不会的日语和英语单词，督促我自己一有时间就拿出来背一背。 单词 注音 词性词义 お似合い おにあい （两个人，情侣）很合适 お似合いのカップル 捕（捉）らえる とらえる 五他 取得 均衡 きんこう 名詞 均衡を保つ 前兆 ぜんちょう 名詞 嵐の前兆 ポテンシャル potential 「形動」潜在 重力ポテンシャル（重力位） 閉鎖 へいさ さ変他 駐車場を閉鎖する]]></content>
       <categories>
         <category>日语 Japanese</category>
         <category>词汇 Vocabulary</category>
@@ -250,83 +224,6 @@
       <tags>
         <tag>PHP</tag>
         <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome Development Tools]]></title>
-    <url>%2Fawesome%2Fdev%2F</url>
-    <content type="text"><![CDATA[FrameworkNodeJS Angular: 一个基于node.js和MVC框架 PHP Laravel: PHP的MVC框架 教程 从入门到精通 前端Javascript Tempus Dominus Bootstrap 4: 一个兼容Bootstrap4的时间选择器 Web DataTable: 一个跟后台联动的HTML表格封装 Mobile Cordova: Cordova 是用于使用HTML，CSS和JS构建移动应用的平台。我们可以认为Cordova是一个容器，用于将我们的网络应用程序与本机移动功能连接。 Cordova教程 Desktop electronjs: 一个可以用HTML和JAVASCRIPT来开发桌面应用程序的框架。VSCODE使用的框架。 语言Javascript TypeScript: 一个JavaScript的扩展集 文档 Java Gradle: 编译管理，有点像Maven。 设计 PlantUML: 一个免费的UML作图工具 draw.io: 在线拖拽式绘图工具 Astah: UML所见即所得绘图工具。 通信 socket.io: 一个WebSocket封装，用于跨平台通信。 gRPC: 一个基于ProtoBuf的跨平台通信框架。 IDEEclipseplugins emmet: html代码自动完成工具 部署 Jenkins: Jenkins 是一个开源自动化服务器… Jenkins是开源CI&amp;CD软件领导者,提供超过1000个插件来支持构建、部署、自动化,满足任何项目的需要。]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Awesome</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome UI]]></title>
-    <url>%2Fawesome%2Fui%2F</url>
-    <content type="text"><![CDATA[Web UI Bootstrap: 一个基于angular和Bootstrap的UI Bootsnipp: 各种Bootstrap的例子 Tools Sketch: Sketch is a design toolkit built to help you create your best work — from your earliest ideas, through to final artwork.]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Awesome</tag>
-        <tag>用户接口 UI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome Computer Vision]]></title>
-    <url>%2Fawesome%2Fcv%2F</url>
-    <content type="text"><![CDATA[Face Recognition face_recognition: 一个基于python和OpenCV的配置简单的人脸识别系统 Pose Recognition 3d-pose-baseline: 一个基于Tensorflow的姿势识别系统 OpenPose: 经典的姿势识别系统 Deep Fake Faceswap-GAN: 换脸换脸]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Awesome</tag>
-        <tag>计算机视觉 Computer Vision</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome Data Science]]></title>
-    <url>%2Fawesome%2Fos%2F</url>
-    <content type="text"><![CDATA[Command tldr: 一个提示命令用法的工具]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Awesome</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome Data Science]]></title>
-    <url>%2Fawesome%2Fdata%2F</url>
-    <content type="text"><![CDATA[Tutorials pandas_note: 一份关于 Pandas 学习的系列教程 Numpy 100 Question: 100道 Numpy 的官方例题 Visualization OpenRefine: Google开发的关系型数据可视化工具 Tensorflow Colabratory: 谷歌在线的Jupyter notebook，支持Tensorflow，似乎支持GPU加速 OpenStreetMap OL-ext: OpenLayers扩展包 Workflow &amp; Data Pipeline WireCloud: 给予Web的拖拽式数据流处理工具。 Data WarehouseNoSQL Redis: 有名的KVS数据库 Neo4j: 一个节点，图，网络构造数据库，]]></content>
-      <categories>
-        <category>开发 Development</category>
-        <category>Awesome</category>
-      </categories>
-      <tags>
-        <tag>Data Science</tag>
-        <tag>Awesome</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Awesome Japanese 常用日语表达]]></title>
-    <url>%2Fawesome%2Fjp%2F</url>
-    <content type="text"><![CDATA[============================ 中文：您要亲自过来，真是诚惶诚恐。 日语：ご足労(そくろう)いただくことになり、大変恐縮(きょうしゅく)です。(大変恐れ入ります) 参考：ご足労くださいはＮＧ？ ============================ ============================ 中文：期待与您相见 日语：お目にかかれるのを心待ちにしております 参考：「お目にかかる」の意味とは？類語と正しい敬語表現での使い方]]></content>
-      <categories>
-        <category>日语 Japanese</category>
-        <category>写作 Writing</category>
-      </categories>
-      <tags>
-        <tag>日语 Japanese</tag>
-        <tag>写作 Writing</tag>
       </tags>
   </entry>
   <entry>
@@ -983,6 +880,109 @@
         <tag>Ubuntu</tag>
         <tag>Apache</tag>
         <tag>HTTPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Data Science]]></title>
+    <url>%2Fawesome%2Fdata%2F</url>
+    <content type="text"><![CDATA[Tutorials pandas_note: 一份关于 Pandas 学习的系列教程 Numpy 100 Question: 100道 Numpy 的官方例题 Visualization OpenRefine: Google开发的关系型数据可视化工具 Tensorflow Colabratory: 谷歌在线的Jupyter notebook，支持Tensorflow，似乎支持GPU加速 OpenStreetMap OL-ext: OpenLayers扩展包 Workflow &amp; Data Pipeline WireCloud: 给予Web的拖拽式数据流处理工具。 Data WarehouseNoSQL Redis: 有名的KVS数据库 Neo4j: 一个节点，图，网络构造数据库，]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Data Science</tag>
+        <tag>Awesome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Computer Vision]]></title>
+    <url>%2Fawesome%2Fcv%2F</url>
+    <content type="text"><![CDATA[Face Recognition face_recognition: 一个基于python和OpenCV的配置简单的人脸识别系统 Pose Recognition 3d-pose-baseline: 一个基于Tensorflow的姿势识别系统 OpenPose: 经典的姿势识别系统 Deep Fake Faceswap-GAN: 换脸换脸]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>计算机视觉 Computer Vision</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Development Tools]]></title>
+    <url>%2Fawesome%2Fdev%2F</url>
+    <content type="text"><![CDATA[FrameworkNodeJS Angular: 一个基于node.js和MVC框架 PHP Laravel: PHP的MVC框架 教程 从入门到精通 前端Javascript Tempus Dominus Bootstrap 4: 一个兼容Bootstrap4的时间选择器 Web DataTable: 一个跟后台联动的HTML表格封装 Mobile Cordova: Cordova 是用于使用HTML，CSS和JS构建移动应用的平台。我们可以认为Cordova是一个容器，用于将我们的网络应用程序与本机移动功能连接。 Cordova教程 Desktop electronjs: 一个可以用HTML和JAVASCRIPT来开发桌面应用程序的框架。VSCODE使用的框架。 语言Javascript TypeScript: 一个JavaScript的扩展集 文档 Java Gradle: 编译管理，有点像Maven。 设计 PlantUML: 一个免费的UML作图工具 draw.io: 在线拖拽式绘图工具 Astah: UML所见即所得绘图工具。 通信 socket.io: 一个WebSocket封装，用于跨平台通信。 gRPC: 一个基于ProtoBuf的跨平台通信框架。 IDEEclipseplugins emmet: html代码自动完成工具 部署 Jenkins: Jenkins 是一个开源自动化服务器… Jenkins是开源CI&amp;CD软件领导者,提供超过1000个插件来支持构建、部署、自动化,满足任何项目的需要。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Japanese 常用日语表达]]></title>
+    <url>%2Fawesome%2Fjp%2F</url>
+    <content type="text"><![CDATA[============================ 中文：您要亲自过来，真是诚惶诚恐。 日语：ご足労(そくろう)いただくことになり、大変恐縮(きょうしゅく)です。(大変恐れ入ります) 参考：ご足労くださいはＮＧ？ ============================ ============================ 中文：期待与您相见 日语：お目にかかれるのを心待ちにしております 参考：「お目にかかる」の意味とは？類語と正しい敬語表現での使い方]]></content>
+      <categories>
+        <category>日语 Japanese</category>
+        <category>写作 Writing</category>
+      </categories>
+      <tags>
+        <tag>日语 Japanese</tag>
+        <tag>写作 Writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Data Science]]></title>
+    <url>%2Fawesome%2Fos%2F</url>
+    <content type="text"><![CDATA[Command tldr: 一个提示命令用法的工具]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome System]]></title>
+    <url>%2Fawesome%2Fsys%2F</url>
+    <content type="text"><![CDATA[CRM Sugar CRM: 一个开源的客户关系管理系统]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>系统 UI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome UI]]></title>
+    <url>%2Fawesome%2Fui%2F</url>
+    <content type="text"><![CDATA[Web UI Bootstrap: 一个基于angular和Bootstrap的UI Bootsnipp: 各种Bootstrap的例子 Tools Sketch: Sketch is a design toolkit built to help you create your best work — from your earliest ideas, through to final artwork.]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>用户接口 UI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Website]]></title>
+    <url>%2Fawesome%2Fweb%2F</url>
+    <content type="text"><![CDATA[IT NewsPicks: 一个介绍日本IT业界以及经济相关信息的网站 Markdown HackMD: 用Markdown做笔记的网站 OA 石墨: 在线办公协助系统，支持PC和移动端。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>网站 Website</tag>
       </tags>
   </entry>
 </search>

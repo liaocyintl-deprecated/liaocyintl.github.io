@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="问题背景使用Docker安装Web版本VScode，既Coder，的时候。如果按照官方的安装命令：1# docker run -it -p 127.0.0.1:8443:8443 -v &quot;$&amp;#123;PWD&amp;#125;:/home/coder/project&quot; codercom/code-server --allow-http --no-auth 程序运行以后IDE会提示错误信息：1code-">
+<meta name="description" content="Coder是Visual Studio Code的Web版本。通过把Coder部署在服务器上，你就可以随时随地的用浏览器编程序了。用Docker部署Coder出奇的简单，我就不赘述了。本文要讲的是Docker Coder成功部署，并且登录IDE以后，会出现code-server is unable to watch for file changes in this large workspace的">
 <meta name="keywords" content="Docker,Coder,IDE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker运行Coder时 code-server is unable to watch for file changes in this large workspace 的解决方案">
 <meta property="og:url" content="https://liaocy.net/2019/05/26-maxuserwatches/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
-<meta property="og:description" content="问题背景使用Docker安装Web版本VScode，既Coder，的时候。如果按照官方的安装命令：1# docker run -it -p 127.0.0.1:8443:8443 -v &quot;$&amp;#123;PWD&amp;#125;:/home/coder/project&quot; codercom/code-server --allow-http --no-auth 程序运行以后IDE会提示错误信息：1code-">
+<meta property="og:description" content="Coder是Visual Studio Code的Web版本。通过把Coder部署在服务器上，你就可以随时随地的用浏览器编程序了。用Docker部署Coder出奇的简单，我就不赘述了。本文要讲的是Docker Coder成功部署，并且登录IDE以后，会出现code-server is unable to watch for file changes in this large workspace的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T06:28:31.488Z">
+<meta property="og:updated_time" content="2019-07-03T06:55:09.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker运行Coder时 code-server is unable to watch for file changes in this large workspace 的解决方案">
-<meta name="twitter:description" content="问题背景使用Docker安装Web版本VScode，既Coder，的时候。如果按照官方的安装命令：1# docker run -it -p 127.0.0.1:8443:8443 -v &quot;$&amp;#123;PWD&amp;#125;:/home/coder/project&quot; codercom/code-server --allow-http --no-auth 程序运行以后IDE会提示错误信息：1code-">
+<meta name="twitter:description" content="Coder是Visual Studio Code的Web版本。通过把Coder部署在服务器上，你就可以随时随地的用浏览器编程序了。用Docker部署Coder出奇的简单，我就不赘述了。本文要讲的是Docker Coder成功部署，并且登录IDE以后，会出现code-server is unable to watch for file changes in this large workspace的">
 
 
 
@@ -430,7 +430,8 @@
       
 
       
-        <a id="more"></a>
+        <p><a href="https://coder.com/" target="_blank" rel="noopener">Coder</a>是<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>的Web版本。<br>通过把Coder部署在服务器上，你就可以随时随地的用浏览器编程序了。<br>用Docker部署Coder出奇的简单，我就不赘述了。<br>本文要讲的是Docker Coder成功部署，并且登录IDE以后，会出现code-server is unable to watch for file changes in this large workspace的提示。<br>那么如何在docker环境下，我们如何增加这个max_user_watches的数值。</p>
+<a id="more"></a>
 <h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>使用Docker安装Web版本VScode，既<a href="https://coder.com/" target="_blank" rel="noopener">Coder</a>，的时候。如果按照官方的安装命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker run -it -p 127.0.0.1:8443:8443 -v "$&#123;PWD&#125;:/home/coder/project" codercom/code-server --allow-http --no-auth</span></span><br></pre></td></tr></table></figure></p>
 <p>程序运行以后IDE会提示错误信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-server is unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue.</span><br></pre></td></tr></table></figure></p>
 <p>按照<a href="https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc" target="_blank" rel="noopener">官方解决方案</a>,<br>需要修改 <strong>/etc/sysctl.conf</strong> ，在里面添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.inotify.max_user_watches=524288</span><br></pre></td></tr></table></figure></p>

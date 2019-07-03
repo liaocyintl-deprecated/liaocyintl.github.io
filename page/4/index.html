@@ -308,1439 +308,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/30-pythonsshdb/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30-pythonsshdb/" itemprop="url">Python透过SSH访问数据库</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T16:57:22+09:00">
-                2018-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/30-pythonsshdb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/30-pythonsshdb/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>有时候我们需要透过SSH通道访问服务器里的数据库，这个功能在很多DBMS-GUI上都有集成，<br>然而如何通过Python代码实现呢？<br>本文进行讨论。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://qiita.com/seisyu1985/items/e910d85b2ca6f30db4f2" target="_blank" rel="noopener">PythonでSSH経由のMySQLアクセスをして、WordPressの投稿情報を取得する</a></li>
-</ul>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>Ubuntu: 18.04 LTS</li>
-<li>MariaDB: 5.5</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>首先需要python安装了sshtunnel库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install sshtunnel</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># 使用SSH隧道的包</span></span><br><span class="line"><span class="keyword">from</span> sshtunnel <span class="keyword">import</span> SSHTunnelForwarder</span><br><span class="line"><span class="comment"># 连接数据库用的包</span></span><br><span class="line"><span class="keyword">import</span> pymysql.cursors</span><br><span class="line"></span><br><span class="line"><span class="comment"># SSH相关设定</span></span><br><span class="line"><span class="keyword">with</span> SSHTunnelForwarder(</span><br><span class="line">    (<span class="string">"SSH服务器的IP地址"</span>, <span class="number">22</span>（SSH服务的端口号）),</span><br><span class="line">        ssh_host_key=<span class="string">"SSH主机钥匙（如果没有使用的话写None）"</span>,</span><br><span class="line">        ssh_pkey=<span class="string">"SSH密钥路径"</span>,</span><br><span class="line">        ssh_username=<span class="string">"在服务器上的用户名（如果没有的话写None）"</span>,</span><br><span class="line">        ssh_password=<span class="string">"在服务器上的密码 或者 密钥的指纹密码（没有的话写None）"</span>,</span><br><span class="line">        remote_bind_address=(<span class="string">"127.0.0.1（绑定以后连接数据库的地址）"</span>, <span class="number">3306</span>（MySQL数据库的端口）)</span><br><span class="line">    ) <span class="keyword">as</span> ssh:</span><br></pre></td></tr></table></figure>
-<p>之后就可以正常地操作数据库了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 接上面的代码</span></span><br><span class="line"></span><br><span class="line">conn = pymysql.connect(host=<span class="string">'127.0.0.1'</span>, <span class="comment"># 由于是透过SSH进行本地连接</span></span><br><span class="line">        user=<span class="string">'数据库用户名'</span>,</span><br><span class="line">        password=<span class="string">'数据库密码'</span>,</span><br><span class="line">        db=<span class="string">'数据库名称'</span>,</span><br><span class="line">        charset=<span class="string">'utf8'</span>,</span><br><span class="line">        cursorclass=pymysql.cursors.DictCursor)</span><br><span class="line"><span class="comment"># 执行select</span></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line">sql = <span class="string">"show tables"</span></span><br><span class="line">cursor.execute(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读出Select的结果</span></span><br><span class="line">rets = cursor.fetchall()</span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> rets:</span><br><span class="line">    print(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切断连接</span></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/30-ubuntumariadb/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30-ubuntumariadb/" itemprop="url">在Ubuntu上配置MariaDB并设置通过密码访问</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T11:25:22+09:00">
-                2018-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/MariaDB/" itemprop="url" rel="index">
-                    <span itemprop="name">MariaDB</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/30-ubuntumariadb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/30-ubuntumariadb/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>自从Oracle收购SUN之后，越来越多的人使用MariaDB代替MySQL。<br>MariaDB没有被收费的风险，据说效率也要比MySQL高一些。</p>
-<p>本文我们介绍如何在Ubuntu上安装配置MariaDB，特别是安装之后如何配置通过账号密码访问数据库。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://jyn.jp/ubuntu-16-04-mariadb-password-bug/" target="_blank" rel="noopener">Ubunt 16.04でMariaDBをインストールするとパスワードが変</a></li>
-</ul>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>Ubuntu: 18.04 LTS</li>
-<li>MariaDB: 5.5</li>
-</ul>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>安装MariaDB服务器端：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install mariadb-server</span><br></pre></td></tr></table></figure></p>
-<p>启动服务：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br></pre></td></tr></table></figure></p>
-<p>可以看到MariaDB和MySql几乎一模一样。</p>
-<p>配置安全项目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure></p>
-<p>配置安全项目分别是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Change the root password? [Y/n] #是否改变root密码</span><br><span class="line">Remove anonymous users? [Y/n] #是否删除匿名账户</span><br><span class="line">Disallow root login remotely? [Y/n] #是否不允许root账户远程登录</span><br><span class="line">Remove test database and access to it? [Y/n] #是否删除谁都能登录的测试数据库</span><br><span class="line">Reload privilege tables now? [Y/n] #是否重加载权限表</span><br></pre></td></tr></table></figure></p>
-<p>这里我推荐全选Y。</p>
-<p>以上，服务器就配置好了。但是此时root采用一种叫做unix_socket的登录方式，因此无法用用户名/密码的形式登录数据库，需要进行以下操作：</p>
-<p>使用root登录数据库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure></p>
-<p>设定使用密码登录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [(none)]&gt; USE mysql;</span><br><span class="line">MariaDB [(mysql)]&gt; UPDATE user SET plugin=&apos;&apos; WHERE User=&apos;root&apos;;</span><br><span class="line">MariaDB [(mysql)]&gt; flush privileges;</span><br></pre></td></tr></table></figure></p>
-<p>之后就可以用用户名和密码登录了，测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -rroot -proot</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/22-ubuntupptp/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/22-ubuntupptp/" itemprop="url">在Ubuntu上配置PPTP</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T22:42:22+09:00">
-                2018-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/22-ubuntupptp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/22-ubuntupptp/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本文我们介绍在Ubuntu上配置PPTP VPN。</p>
-<p>参考资料：</p>
-<p><a href="https://blog.csdn.net/m0_37961948/article/details/77871088" target="_blank" rel="noopener">Ubuntu 搭建VPN（PPTP）并开机自启</a></p>
-<p><a href="http://www.ppkj.net/2011/04/30/ubuntu10-4-server-%E5%AE%89%E8%A3%85pptp%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%A4%96%E7%BD%91%E8%A7%A3%E5%86%B3.html" target="_blank" rel="noopener">ubuntu10.4 server 配置VPN 安装pptp无法连接外网解决</a></p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>Ubuntu: 16.04 LTS</li>
-</ul>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>安装PPTP服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install pptpd</span><br></pre></td></tr></table></figure>
-<p>配置pptpd.conf文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/pptpd.conf</span><br></pre></td></tr></table></figure>
-<p>去掉下面两行的注释：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localip 192.168.0.1</span><br><span class="line">remoteip 192.168.0.234-238,192.168.0.245</span><br></pre></td></tr></table></figure>
-<p>设置VPN的账号和密码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/ppp/chap-secrets</span><br></pre></td></tr></table></figure></p>
-<p>账号和密码按照下面方式配置：<br>myusername为你的用户名mypassword为你的密码，第一个星号<em>代表可以用PPTP也可以用L2TP，最后的</em>号表示允许在任意IP连接到服务。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myusername  *  mypassword  *</span><br></pre></td></tr></table></figure></p>
-<p>这样VPN服务器就配置好了，但是这时候还上不了外网，于是要进行下面配置：</p>
-<p>开启内核IP转发:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
-<p>取消 net.ipv4.ip_forward=1 的注释<br>然后执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysctl -p</span><br></pre></td></tr></table></figure></p>
-<p>配置iptables：<br>注意这里的eth0是你的网卡名称，用ifconfig确认<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span><br></pre></td></tr></table></figure></p>
-<p>如果网页打开很慢的话，执行下面的命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A FORWARD -p tcp --syn -s 192.168.0.0/24 -j TCPMSS --<span class="built_in">set</span>-mss 1356</span><br></pre></td></tr></table></figure></p>
-<p>保存iptables配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-save</span><br></pre></td></tr></table></figure></p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
-<li>PPTP的端口是1723</li>
-<li>注意打开防火墙</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/19-tensorflowtutorial04/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/19-tensorflowtutorial04/" itemprop="url">Tensorflow学习（四） -- 基本回归任务</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-19T13:42:22+09:00">
-                2018-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/深度学习-Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习 Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/19-tensorflowtutorial04/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/19-tensorflowtutorial04/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="/2018/10/17-tensorflowtutorial03/">前文：Tensorflow学习（三） – 基本文本分类任务</a></p>
-<p><a href="#">后文：待续</a></p>
-<p>练习使用Tensorflow并对官方文档做一些翻译</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
-<li>Tensorflow-gpu: 1.11.0</li>
-<li>Ubuntu: 18.04 LTS</li>
-<li>Anaconda: 5.2.0</li>
-<li>Python: 3.6.5</li>
-</ul>
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
-<li><a href="https://www.tensorflow.org/tutorials/keras/basic_regression" target="_blank" rel="noopener">原文</a></li>
-<li><a href="https://github.com/liaocyintl/tensorflowtutorial/blob/master/004_regression.ipynb" target="_blank" rel="noopener">代码</a></li>
-</ul>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><iframe title="Source Code" width="100%" height="500px" frameborder="0" src="/uploads/jupyters/2018/004_regression.html"><br></iframe>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/17-tensorflowtutorial03/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/17-tensorflowtutorial03/" itemprop="url">Tensorflow学习（三） -- 基本文本分类任务</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T16:10:22+09:00">
-                2018-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/深度学习-Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习 Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/17-tensorflowtutorial03/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/17-tensorflowtutorial03/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="/2018/09/20180930-tensorflowtutorial02/">前文：Tensorflow学习（二） – 基本分类器</a></p>
-<p><a href="/2018/10/19-tensorflowtutorial04/">后文：Tensorflow学习（四） – 基本回归</a></p>
-<p>练习使用Tensorflow并对官方文档做一些翻译</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
-<li>Tensorflow-gpu: 1.11.0</li>
-<li>Ubuntu: 18.04 LTS</li>
-<li>Anaconda: 5.2.0</li>
-<li>Python: 3.6.5</li>
-</ul>
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
-<li><a href="https://www.tensorflow.org/tutorials/keras/basic_text_classification" target="_blank" rel="noopener">原文</a></li>
-<li><a href="https://github.com/liaocyintl/tensorflowtutorial/blob/master/003_text_classification.ipynb" target="_blank" rel="noopener">代码</a></li>
-</ul>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><iframe title="Source Code" width="100%" height="500px" frameborder="0" src="/uploads/jupyters/2018/003_text_classification.ipynb"><br></iframe>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/08-osrmlocalinstance/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/08-osrmlocalinstance/" itemprop="url">创建本地OSRM实例，用OSM做导航数据</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T17:40:22+09:00">
-                2018-10-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Open-Street-Map-OSM/" itemprop="url" rel="index">
-                    <span itemprop="name">Open Street Map (OSM)</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/08-osrmlocalinstance/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/08-osrmlocalinstance/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Open Source Routing Machine (OSRM) 是一个导航路径计算库。<br>给定两个地理坐标，通过OSRM可以计算其间的路径、距离、交通时间，并提供 HTTP 和 C++ 的接口。<br>由于它是一个开源的库，你可以把它的实例安装在本地，以构成一个导航服务。<br>这样可以避免官方服务器的限额问题。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://datawookie.netlify.com/blog/2017/09/building-a-local-osrm-instance/" target="_blank" rel="noopener">Building a Local OSRM Instance</a></li>
-</ul>
-<h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><ul>
-<li>Ubuntu: 18.04 LTS (OSRM对于内存的要求较高，因此至少保证4GB的swap空间)</li>
-</ul>
-<h2 id="构建OSRM"><a href="#构建OSRM" class="headerlink" title="构建OSRM"></a>构建OSRM</h2><p>安装系统依赖：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install -y git cmake build-essential jq htop</span><br><span class="line">apt install -y liblua5.2-dev libboost-all-dev libprotobuf-dev libtbb-dev libstxxl-dev libbz2-dev</span><br></pre></td></tr></table></figure></p>
-<p>克隆代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Project-OSRM/osrm-backend.git</span><br></pre></td></tr></table></figure></p>
-<p>进入文件夹：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> osrm-backend/</span><br></pre></td></tr></table></figure></p>
-<p>我们测试的时候使用版本v5.18.0，因此我们将代码切换到v5.18.0：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout v5.18.0</span><br></pre></td></tr></table></figure></p>
-<p>创建build文件夹并编译代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build/</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure></p>
-<p>安装编译好的程序：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure></p>
-<h2 id="导入Open-Street-Map地图数据"><a href="#导入Open-Street-Map地图数据" class="headerlink" title="导入Open Street Map地图数据"></a>导入Open Street Map地图数据</h2><p>打开<a href="http://www.openstreetmap.org/export" target="_blank" rel="noopener">导出地图数据的网页</a>，<br>在这个页面里，可见地图的坐标范围显示在左面：</p>
-<p><img src="/uploads/postimgs/8924e14c.png" alt="导出香港的数据"></p>
-<p>通过下面的命令，下载相应的地图数据：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O map.xml http://overpass-api.de/api/map?bbox=114.4306,22.1327,113.8607,22.5398</span><br></pre></td></tr></table></figure>
-<p>其中四个坐标分别是 右，下，左，上。</p>
-<p>将下载好的map.xml文件放在osrm-backend文件夹下面。</p>
-<h2 id="提取导航数据"><a href="#提取导航数据" class="headerlink" title="提取导航数据"></a>提取导航数据</h2><p>在osrm-backend文件夹下执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osrm-extract map.xml -p profiles/car.lua</span><br></pre></td></tr></table></figure></p>
-<h2 id="创建数据"><a href="#创建数据" class="headerlink" title="创建数据"></a>创建数据</h2><p>创建结构化数据以支持高速提取导航最短路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osrm-contract map.xml.osrm</span><br></pre></td></tr></table></figure></p>
-<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p>之后我们就可以启动HTTP服务：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osrm-routed map.xml.osrm</span><br></pre></td></tr></table></figure>
-<h2 id="调用接口"><a href="#调用接口" class="headerlink" title="调用接口"></a>调用接口</h2><p>之后我们就可以按照<a href="http://project-osrm.org/docs/v5.15.2/api/" target="_blank" rel="noopener">OSRM的接口</a>进行调用了。<br>只要把URL改成我们服务器的地址，默认为：<a href="http://127.0.0.1:5000/" target="_blank" rel="noopener">http://127.0.0.1:5000/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180930-tensorflowtutorial02/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20180930-tensorflowtutorial02/" itemprop="url">Tensorflow学习（二） -- 基本分类器</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-30T17:40:22+09:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/深度学习-Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习 Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/20180930-tensorflowtutorial02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180930-tensorflowtutorial02/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="/2018/09/20180929-tensorflowtutorial01/">前一篇：Tensorflow学习（一） – 开篇</a></p>
-<p><a href="/2018/10/17-tensorflowtutorial03/">后一篇：Tensorflow学习（三） – 基本文本分类任务</a></p>
-<p>练习使用Tensorflow并对官方文档做一些翻译</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
-<li>Tensorflow-gpu: 1.11.0</li>
-<li>Ubuntu: 18.04 LTS</li>
-<li>Anaconda: 5.2.0</li>
-<li>Python: 3.6.5</li>
-</ul>
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
-<li><a href="https://www.tensorflow.org/tutorials/keras/basic_classification?hl=en" target="_blank" rel="noopener">原文</a></li>
-<li><a href="https://github.com/liaocyintl/tensorflowtutorial/blob/master/002_basic_classification.ipynb" target="_blank" rel="noopener">代码</a></li>
-</ul>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><iframe title="Source Code" width="100%" height="500px" frameborder="0" src="/uploads/jupyters/2018/002_basic_classification.ipynb"><br></iframe>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180929-tensorflowtutorial01/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20180929-tensorflowtutorial01/" itemprop="url">Tensorflow学习（一） -- 开篇</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T22:05:22+09:00">
-                2018-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/深度学习-Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习 Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/20180929-tensorflowtutorial01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180929-tensorflowtutorial01/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="#">前一篇：无</a></p>
-<p><a href="/2018/09/20180930-tensorflowtutorial02/">后一篇：Tensorflow学习（二） – 基本分类器</a></p>
-<p>练习使用Tensorflow并对官方文档做一些翻译</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
-<li>Tensorflow-gpu: 1.11.0</li>
-<li>Ubuntu: 18.04 LTS</li>
-<li>Anaconda: 5.2.0</li>
-<li>Python: 3.6.5</li>
-</ul>
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
-<li><a href="https://www.tensorflow.org/tutorials/" target="_blank" rel="noopener">原文</a></li>
-<li><a href="https://github.com/liaocyintl/tensorflowtutorial/blob/master/001_get_started.ipynb" target="_blank" rel="noopener">代码</a></li>
-</ul>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><iframe title="Source Code" width="100%" height="500px" frameborder="0" src="/uploads/jupyters/2018/001_get_started.ipynb"><br></iframe>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180928-mongodbhash/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2036,6 +603,1551 @@
 </ul>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> scipy.stats</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练数据</span></span><br><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="comment">#测试数据</span></span><br><span class="line">test_value = <span class="number">2</span></span><br><span class="line"><span class="comment">#平均值</span></span><br><span class="line">mu = np.mean(data)</span><br><span class="line"><span class="comment">#标准差</span></span><br><span class="line">std = np.std(data)</span><br><span class="line"><span class="comment">#概率</span></span><br><span class="line">prob = scipy.stats.norm(mu, std).pdf(test_value)</span><br><span class="line">print(<span class="string">"prob."</span>, prob)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output： prob. 0.23745442481665455</span></span><br></pre></td></tr></table></figure>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180915-androidspeaker/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/20180915-androidspeaker/" itemprop="url">Android 朗读字符串</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T18:44:22+09:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/安卓-Android/" itemprop="url" rel="index">
+                    <span itemprop="name">安卓 Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/20180915-androidspeaker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180915-androidspeaker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。<br>本文通过使用android.speech.tts.TextToSpeech来实现这个功能。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://stackoverflow.com/questions/2929562/register-application-class-in-manifest" target="_blank" rel="noopener">Register Application class in Manifest?</a></li>
+<li><a href="https://stackoverflow.com/questions/30706780/texttospeech-deprecated-speak-function-in-api-level-21" target="_blank" rel="noopener">TextToSpeech : deprecated speak function in API Level 21</a></li>
+</ul>
+<h2 id="让Android朗读文字"><a href="#让Android朗读文字" class="headerlink" title="让Android朗读文字"></a>让Android朗读文字</h2><p>我们创建一个类Speaker.java来实现朗读功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.liaocy.smartcar.biz;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"><span class="keyword">import</span> android.speech.tts.TextToSpeech;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Speaker</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TextToSpeech speech;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String TAG = <span class="string">"Speaker"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Speaker</span><span class="params">(Application context)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="comment">//init speech</span></span><br><span class="line">        <span class="keyword">this</span>.speech = <span class="keyword">new</span> TextToSpeech(context, <span class="keyword">new</span> TextToSpeech.OnInitListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onInit</span><span class="params">(<span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">                <span class="keyword">if</span> (status == TextToSpeech.SUCCESS) &#123;</span><br><span class="line">                    <span class="keyword">int</span> result = speech.setLanguage(Locale.ENGLISH);</span><br><span class="line">                    <span class="keyword">if</span> (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) &#123;</span><br><span class="line">                        Log.e(TAG, <span class="string">"Not support this language."</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        Log.i(TAG, <span class="string">"Speaker activated!"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//init speech -- end</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在前文朗读完之后，朗读text中的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.speech.speak(text, TextToSpeech.QUEUE_ADD, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 即使前文没有朗读完，也强制朗读text中的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpeakNow</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.speech.speak(text, TextToSpeech.QUEUE_FLUSH, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/biz/Speaker.java" target="_blank" rel="noopener">点击这里</a></p>
+<h2 id="将Speaker作为全局变量加入Application"><a href="#将Speaker作为全局变量加入Application" class="headerlink" title="将Speaker作为全局变量加入Application"></a>将Speaker作为全局变量加入Application</h2><p>我们将Speaker作为全局变量加入Application，可以在APP的任何位置调用朗读方法。</p>
+<p>我们首先创建一个AppContext.java，这是自定义个Application类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.liaocy.smartcar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.liaocy.smartcar.biz.Speaker;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppContext</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppContext instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Speaker speaker;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取得朗读器对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Speaker <span class="title">getSpeaker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.speaker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在任何地方都可以取得这个类的实例</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppContext <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        instance = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//init and start speaker</span></span><br><span class="line">        speaker = <span class="keyword">new</span> Speaker(<span class="keyword">this</span>);</span><br><span class="line">        speaker.Speak(<span class="string">"System activated"</span>);</span><br><span class="line">        <span class="comment">//init and start speaker -- end</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/AppContext.java" target="_blank" rel="noopener">点击这里</a></p>
+<p>将自定义Application注册到AndroidManifest.xml：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"net.liaocy.smartcar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">".AppContext"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">"@mipmap/ic_launcher_round"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".activity.Dashboard"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的”android:name”要和注册类名称相同，用来声明注册类。<br>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/AndroidManifest.xml" target="_blank" rel="noopener">点击这里</a></p>
+<h2 id="在Activity测试朗读"><a href="#在Activity测试朗读" class="headerlink" title="在Activity测试朗读"></a>在Activity测试朗读</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.btnSpeak = <span class="keyword">this</span>.findViewById(R.id.btnSpeak);</span><br><span class="line"><span class="keyword">this</span>.btnSpeak.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        Log.i(TAG, <span class="string">"speak"</span>);</span><br><span class="line"></span><br><span class="line">        appContext.getSpeaker().Speak(<span class="string">"System Activated."</span>);</span><br><span class="line"></span><br><span class="line">        txtMsg.setText(<span class="string">"here"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/activity/Dashboard.java" target="_blank" rel="noopener">点击这里</a></p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>我是想做一个车载的安卓应用，集成导航，OBD车况检测，传感器数据手机和在线分析等一系列功能。有兴趣的朋友欢迎一起讨论。<br>代码库：<a href="https://github.com/liaocyintl/SmartCar" target="_blank" rel="noopener">https://github.com/liaocyintl/SmartCar</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/27-blockchainheritage/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/27-blockchainheritage/" itemprop="url">用区块链和智能合约做遗产继承</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T13:27:21+09:00">
+                2018-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
+                    <span itemprop="name">研究 Research</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/区块链-Block-Chain/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链 Block Chain</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/27-blockchainheritage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/27-blockchainheritage/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://medium.com/@amkurian/interacting-with-ethereum-smart-contracts-through-web3-js-e0efad17977" target="_blank" rel="noopener">Interacting With Ethereum Smart Contracts Through Web3.js</a></li>
+</ul>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><ul>
+<li><a href="https://github.com/liaocyintl/writelastwordonblockchain" target="_blank" rel="noopener">源代码Github</a></li>
+</ul>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>Node JS</li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>该项目是属于OPERA（人間機械協奏）2018黑客松的Demo。</p>
+<p>由于区块链具有不可篡改性，我们考虑将区块链用于遗产继承问题。<br>用户可以将他们的遗言上载到区块链上，当他们去世以后，他们的遗言和资产会通过智能合约自动转移到指定用户账户。</p>
+<h2 id="团队成员"><a href="#团队成员" class="headerlink" title="团队成员"></a>团队成员</h2><p>Daikichi Mukoyama, Wataru Nagai, Yuji Hayashi, Toshiyuki Aso, Kanta Kurazumi, Chenyi Liao</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>克隆源代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/liaocyintl/writelastwordonblockchain.git</span><br><span class="line">``` </span><br><span class="line">用Node JS安装并运行:</span><br><span class="line">```text</span><br><span class="line">npm install</span><br><span class="line">node app.js</span><br></pre></td></tr></table></figure></p>
+<p>用浏览器浏览：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3000</span><br></pre></td></tr></table></figure></p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p><img src="/uploads/postimgs/30081eed.png" alt=""></p>
+<p>↑用户留下他们的遗言和去世以后资产转移的地址和转移资产数量。<br>点击蓝色按钮，这些数据将被上载到区块链（以太坊）上。</p>
+<p>（要先安装配置MetaMask）</p>
+<p><img src="/uploads/postimgs/7dbac290.png" alt=""></p>
+<p>↑这里模拟一个生物传感器。用来监视人类心跳并给出客观的死亡判断。<br>你可以点Die按钮来模拟这个人死亡。</p>
+<p><img src="/uploads/postimgs/f036419c.png" alt=""></p>
+<p>↑这个人死亡后，他的遗言将被转移到指定的用户地址。<br>但我们没有实现资产的转移。</p>
+<h1 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.17;</span><br><span class="line">contract Heritage &#123;</span><br><span class="line">    string lastWord;</span><br><span class="line">    address to;</span><br><span class="line">    uint money;</span><br><span class="line">    </span><br><span class="line">    function writeLastWords(string x, address y, uint z) public &#123;</span><br><span class="line">        lastWord = x;</span><br><span class="line">        to = y;</span><br><span class="line">        money = z;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function loadLastWords() public view returns (string x) &#123;</span><br><span class="line">        return lastWord;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/24-phpstrcompare/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24-phpstrcompare/" itemprop="url">相同的长字符串PHP比较结果不同的解决办法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T23:04:21+09:00">
+                2018-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/24-phpstrcompare/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/24-phpstrcompare/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://bbs.csdn.net/topics/392192901" target="_blank" rel="noopener">PHP下如何过滤掉除了汉字、数字和字母外的所有字符？包括过滤掉特殊字符</a></li>
+</ul>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>PHP 7.2</li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>由于各种原因，例如编码问题，PHP在比较一些长字符串，比如从数据库中取出的字符串和用户输入的字符串做比较时，<br>只用等号==，明明完全相同的两个字符串有时也会返回false。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我们采用一个非完全解决方法，既通过正则表达式抽取出字符串中的 中文、字母、和数字，然后进行比较。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strcomp</span><span class="params">($str1,$str2)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    $pattern = <span class="string">'/[\x&#123;4e00&#125;-\x&#123;9fa5&#125;a-zA-Z0-9]/u'</span></span><br><span class="line"></span><br><span class="line">    preg_match_all($pattern, $str1, $matches);</span><br><span class="line">    $str1 = join(<span class="string">''</span>, $matches[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    preg_match_all($pattern, $str2, $matches);</span><br><span class="line">    $str2 = join(<span class="string">''</span>, $matches[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ($str1 == $str2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>这是一种非完整的解决方案，在需要比较符号的时候就没法使用了，但是能解决一定范围的问题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/20-phpmaxinputvars/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20-phpmaxinputvars/" itemprop="url">调整PHP的POST数量限制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T18:50:21+09:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20-phpmaxinputvars/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/20-phpmaxinputvars/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://thebroodle.com/how-to/how-to-increase-max-input-vars-value-in-php-ubuntu/" target="_blank" rel="noopener">How to Increase max_input_vars value in PHP in Ubuntu</a></li>
+</ul>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>Ubuntu 18.04 LTS</li>
+<li>PHP 7.2</li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>当POST的数量很多的时候，PHP服务器会莫名其妙的不响应。<br>网页正常打开，但用var_dump($_POST)查看时，POST只被提交一部分。<br>特别是在POST变量（提交的表单）特别多的时候会出现这种问题，例如在导入某个大表格时。<br>这是由于PHP设置里有一个 max-input-vars 参数，会限制每次POST时的数量，我们调整这个参数以增加POST最大容许数量。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑PHP配置文件</span></span><br><span class="line">nano /etc/php/7.2/apache2/php.ini</span><br></pre></td></tr></table></figure>
+<p>修改 max-input-vars 参数：</p>
+<p><img src="/uploads/postimgs/c263e960.png" alt=""></p>
+<p>保存后重载网页服务器即可解决问题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/03-cryptozombiesio/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/03-cryptozombiesio/" itemprop="url">cryptozombies.io Solidity 代码注释笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T15:05:21+09:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Solidity/" itemprop="url" rel="index">
+                    <span itemprop="name">Solidity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/03-cryptozombiesio/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/03-cryptozombiesio/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>本文用作 <a href="https://cryptozombies.io" target="_blank" rel="noopener">https://cryptozombies.io</a> 中 Solidity 代码带注释的笔记</p>
+<h2 id="整理"><a href="#整理" class="headerlink" title="整理"></a>整理</h2><h3 id="函数修饰符"><a href="#函数修饰符" class="headerlink" title="函数修饰符"></a>函数修饰符</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private</td>
+<td>只能被合约内部调用</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>就像 private 但是也能被继承的合约调用</td>
+</tr>
+<tr>
+<td>external</td>
+<td>只能从合约外部调用</td>
+</tr>
+<tr>
+<td>public</td>
+<td>可以在任何地方调用，不管是内部还是外部</td>
+</tr>
+<tr>
+<td>view</td>
+<td>告诉我们运行这个函数不会更改和保存任何数据</td>
+</tr>
+<tr>
+<td>pure</td>
+<td>告诉我们这个函数不但不会往区块链写数据，它甚至不从区块链读取数据。这两种在被从合约外部调用的时候都不花费任何gas（但是它们在被内部其他函数调用的时候将会耗费gas）</td>
+</tr>
+<tr>
+<td>modifiers</td>
+<td>自定义其对函数的约束逻辑</td>
+</tr>
+<tr>
+<td>payable</td>
+<td>可以接收以太的特殊函数</td>
+</tr>
+</tbody>
+</table>
+<p>修饰符可以同时作用于一个函数定义上</p>
+<h3 id="ERC721-标准"><a href="#ERC721-标准" class="headerlink" title="ERC721 标准"></a>ERC721 标准</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">contract ERC721 &#123;</span><br><span class="line">  event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);</span><br><span class="line">  event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);</span><br><span class="line"></span><br><span class="line">  function balanceOf(address _owner) public view returns (uint256 _balance);</span><br><span class="line">  function ownerOf(uint256 _tokenId) public view returns (address _owner);</span><br><span class="line">  function transfer(address _to, uint256 _tokenId) public;</span><br><span class="line">  function approve(address _to, uint256 _tokenId) public;</span><br><span class="line">  function takeOwnership(uint256 _tokenId) public;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="标准注释"><a href="#标准注释" class="headerlink" title="标准注释"></a>标准注释</h3><p>Solidity 社区所使用的一个标准是使用一种被称作 natspec 的格式，看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/// @title 一个简单的基础运算合约</span><br><span class="line">/// @author H4XF13LD MORRIS 💯💯😎💯💯</span><br><span class="line">/// @notice 现在，这个合约只添加一个乘法</span><br><span class="line">contract Math &#123;</span><br><span class="line">  /// @notice 两个数相乘</span><br><span class="line">  /// @param x 第一个 uint</span><br><span class="line">  /// @param y  第二个 uint</span><br><span class="line">  /// @return z  (x * y) 的结果</span><br><span class="line">  /// @dev 现在这个方法不检查溢出</span><br><span class="line">  function multiply(uint x, uint y) returns (uint z) &#123;</span><br><span class="line">    // 这只是个普通的注释，不会被 natspec 解释</span><br><span class="line">    z = x * y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@title（标题） 和 @author （作者）很直接了.</p>
+<p>@notice （须知）向 用户 解释这个方法或者合约是做什么的。 @dev （开发者） 是向开发者解释更多的细节。</p>
+<p>@param （参数）和 @return （返回） 用来描述这个方法需要传入什么参数以及返回什么值。</p>
+<p>注意你并不需要每次都用上所有的标签，它们都是可选的。不过最少，写下一个 @dev 注释来解释每个方法是做什么的。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>zombiefactory.sol :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.19;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line">    </span><br><span class="line">    uint dnaDigits = 16;</span><br><span class="line">    uint dnaModulus = 10 ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    mapping (uint =&gt; address) public zombieToOwner;</span><br><span class="line">    mapping (address =&gt; uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    // 除 public 和 private 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：internal（内部） 和 external（外部）。</span><br><span class="line">    // internal 和 private 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。</span><br><span class="line">    // external 与public 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 external 和 public。</span><br><span class="line">    // 将 _createZombie() 函数的属性从 private 改为 internal ， 使得其他的合约也能访问到它。</span><br><span class="line">    //function _createZombie(string _name, uint _dna) private &#123;</span><br><span class="line">    function _createZombie(string _name, uint _dna) internal &#123; </span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - 1;</span><br><span class="line">        </span><br><span class="line">        // 在 Solidity 中，有一些全局变量可以被所有函数调用。 其中一个就是 msg.sender，它指的是当前调用者（或智能合约）的 address。</span><br><span class="line">        // 首先，在得到新的僵尸 id 后，更新 zombieToOwner 映射，在 id 下面存入 msg.sender。</span><br><span class="line">        // 然后，我们为这个 msg.sender 名下的 ownerZombieCount 加 1。</span><br><span class="line">        // 如果Key不存在，该value默认为0，因此直接++就可以</span><br><span class="line">        zombieToOwner[id] = msg.sender;</span><br><span class="line">        ownerZombieCount[msg.sender]++;</span><br><span class="line">        </span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _generateRandomDna(string _str) private view returns (uint) &#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        return rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function createRandomZombie(string _name) public &#123;</span><br><span class="line">        // require使得函数在执行过程中，当不满足某些条件时抛出错误，并停止执行：</span><br><span class="line">        // 敲黑板: Solidity 并不支持原生的字符串比较, 我们只能通过比较两字符串的 keccak256 哈希值来进行判断</span><br><span class="line">        // 我们使用了 require 来确保这个函数只有在每个用户第一次调用它的时候执行，用以创建初始僵尸。</span><br><span class="line">        // 在 createRandomZombie 的前面放置 require 语句。 使得函数先检查 ownerZombieCount [msg.sender] 的值为 0 ，不然就抛出一个错误。</span><br><span class="line">        require(ownerZombieCount[msg.sender] == 0);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>zombiefeeding.sol :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 在 Solidity 中，当你有多个文件并且想把一个文件导入另一个文件时，可以使用 import 语句：</span><br><span class="line">// 将 zombiefactory.sol 导入到我们的新文件 zombiefeeding.sol 中。</span><br><span class="line"></span><br><span class="line">import &quot;./zombiefactory.sol&quot;;</span><br><span class="line"></span><br><span class="line">//参考 CryptoKitties 源代码</span><br><span class="line">//定义一个名为 KittyInterface 的接口。 请注意，因为我们使用了 contract 关键字， 这过程看起来就像创建一个新的合约一样。</span><br><span class="line">contract KittyInterface &#123;</span><br><span class="line">    //在interface里定义了 getKitty 函数（不过是复制/粘贴上面的函数，但在 returns 语句之后用分号，而不是大括号内的所有内容。</span><br><span class="line">    function getKitty(uint256 _id)external view returns (</span><br><span class="line">        bool isGestating,</span><br><span class="line">        bool isReady,</span><br><span class="line">        uint256 cooldownIndex,</span><br><span class="line">        uint256 nextActionAt,</span><br><span class="line">        uint256 siringWithId,</span><br><span class="line">        uint256 birthTime,</span><br><span class="line">        uint256 matronId,</span><br><span class="line">        uint256 sireId,</span><br><span class="line">        uint256 generation,</span><br><span class="line">        uint256 genes</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 我们的游戏代码越来越长。 当代码过于冗长的时候，最好将代码和逻辑分拆到多个不同的合约中，以便于管理。</span><br><span class="line">// 有个让 Solidity 的代码易于管理的功能，就是合约 inheritance (继承)</span><br><span class="line">// 由于 子类 是从 父类 那里 inherits （继承)过来的。 这意味着当你编译和部署了 子类，它将可以访问我们在 父类 中定义的其他 **公共** 函数。</span><br><span class="line">// 在 ZombieFactory 下创建一个叫 ZombieFeeding 的合约，它是继承自 `ZombieFactory 合约的。</span><br><span class="line">contract ZombieFactory is ZombieFactory&#123;</span><br><span class="line">    //我已经将代码中 CryptoKitties 合约的地址保存在一个名为 ckAddress 的变量中。在下一行中，请创建一个名为 kittyContract 的 KittyInterface，并用 ckAddress 为它初始化 —— 就像我们为 numberContract所做的一样。</span><br><span class="line">    address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;</span><br><span class="line">    KittyInterface kittyContract = KittyInterface(ckAddress);</span><br><span class="line"></span><br><span class="line">    // 在 Solidity 中，有两个地方可以存储变量 —— storage 或 memory。</span><br><span class="line">    // Storage 变量是指永久存储在区块链中的变量。 Memory 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。</span><br><span class="line">    // 大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。</span><br><span class="line">    // 是时候给我们的僵尸增加“猎食”和“繁殖”功能了！</span><br><span class="line">    // 当一个僵尸猎食其他生物体时，它自身的DNA将与猎物生物的DNA结合在一起，形成一个新的僵尸DNA。</span><br><span class="line">    // 创建一个名为 feedAndMultiply 的函数。 使用两个参数：_zombieId（ uint类型 ）和_targetDna （也是 uint 类型）。 设置属性为 public 的。</span><br><span class="line">    // function feedAndMultiply(uint _zombieId, uint _targetDna) public &#123;</span><br><span class="line">    // 首先，我们修改下 feedAndMultiply 函数的定义，给它传入第三个参数：一条名为 _species 的字符串。</span><br><span class="line">    function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) public &#123;</span><br><span class="line">        // 我们不希望别人用我们的僵尸去捕猎。 首先，我们确保对自己僵尸的所有权。 通过添加一个require 语句来确保 msg.sender 只能是这个僵尸的主人（类似于我们在 createRandomZombie 函数中做过的那样）。</span><br><span class="line">        require(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">        </span><br><span class="line">        //在我们计算出新的僵尸的DNA之后，添加一个 if 语句来比较 _species 和字符串 &quot;kitty&quot; 的 keccak256 哈希值。</span><br><span class="line">        if (keccak256(_species) == keccak256(&quot;kitty&quot;)) &#123;</span><br><span class="line">            // 在 if 语句中，我们用 99 替换了新僵尸DNA的最后两位数字。可以这么做：newDna = newDna - newDna％100 + 99;。</span><br><span class="line">            // 解释：假设 newDna 是 334455。那么 newDna％100 是 55，所以 newDna - newDna％100 得到 334400。最后加上 99 可得到 334499。</span><br><span class="line">            newDna = newDna - newDna % 100 + 99;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        //为了获取这个僵尸的DNA，我们的函数需要声明一个名为 myZombie 数据类型为Zombie的本地变量（这是一个 storage 型的指针）。 将其值设定为在 zombies 数组中索引为_zombieId所指向的值。</span><br><span class="line">        Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">        </span><br><span class="line">        // 获取新的僵尸DNA的公式很简单：计算猎食僵尸DNA和被猎僵尸DNA之间的平均值。</span><br><span class="line">        // 首先我们确保 _targetDna 不长于16位。要做到这一点，我们可以设置 _targetDna 为 _targetDna％dnaModulus ，并且只取其最后16位数字。</span><br><span class="line">        _targetDna = _targetDna % dnaModulus;</span><br><span class="line">        // 接下来为我们的函数声明一个名叫 newDna 的 uint类型的变量，并将其值设置为 myZombie的 DNA 和 _targetDna 的平均值（如上例所示）。</span><br><span class="line">        uint newDna = (myZombie.dna + _targetDna) / 2;</span><br><span class="line">        // 一旦我们计算出新的DNA，再调用 _createZombie 就可以生成新的僵尸了。</span><br><span class="line">        // 注意：这段代码编译的时候编译器就会报错。 错误在于，我们尝试从 ZombieFeeding 中调用 _createZombie 函数，但 _createZombie 却是 ZombieFactory 的 private （私有）函数。这意味着任何继承自 ZombieFactory 的子合约都不能访问它。</span><br><span class="line">        _createZombie(&quot;NoName&quot;, newDna);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 参考 处理多返回值</span><br><span class="line">    // 我们来定义一个函数，从 kitty 合约中获取它的基因：</span><br><span class="line">    // 创建一个名为 feedOnKitty 的函数。它需要2个 uint 类型的参数，_zombieId 和_kittyId ，这是一个 public 类型的函数。</span><br><span class="line">    function feedOnKitty(uint _nombieId, uint _kittyId) public &#123;</span><br><span class="line">        // 函数首先要声明一个名为 kittyDna 的 uint。</span><br><span class="line">        // 注意：在我们的 KittyInterface 中，genes 是一个 uint256 类型的变量，但是如果你记得，我们在第一课中提到过，uint 是 uint256 的别名，也就是说它们是一回事。</span><br><span class="line">        uint kittyDna;</span><br><span class="line">        // 这个函数接下来调用 kittyContract.getKitty函数, 传入 _kittyId ，将返回的 genes 存储在 kittyDna 中。记住 —— getKitty 会返回一大堆变量。 （确切地说10个 - 我已经为你数过了，不错吧！）。但是我们只关心最后一个-- genes。数逗号的时候小心点哦！</span><br><span class="line">        (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);</span><br><span class="line">        // 最后，函数调用了 feedAndMultiply ，并传入了 _zombieId 和 kittyDna 两个参数。</span><br><span class="line">        //feedAndMultiply(_zombieId, kittyDna);</span><br><span class="line">        // 最后，我们修改了 feedOnKitty 中的函数调用。当它调用 feedAndMultiply 时，增加 “kitty” 作为最后一个参数。</span><br><span class="line">        feedAndMultiply(_zombieId, kittyDna, &quot;kitty&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><h3 id="关于-storage-和-memory变量："><a href="#关于-storage-和-memory变量：" class="headerlink" title="关于 storage 和 memory变量："></a>关于 storage 和 memory变量：</h3><p>在 Solidity 中，有两个地方可以存储变量 —— storage 或 memory。</p>
+<p>Storage 变量是指永久存储在区块链中的变量。 Memory 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。</p>
+<p>Storage 类似一个指针，可以修改指向的变量。</p>
+<p>大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。</p>
+<p>然而也有一些情况下，你需要手动声明存储类型，主要用于处理函数内的 结构体 和 数组 时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">contract SandwichFactory &#123;</span><br><span class="line">  struct Sandwich &#123;</span><br><span class="line">    string name;</span><br><span class="line">    string status;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Sandwich[] sandwiches;</span><br><span class="line"></span><br><span class="line">  function eatSandwich(uint _index) public &#123;</span><br><span class="line">    // Sandwich mySandwich = sandwiches[_index];</span><br><span class="line"></span><br><span class="line">    // ^ 看上去很直接，不过 Solidity 将会给出警告</span><br><span class="line">    // 告诉你应该明确在这里定义 `storage` 或者 `memory`。</span><br><span class="line"></span><br><span class="line">    // 所以你应该明确定义 `storage`:</span><br><span class="line">    Sandwich storage mySandwich = sandwiches[_index];</span><br><span class="line">    // ...这样 `mySandwich` 是指向 `sandwiches[_index]`的指针</span><br><span class="line">    // 在存储里，另外...</span><br><span class="line">    mySandwich.status = &quot;Eaten!&quot;;</span><br><span class="line">    // ...这将永久把 `sandwiches[_index]` 变为区块链上的存储</span><br><span class="line"></span><br><span class="line">    // 如果你只想要一个副本，可以使用`memory`:</span><br><span class="line">    Sandwich memory anotherSandwich = sandwiches[_index + 1];</span><br><span class="line">    // ...这样 `anotherSandwich` 就仅仅是一个内存里的副本了</span><br><span class="line">    // 另外</span><br><span class="line">    anotherSandwich.status = &quot;Eaten!&quot;;</span><br><span class="line">    // ...将仅仅修改临时变量，对 `sandwiches[_index + 1]` 没有任何影响</span><br><span class="line">    // 不过你可以这样做:</span><br><span class="line">    sandwiches[_index + 1] = anotherSandwich;</span><br><span class="line">    // ...如果你想把副本的改动保存回区块链存储</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="internal-和-external："><a href="#internal-和-external：" class="headerlink" title="internal 和 external："></a>internal 和 external：</h3><p>除 public 和 private 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：internal（内部） 和 external（外部）。</p>
+<p>internal 和 private 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。</p>
+<p>external 与public 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 external 和 public。</p>
+<p>声明函数 internal 或 external 类型的语法，与声明 private 和 public类 型相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract Sandwich &#123;</span><br><span class="line">  uint private sandwichesEaten = 0;</span><br><span class="line"></span><br><span class="line">  function eat() internal &#123;</span><br><span class="line">    sandwichesEaten++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract BLT is Sandwich &#123;</span><br><span class="line">  uint private baconSandwichesEaten = 0;</span><br><span class="line"></span><br><span class="line">  function eatWithBacon() public returns (string) &#123;</span><br><span class="line">    baconSandwichesEaten++;</span><br><span class="line">    // 因为eat() 是internal 的，所以我们能在这里调用</span><br><span class="line">    eat();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="与其他合约的交互"><a href="#与其他合约的交互" class="headerlink" title="与其他合约的交互"></a>与其他合约的交互</h3><p>如果我们的合约需要和区块链上的其他的合约会话，则需先定义一个 interface (接口)。</p>
+<p>先举一个简单的栗子。 假设在区块链上有这么一个合约：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract LuckyNumber &#123;</span><br><span class="line">  mapping(address =&gt; uint) numbers;</span><br><span class="line"></span><br><span class="line">  function setNum(uint _num) public &#123;</span><br><span class="line">    numbers[msg.sender] = _num;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getNum(address _myAddress) public view returns (uint) &#123;</span><br><span class="line">    return numbers[_myAddress];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是个很简单的合约，您可以用它存储自己的幸运号码，并将其与您的以太坊地址关联。 这样其他人就可以通过您的地址查找您的幸运号码了。</p>
+<p>现在假设我们有一个外部合约，使用 getNum 函数可读取其中的数据。</p>
+<p>首先，我们定义 LuckyNumber 合约的 interface ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract NumberInterface &#123;</span><br><span class="line">  function getNum(address _myAddress) public view returns (uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这个过程虽然看起来像在定义一个合约，但其实内里不同：</p>
+<p>首先，我们只声明了要与之交互的函数 —— 在本例中为 getNum —— 在其中我们没有使用到任何其他的函数或状态变量。</p>
+<p>其次，我们并没有使用大括号（{ 和 }）定义函数体，我们单单用分号（;）结束了函数声明。这使它看起来像一个合约框架。</p>
+<p>编译器就是靠这些特征认出它是一个 <strong>接口</strong> 的。</p>
+<p>在我们的 app 代码中使用这个接口，合约就知道其他合约的函数是怎样的，应该如何调用，以及可期待什么类型的返回值。</p>
+<p>在下一课中，我们将真正调用其他合约的函数。目前我们只要声明一个接口，用于调用 CryptoKitties 合约就行了。</p>
+<h3 id="CryptoKitties源代码"><a href="#CryptoKitties源代码" class="headerlink" title="CryptoKitties源代码"></a>CryptoKitties源代码</h3><p>我们已经为你查看过了 CryptoKitties 的源代码，并且找到了一个名为 getKitty的函数，它返回所有的加密猫的数据，包括它的“基因”（我们的僵尸游戏要用它生成新的僵尸）。</p>
+<p>该函数如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function getKitty(uint256 _id) external view returns (</span><br><span class="line">    bool isGestating,</span><br><span class="line">    bool isReady,</span><br><span class="line">    uint256 cooldownIndex,</span><br><span class="line">    uint256 nextActionAt,</span><br><span class="line">    uint256 siringWithId,</span><br><span class="line">    uint256 birthTime,</span><br><span class="line">    uint256 matronId,</span><br><span class="line">    uint256 sireId,</span><br><span class="line">    uint256 generation,</span><br><span class="line">    uint256 genes</span><br><span class="line">) &#123;</span><br><span class="line">    Kitty storage kit = kitties[_id];</span><br><span class="line"></span><br><span class="line">    // if this variable is 0 then it&apos;s not gestating</span><br><span class="line">    isGestating = (kit.siringWithId != 0);</span><br><span class="line">    isReady = (kit.cooldownEndBlock &lt;= block.number);</span><br><span class="line">    cooldownIndex = uint256(kit.cooldownIndex);</span><br><span class="line">    nextActionAt = uint256(kit.cooldownEndBlock);</span><br><span class="line">    siringWithId = uint256(kit.siringWithId);</span><br><span class="line">    birthTime = uint256(kit.birthTime);</span><br><span class="line">    matronId = uint256(kit.matronId);</span><br><span class="line">    sireId = uint256(kit.sireId);</span><br><span class="line">    generation = uint256(kit.generation);</span><br><span class="line">    genes = kit.genes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用接口"><a href="#使用接口" class="headerlink" title="使用接口"></a>使用接口</h3><p>继续前面 NumberInterface 的例子，我们既然将接口定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract NumberInterface &#123;</span><br><span class="line">  function getNum(address _myAddress) public view returns (uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以在合约中这样使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contract MyContract &#123;</span><br><span class="line">  address NumberInterfaceAddress = 0xab38...;</span><br><span class="line">  // ^ 这是FavoriteNumber合约在以太坊上的地址</span><br><span class="line">  NumberInterface numberContract = NumberInterface(NumberInterfaceAddress);</span><br><span class="line">  // 现在变量 `numberContract` 指向另一个合约对象</span><br><span class="line"></span><br><span class="line">  function someFunction() public &#123;</span><br><span class="line">    // 现在我们可以调用在那个合约中声明的 `getNum`函数:</span><br><span class="line">    uint num = numberContract.getNum(msg.sender);</span><br><span class="line">    // ...在这儿使用 `num`变量做些什么</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过这种方式，只要将您合约的可见性设置为public(公共)或external(外部)，它们就可以与以太坊区块链上的任何其他合约进行交互。</p>
+<h3 id="处理多返回值"><a href="#处理多返回值" class="headerlink" title="处理多返回值"></a>处理多返回值</h3><p>getKitty 是我们所看到的第一个返回多个值的函数。我们来看看是如何处理的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function multipleReturns() internal returns(uint a, uint b, uint c) &#123;</span><br><span class="line">  return (1, 2, 3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function processMultipleReturns() external &#123;</span><br><span class="line">  uint a;</span><br><span class="line">  uint b;</span><br><span class="line">  uint c;</span><br><span class="line">  // 这样来做批量赋值:</span><br><span class="line">  (a, b, c) = multipleReturns();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 或者如果我们只想返回其中一个变量:</span><br><span class="line">function getLastReturnValue() external &#123;</span><br><span class="line">  uint c;</span><br><span class="line">  // 可以对其他字段留空:</span><br><span class="line">  (,,c) = multipleReturns();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="kitty-和-web3-js-放在一起"><a href="#kitty-和-web3-js-放在一起" class="headerlink" title="kitty 和 web3.js 放在一起"></a>kitty 和 web3.js 放在一起</h3><p>我们只用编译和部署 ZombieFeeding，就可以将这个合约部署到以太坊了。我们最终完成的这个合约继承自 ZombieFactory，因此它可以访问自己和父辈合约中的所有 public 方法。</p>
+<p>我们来看一个与我们的刚部署的合约进行交互的例子， 这个例子使用了 JavaScript 和 web3.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> abi = <span class="comment">/* abi generated by the compiler */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFeedingContract = web3.eth.contract(abi)</span><br><span class="line"><span class="keyword">var</span> contractAddress = <span class="comment">/* our contract address on Ethereum after deploying */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFeeding = ZombieFeedingContract.at(contractAddress)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设我们有我们的僵尸ID和要攻击的猫咪ID</span></span><br><span class="line"><span class="keyword">let</span> zombieId = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> kittyId = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要拿到猫咪的DNA，我们需要调用它的API。这些数据保存在它们的服务器上而不是区块链上。</span></span><br><span class="line"><span class="comment">// 如果一切都在区块链上，我们就不用担心它们的服务器挂了，或者它们修改了API，</span></span><br><span class="line"><span class="comment">// 或者因为不喜欢我们的僵尸游戏而封杀了我们</span></span><br><span class="line"><span class="keyword">let</span> apiUrl = <span class="string">"https://api.cryptokitties.co/kitties/"</span> + kittyId</span><br><span class="line">$.get(apiUrl, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> imgUrl = data.image_url</span><br><span class="line">  <span class="comment">// 一些显示图片的代码</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当用户点击一只猫咪的时候:</span></span><br><span class="line">$(<span class="string">".kittyImage"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 调用我们合约的 `feedOnKitty` 函数</span></span><br><span class="line">  ZombieFeeding.feedOnKitty(zombieId, kittyId)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 侦听来自我们合约的新僵尸事件好来处理</span></span><br><span class="line">ZombieFactory.NewZombie(<span class="function"><span class="keyword">function</span>(<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span></span><br><span class="line">  <span class="comment">// 这个函数用来显示僵尸:</span></span><br><span class="line">  generateZombie(result.zombieId, result.name, result.dna)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/01-pythonlinuxwinpath/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/01-pythonlinuxwinpath/" itemprop="url">解决Python在Linux环境、Mac环境或Windows环境下，文件路径不同的问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-01T19:02:25+09:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/01-pythonlinuxwinpath/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/01-pythonlinuxwinpath/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f" target="_blank" rel="noopener">本文参考：Python 3 Quick Tip: The easy way to deal with file paths on Windows, Mac and Linux</a></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
+<li>Python 3.6.5</li>
+<li>pathlib 11.1<br><a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noopener">文档</a></li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>操作系统，文件的路径也是不同的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows的文件路径:</span><br><span class="line">C:\some_folder\some_file.txt</span><br><span class="line"></span><br><span class="line">很过其它操作系统的文件:</span><br><span class="line">/some_folder/some_file.txt</span><br></pre></td></tr></table></figure>
+<p>这其实是从上个世纪80年代，从MS-DOS系统遗留下来的疑难杂症。</p>
+<p>这就造成一个问题，如果包含文件路径的Python代码是在Linux上测试的，那Windows下面可能就没法用了。</p>
+<p>还好，可以用一个叫做 <strong>pathlib</strong> 的库来解决。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="安装pathlib"><a href="#安装pathlib" class="headerlink" title="安装pathlib"></a>安装pathlib</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pathlib</span><br></pre></td></tr></table></figure>
+<h3 id="让路径兼容"><a href="#让路径兼容" class="headerlink" title="让路径兼容"></a>让路径兼容</h3><p>假如你的python代码写在my_program.py里，你要定位到下面这个叫raw_data.txt的文件：</p>
+<p><img src="/uploads/postimgs/9c379859.png" alt=""></p>
+<p>你可以这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">data_folder = Path(<span class="string">"source_data/text_files/"</span>)</span><br><span class="line">file_to_open = data_folder / <span class="string">"raw_data.txt"</span></span><br><span class="line">f = open(file_to_open)</span><br><span class="line">print(f.read())</span><br></pre></td></tr></table></figure>
+<p>或者你可以直接写绝对路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br></pre></td></tr></table></figure>
+<p>它甚至可以直接取文件名，扩展名，判断文件是否存在：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br><span class="line">print(filename.name)</span><br><span class="line"><span class="comment"># 输出全部文件名："raw_data.txt"</span></span><br><span class="line">print(filename.suffix)</span><br><span class="line"><span class="comment"># 输出文件扩展名："txt"</span></span><br><span class="line">print(filename.stem)</span><br><span class="line"><span class="comment"># 输出文件名："raw_data"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> filename.exists():</span><br><span class="line">    print(<span class="string">"奥普斯，文件不存在！"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"耶，文件存在！"</span>)</span><br></pre></td></tr></table></figure>
+<p>可以返回Windows格式的路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path, PureWindowsPath</span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br><span class="line"><span class="comment"># 转换为 Windows 格式</span></span><br><span class="line">path_on_windows = PureWindowsPath(filename)</span><br><span class="line">print(path_on_windows)</span><br><span class="line"><span class="comment"># 输出： "source_data\text_files\raw_data.txt"</span></span><br></pre></td></tr></table></figure>
+<p>便利文件夹里的全部json文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> Path(<span class="string">"dir/dir/"</span>).glob(<span class="string">'*.json'</span>):</span><br><span class="line">    open(file)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/31-ethresource/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31-ethresource/" itemprop="url">以太坊学习资料汇总</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T19:02:25+09:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/区块链-Block-Chain/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链 Block Chain</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/31-ethresource/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/31-ethresource/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="官方一些的资料"><a href="#官方一些的资料" class="headerlink" title="官方一些的资料"></a>官方一些的资料</h2><p><a href="https://ethfans.org/wikis/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%99%BD%E7%9A%AE%E4%B9%A6" target="_blank" rel="noopener">以太坊白皮书</a></p>
+<h2 id="系统学习的资料"><a href="#系统学习的资料" class="headerlink" title="系统学习的资料"></a>系统学习的资料</h2><p><a href="https://github.com/liaocyintl/solidity-zh" target="_blank" rel="noopener">官方文档中文版</a></p>
+<h2 id="Solidity"><a href="#Solidity" class="headerlink" title="Solidity"></a>Solidity</h2><p><a href="https://cryptozombies.io/" target="_blank" rel="noopener">https://cryptozombies.io/</a></p>
+<p><a href="https://cryptozombies.io/是一个新手友好型的以太坊编程教学网站。网站通过互动教程的方式，让学习者在编写以太坊游戏的过程中，学习到" target="_blank" rel="noopener">https://cryptozombies.io/是一个新手友好型的以太坊编程教学网站。网站通过互动教程的方式，让学习者在编写以太坊游戏的过程中，学习到</a> Solidity 的用法。cryptozombies 的意思就是，密码僵尸。来吧，创建一个密码僵尸的游戏吧。</p>
+<h2 id="博客与实例学习"><a href="#博客与实例学习" class="headerlink" title="博客与实例学习"></a>博客与实例学习</h2><h3 id="私链"><a href="#私链" class="headerlink" title="私链"></a>私链</h3><p><a href="https://www.ethereum.org/cli" target="_blank" rel="noopener">GETH &amp; ETH Installation</a></p>
+<p><a href="https://blog.csdn.net/qq_35190319/article/details/79274870" target="_blank" rel="noopener">以太坊区块链学习之搭建私链</a></p>
+<h3 id="虚拟币"><a href="#虚拟币" class="headerlink" title="虚拟币"></a>虚拟币</h3><ul>
+<li><a href="https://blog.csdn.net/anda0109/article/details/79640859" target="_blank" rel="noopener">一步步教你在以太坊发行自己的数字货币</a></li>
+</ul>
+<p>该作者通过智能合约，创建了一个属于自己的虚拟货币，实现了ERC20 Token标准。<br>approve(): 允许用户可花费的代币数。</p>
+<ul>
+<li><a href="https://blog.csdn.net/JAVA_HHHH/article/details/79771752" target="_blank" rel="noopener">基于以太坊发布属于自己的数字货币（代币）完整版</a></li>
+</ul>
+<p>比上一篇更加详细一些，同样是实现ERC20 Token标准。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/30-stockdatamining/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30-stockdatamining/" itemprop="url">使用 Data Brewery 挖掘A股数据之Cubes篇（持续更新）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T17:19:25+09:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
+                    <span itemprop="name">研究 Research</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/数据挖掘-Data-Mining/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘 Data Mining</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/30-stockdatamining/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/30-stockdatamining/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script text="text/javascript" src="/lib/jquery/index.js"></script>
+
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>本文并非股票量化交易教程，而是通过股票数据挖掘的例子，来学习 Cubes 的笔记。<br>目前关于Cubes的中文资料不多，当然本文也不可能包含Cubes的全部特性，只能通过例子介绍一部分常用功能。<br>希望对读者有所帮助。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://databrewery.org/" target="_blank" rel="noopener">Data Brewery 官网</a></p>
+<p><a href="http://cubes.databrewery.org/" target="_blank" rel="noopener">Cubes</a></p>
+<p><a href="http://cubes.readthedocs.io/en/v1.1/" target="_blank" rel="noopener">Cubes 文档</a></p>
+<p><a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">数据挖掘教科书: Data Mining. Concepts and Techniques, 3rd Edition</a></p>
+<h2 id="实验环境及说明"><a href="#实验环境及说明" class="headerlink" title="实验环境及说明"></a>实验环境及说明</h2><ul>
+<li>Python 3.6.1</li>
+<li>Cubes 1.1</li>
+</ul>
+<p>Cubes是一个轻量级的Python框架，也是一个工具集。<br>用来开发数据报告与数据分析应用、在线分析(OLAP)、多维度数据分析和数据聚合。<br>它是Data Brewery项目的一个子集。</p>
+<ul>
+<li>SQLLite 3</li>
+</ul>
+<ul>
+<li><a href="http://tushare.org/" target="_blank" rel="noopener">Tushare 0.4.3</a></li>
+</ul>
+<p>Tushare是一个免费、开源的python财经数据接口包。主要实现对股票等金融数据从数据采集、清洗加工 到 数据存储的过程，能够为金融分析人员提供快速、整洁、和多样的便于分析的数据，为他们在数据获取方面极大地减轻工作量，使他们更加专注于策略和模型的研究与实现上。</p>
+<h2 id="Cubes介绍"><a href="#Cubes介绍" class="headerlink" title="Cubes介绍"></a>Cubes介绍</h2><h3 id="为什么要使用Cubes"><a href="#为什么要使用Cubes" class="headerlink" title="为什么要使用Cubes"></a>为什么要使用Cubes</h3><p>Cubes 是一个框架，该框架面向分析师和用户终端程序，提供对于数据立方体（多维数据实体）可理解的、自然的途径。<br>它可以被提供分析方法的应用程序设计师利用。</p>
+<p>特点:</p>
+<ul>
+<li>被分析数据的逻辑视图： 分析师如何看待数据而不是数据物理地存放在存储器中。</li>
+<li>在线数据处理（OLAP）和聚合浏览，默认的后端是关系型数据库 - ROLAP。</li>
+<li>层次维度： 属性可以按层次独立存在，例如类-子类，国家-地区。</li>
+<li>一个维度上创建多个分层。</li>
+<li>可定位的元数据（metadata）与数据</li>
+<li>数据立方体包含数据的认可。</li>
+<li>可拖拽的数据仓库： 拽入其它的数据集</li>
+</ul>
+<p>该框架是可扩展的。</p>
+<h3 id="数据立方体，-多维度，-Facts，-与度量"><a href="#数据立方体，-多维度，-Facts，-与度量" class="headerlink" title="数据立方体， 多维度， Facts， 与度量"></a>数据立方体， 多维度， Facts， 与度量</h3><p>本框架提供对多维度数据立方体的建模。<br><img src="/uploads/postimgs/13a998f7.png" alt=""></p>
+<p>Fact是指数据最基本的单元。Fact可以是一个合同，发货单，开销，任务等等。<br>每一个Fact拥有一个度量：度量是一个可以被测量的属性，比如说价格，数量，收益，持续时间，税，折扣，等等。</p>
+<p>维度为Fact提供上下文，例如：</p>
+<ul>
+<li>过滤检索或报告</li>
+<li>控制Fact聚合的范围</li>
+<li>用于排序</li>
+<li>定义主明细式关系</li>
+</ul>
+<p>维度可以包含多个分层，比如一个时间维度可以按年分层，按月分层，和按天分层。</p>
+<h3 id="特征概览"><a href="#特征概览" class="headerlink" title="特征概览"></a>特征概览</h3><ul>
+<li>工作空间：立方体分析工作空间。</li>
+<li>模型：定义数据与Meta数据，包括：数据立方体，维度，分层，属性，标签，定位。</li>
+<li>浏览器：聚合浏览，切片，下钻。</li>
+<li>后端：具体实现聚合的应用方法。</li>
+<li>服务器：基于WSGI的HTTP服务器。</li>
+<li>格式化器：可对数据进行格式化。</li>
+<li>slicer： 命令行工具</li>
+</ul>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>逻辑模型从分析师的透视图定义数据，包括数据如何度量、聚合和报告。<br>模型独立于数据的物理结构。<br>这种独立使得分析师可以更加专注于数据，而不是如何从难以理解的表单中获取数据。</p>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><p>数据立方体分析功能的核心是聚合浏览器。<br>这个浏览器模型包含实用的类和方法。</p>
+<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><p>后端提供实际的数据聚合与浏览方法。<br>数据立方体被创建为 关系型在线数据分析过程 ROLAP 后端，该后端实用以 <a href="http://www.sqlalchemy.org/download.html" target="_blank" rel="noopener">SQLAlchemy</a> 驱动的 SQL 数据库。</p>
+<p>该框架是模块化的，因此可以支持多数据库后端，可以有多种立方体计算方法与数据聚合浏览方法。</p>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>Cubes有一个内置的WSGI HTTP服务器，叫做 slicer 命令行工具。<br>对于大多数的框架功能，它都提供JSON API。<br>这个服务器基于Werkzeug WSGI框架。</p>
+<h2 id="安装-Cubes-并测试"><a href="#安装-Cubes-并测试" class="headerlink" title="安装 Cubes 并测试"></a>安装 Cubes 并测试</h2><p>使用pip安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装cubes， 包含全部模块</span></span><br><span class="line">pip install cubes[all]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 克隆代码并进入例子</span></span><br><span class="line">git <span class="built_in">clone</span> git://github.com/DataBrewery/cubes.git</span><br><span class="line"><span class="built_in">cd</span> cubes</span><br><span class="line"><span class="built_in">cd</span> examples/hello_world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备数据并运行OLAP服务器：</span></span><br><span class="line">python prepare_data.py</span><br><span class="line">slicer serve slicer.ini</span><br><span class="line"></span><br><span class="line"><span class="comment"># 尝试一些查询：</span></span><br><span class="line">curl <span class="string">"http://localhost:5000/cube/irbd_balance/aggregate"</span></span><br><span class="line">curl <span class="string">"http://localhost:5000/cube/irbd_balance/aggregate?drilldown=year"</span></span><br><span class="line">curl <span class="string">"http://localhost:5000/cube/irbd_balance/aggregate?drilldown=item"</span></span><br><span class="line">curl <span class="string">"http://localhost:5000/cube/irbd_balance/aggregate?drilldown=item&amp;cut=item:e"</span></span><br></pre></td></tr></table></figure></p>
+<p>或使用源代码安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/DataBrewery/cubes.git</span><br><span class="line"><span class="built_in">cd</span> cubes</span><br><span class="line">pip install -r requirements.txt</span><br><span class="line">pip install -r requirements-optional.txt</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
+<h2 id="对股票数据挖掘"><a href="#对股票数据挖掘" class="headerlink" title="对股票数据挖掘"></a>对股票数据挖掘</h2><p>在同一文件夹下创建 stock_model.json ，这是模型的配置文件，并输入下面内容并保存：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"dimensions"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"# 日期作为第一个维度"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"date"</span>,</span><br><span class="line">      <span class="attr">"# 设置这个维度的规则为时间，目前也仅有时间这一个规则 https://cubes.readthedocs.io/en/latest/model.html?highlight=role"</span>: <span class="string">"Comment"</span>,</span><br><span class="line">      <span class="attr">"role"</span>: <span class="string">"time"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"# 收盘价作为另一个维度"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"close"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"cubes"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"# 数据立方体名称，需要和数据库中那个表统一"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"stock_601398"</span>,</span><br><span class="line">      <span class="attr">"dimensions"</span>: [</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"# 我们暂时只测量收盘价"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"measures"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"name"</span>:<span class="string">"close"</span>,</span><br><span class="line">          <span class="attr">"label"</span>:<span class="string">"close"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"aggregates"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"# 聚合记录数量（日线数据的话表示交易天数）"</span>: <span class="string">"function For example: sum, min, max."</span>,</span><br><span class="line">          <span class="attr">"name"</span>: <span class="string">"record_count"</span>,</span><br><span class="line">          <span class="attr">"function"</span>: <span class="string">"count"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"# 聚合收盘价最大值"</span>: <span class="string">""</span>,</span><br><span class="line">          <span class="attr">"name"</span>: <span class="string">"close_max"</span>,</span><br><span class="line">          <span class="attr">"function"</span>: <span class="string">"max"</span>,</span><br><span class="line">          <span class="attr">"# 这个就是我们的测量值"</span>: <span class="string">""</span>,</span><br><span class="line">          <span class="attr">"measure"</span>: <span class="string">"close"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"# 聚合收盘价最小值"</span>: <span class="string">""</span>,</span><br><span class="line">          <span class="attr">"name"</span>: <span class="string">"close_min"</span>,</span><br><span class="line">          <span class="attr">"function"</span>: <span class="string">"min"</span>,</span><br><span class="line">          <span class="attr">"measure"</span>: <span class="string">"close"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"mappings"</span>: &#123;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在同一文件夹下，用下面的Notebook执行挖掘任务：</p>
+<p>可以看到，从2015年1月1日至今（2018年7月31日），工商银行共交易了872天，收盘价最高7.421元/股，最低3.383元/股</p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="(未完待续)"></a>(未完待续)</h2>
           
         
       
