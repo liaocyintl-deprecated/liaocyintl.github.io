@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-07T13:16:19.090Z">
+<meta property="og:updated_time" content="2019-07-07T13:54:33.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本情報技術者(午前)のまとめノート 01 試験制度">
 <meta name="twitter:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
@@ -436,7 +436,9 @@
 <h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><h3 id="基数変換"><a href="#基数変換" class="headerlink" title="基数変換"></a>基数変換</h3><ul>
 <li>基数：10進数の場合０～９、2進数の場合０～１</li>
 <li>進数記号：$$(abc.de)_n$$</li>
-<li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換<h3 id="補数表現"><a href="#補数表現" class="headerlink" title="補数表現"></a>補数表現</h3></li>
+<li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換</li>
+</ul>
+<h3 id="補数表現"><a href="#補数表現" class="headerlink" title="補数表現"></a>補数表現</h3><ul>
 <li>定義：補数とはある数に対して、足し合わせることで同じ桁数の最大値になる数、あるいは足し合わせることで、同じ桁数の最大値に１を加えた数になるような数のことを指す。(X的补码Y就是说X+Y等于相同位数数的最大值)</li>
 <li>１の補数：Xの各ビットを反転 $$(1111)_2-(1101)_2=(0010)2$$</li>
 <li>２の補数：1の補数+1</li>
@@ -458,9 +460,11 @@
 <li>即ち：$$1.111011001*2^{133-127}$$</li>
 <li>それで仮数：$$S=111011001$$</li>
 <li>指数: $$E=(133)_{10}=1000101$$</li>
-<li>浮動小数点数表現は0 1000101 111011001<h3 id="算術演算と精度"><a href="#算術演算と精度" class="headerlink" title="算術演算と精度"></a>算術演算と精度</h3></li>
+<li>浮動小数点数表現は0 1000101 111011001</li>
 </ul>
 </li>
+</ul>
+<h3 id="算術演算と精度"><a href="#算術演算と精度" class="headerlink" title="算術演算と精度"></a>算術演算と精度</h3><ul>
 <li>参考資料：<a href="http://tooljp.com/jyosho/docs/ketaochi-jyohoochi/ketaochi-jyohoochi.html" target="_blank" rel="noopener">情報落ち、桁落ち、丸め誤差、打切り誤差の違い</a></li>
 <li>情報落ち<ul>
 <li>定義：絶対値の大きい数値に絶対値の小さい数値を加減算することによって、絶対値の小さい数値が無視されてしまうこと。</li>
@@ -469,10 +473,39 @@
 </ul>
 </li>
 <li>桁落ち<ul>
-<li>定義：</li>
+<li>定義：値がほぼ等しい浮動小数点数同士の減算をしたとき、有効桁数が少なくなる</li>
+<li>例：$$0.556 <em> 10^7 - 0.552 </em> 10^7 = 0.400 * 10^5$$</li>
+</ul>
+</li>
+<li>丸め誤差<ul>
+<li>定義：切捨て，切上げ，四捨五入などで有効桁数未満の桁を削除することによって発生する誤差</li>
+</ul>
+</li>
+<li>打切り誤差(截断误差)<ul>
+<li>定義：計算結果が無限小数となるような計算（無限級数など）を途中で打ち切ったことによって発生する誤差のこと</li>
 </ul>
 </li>
 </ul>
+<h2 id="論理演算とシフト演算-转移操作"><a href="#論理演算とシフト演算-转移操作" class="headerlink" title="論理演算とシフト演算(转移操作)"></a>論理演算とシフト演算(转移操作)</h2><h3 id="論理演算"><a href="#論理演算" class="headerlink" title="論理演算"></a>論理演算</h3><ul>
+<li>論理演算の種類：論理積（AND）、論理和（OR）、否定（NOT）、排他的論理和（XOR）、否定論理積（NAND）、否定論理和（NOR）</li>
+<li>ド・モルガン法則(德摩根定律)</li>
+<li>基本回路：AND、OR、NOT回路<br>| A | B | A AND B | A OR B | A XOR B | A NAND B | A NOR B |<br>|—|—|———|——–|———|———-|———|<br>| 0 | 0 | 0       | 0      | 0       | 1        | 1       |<br>| 0 | 1 | 0       | 1      | 1       | 1        | 0       |<br>| 1 | 0 | 0       | 1      | 1       | 1        | 0       |<br>| 1 | 1 | 1       | 1      | 0       | 0        | 0       |</li>
+<li>否定論理積は論理積の否定；否定論理和は論理和の否定；</li>
+<li>ビット演算：二つの2進数の対応する各桁それぞれに論理演算を行う<h3 id="シフト演算"><a href="#シフト演算" class="headerlink" title="シフト演算"></a>シフト演算</h3></li>
+<li>算術シフト<ul>
+<li>定義：先頭ビットを符号とみなして、符号ビットを除いてシフトを行う</li>
+<li>左シフト：空いた位置に０を入れ</li>
+<li>左シフトの例：00000011 -左2ビットシフト-&gt; 00001100</li>
+<li>右シフト：空いた位置に符号ビットを入れ</li>
+<li>右シフトの例：10100000 -右2ビットシフト-&gt; 11101000</li>
+</ul>
+</li>
+<li>論理シフト：<ul>
+<li>定義：単純にビットを左右にシフトし、空いた位置に0を入れる</li>
+</ul>
+</li>
+</ul>
+<p>– end p.51</p>
 
       
     </div>
@@ -672,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#実施概要"><span class="nav-number">1.</span> <span class="nav-text">実施概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数値表現"><span class="nav-number">1.1.</span> <span class="nav-text">数値表現</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基数変換"><span class="nav-number">1.1.1.</span> <span class="nav-text">基数変換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補数表現"><span class="nav-number">1.1.2.</span> <span class="nav-text">補数表現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算術演算と精度"><span class="nav-number">1.1.3.</span> <span class="nav-text">算術演算と精度</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#実施概要"><span class="nav-number">1.</span> <span class="nav-text">実施概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数値表現"><span class="nav-number">1.1.</span> <span class="nav-text">数値表現</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基数変換"><span class="nav-number">1.1.1.</span> <span class="nav-text">基数変換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補数表現"><span class="nav-number">1.1.2.</span> <span class="nav-text">補数表現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算術演算と精度"><span class="nav-number">1.1.3.</span> <span class="nav-text">算術演算と精度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#論理演算とシフト演算-转移操作"><span class="nav-number">1.2.</span> <span class="nav-text">論理演算とシフト演算(转移操作)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#論理演算"><span class="nav-number">1.2.1.</span> <span class="nav-text">論理演算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#シフト演算"><span class="nav-number">1.2.2.</span> <span class="nav-text">シフト演算</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
