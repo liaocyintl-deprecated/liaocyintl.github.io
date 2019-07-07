@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-07T12:50:27.487Z">
+<meta property="og:updated_time" content="2019-07-07T13:16:19.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本情報技術者(午前)のまとめノート 01 試験制度">
 <meta name="twitter:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
@@ -433,8 +433,7 @@
 </li>
 </ul>
 <p>#　基礎理論</p>
-<h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><p>###　基数変換</p>
-<ul>
+<h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><h3 id="基数変換"><a href="#基数変換" class="headerlink" title="基数変換"></a>基数変換</h3><ul>
 <li>基数：10進数の場合０～９、2進数の場合０～１</li>
 <li>進数記号：$$(abc.de)_n$$</li>
 <li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換<h3 id="補数表現"><a href="#補数表現" class="headerlink" title="補数表現"></a>補数表現</h3></li>
@@ -443,8 +442,36 @@
 <li>２の補数：1の補数+1</li>
 <li>負数の表現：２の補数で負数を表現</li>
 <li>負数の計算：X-Y=X+Y補</li>
-<li>固定小数点：最上位０の場合正数を表現、最上位１の場合負数を表現</li>
-<li>固定小数点範囲：$$-2^{n-1}~+2^{n-1}-1$$</li>
+<li>固定小数点数：最上位０の場合正数を表現、最上位１の場合負数を表現</li>
+<li>固定小数点数の表示範囲：$$-2^{n-1}$$から$$+2^{n-1}-1$$まで nは桁数</li>
+<li>浮動小数点数：符号部、指数部、仮数(尾数)部で表現、即ち$$pm{(mantissa)*(radix)^{index}}$$ 基数は2または16<ul>
+<li></li>
+<li>符号部（s）：1ビット；０なら正、１なら負</li>
+<li>指数部（e）：7ビット；</li>
+<li>仮数部（m）：24ビット；正規化を行う；小数第1位からを24ビットで表現。</li>
+</ul>
+</li>
+<li>浮動小数点数の参考資料：<a href="https://blog.csdn.net/whyel/article/details/81067989" target="_blank" rel="noopener">01</a></li>
+<li>浮動小数点数の例：<ul>
+<li>10進数123.125の二進数表現は1111011.001</li>
+<li>正規化:$$1.111011001*2^6$$</li>
+<li>即ち：$$1.111011001*2^{133-127}$$</li>
+<li>それで仮数：$$S=111011001$$</li>
+<li>指数: $$E=(133)_{10}=1000101$$</li>
+<li>浮動小数点数表現は0 1000101 111011001<h3 id="算術演算と精度"><a href="#算術演算と精度" class="headerlink" title="算術演算と精度"></a>算術演算と精度</h3></li>
+</ul>
+</li>
+<li>参考資料：<a href="http://tooljp.com/jyosho/docs/ketaochi-jyohoochi/ketaochi-jyohoochi.html" target="_blank" rel="noopener">情報落ち、桁落ち、丸め誤差、打切り誤差の違い</a></li>
+<li>情報落ち<ul>
+<li>定義：絶対値の大きい数値に絶対値の小さい数値を加減算することによって、絶対値の小さい数値が無視されてしまうこと。</li>
+<li>例：$$2.0000000 <em> 10^8 + 1.0000000 = 2.0000000 </em> 10^8$$ (有効桁数が8桁の場合)</li>
+<li>対策：小さい数から足し算を行い、可能な限り情報落ちを回避</li>
+</ul>
+</li>
+<li>桁落ち<ul>
+<li>定義：</li>
+</ul>
+</li>
 </ul>
 
       
@@ -645,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#実施概要"><span class="nav-number">1.</span> <span class="nav-text">実施概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数値表現"><span class="nav-number">1.1.</span> <span class="nav-text">数値表現</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#補数表現"><span class="nav-number">1.1.1.</span> <span class="nav-text">補数表現</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#実施概要"><span class="nav-number">1.</span> <span class="nav-text">実施概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数値表現"><span class="nav-number">1.1.</span> <span class="nav-text">数値表現</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基数変換"><span class="nav-number">1.1.1.</span> <span class="nav-text">基数変換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補数表現"><span class="nav-number">1.1.2.</span> <span class="nav-text">補数表現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算術演算と精度"><span class="nav-number">1.1.3.</span> <span class="nav-text">算術演算と精度</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
