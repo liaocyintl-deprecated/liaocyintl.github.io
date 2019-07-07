@@ -1,4 +1,6 @@
 https://liaocy.net/2019/07/03-javareview/
+https://liaocy.net/2019/07/04-FE/
+https://liaocy.net/2019/07/japanesevocab/
 https://liaocy.net/2019/06/03-javajaen/
 https://liaocy.net/2019/06/englishvocab/
 https://liaocy.net/2019/06/japanesevocab/
@@ -6,5 +8,3 @@ https://liaocy.net/2019/05/27-postgresqlnote/
 https://liaocy.net/2019/05/27-sqljaen/
 https://liaocy.net/2019/05/26-maxuserwatches/
 https://liaocy.net/2019/05/25-vim/
-https://liaocy.net/2019/05/19-linuxjaen/
-https://liaocy.net/2019/05/19-linuxcmd/
