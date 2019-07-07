@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liaocy.net/"/>
-  <updated>2019-07-03T06:26:00.181Z</updated>
+  <updated>2019-07-07T12:50:27.487Z</updated>
   <id>https://liaocy.net/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基本情報技術者(午前)のまとめノート 01 試験制度</title>
+    <link href="https://liaocy.net/2019/07/04-FE/"/>
+    <id>https://liaocy.net/2019/07/04-FE/</id>
+    <published>2019-07-07T05:22:00.000Z</published>
+    <updated>2019-07-07T12:50:27.487Z</updated>
+    
+    <content type="html"><![CDATA[<p>基本情報技術者(午前)についての実施概要、基礎理論<br><a id="more"></a></p><h1 id="実施概要"><a href="#実施概要" class="headerlink" title="実施概要"></a>実施概要</h1><ul><li>午前、午後試験ともに100点満点</li><li>両方60点以上得点できれば合格</li><li>午前試験はテクノロジ（technology）系分野を中心とした出題</li><li>午前試験は過去問題が多い、80問のうち60%+が過去問題</li><li>分野別<ul><li>テクノロジ系問題：50問</li><li>マネジメント系：10問</li><li>ストラテジー（Strategy）系：20問、システム戦略、企画、経営戦略、技術戦略、ビジネスインダストリ(Industry)、法務</li></ul></li></ul><p>#　基礎理論</p><h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><p>###　基数変換</p><ul><li>基数：10進数の場合０～９、2進数の場合０～１</li><li>進数記号：$$(abc.de)_n$$</li><li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換<h3 id="補数表現"><a href="#補数表現" class="headerlink" title="補数表現"></a>補数表現</h3></li><li>定義：補数とはある数に対して、足し合わせることで同じ桁数の最大値になる数、あるいは足し合わせることで、同じ桁数の最大値に１を加えた数になるような数のことを指す。(X的补码Y就是说X+Y等于相同位数数的最大值)</li><li>１の補数：Xの各ビットを反転 $$(1111)_2-(1101)_2=(0010)2$$</li><li>２の補数：1の補数+1</li><li>負数の表現：２の補数で負数を表現</li><li>負数の計算：X-Y=X+Y補</li><li>固定小数点：最上位０の場合正数を表現、最上位１の場合負数を表現</li><li>固定小数点範囲：$$-2^{n-1}~+2^{n-1}-1$$</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;基本情報技術者(午前)についての実施概要、基礎理論&lt;br&gt;
+    
+    </summary>
+    
+      <category term="資格試験" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/"/>
+    
+      <category term="基本情報技術者" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85/"/>
+    
+    
+      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
+    
+      <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
+    
+  </entry>
   
   <entry>
     <title>Java8那些忘却的事</title>
@@ -39,32 +65,6 @@
       <category term="Java" scheme="https://liaocy.net/tags/Java/"/>
     
       <category term="Tomcat" scheme="https://liaocy.net/tags/Tomcat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基本情報技術者(午前)のまとめノート 01 試験制度</title>
-    <link href="https://liaocy.net/2019/07/04-FE/"/>
-    <id>https://liaocy.net/2019/07/04-FE/</id>
-    <published>2019-07-02T05:22:00.000Z</published>
-    <updated>2019-07-07T12:27:34.008Z</updated>
-    
-    <content type="html"><![CDATA[<p>基本情報技術者(午前)についての実施概要、基礎理論<br><a id="more"></a></p><h1 id="実施概要"><a href="#実施概要" class="headerlink" title="実施概要"></a>実施概要</h1><ul><li>午前、午後試験ともに100点満点</li><li>両方60点以上得点できれば合格</li><li>午前試験はテクノロジ（technology）系分野を中心とした出題</li><li>午前試験は過去問題が多い、80問のうち60%+が過去問題</li><li>分野別<ul><li>テクノロジ系問題：50問</li><li>マネジメント系：10問</li><li>ストラテジー（Strategy）系：20問、システム戦略、企画、経営戦略、技術戦略、ビジネスインダストリ(Industry)、法務</li></ul></li></ul><p>#　基礎理論</p><h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><p>###　基数変換</p><ul><li>基数：10進数の場合０～９、2進数の場合０～１</li><li>進数記号：$$(abc.de)_n$$<br>$$\begin{equation}<br>(abc.de)_n<br>\end{equation}\label{eq1}$$</li><li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換</li><li></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;基本情報技術者(午前)についての実施概要、基礎理論&lt;br&gt;
-    
-    </summary>
-    
-      <category term="資格試験" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/"/>
-    
-      <category term="基本情報技術者" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85/"/>
-    
-    
-      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
-    
-      <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
     
   </entry>
   
