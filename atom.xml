@@ -47,9 +47,9 @@
     <link href="https://liaocy.net/2019/07/04-FE/"/>
     <id>https://liaocy.net/2019/07/04-FE/</id>
     <published>2019-07-02T05:22:00.000Z</published>
-    <updated>2019-07-07T12:21:22.295Z</updated>
+    <updated>2019-07-07T12:27:34.008Z</updated>
     
-    <content type="html"><![CDATA[<p>基本情報技術者(午前)についての実施概要、基礎理論<br><a id="more"></a></p><h1 id="実施概要"><a href="#実施概要" class="headerlink" title="実施概要"></a>実施概要</h1><ul><li>午前、午後試験ともに100点満点</li><li>両方60点以上得点できれば合格</li><li>午前試験はテクノロジ（technology）系分野を中心とした出題</li><li>午前試験は過去問題が多い、80問のうち60%+が過去問題</li><li>分野別<ul><li>テクノロジ系問題：50問</li><li>マネジメント系：10問</li><li>ストラテジー（Strategy）系：20問、システム戦略、企画、経営戦略、技術戦略、ビジネスインダストリ(Industry)、法務</li></ul></li></ul><p>#　基礎理論</p><h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><p>###　基数変換</p><ul><li>基数：10進数の場合０～９、2進数の場合０～１</li><li>進数記号：<br>$$\begin{equation}<br>(abc.de)_n<br>\end{equation}\label{eq1}$$</li><li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換</li><li></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>基本情報技術者(午前)についての実施概要、基礎理論<br><a id="more"></a></p><h1 id="実施概要"><a href="#実施概要" class="headerlink" title="実施概要"></a>実施概要</h1><ul><li>午前、午後試験ともに100点満点</li><li>両方60点以上得点できれば合格</li><li>午前試験はテクノロジ（technology）系分野を中心とした出題</li><li>午前試験は過去問題が多い、80問のうち60%+が過去問題</li><li>分野別<ul><li>テクノロジ系問題：50問</li><li>マネジメント系：10問</li><li>ストラテジー（Strategy）系：20問、システム戦略、企画、経営戦略、技術戦略、ビジネスインダストリ(Industry)、法務</li></ul></li></ul><p>#　基礎理論</p><h2 id="数値表現"><a href="#数値表現" class="headerlink" title="数値表現"></a>数値表現</h2><p>###　基数変換</p><ul><li>基数：10進数の場合０～９、2進数の場合０～１</li><li>進数記号：$$(abc.de)_n$$<br>$$\begin{equation}<br>(abc.de)_n<br>\end{equation}\label{eq1}$$</li><li>基数変換：小数を含めて、2進数と8進数と16進数の変換、10進数から2進数、8進数、16進数への変換</li><li></li></ul>]]></content>
     
     <summary type="html">
     
