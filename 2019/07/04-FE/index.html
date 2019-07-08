@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-08T14:20:44.412Z">
+<meta property="og:updated_time" content="2019-07-08T14:21:52.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本情報技術者(午前)のまとめノート 01 基礎理論">
 <meta name="twitter:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
@@ -489,7 +489,60 @@
 <h2 id="論理演算とシフト演算-转移操作"><a href="#論理演算とシフト演算-转移操作" class="headerlink" title="論理演算とシフト演算(转移操作)"></a>論理演算とシフト演算(转移操作)</h2><h3 id="論理演算"><a href="#論理演算" class="headerlink" title="論理演算"></a>論理演算</h3><ul>
 <li>論理演算の種類：論理積（AND）、論理和（OR）、否定（NOT）、排他的論理和（XOR）、否定論理積（NAND）、否定論理和（NOR）</li>
 <li>ド・モルガン法則(德摩根定律)</li>
-<li>基本回路：AND、OR、NOT回路<br>| A | B | A AND B | A OR B | A XOR B | A NAND B | A NOR B |<br>|—|—|———|——–|———|———-|———|<br>| 0 | 0 | 0       | 0      | 0       | 1        | 1       |<br>| 0 | 1 | 0       | 1      | 1       | 1        | 0       |<br>| 1 | 0 | 0       | 1      | 1       | 1        | 0       |<br>| 1 | 1 | 1       | 1      | 0       | 0        | 0       |</li>
+<li>基本回路：AND、OR、NOT回路</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A AND B</th>
+<th>A OR B</th>
+<th>A XOR B</th>
+<th>A NAND B</th>
+<th>A NOR B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li>否定論理積は論理積の否定；否定論理和は論理和の否定；</li>
 <li>ビット演算：二つの2進数の対応する各桁それぞれに論理演算を行う<h3 id="シフト演算"><a href="#シフト演算" class="headerlink" title="シフト演算"></a>シフト演算</h3></li>
 <li>算術シフト<ul>
@@ -517,8 +570,38 @@
 <li>::= 左辺を右辺のように定義する</li>
 <li>| 又は（OR）</li>
 <li>例：&lt;数字&gt;::=0|1|2|3|4|5|6|7|8|9</li>
-<li>例：&lt;英字&gt;::=A|B|C<h3 id="ボーランド表記法（波兰表达式）"><a href="#ボーランド表記法（波兰表达式）" class="headerlink" title="ボーランド表記法（波兰表达式）"></a>ボーランド表記法（波兰表达式）</h3>| 表記法             | 演算子の配置 | 特徴                         | 例  |<br>|——————–|————–|——————————|—–|<br>| ポーランド表記法   | 前置記法     | 演算子を演算対象の前に置く   | +ab |<br>| 通常の表記法       | 中置記法     | 演算子を演算対象の間に置く   | a+b |<br>| 逆ポーランド表記法 | 後置記法     | 演算子を演算対象の後ろに置く | ab+ |</li>
+<li>例：&lt;英字&gt;::=A|B|C<h3 id="ボーランド表記法（波兰表达式）"><a href="#ボーランド表記法（波兰表达式）" class="headerlink" title="ボーランド表記法（波兰表达式）"></a>ボーランド表記法（波兰表达式）</h3></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>表記法</th>
+<th>演算子の配置</th>
+<th>特徴</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ポーランド表記法</td>
+<td>前置記法</td>
+<td>演算子を演算対象の前に置く</td>
+<td>+ab</td>
+</tr>
+<tr>
+<td>通常の表記法</td>
+<td>中置記法</td>
+<td>演算子を演算対象の間に置く</td>
+<td>a+b</td>
+</tr>
+<tr>
+<td>逆ポーランド表記法</td>
+<td>後置記法</td>
+<td>演算子を演算対象の後ろに置く</td>
+<td>ab+</td>
+</tr>
+</tbody>
+</table>
 <h2 id="データ構造"><a href="#データ構造" class="headerlink" title="データ構造"></a>データ構造</h2><h3 id="リスト（List）"><a href="#リスト（List）" class="headerlink" title="リスト（List）"></a>リスト（List）</h3><ul>
 <li>定義：いくつかの要素をデータの場所を示すポインタ（指针）でつないで構成し、物理的な位置とは関係はく、ポインタによって論理的に決められる。</li>
 <li>種類：単方向リスト（線形リスト）、双方向リスト（双リスト）、環状リスト<h3 id="スタック-stack"><a href="#スタック-stack" class="headerlink" title="スタック(stack)"></a>スタック(stack)</h3></li>
