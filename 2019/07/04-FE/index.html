@@ -86,14 +86,14 @@
 <meta name="description" content="基本情報技術者(午前)についての実施概要、基礎理論">
 <meta name="keywords" content="Vocabulary,ノート">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基本情報技術者(午前)のまとめノート 01 試験制度">
+<meta property="og:title" content="基本情報技術者(午前)のまとめノート 01 基礎理論">
 <meta property="og:url" content="https://liaocy.net/2019/07/04-FE/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-07T13:54:33.725Z">
+<meta property="og:updated_time" content="2019-07-08T13:36:43.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基本情報技術者(午前)のまとめノート 01 試験制度">
+<meta name="twitter:title" content="基本情報技術者(午前)のまとめノート 01 基礎理論">
 <meta name="twitter:description" content="基本情報技術者(午前)についての実施概要、基礎理論">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>基本情報技術者(午前)のまとめノート 01 試験制度 | Liao's Blog</title>
+  <title>基本情報技術者(午前)のまとめノート 01 基礎理論 | Liao's Blog</title>
   
 
 
@@ -326,7 +326,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">基本情報技術者(午前)のまとめノート 01 試験制度</h2>
+          <h2 class="post-title" itemprop="name headline">基本情報技術者(午前)のまとめノート 01 基礎理論</h2>
         
 
         <div class="post-meta">
@@ -468,13 +468,13 @@
 <li>参考資料：<a href="http://tooljp.com/jyosho/docs/ketaochi-jyohoochi/ketaochi-jyohoochi.html" target="_blank" rel="noopener">情報落ち、桁落ち、丸め誤差、打切り誤差の違い</a></li>
 <li>情報落ち<ul>
 <li>定義：絶対値の大きい数値に絶対値の小さい数値を加減算することによって、絶対値の小さい数値が無視されてしまうこと。</li>
-<li>例：$$2.0000000 <em> 10^8 + 1.0000000 = 2.0000000 </em> 10^8$$ (有効桁数が8桁の場合)</li>
+<li>例：$$2.0000000<em>10^8+1.0000000=2.0000000</em>10^8$$ (有効桁数が8桁の場合)</li>
 <li>対策：小さい数から足し算を行い、可能な限り情報落ちを回避</li>
 </ul>
 </li>
 <li>桁落ち<ul>
 <li>定義：値がほぼ等しい浮動小数点数同士の減算をしたとき、有効桁数が少なくなる</li>
-<li>例：$$0.556 <em> 10^7 - 0.552 </em> 10^7 = 0.400 * 10^5$$</li>
+<li>例：$$0.556<em>10^7-0.552</em>10^7=0.400*10^5$$</li>
 </ul>
 </li>
 <li>丸め誤差<ul>
@@ -505,7 +505,20 @@
 </ul>
 </li>
 </ul>
-<p>– end p.51</p>
+<h2 id="情報量・符号化"><a href="#情報量・符号化" class="headerlink" title="情報量・符号化"></a>情報量・符号化</h2><h3 id="情報量"><a href="#情報量" class="headerlink" title="情報量"></a>情報量</h3><p>情報量は、対象となる情報ごとのデータの取り得るのバリエーション(variation)によって変わる。</p>
+<ul>
+<li>ビットとバイト：1バイト＝8ビット</li>
+<li>生起確率(产状概率)：発生すると考えられるデータの予測確率。サイコロの結果は最低3ビットのデータ量が必要。</li>
+<li>期待値：ある試行を行ったときに得られる数値の平均値。サイコロの期待値は3.5。<h3 id="符号化（编码）"><a href="#符号化（编码）" class="headerlink" title="符号化（编码）"></a>符号化（编码）</h3></li>
+<li>ランレングス符号（游程编码）：同じビットパターンが連続するデータをできるだけ短いビット列として表現するための符号化方式。</li>
+<li>ハフマン符号（霍夫曼编码）：出現頻度が高いものほど短いビット列で表現する。例えば：出現頻度が高い単語を1に、次に10、11…順次に符号化。</li>
+</ul>
+<h2 id="BNFと逆ポーランド表記法"><a href="#BNFと逆ポーランド表記法" class="headerlink" title="BNFと逆ポーランド表記法"></a>BNFと逆ポーランド表記法</h2><h3 id="BNF-Backus-Naur-Form-巴科斯-诺尔范式"><a href="#BNF-Backus-Naur-Form-巴科斯-诺尔范式" class="headerlink" title="BNF(Backus Naur Form, 巴科斯-诺尔范式)"></a>BNF(Backus Naur Form, 巴科斯-诺尔范式)</h3><ul>
+<li>::= 左辺を右辺のように定義する</li>
+<li>| 又は（OR）</li>
+<li>例：&lt;数字&gt;::=0|1|2|3|4|5|6|7|8|9</li>
+<li>例：&lt;英字&gt;::=A|B|C<h3 id="ボーランド表記法（波兰表达式）"><a href="#ボーランド表記法（波兰表达式）" class="headerlink" title="ボーランド表記法（波兰表达式）"></a>ボーランド表記法（波兰表达式）</h3>| 表記法             | 演算子の配置 | 特徴                         | 例  |<br>|——————–|————–|——————————|—–|<br>| ポーランド表記法   | 前置記法     | 演算子を演算対象の前に置く   | +ab |<br>| 通常の表記法       | 中置記法     | 演算子を演算対象の間に置く   | a+b |<br>| 逆ポーランド表記法 | 後置記法     | 演算子を演算対象の後ろに置く | ab+ |</li>
+</ul>
 
       
     </div>
@@ -705,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#実施概要"><span class="nav-number">1.</span> <span class="nav-text">実施概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数値表現"><span class="nav-number">1.1.</span> <span class="nav-text">数値表現</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基数変換"><span class="nav-number">1.1.1.</span> <span class="nav-text">基数変換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補数表現"><span class="nav-number">1.1.2.</span> <span class="nav-text">補数表現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算術演算と精度"><span class="nav-number">1.1.3.</span> <span class="nav-text">算術演算と精度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#論理演算とシフト演算-转移操作"><span class="nav-number">1.2.</span> <span class="nav-text">論理演算とシフト演算(转移操作)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#論理演算"><span class="nav-number">1.2.1.</span> <span class="nav-text">論理演算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#シフト演算"><span class="nav-number">1.2.2.</span> <span class="nav-text">シフト演算</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#実施概要"><span class="nav-number">1.</span> <span class="nav-text">実施概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数値表現"><span class="nav-number">1.1.</span> <span class="nav-text">数値表現</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基数変換"><span class="nav-number">1.1.1.</span> <span class="nav-text">基数変換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補数表現"><span class="nav-number">1.1.2.</span> <span class="nav-text">補数表現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算術演算と精度"><span class="nav-number">1.1.3.</span> <span class="nav-text">算術演算と精度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#論理演算とシフト演算-转移操作"><span class="nav-number">1.2.</span> <span class="nav-text">論理演算とシフト演算(转移操作)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#論理演算"><span class="nav-number">1.2.1.</span> <span class="nav-text">論理演算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#シフト演算"><span class="nav-number">1.2.2.</span> <span class="nav-text">シフト演算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情報量・符号化"><span class="nav-number">1.3.</span> <span class="nav-text">情報量・符号化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情報量"><span class="nav-number">1.3.1.</span> <span class="nav-text">情報量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号化（编码）"><span class="nav-number">1.3.2.</span> <span class="nav-text">符号化（编码）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BNFと逆ポーランド表記法"><span class="nav-number">1.4.</span> <span class="nav-text">BNFと逆ポーランド表記法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BNF-Backus-Naur-Form-巴科斯-诺尔范式"><span class="nav-number">1.4.1.</span> <span class="nav-text">BNF(Backus Naur Form, 巴科斯-诺尔范式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ボーランド表記法（波兰表达式）"><span class="nav-number">1.4.2.</span> <span class="nav-text">ボーランド表記法（波兰表达式）</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -880,7 +893,7 @@
         var disqus_config = function () {
           this.page.url = 'https://liaocy.net/2019/07/04-FE/';
           this.page.identifier = '2019/07/04-FE/';
-          this.page.title = '基本情報技術者(午前)のまとめノート 01 試験制度';
+          this.page.title = '基本情報技術者(午前)のまとめノート 01 基礎理論';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://liaocy-net.disqus.com/embed.js';
