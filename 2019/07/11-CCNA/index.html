@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="イーサネット、CSMA・CD、ネットワーク機器、レイヤ２スイッチンぐ">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-11T04:55:55.183Z">
+<meta property="og:updated_time" content="2019-07-11T06:20:04.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 02 イーサネット">
 <meta name="twitter:description" content="イーサネット、CSMA・CD、ネットワーク機器、レイヤ２スイッチンぐ">
@@ -476,7 +476,113 @@
 </li>
 </ul>
 <h2 id="リピータハブを使用した10BASE-TにおけるCDMA-CD"><a href="#リピータハブを使用した10BASE-TにおけるCDMA-CD" class="headerlink" title="リピータハブを使用した10BASE-TにおけるCDMA/CD"></a>リピータハブを使用した10BASE-TにおけるCDMA/CD</h2><p>略</p>
-<h1 id="ネットワーク機器"><a href="#ネットワーク機器" class="headerlink" title="ネットワーク機器"></a>ネットワーク機器</h1>
+<h1 id="ネットワーク機器"><a href="#ネットワーク機器" class="headerlink" title="ネットワーク機器"></a>ネットワーク機器</h1><h2 id="リピータ、ハブ"><a href="#リピータ、ハブ" class="headerlink" title="リピータ、ハブ"></a>リピータ、ハブ</h2><ul>
+<li>リピータ：電気信号を増幅し波形を再生して中継を行う。</li>
+<li>ハブ：リピータの機能を持ち、リピータハブと呼ばれ、受信ポートを除くすべてのポートに信号を中継</li>
+<li>コリジョンドメイン(Collision domain、冲突域): 電気信号の衝突が伝わる範囲のこと</li>
+</ul>
+<h2 id="ブリッジ・スイッチ"><a href="#ブリッジ・スイッチ" class="headerlink" title="ブリッジ・スイッチ"></a>ブリッジ・スイッチ</h2><ul>
+<li>ポジション：MACアドレスを使用してフレームの中継を行うデータリンク層で操作</li>
+<li>ブリッジとスイッチの違い<ul>
+<li>スイッチはマルチポートであり、どのポートにフレームを中継するかまで判断する</li>
+</ul>
+</li>
+</ul>
+<h2 id="ルータ、レイヤ3スイッチ"><a href="#ルータ、レイヤ3スイッチ" class="headerlink" title="ルータ、レイヤ3スイッチ"></a>ルータ、レイヤ3スイッチ</h2><ul>
+<li>ルータ：IPアドレスなどの論理アドレスを使用してパケットを中継する。<ul>
+<li>ルーティング：パケットのヘッダに含まれる宛先アドレスを基に、ルーティングテーブルを参照し、最適経路を選択してパケットを伝送。</li>
+<li>機能：<ul>
+<li>ルーティング</li>
+<li>異なるネットワークを相互に接続</li>
+<li>ブロードキャストドメインを分割</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>レイヤ３スイッチ：<ul>
+<li>ルータとの違い</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ルータ</th>
+<th>レイヤ3スイッチ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>速度</td>
+<td>低い（ソフトウェア処理）</td>
+<td>高速（ハードウェア処理、ASIC：application specific integrated circuit、特定用途向け集積回路）</td>
+</tr>
+<tr>
+<td>インターフェース</td>
+<td>イーサネット、シリアルなど</td>
+<td>イーサネット</td>
+</tr>
+<tr>
+<td>ポート単価</td>
+<td>高い</td>
+<td>低い</td>
+</tr>
+<tr>
+<td>場所</td>
+<td>WAN</td>
+<td>企業内のLANの構築</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ブロードキャストドメイン（广播域）：同じサブネットでブロードキャストできる地域。</li>
+</ul>
+<h1 id="デフォルトゲートウェイ"><a href="#デフォルトゲートウェイ" class="headerlink" title="デフォルトゲートウェイ"></a>デフォルトゲートウェイ</h1><ul>
+<li>定義：ルータは異なるネットワークへの「出入口」</li>
+</ul>
+<h1 id="レイヤ2スイッチング"><a href="#レイヤ2スイッチング" class="headerlink" title="レイヤ2スイッチング"></a>レイヤ2スイッチング</h1><h2 id="スイッチの基本機能"><a href="#スイッチの基本機能" class="headerlink" title="スイッチの基本機能"></a>スイッチの基本機能</h2><ul>
+<li>MACアドレス学習</li>
+<li>フィルタリング</li>
+<li>全二重通信</li>
+<li>マイクロセグメンテーション</li>
+</ul>
+<h2 id="MACアドレスの学習"><a href="#MACアドレスの学習" class="headerlink" title="MACアドレスの学習"></a>MACアドレスの学習</h2><ul>
+<li>MACアドレステーブル：MACアドレスとポートの対応表</li>
+<li>シスコの場合：CAMテーブル（Content-Addressable Memory Table）という</li>
+<li>動的：スイッチ自動MACアドレス学習<ol>
+<li>スイッチ起動直後（MACアドレステーブルは未学習）</li>
+<li>MACアドレス学習：フレームを受信すると、そのNICのMACアドレスを登録する。</li>
+</ol>
+<ul>
+<li>エージングタイム（Aging time, 老化时间）：動的学習したMACアドレスはエージングタイムだけ保持する。</li>
+</ul>
+</li>
+<li>静的：管理者手動でMACアドレスを登録</li>
+</ul>
+<h2 id="フィルタリング"><a href="#フィルタリング" class="headerlink" title="フィルタリング"></a>フィルタリング</h2><ul>
+<li>定義：宛先MACアドレスがあった場合、そのポートだけ転送する。</li>
+</ul>
+<h2 id="フラッディング（Flooding）"><a href="#フラッディング（Flooding）" class="headerlink" title="フラッディング（Flooding）"></a>フラッディング（Flooding）</h2><ul>
+<li>定義：宛先MACアドレスがない場合、すべてのポートだけ転送する。</li>
+<li>場合：宛先MACアドレスが未学習、ブロードキャスト、未学習のマルチキャストフレーム</li>
+</ul>
+<h2 id="全二重通信-Full-duplex"><a href="#全二重通信-Full-duplex" class="headerlink" title="全二重通信(Full duplex)"></a>全二重通信(Full duplex)</h2><ul>
+<li>定義：データの送信と受信を双方から同時に行える通信方式</li>
+<li>必要条件：<ul>
+<li>双方の機器が全二重通信サポート</li>
+<li>スイッチポートで接続</li>
+<li>P2P接続</li>
+</ul>
+</li>
+<li>マイクロセグメンテーション：１つのスイッチポートにホストを接続してコリジョンドメインを最小分割すること</li>
+<li>オートネゴシエーション（auto-negotiation，自动交涉）<ul>
+<li>機能：接続された機器の双方でサポートしている通信機能と通信モードを自動的に選択</li>
+<li>方法：FLP(Fast Link Pulse，快速连接脉冲)バーストを送出、通信速度と通信モードを含んで交換する</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -689,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#イーサネットの概要"><span class="nav-number">1.</span> <span class="nav-text">イーサネットの概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MAC副層とLLC副層"><span class="nav-number">1.2.</span> <span class="nav-text">MAC副層とLLC副層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#イーサネットフレーム"><span class="nav-number">1.3.</span> <span class="nav-text">イーサネットフレーム</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACアドレスの構成"><span class="nav-number">1.4.</span> <span class="nav-text">MACアドレスの構成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#イーサネットの規格"><span class="nav-number">1.5.</span> <span class="nav-text">イーサネットの規格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSMA-CD"><span class="nav-number">2.</span> <span class="nav-text">CSMA/CD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要、動作"><span class="nav-number">2.1.</span> <span class="nav-text">概要、動作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#リピータハブを使用した10BASE-TにおけるCDMA-CD"><span class="nav-number">2.2.</span> <span class="nav-text">リピータハブを使用した10BASE-TにおけるCDMA/CD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ネットワーク機器"><span class="nav-number">3.</span> <span class="nav-text">ネットワーク機器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#イーサネットの概要"><span class="nav-number">1.</span> <span class="nav-text">イーサネットの概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MAC副層とLLC副層"><span class="nav-number">1.2.</span> <span class="nav-text">MAC副層とLLC副層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#イーサネットフレーム"><span class="nav-number">1.3.</span> <span class="nav-text">イーサネットフレーム</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACアドレスの構成"><span class="nav-number">1.4.</span> <span class="nav-text">MACアドレスの構成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#イーサネットの規格"><span class="nav-number">1.5.</span> <span class="nav-text">イーサネットの規格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSMA-CD"><span class="nav-number">2.</span> <span class="nav-text">CSMA/CD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要、動作"><span class="nav-number">2.1.</span> <span class="nav-text">概要、動作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#リピータハブを使用した10BASE-TにおけるCDMA-CD"><span class="nav-number">2.2.</span> <span class="nav-text">リピータハブを使用した10BASE-TにおけるCDMA/CD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ネットワーク機器"><span class="nav-number">3.</span> <span class="nav-text">ネットワーク機器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#リピータ、ハブ"><span class="nav-number">3.1.</span> <span class="nav-text">リピータ、ハブ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ブリッジ・スイッチ"><span class="nav-number">3.2.</span> <span class="nav-text">ブリッジ・スイッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ルータ、レイヤ3スイッチ"><span class="nav-number">3.3.</span> <span class="nav-text">ルータ、レイヤ3スイッチ</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#デフォルトゲートウェイ"><span class="nav-number">4.</span> <span class="nav-text">デフォルトゲートウェイ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#レイヤ2スイッチング"><span class="nav-number">5.</span> <span class="nav-text">レイヤ2スイッチング</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチの基本機能"><span class="nav-number">5.1.</span> <span class="nav-text">スイッチの基本機能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACアドレスの学習"><span class="nav-number">5.2.</span> <span class="nav-text">MACアドレスの学習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#フィルタリング"><span class="nav-number">5.3.</span> <span class="nav-text">フィルタリング</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#フラッディング（Flooding）"><span class="nav-number">5.4.</span> <span class="nav-text">フラッディング（Flooding）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全二重通信-Full-duplex"><span class="nav-number">5.5.</span> <span class="nav-text">全二重通信(Full duplex)</span></a></li></ol></li></ol></div>
             
 
           </div>
