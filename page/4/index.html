@@ -308,6 +308,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/08-osrmlocalinstance/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/08-osrmlocalinstance/" itemprop="url">创建本地OSRM实例，用OSM做导航数据</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T17:40:22+09:00">
+                2018-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Open-Street-Map-OSM/" itemprop="url" rel="index">
+                    <span itemprop="name">Open Street Map (OSM)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/08-osrmlocalinstance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/08-osrmlocalinstance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Open Source Routing Machine (OSRM) 是一个导航路径计算库。<br>给定两个地理坐标，通过OSRM可以计算其间的路径、距离、交通时间，并提供 HTTP 和 C++ 的接口。<br>由于它是一个开源的库，你可以把它的实例安装在本地，以构成一个导航服务。<br>这样可以避免官方服务器的限额问题。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://datawookie.netlify.com/blog/2017/09/building-a-local-osrm-instance/" target="_blank" rel="noopener">Building a Local OSRM Instance</a></li>
+</ul>
+<h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><ul>
+<li>Ubuntu: 18.04 LTS (OSRM对于内存的要求较高，因此至少保证4GB的swap空间)</li>
+</ul>
+<h2 id="构建OSRM"><a href="#构建OSRM" class="headerlink" title="构建OSRM"></a>构建OSRM</h2><p>安装系统依赖：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install -y git cmake build-essential jq htop</span><br><span class="line">apt install -y liblua5.2-dev libboost-all-dev libprotobuf-dev libtbb-dev libstxxl-dev libbz2-dev</span><br></pre></td></tr></table></figure></p>
+<p>克隆代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Project-OSRM/osrm-backend.git</span><br></pre></td></tr></table></figure></p>
+<p>进入文件夹：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> osrm-backend/</span><br></pre></td></tr></table></figure></p>
+<p>我们测试的时候使用版本v5.18.0，因此我们将代码切换到v5.18.0：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout v5.18.0</span><br></pre></td></tr></table></figure></p>
+<p>创建build文件夹并编译代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build/</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>安装编译好的程序：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<h2 id="导入Open-Street-Map地图数据"><a href="#导入Open-Street-Map地图数据" class="headerlink" title="导入Open Street Map地图数据"></a>导入Open Street Map地图数据</h2><p>打开<a href="http://www.openstreetmap.org/export" target="_blank" rel="noopener">导出地图数据的网页</a>，<br>在这个页面里，可见地图的坐标范围显示在左面：</p>
+<p><img src="/uploads/postimgs/8924e14c.png" alt="导出香港的数据"></p>
+<p>通过下面的命令，下载相应的地图数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O map.xml http://overpass-api.de/api/map?bbox=114.4306,22.1327,113.8607,22.5398</span><br></pre></td></tr></table></figure>
+<p>其中四个坐标分别是 右，下，左，上。</p>
+<p>将下载好的map.xml文件放在osrm-backend文件夹下面。</p>
+<h2 id="提取导航数据"><a href="#提取导航数据" class="headerlink" title="提取导航数据"></a>提取导航数据</h2><p>在osrm-backend文件夹下执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osrm-extract map.xml -p profiles/car.lua</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建数据"><a href="#创建数据" class="headerlink" title="创建数据"></a>创建数据</h2><p>创建结构化数据以支持高速提取导航最短路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osrm-contract map.xml.osrm</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p>之后我们就可以启动HTTP服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osrm-routed map.xml.osrm</span><br></pre></td></tr></table></figure>
+<h2 id="调用接口"><a href="#调用接口" class="headerlink" title="调用接口"></a>调用接口</h2><p>之后我们就可以按照<a href="http://project-osrm.org/docs/v5.15.2/api/" target="_blank" rel="noopener">OSRM的接口</a>进行调用了。<br>只要把URL改成我们服务器的地址，默认为：<a href="http://127.0.0.1:5000/" target="_blank" rel="noopener">http://127.0.0.1:5000/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180930-tensorflowtutorial02/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1951,190 +2137,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/01-pythonlinuxwinpath/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/01-pythonlinuxwinpath/" itemprop="url">解决Python在Linux环境、Mac环境或Windows环境下，文件路径不同的问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-01T19:02:25+09:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/01-pythonlinuxwinpath/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/01-pythonlinuxwinpath/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f" target="_blank" rel="noopener">本文参考：Python 3 Quick Tip: The easy way to deal with file paths on Windows, Mac and Linux</a></p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
-<li>Python 3.6.5</li>
-<li>pathlib 11.1<br><a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noopener">文档</a></li>
-</ul>
-<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>操作系统，文件的路径也是不同的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows的文件路径:</span><br><span class="line">C:\some_folder\some_file.txt</span><br><span class="line"></span><br><span class="line">很过其它操作系统的文件:</span><br><span class="line">/some_folder/some_file.txt</span><br></pre></td></tr></table></figure>
-<p>这其实是从上个世纪80年代，从MS-DOS系统遗留下来的疑难杂症。</p>
-<p>这就造成一个问题，如果包含文件路径的Python代码是在Linux上测试的，那Windows下面可能就没法用了。</p>
-<p>还好，可以用一个叫做 <strong>pathlib</strong> 的库来解决。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="安装pathlib"><a href="#安装pathlib" class="headerlink" title="安装pathlib"></a>安装pathlib</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pathlib</span><br></pre></td></tr></table></figure>
-<h3 id="让路径兼容"><a href="#让路径兼容" class="headerlink" title="让路径兼容"></a>让路径兼容</h3><p>假如你的python代码写在my_program.py里，你要定位到下面这个叫raw_data.txt的文件：</p>
-<p><img src="/uploads/postimgs/9c379859.png" alt=""></p>
-<p>你可以这样写：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">data_folder = Path(<span class="string">"source_data/text_files/"</span>)</span><br><span class="line">file_to_open = data_folder / <span class="string">"raw_data.txt"</span></span><br><span class="line">f = open(file_to_open)</span><br><span class="line">print(f.read())</span><br></pre></td></tr></table></figure>
-<p>或者你可以直接写绝对路径：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br></pre></td></tr></table></figure>
-<p>它甚至可以直接取文件名，扩展名，判断文件是否存在：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br><span class="line">print(filename.name)</span><br><span class="line"><span class="comment"># 输出全部文件名："raw_data.txt"</span></span><br><span class="line">print(filename.suffix)</span><br><span class="line"><span class="comment"># 输出文件扩展名："txt"</span></span><br><span class="line">print(filename.stem)</span><br><span class="line"><span class="comment"># 输出文件名："raw_data"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> filename.exists():</span><br><span class="line">    print(<span class="string">"奥普斯，文件不存在！"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"耶，文件存在！"</span>)</span><br></pre></td></tr></table></figure>
-<p>可以返回Windows格式的路径：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path, PureWindowsPath</span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br><span class="line"><span class="comment"># 转换为 Windows 格式</span></span><br><span class="line">path_on_windows = PureWindowsPath(filename)</span><br><span class="line">print(path_on_windows)</span><br><span class="line"><span class="comment"># 输出： "source_data\text_files\raw_data.txt"</span></span><br></pre></td></tr></table></figure>
-<p>便利文件夹里的全部json文件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> Path(<span class="string">"dir/dir/"</span>).glob(<span class="string">'*.json'</span>):</span><br><span class="line">    open(file)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2187,7 +2189,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2198,7 +2200,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
