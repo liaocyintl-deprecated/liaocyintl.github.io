@@ -308,6 +308,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180620-mqttclient/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/20180620-mqttclient/" itemprop="url">Python实现MQTT接收订阅数据</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T14:40:17+09:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/MQTT/" itemprop="url" rel="index">
+                    <span itemprop="name">MQTT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/20180620-mqttclient/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180620-mqttclient/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>物联网常使用 “消息队列遥测传输(Message Queuing Telemetry Transport, MQTT)” 协议订阅数据，这里用Python实现从MQTT服务器订阅数据。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
+<li>Python 3.6.1</li>
+<li>paho.mqtt 包 pip install paho.mqtt</li>
+</ul>
+<p>参考以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paho.mqtt.client <span class="keyword">as</span> mqtt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务器地址</span></span><br><span class="line">host = <span class="string">'xxx.xxx'</span></span><br><span class="line"><span class="comment"># 通信端口</span></span><br><span class="line">port = <span class="number">1883</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用户名</span></span><br><span class="line">username = <span class="string">'username'</span></span><br><span class="line"><span class="comment"># 密码</span></span><br><span class="line">password = <span class="string">'password'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 订阅主题名</span></span><br><span class="line">topic = <span class="string">'topic'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接后事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_connect</span><span class="params">(client, userdata, flags, respons_code)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> respons_code == <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 连接成功</span></span><br><span class="line">        print(<span class="string">'Connection Succeed!'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 连接失败并显示错误代码</span></span><br><span class="line">        print(<span class="string">'Connect Error status &#123;0&#125;'</span>.format(respons_code))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 订阅信息</span></span><br><span class="line">    client.subscribe(topic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收到数据后事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(client, userdata, msg)</span>:</span></span><br><span class="line">    <span class="comment"># 打印订阅消息主题</span></span><br><span class="line">    print(<span class="string">"topic"</span>, msg.topic)</span><br><span class="line">    <span class="comment"># 打印消息数据</span></span><br><span class="line">    print(<span class="string">"msg payload"</span>, str(msg.payload))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化客户端，选择MQTT版本</span></span><br><span class="line">    client = mqtt.Client(protocol = mqtt.MQTTv311)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 注册事件</span></span><br><span class="line">    client.on_connect = on_connect</span><br><span class="line">    client.on_message = on_message</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置账号密码（如果需要的话）</span></span><br><span class="line">    client.username_pw_set(username, password=password)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 连接到服务器</span></span><br><span class="line">    client.connect(host, port = port, keepalive=<span class="number">60</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 守护连接状态</span></span><br><span class="line">    client.loop_forever()</span><br></pre></td></tr></table></figure>
+<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180618-lcypytools/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2015,180 +2184,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/awesome/cv/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/awesome/cv/" itemprop="url">Awesome Computer Vision</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-07T00:00:00+09:00">
-                2017-07-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Awesome/" itemprop="url" rel="index">
-                    <span itemprop="name">Awesome</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/awesome/cv/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="awesome/cv/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a>Face Recognition</h2><ul>
-<li><a href="https://github.com/ageitgey/face_recognition/" target="_blank" rel="noopener">face_recognition</a>: 一个基于python和OpenCV的配置简单的人脸识别系统</li>
-</ul>
-<h2 id="Pose-Recognition"><a href="#Pose-Recognition" class="headerlink" title="Pose Recognition"></a>Pose Recognition</h2><ul>
-<li><p><a href="https://github.com/una-dinosauria/3d-pose-baseline" target="_blank" rel="noopener">3d-pose-baseline</a>: 一个基于Tensorflow的姿势识别系统</p>
-</li>
-<li><p><a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose" target="_blank" rel="noopener">OpenPose</a>: 经典的姿势识别系统</p>
-</li>
-</ul>
-<h2 id="Deep-Fake"><a href="#Deep-Fake" class="headerlink" title="Deep Fake"></a>Deep Fake</h2><ul>
-<li><a href="https://github.com/shaoanlu/faceswap-GAN" target="_blank" rel="noopener">Faceswap-GAN</a>: 换脸换脸</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2241,7 +2236,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

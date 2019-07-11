@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="ネットワーク概要、ネットワークポロジ、ケーブルの種類、OSI参照モデル、2進数">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-10T08:44:11.326Z">
+<meta property="og:updated_time" content="2019-07-11T02:32:39.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 01 ネットワーク基礎">
 <meta name="twitter:description" content="ネットワーク概要、ネットワークポロジ、ケーブルの種類、OSI参照モデル、2進数">
@@ -475,6 +475,88 @@
 <li>定義：1本の新合繊を使って1ビットずつデータを伝送</li>
 <li>EIA/TIA-232 EIA/TIA-449 V.35 X.21 EIA-530</li>
 </ul>
+<h1 id="OSI参照モデル"><a href="#OSI参照モデル" class="headerlink" title="OSI参照モデル"></a>OSI参照モデル</h1><h2 id="プロトコル"><a href="#プロトコル" class="headerlink" title="プロトコル"></a>プロトコル</h2><ul>
+<li>定義：通信を行う上での約束事のこと。</li>
+<li>ネットワークアーキテクチャ：またはプロトコルスタック、プロトコルスイートは、連結するいくつかのプロトコルを体系的に組み合わせたもの</li>
+</ul>
+<h2 id="OSI参考モデル"><a href="#OSI参考モデル" class="headerlink" title="OSI参考モデル"></a>OSI参考モデル</h2><ul>
+<li>開放型システム間相互接続（Open Systems Interconnection）:異なる機種間のデータ通信を実現</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>名前</th>
+<th>役割</th>
+<th>中身</th>
+<th>その他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>物理層</td>
+<td>ケーブル、伝送ミディア</td>
+<td>・コネクタの形状、ピンの数や配置 ・ケーブルの種類や長さ ・電圧レベル・電圧変化のタイミング ・通信速度、符号化の方式</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>データリンク層</td>
+<td>同一リンク上に接続された隣接ノードと正しく通信</td>
+<td>・通信媒体にデータを送り出すときのタイミング ・伝送中に発生したエラーの検出と対処方法 ・データフレーム（Frame）の構造 ・データの送信元及び宛先の識別方法</td>
+<td>MACアドレス HUB L2Switch Frame Relay， HDLC PPP IEEE 802.3/802.2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ネットワーク層</td>
+<td>異なるネットワークを相互に接続；</td>
+<td>・データの送信元および宛先を識別するアドレスの割り当て方法 ・データパケットの構造 ・経路選択ルーティングの方法 ・選択した経路上にデータを送出する方法</td>
+<td>IP， IPX， AppleTalk DDP ルート L3Switch</td>
+</tr>
+<tr>
+<td>4</td>
+<td>トランスポート層</td>
+<td>データを確実に届ける信頼性を提供</td>
+<td>・仮想回線（コネクション）の確立・維持・終了 ・フロー制御、受信側の状態に合わせて通信量の調整 ・順序（じゅんじょ）制御、分割されたデータを受信側で元の順番に再構成 ・確認応答、データが正しく相手に届いたかどうかを確認 ・再送制御、データが届かなかった場合に再送信</td>
+<td>TCP/UDP,SPX</td>
+</tr>
+<tr>
+<td>5</td>
+<td>セッション層</td>
+<td>通信路（セッション）の確立・維持・終了など</td>
+<td>例えば：HTTP RequestとResponseの間に一連の通信がセッションに相当する</td>
+<td>RPC，SQL，NFS， NetBIOS，names</td>
+</tr>
+<tr>
+<td>6</td>
+<td>プレゼンテーション層</td>
+<td>データを受信側でも正しく読み取れるようにするため、共通の形式にデータを変換する</td>
+<td>文字コード変換など</td>
+<td>TIFF，GIF，JPEG， PICT，ASCII，EBCDIC， encryption</td>
+</tr>
+<tr>
+<td>7</td>
+<td>アプリケーション層</td>
+<td>略</td>
+<td>略</td>
+<td>FTP，WWW，Telnet， NFS，SMTP</td>
+</tr>
+</tbody>
+</table>
+<h2 id="カプセルかと非カプセルか（加包和解包）"><a href="#カプセルかと非カプセルか（加包和解包）" class="headerlink" title="カプセルかと非カプセルか（加包和解包）"></a>カプセルかと非カプセルか（加包和解包）</h2><ul>
+<li>カプセル化：送信側で作成されたデータは、上位層プロトコルでデータの先頭にヘッダと呼ばれる制御情報を付加する。</li>
+<li>非カプセル化：受信側の各階層のプロトコルは送信側と同じ層で付加されたヘッダを参照して処理を行って、ヘッドを外して上位層プロトコルにデータを渡す。</li>
+<li>FCS（Frame Check Sequence, 帧校验序列）：エラーチェック</li>
+</ul>
+<h2 id="PDU"><a href="#PDU" class="headerlink" title="PDU"></a>PDU</h2><ul>
+<li>定義：データにヘッダが付加されて扱われるデータの単位、Protocol Data Unit、トレーラ（Trailer）</li>
+<li>トランスポート層：セグメント</li>
+<li>ネットワーク層：パケット</li>
+<li>データリンク層：フレーム</li>
+<li>全体：パケット</li>
+</ul>
+<h1 id="2進数・10進数・16進数"><a href="#2進数・10進数・16進数" class="headerlink" title="2進数・10進数・16進数"></a>2進数・10進数・16進数</h1><p>略</p>
 
       
     </div>
@@ -514,6 +596,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/11-CCNA/" rel="prev" title="CCNA試験のまとめノート 02 イーサネット">
+                CCNA試験のまとめノート 02 イーサネット <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -602,7 +688,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
@@ -688,7 +774,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ネットワークの概要"><span class="nav-number">1.</span> <span class="nav-text">ネットワークの概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ネットワークの構成要素"><span class="nav-number">1.1.</span> <span class="nav-text">ネットワークの構成要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LANとWAN"><span class="nav-number">1.2.</span> <span class="nav-text">LANとWAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#インターネット"><span class="nav-number">1.3.</span> <span class="nav-text">インターネット</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ネットワークユーザアプリケーション"><span class="nav-number">1.4.</span> <span class="nav-text">ネットワークユーザアプリケーション</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ユーザアプリケーションが及ぼすネットワークへの影響"><span class="nav-number">1.5.</span> <span class="nav-text">ユーザアプリケーションが及ぼすネットワークへの影響</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通信の種類"><span class="nav-number">1.6.</span> <span class="nav-text">通信の種類</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ネットワークトポロジ（network-topology）"><span class="nav-number">2.</span> <span class="nav-text">ネットワークトポロジ（network topology）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#バス型"><span class="nav-number">2.1.</span> <span class="nav-text">バス型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スター型"><span class="nav-number">2.2.</span> <span class="nav-text">スター型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#リンク型（环形）"><span class="nav-number">2.3.</span> <span class="nav-text">リンク型（环形）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#メッシュ型"><span class="nav-number">2.4.</span> <span class="nav-text">メッシュ型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ケーブルの種類"><span class="nav-number">3.</span> <span class="nav-text">ケーブルの種類</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ツイストペアケーブル（Twisted-pair-cable、双绞线）"><span class="nav-number">3.1.</span> <span class="nav-text">ツイストペアケーブル（Twisted pair cable、双绞线）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光ファイバケーブル"><span class="nav-number">3.2.</span> <span class="nav-text">光ファイバケーブル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同軸ケーブル"><span class="nav-number">3.3.</span> <span class="nav-text">同軸ケーブル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#シリアルケーブル"><span class="nav-number">3.4.</span> <span class="nav-text">シリアルケーブル</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ネットワークの概要"><span class="nav-number">1.</span> <span class="nav-text">ネットワークの概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ネットワークの構成要素"><span class="nav-number">1.1.</span> <span class="nav-text">ネットワークの構成要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LANとWAN"><span class="nav-number">1.2.</span> <span class="nav-text">LANとWAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#インターネット"><span class="nav-number">1.3.</span> <span class="nav-text">インターネット</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ネットワークユーザアプリケーション"><span class="nav-number">1.4.</span> <span class="nav-text">ネットワークユーザアプリケーション</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ユーザアプリケーションが及ぼすネットワークへの影響"><span class="nav-number">1.5.</span> <span class="nav-text">ユーザアプリケーションが及ぼすネットワークへの影響</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通信の種類"><span class="nav-number">1.6.</span> <span class="nav-text">通信の種類</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ネットワークトポロジ（network-topology）"><span class="nav-number">2.</span> <span class="nav-text">ネットワークトポロジ（network topology）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#バス型"><span class="nav-number">2.1.</span> <span class="nav-text">バス型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スター型"><span class="nav-number">2.2.</span> <span class="nav-text">スター型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#リンク型（环形）"><span class="nav-number">2.3.</span> <span class="nav-text">リンク型（环形）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#メッシュ型"><span class="nav-number">2.4.</span> <span class="nav-text">メッシュ型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ケーブルの種類"><span class="nav-number">3.</span> <span class="nav-text">ケーブルの種類</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ツイストペアケーブル（Twisted-pair-cable、双绞线）"><span class="nav-number">3.1.</span> <span class="nav-text">ツイストペアケーブル（Twisted pair cable、双绞线）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光ファイバケーブル"><span class="nav-number">3.2.</span> <span class="nav-text">光ファイバケーブル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同軸ケーブル"><span class="nav-number">3.3.</span> <span class="nav-text">同軸ケーブル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#シリアルケーブル"><span class="nav-number">3.4.</span> <span class="nav-text">シリアルケーブル</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI参照モデル"><span class="nav-number">4.</span> <span class="nav-text">OSI参照モデル</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#プロトコル"><span class="nav-number">4.1.</span> <span class="nav-text">プロトコル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI参考モデル"><span class="nav-number">4.2.</span> <span class="nav-text">OSI参考モデル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#カプセルかと非カプセルか（加包和解包）"><span class="nav-number">4.3.</span> <span class="nav-text">カプセルかと非カプセルか（加包和解包）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PDU"><span class="nav-number">4.4.</span> <span class="nav-text">PDU</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2進数・10進数・16進数"><span class="nav-number">5.</span> <span class="nav-text">2進数・10進数・16進数</span></a></li></ol></div>
             
 
           </div>
