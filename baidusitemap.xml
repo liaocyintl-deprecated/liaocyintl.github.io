@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/20180712-ubuntuwindowsmlserver/</loc>
+    <lastmod>2019-07-12T02:44:19.128Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu 16.04 上部署微软机器学习服务器</title>
+        <pubTime>2018-07-12T07:33:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>微软机器学习服务器 Microsoft Machine Learning Server</tag>
+         
+        <tag>机器学习 Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+          
+             
+              <breadCrumb title="机器学习 Machine Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2019/07/12-CCNA/</loc>
-    <lastmod>2019-07-12T02:26:36.882Z</lastmod>
+    <lastmod>2019-07-12T02:40:32.758Z</lastmod>
     <data>
         <display>
         <title>CCNA試験のまとめノート 03 TCP/IP</title>
@@ -1985,33 +2012,6 @@
           
              
               <breadCrumb title="MySQL" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/MySQL/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/20180712-ubuntuwindowsmlserver/</loc>
-    <lastmod>2019-07-03T04:51:43.744Z</lastmod>
-    <data>
-        <display>
-        <title>在Ubuntu 16.04 上部署微软机器学习服务器</title>
-        <pubTime>2018-07-12T07:33:00.000Z</pubTime>
-        
-        <tag>Ubuntu</tag>
-         
-        <tag>微软机器学习服务器 Microsoft Machine Learning Server</tag>
-         
-        <tag>机器学习 Machine Learning</tag>
-         
-         
-           
-             
-              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
-          
-             
-              <breadCrumb title="机器学习 Machine Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
           
         </display>
     </data>

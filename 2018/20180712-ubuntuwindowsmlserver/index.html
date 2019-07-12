@@ -93,7 +93,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liaocy.net/uploads/postimgs/a509738d.png">
 <meta property="og:image" content="https://liaocy.net/uploads/postimgs/37fa7f8b.png">
-<meta property="og:updated_time" content="2019-07-03T04:51:43.744Z">
+<meta property="og:updated_time" content="2019-07-12T02:44:19.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Ubuntu 16.04 上部署微软机器学习服务器">
 <meta name="twitter:description" content="问题背景环境 Ubuntu 16.04 Server，Desktop版应该也可以。但是，Ubuntu 18.04 LTS安装不了，不要浪费时间了。 硬件要求（官方）：最小2GB内存，500MB硬盘（推荐8GB以上硬盘）  解决方案原文地址 软件包列表全部软件包的列表： 1234567891011121314microsoft-mlserver-packages-r-9.3.0         **">
@@ -437,10 +437,10 @@
 <h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
 <li>dpkg: error processing package microsoft-mlserver-hadoop-9.3.0 (–configure):</li>
 </ul>
-<p>原因： microsoft-mlserver-hadoop-9.3.0软件包需要hadoop，如果系统上没有就会报错<br>解决方案：不要安装microsoft-mlserver-hadoop-9.3.0软件包或者实现安装hadoop</p>
-<h3 id="有效化Web服务部署与远程连接"><a href="#有效化Web服务部署与远程连接" class="headerlink" title="有效化Web服务部署与远程连接"></a>有效化Web服务部署与远程连接</h3><p>当你确认完成了上述的基本安装之后，继续下面的步骤部署Web服务：</p>
+<p>原因： microsoft-mlserver-hadoop-9.3.0软件包需要hadoop，如果系统上没有就会报错<br>解决方案：不要安装microsoft-mlserver-hadoop-9.3.0软件包或者事先安装hadoop</p>
+<h3 id="有效化Web服务部署与远程连接"><a href="#有效化Web服务部署与远程连接" class="headerlink" title="有效化Web服务部署与远程连接"></a>有效化Web服务部署与远程连接</h3><p>当你确认完成了上述的基本安装之后，继续下面的步骤部署Web服务（2019/07/12 应梁鑫辉先生的建议修正，参考评论区）：</p>
 <ol>
-<li>在终端输入 operationalization</li>
+<li>在终端输入 az ml admin bootstrap</li>
 <li>输入密码：<p><img src="\uploads\postimgs\37fa7f8b.png" alt="配置Web服务密码" title="配置Web服务密码"></p>
 
 

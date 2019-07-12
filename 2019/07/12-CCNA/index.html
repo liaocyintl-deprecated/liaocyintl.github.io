@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-12T02:26:36.882Z">
+<meta property="og:updated_time" content="2019-07-12T02:40:32.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 03 TCP&#x2F;IP">
 <meta name="twitter:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
@@ -481,9 +481,32 @@
 <h2 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h2><ul>
 <li>Address Resolution Protocol (地址转换协议)</li>
 <li>役割：IPアドレスからMACアドレスを取得</li>
-<li>動作<ol>
-<li>ARPテーブル参照<br>1. </li>
+<li>動作：パケット送信しようとする場合<ol>
+<li>ARPテーブル参照<ol>
+<li>IPアドレスとMACアドレスの一対一対応</li>
 </ol>
+</li>
+<li>APRテーブルにない場合、パケットをバッファに保存、ARPリクエスト（要求）送信（送信元から）<ol>
+<li>全員宛（FF-FF-FF-FF-FF-FF）にブロードキャストに送信</li>
+</ol>
+</li>
+<li>APRリプライ（応答）送信（宛先側から）<ol>
+<li>APRリクエストを受信</li>
+<li>自分に対するARP要求だかを判断</li>
+<li>送信元へ自分のIPアドレスを応答</li>
+<li>送信元のIPとMACを自身のAPRテーブルに登録</li>
+</ol>
+</li>
+<li>APRテーブル更新（送信元側が）<ol>
+<li>APRテーブルを更新</li>
+<li>バッファに保存したパケットを送信</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>別ネットワークの相手と通信する場合のARP<ul>
+<li>やりかた：デフォルトゲートウェイのMACに送信</li>
+</ul>
 </li>
 </ul>
 
