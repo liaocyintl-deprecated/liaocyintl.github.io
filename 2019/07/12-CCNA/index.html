@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="安卓 Android,TextToSpeech,">
+  <meta name="keywords" content="ノート,">
 
 
 
@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="背景在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。本文通过使用android.speech.tts.TextToSpeech来实现这个功能。 参考资料 Register Application class in Manifest? TextToSpeech : deprecated speak function in A">
-<meta name="keywords" content="安卓 Android,TextToSpeech">
+<meta name="description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
+<meta name="keywords" content="ノート">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 朗读字符串">
-<meta property="og:url" content="https://liaocy.net/2018/09/20180915-androidspeaker/index.html">
+<meta property="og:title" content="CCNA試験のまとめノート 03 TCP&#x2F;IP">
+<meta property="og:url" content="https://liaocy.net/2019/07/12-CCNA/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
-<meta property="og:description" content="背景在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。本文通过使用android.speech.tts.TextToSpeech来实现这个功能。 参考资料 Register Application class in Manifest? TextToSpeech : deprecated speak function in A">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T04:51:44.304Z">
+<meta property="og:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-07-12T02:26:36.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android 朗读字符串">
-<meta name="twitter:description" content="背景在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。本文通过使用android.speech.tts.TextToSpeech来实现这个功能。 参考资料 Register Application class in Manifest? TextToSpeech : deprecated speak function in A">
+<meta name="twitter:title" content="CCNA試験のまとめノート 03 TCP&#x2F;IP">
+<meta name="twitter:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
 
 
 
@@ -110,7 +110,7 @@
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: '著者'
     },
     algolia: {
       applicationID: '',
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://liaocy.net/2018/09/20180915-androidspeaker/">
+  <link rel="canonical" href="https://liaocy.net/2019/07/12-CCNA/">
 
 
 
 
 
-  <title>Android 朗读字符串 | Liao's Blog</title>
+  <title>CCNA試験のまとめノート 03 TCP/IP | Liao's Blog</title>
   
 
 
@@ -152,7 +152,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ja">
 
   
   
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            ホーム
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            アーカイブ
           </a>
         </li>
       
@@ -220,7 +220,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
+            タグ
           </a>
         </li>
       
@@ -230,7 +230,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            カテゴリ
           </a>
         </li>
       
@@ -240,7 +240,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-language"></i> <br>
             
-            背单词
+            単語表
           </a>
         </li>
       
@@ -253,7 +253,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            検索
           </a>
         </li>
       
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180915-androidspeaker/">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2019/07/12-CCNA/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
@@ -326,7 +326,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Android 朗读字符串</h2>
+          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 03 TCP/IP</h2>
         
 
         <div class="post-meta">
@@ -336,10 +336,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">投稿日</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T18:44:22+09:00">
-                2018-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-12T09:33:00+09:00">
+                2019-07-12
               </time>
             
 
@@ -357,23 +357,23 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
+                  <a href="/categories/資格試験/" itemprop="url" rel="index">
+                    <span itemprop="name">資格試験</span>
                   </a>
                 </span>
 
                 
                 
-                  ， 
+                  , 
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/安卓-Android/" itemprop="url" rel="index">
-                    <span itemprop="name">安卓 Android</span>
+                  <a href="/categories/資格試験/CCNA/" itemprop="url" rel="index">
+                    <span itemprop="name">CCNA</span>
                   </a>
                 </span>
 
@@ -390,8 +390,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/20180915-androidspeaker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180915-androidspeaker/" itemprop="commentCount"></span>
+                <a href="/2019/07/12-CCNA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/12-CCNA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -419,23 +419,73 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。<br>本文通过使用android.speech.tts.TextToSpeech来实现这个功能。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://stackoverflow.com/questions/2929562/register-application-class-in-manifest" target="_blank" rel="noopener">Register Application class in Manifest?</a></li>
-<li><a href="https://stackoverflow.com/questions/30706780/texttospeech-deprecated-speak-function-in-api-level-21" target="_blank" rel="noopener">TextToSpeech : deprecated speak function in API Level 21</a></li>
+        <p>TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH<br><a id="more"></a></p>
+<h1 id="TCP-IPプロトコルスタック"><a href="#TCP-IPプロトコルスタック" class="headerlink" title="TCP/IPプロトコルスタック"></a>TCP/IPプロトコルスタック</h1><h2 id="TCP-IPプロトコルスタック-TCP-IP协议栈"><a href="#TCP-IPプロトコルスタック-TCP-IP协议栈" class="headerlink" title="TCP/IPプロトコルスタック(TCP/IP协议栈)"></a>TCP/IPプロトコルスタック(TCP/IP协议栈)</h2><ul>
+<li>TCP/IPはネットワークで必要な機能を４つの階層に分割して構成している。<ul>
+<li>アプリケーション層：HTTP、SMTP、POP3、FTP、TFTP、DNS、DHCP</li>
+<li>トランスポート層：TCP、UDP</li>
+<li>インターネット層：IP、ICMP、ARP</li>
+<li>リンク層：Ethernet、HDLC、PPP</li>
 </ul>
-<h2 id="让Android朗读文字"><a href="#让Android朗读文字" class="headerlink" title="让Android朗读文字"></a>让Android朗读文字</h2><p>我们创建一个类Speaker.java来实现朗读功能：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.liaocy.smartcar.biz;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"><span class="keyword">import</span> android.speech.tts.TextToSpeech;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Speaker</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TextToSpeech speech;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String TAG = <span class="string">"Speaker"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Speaker</span><span class="params">(Application context)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="comment">//init speech</span></span><br><span class="line">        <span class="keyword">this</span>.speech = <span class="keyword">new</span> TextToSpeech(context, <span class="keyword">new</span> TextToSpeech.OnInitListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onInit</span><span class="params">(<span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">                <span class="keyword">if</span> (status == TextToSpeech.SUCCESS) &#123;</span><br><span class="line">                    <span class="keyword">int</span> result = speech.setLanguage(Locale.ENGLISH);</span><br><span class="line">                    <span class="keyword">if</span> (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) &#123;</span><br><span class="line">                        Log.e(TAG, <span class="string">"Not support this language."</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        Log.i(TAG, <span class="string">"Speaker activated!"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//init speech -- end</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在前文朗读完之后，朗读text中的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.speech.speak(text, TextToSpeech.QUEUE_ADD, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 即使前文没有朗读完，也强制朗读text中的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpeakNow</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.speech.speak(text, TextToSpeech.QUEUE_FLUSH, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/biz/Speaker.java" target="_blank" rel="noopener">点击这里</a></p>
-<h2 id="将Speaker作为全局变量加入Application"><a href="#将Speaker作为全局变量加入Application" class="headerlink" title="将Speaker作为全局变量加入Application"></a>将Speaker作为全局变量加入Application</h2><p>我们将Speaker作为全局变量加入Application，可以在APP的任何位置调用朗读方法。</p>
-<p>我们首先创建一个AppContext.java，这是自定义个Application类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.liaocy.smartcar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.liaocy.smartcar.biz.Speaker;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppContext</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppContext instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Speaker speaker;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取得朗读器对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Speaker <span class="title">getSpeaker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.speaker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在任何地方都可以取得这个类的实例</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppContext <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        instance = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//init and start speaker</span></span><br><span class="line">        speaker = <span class="keyword">new</span> Speaker(<span class="keyword">this</span>);</span><br><span class="line">        speaker.Speak(<span class="string">"System activated"</span>);</span><br><span class="line">        <span class="comment">//init and start speaker -- end</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/AppContext.java" target="_blank" rel="noopener">点击这里</a></p>
-<p>将自定义Application注册到AndroidManifest.xml：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"net.liaocy.smartcar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">".AppContext"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">"@mipmap/ic_launcher_round"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".activity.Dashboard"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这里的”android:name”要和注册类名称相同，用来声明注册类。<br>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/AndroidManifest.xml" target="_blank" rel="noopener">点击这里</a></p>
-<h2 id="在Activity测试朗读"><a href="#在Activity测试朗读" class="headerlink" title="在Activity测试朗读"></a>在Activity测试朗读</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.btnSpeak = <span class="keyword">this</span>.findViewById(R.id.btnSpeak);</span><br><span class="line"><span class="keyword">this</span>.btnSpeak.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        Log.i(TAG, <span class="string">"speak"</span>);</span><br><span class="line"></span><br><span class="line">        appContext.getSpeaker().Speak(<span class="string">"System Activated."</span>);</span><br><span class="line"></span><br><span class="line">        txtMsg.setText(<span class="string">"here"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/activity/Dashboard.java" target="_blank" rel="noopener">点击这里</a></p>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>我是想做一个车载的安卓应用，集成导航，OBD车况检测，传感器数据手机和在线分析等一系列功能。有兴趣的朋友欢迎一起讨论。<br>代码库：<a href="https://github.com/liaocyintl/SmartCar" target="_blank" rel="noopener">https://github.com/liaocyintl/SmartCar</a></p>
+</li>
+</ul>
+<h2 id="TCP-IPのカプセルかと非カプセル化"><a href="#TCP-IPのカプセルかと非カプセル化" class="headerlink" title="TCP/IPのカプセルかと非カプセル化"></a>TCP/IPのカプセルかと非カプセル化</h2><ul>
+<li><p>カプセル化の例</p>
+<ul>
+<li>アプリケーション層：　　　　　　　HTTPデータ</li>
+<li>トランスポート層：　　　　　　TCP＋HTTPデータ</li>
+<li>インターネット層：　　　　IP＋TCP＋HTTPデータ</li>
+<li>リンク層：　　　　　Ether＋IP＋TCP＋HTTPデータ＋FCS</li>
+</ul>
+</li>
+<li><p>TCP/IPのPDU</p>
+<ul>
+<li>TCP：TCPセグメント</li>
+<li>UDP：UDPデータグラム</li>
+<li>IP：IPデータグラム</li>
+<li>Ethernet：フレーム</li>
+</ul>
+</li>
+<li><p>RFC(Request for Comments)：インターネットに関連する技術仕様を公開している文章</p>
+</li>
+</ul>
+<h1 id="インターネット層"><a href="#インターネット層" class="headerlink" title="インターネット層"></a>インターネット層</h1><h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><ul>
+<li>特徴：<ul>
+<li>コネクションレス型(无连接协议)プロトコル：データ確認なし</li>
+<li>ベストエフォート型(尽力型协议)の配信：パケット配送の保証はしないが最善（さいぜん）の努力はする</li>
+<li>データ回復機能なし：破棄されたパケットの再送信を要求するエラー回復機能はない。</li>
+<li>階層型アドレッシング(Addressing)：IPアドレスの上位の桁はネットワークを識別し、下位の桁はネットワークに接続されたノードを識別する。</li>
+<li>IPv4とIPv6：略<h2 id="IPv4ヘッダ"><a href="#IPv4ヘッダ" class="headerlink" title="IPv4ヘッダ"></a>IPv4ヘッダ</h2></li>
+</ul>
+</li>
+<li>構造<ul>
+<li>バージョン（4ビット）：IPv4 or IPv6</li>
+<li>ヘッダ長（4ビット）：ｎ×32ビット</li>
+<li>最大長（16ビット）：パケット全体（IPヘッダ＋データ）の長さをオクテット（ｎ×8ビット）単位で表示</li>
+<li>識別子（16ビット）：伝送データがリンクで許容されるMTUを超え、フラグメンテーションによって複数のパケットに分割されたパケットに割り当てられる識別子。分割された複数パケットに割り当てられ、復元に使用<ul>
+<li>MTU（Maximum Transmission Unit, 最大伝送ユニット）：一度に伝送するデータ量の最大値。イーサネットの場合１５００バイト</li>
+<li>フラグメンテーション（fragmentation, 断片化、だんぺんか）：データを分割して送り、受信側で再構成する</li>
+</ul>
+</li>
+<li>フラグ（３ビット）：第１ビット未使用、第２ビットではフラグメント処理を許可するかどうかを指定。第３ビットは途中のパケットか最後のパケットかを表す</li>
+<li>生存時間（８ビット、TTL、Time To Live）：パケットの生存時間を示すが、実際には「パケットが通過できるルータの数」を設定する。０～２５５に設定し、１ずつ減らして、０になるとパケットを破棄。</li>
+<li>プロトコル（８ビット）：上位プロトコル。ICMP：１；TCP：６；UDP：１７；</li>
+<li>ヘッダチェックサム（１６ビット、Header checksum、报头校验和）：ヘッダだけチェック。（データのチェックは上位層）</li>
+<li>送信元アドレス（３２ビット）</li>
+<li>宛先アドレス（３２ビット）</li>
+<li>オプション（可変長）：通常使わず、テストやデバッグ場合だけ</li>
+<li>パティング（可変長，Padding，填充项）：IPヘッダが３２ビットの倍数になるよう調整するために０を挿入</li>
+</ul>
+</li>
+</ul>
+<h2 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h2><ul>
+<li>Address Resolution Protocol (地址转换协议)</li>
+<li>役割：IPアドレスからMACアドレスを取得</li>
+<li>動作<ol>
+<li>ARPテーブル参照<br>1. </li>
+</ol>
+</li>
+</ul>
 
       
     </div>
@@ -453,9 +503,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/安卓-Android/" rel="tag"># 安卓 Android</a>
-          
-            <a href="/tags/TextToSpeech/" rel="tag"># TextToSpeech</a>
+            <a href="/tags/ノート/" rel="tag"># ノート</a>
           
         </div>
       
@@ -468,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/27-blockchainheritage/" rel="next" title="用区块链和智能合约做遗产继承">
-                <i class="fa fa-chevron-left"></i> 用区块链和智能合约做遗产继承
+              <a href="/2019/07/11-CCNA/" rel="next" title="CCNA試験のまとめノート 02 イーサネット">
+                <i class="fa fa-chevron-left"></i> CCNA試験のまとめノート 02 イーサネット
               </a>
             
           </div>
@@ -477,10 +525,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/20180918-calprobinnormaldistribution/" rel="prev" title="Python 计算给定值在给定高斯分布中的概率">
-                Python 计算给定值在给定高斯分布中的概率 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -544,10 +588,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            見出し
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            概要
           </li>
         </ul>
       
@@ -570,7 +614,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">78</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
             
@@ -581,7 +625,7 @@
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
                   <span class="site-state-item-count">47</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-name">カテゴリ</span>
                 </a>
               </div>
             
@@ -592,7 +636,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">97</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-name">タグ</span>
                 </a>
               </div>
             
@@ -655,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让Android朗读文字"><span class="nav-number">3.</span> <span class="nav-text">让Android朗读文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将Speaker作为全局变量加入Application"><span class="nav-number">4.</span> <span class="nav-text">将Speaker作为全局变量加入Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Activity测试朗读"><span class="nav-number">5.</span> <span class="nav-text">在Activity测试朗读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">6.</span> <span class="nav-text">感想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IPプロトコルスタック"><span class="nav-number">1.</span> <span class="nav-text">TCP/IPプロトコルスタック</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPプロトコルスタック-TCP-IP协议栈"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IPプロトコルスタック(TCP/IP协议栈)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPのカプセルかと非カプセル化"><span class="nav-number">1.2.</span> <span class="nav-text">TCP/IPのカプセルかと非カプセル化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#インターネット層"><span class="nav-number">2.</span> <span class="nav-text">インターネット層</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP"><span class="nav-number">2.1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4ヘッダ"><span class="nav-number">2.2.</span> <span class="nav-text">IPv4ヘッダ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP"><span class="nav-number">2.3.</span> <span class="nav-text">ARP</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -685,7 +729,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -693,7 +737,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -828,9 +872,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://liaocy.net/2018/09/20180915-androidspeaker/';
-          this.page.identifier = '2018/09/20180915-androidspeaker/';
-          this.page.title = 'Android 朗读字符串';
+          this.page.url = 'https://liaocy.net/2019/07/12-CCNA/';
+          this.page.identifier = '2019/07/12-CCNA/';
+          this.page.title = 'CCNA試験のまとめノート 03 TCP/IP';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://liaocy-net.disqus.com/embed.js';
