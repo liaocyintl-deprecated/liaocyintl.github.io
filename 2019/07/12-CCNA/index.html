@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-12T08:46:13.238Z">
+<meta property="og:updated_time" content="2019-07-13T05:42:52.668Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 03 TCP&#x2F;IP">
 <meta name="twitter:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
@@ -1191,31 +1191,44 @@
 </ul>
 <h1 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
 <li>役割：IPアドレス自動取得</li>
-<li>特徴：UDP、ポート番号67（サーバ用）、68（クライアント用）</li>
-<li>DHCPサーバ<ul>
+<li>特徴：UDP、ポート番号67（サーバ用）、68（クライアント用）<h2 id="DHCPサーバ"><a href="#DHCPサーバ" class="headerlink" title="DHCPサーバ"></a>DHCPサーバ</h2></li>
 <li>役割：設定情報管理、DHCPクライアントに情報を配信する</li>
-<li>配布可能情報：IPアドレス、サブネットマスク、リースの有効期限、デフォルトゲートウェイ、ドメイン名、DNSサーバのIPアドレス、NTPサーバのIPアドレスなど</li>
-</ul>
-</li>
-<li>DHCPクライアント<ul>
-<li>役割：IPアドレスなどの設定情報をDHCPサーバに要求</li>
-</ul>
-</li>
-<li>DHCPの仕組み<ul>
+<li>配布可能情報：IPアドレス、サブネットマスク、リースの有効期限、デフォルトゲートウェイ、ドメイン名、DNSサーバのIPアドレス、NTPサーバのIPアドレスなど<h2 id="DHCPクライアント"><a href="#DHCPクライアント" class="headerlink" title="DHCPクライアント"></a>DHCPクライアント</h2></li>
+<li>役割：IPアドレスなどの設定情報をDHCPサーバに要求<h2 id="DHCPの仕組み"><a href="#DHCPの仕組み" class="headerlink" title="DHCPの仕組み"></a>DHCPの仕組み</h2></li>
 <li>１　クライアントから、ブロードキャストで、DHCP DISCOVERを送信し、使用可能なDHCPサーバを探す</li>
 <li>２　サーバから、DHCP OFFERを応答し、設定情報の候補を通知する</li>
 <li>３　クライアントから、DHCP REQUESTを送信し、設定情報を正式に取得することを要求する。</li>
-<li>４　サーバから、DHCP ACKを送信し、設定情報をクライアントに提供</li>
-</ul>
-</li>
-<li>DHCPで割り当てるIPアドレス<ul>
+<li>４　サーバから、DHCP ACKを送信し、設定情報をクライアントに提供<h2 id="DHCPで割り当てるIPアドレス"><a href="#DHCPで割り当てるIPアドレス" class="headerlink" title="DHCPで割り当てるIPアドレス"></a>DHCPで割り当てるIPアドレス</h2></li>
 <li>種類 <ul>
 <li>アドレスプールの範囲から動的に割り当てる</li>
 <li>固定アドレスを割り当てる</li>
 </ul>
 </li>
 </ul>
+<h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><h2 id="概要-1"><a href="#概要-1" class="headerlink" title="概要"></a>概要</h2><ul>
+<li>名前解決：ホスト名とIPアドレスの対応付けを行うこと<h2 id="ドメイン名の仕組み"><a href="#ドメイン名の仕組み" class="headerlink" title="ドメイン名の仕組み"></a>ドメイン名の仕組み</h2></li>
+<li>ドメイン名：<ul>
+<li>ホスト名：ホスト名を「.」でつないで表示、ドメイン最大255文字制限。</li>
+<li>ラベル：「.」で区切られた部分をラベル。ラベル最大63文字に制限。大文字、小文字の区別がない。</li>
+</ul>
 </li>
+<li>ドメイン名の構成：<ul>
+<li>TLD (Top Level Domain): 一番右</li>
+<li>SLD (Second Level Domain): </li>
+</ul>
+</li>
+<li>FQDN(Fully Qualified Domain Name): 完全修飾（しゅうしょく）ドメイン名</li>
+<li>管理：ICANN。日本の場合JPNIC(Japan Network Information Center)</li>
+<li>TLD: 国別(.jp. .cn)と一般(com, net, org, edu)と分類</li>
+<li>SLD：略<h2 id="名前解決の仕組み"><a href="#名前解決の仕組み" class="headerlink" title="名前解決の仕組み"></a>名前解決の仕組み</h2></li>
+<li>方法：DNS、hostsファイル</li>
+<li>構成要素：<ul>
+<li>リゾルバ(resolver)：ドメイン名を基にIPアドレスを検索</li>
+<li>DNSサーバ：ドメイン名とIPアドレスの対照表を格納</li>
+</ul>
+</li>
+<li>ローカルDNSサーバ：企業で用意あるいはISPが管理して、最初に問い合わせるDNSサーバ</li>
+<li>ゾーン情報：ドメイン名とIPアドレスが対応づけられているデータベース</li>
 </ul>
 
       
@@ -1430,7 +1443,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IPプロトコルスタック"><span class="nav-number">1.</span> <span class="nav-text">TCP/IPプロトコルスタック</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPプロトコルスタック-TCP-IP协议栈"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IPプロトコルスタック(TCP/IP协议栈)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPのカプセルかと非カプセル化"><span class="nav-number">1.2.</span> <span class="nav-text">TCP/IPのカプセルかと非カプセル化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#インターネット層"><span class="nav-number">2.</span> <span class="nav-text">インターネット層</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP"><span class="nav-number">2.1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4ヘッダ"><span class="nav-number">2.2.</span> <span class="nav-text">IPv4ヘッダ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP"><span class="nav-number">2.3.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP-Internet-Control-Message-Protocol"><span class="nav-number">2.4.</span> <span class="nav-text">ICMP (Internet Control Message Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#トランスポート層"><span class="nav-number">2.5.</span> <span class="nav-text">トランスポート層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP-User-Datagram-Protocol"><span class="nav-number">2.6.</span> <span class="nav-text">UDP (User Datagram Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCPとUDPの比較"><span class="nav-number">2.7.</span> <span class="nav-text">TCPとUDPの比較</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アプリケーション層プロトコル"><span class="nav-number">2.8.</span> <span class="nav-text">アプリケーション層プロトコル</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP"><span class="nav-number">3.</span> <span class="nav-text">DHCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">3.1.</span> <span class="nav-text">概要</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IPプロトコルスタック"><span class="nav-number">1.</span> <span class="nav-text">TCP/IPプロトコルスタック</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPプロトコルスタック-TCP-IP协议栈"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IPプロトコルスタック(TCP/IP协议栈)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPのカプセルかと非カプセル化"><span class="nav-number">1.2.</span> <span class="nav-text">TCP/IPのカプセルかと非カプセル化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#インターネット層"><span class="nav-number">2.</span> <span class="nav-text">インターネット層</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP"><span class="nav-number">2.1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4ヘッダ"><span class="nav-number">2.2.</span> <span class="nav-text">IPv4ヘッダ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP"><span class="nav-number">2.3.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP-Internet-Control-Message-Protocol"><span class="nav-number">2.4.</span> <span class="nav-text">ICMP (Internet Control Message Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#トランスポート層"><span class="nav-number">2.5.</span> <span class="nav-text">トランスポート層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP-User-Datagram-Protocol"><span class="nav-number">2.6.</span> <span class="nav-text">UDP (User Datagram Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCPとUDPの比較"><span class="nav-number">2.7.</span> <span class="nav-text">TCPとUDPの比較</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アプリケーション層プロトコル"><span class="nav-number">2.8.</span> <span class="nav-text">アプリケーション層プロトコル</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP"><span class="nav-number">3.</span> <span class="nav-text">DHCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">3.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPサーバ"><span class="nav-number">3.2.</span> <span class="nav-text">DHCPサーバ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPクライアント"><span class="nav-number">3.3.</span> <span class="nav-text">DHCPクライアント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPの仕組み"><span class="nav-number">3.4.</span> <span class="nav-text">DHCPの仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPで割り当てるIPアドレス"><span class="nav-number">3.5.</span> <span class="nav-text">DHCPで割り当てるIPアドレス</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">4.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要-1"><span class="nav-number">4.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ドメイン名の仕組み"><span class="nav-number">4.2.</span> <span class="nav-text">ドメイン名の仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名前解決の仕組み"><span class="nav-number">4.3.</span> <span class="nav-text">名前解決の仕組み</span></a></li></ol></li></ol></div>
             
 
           </div>
