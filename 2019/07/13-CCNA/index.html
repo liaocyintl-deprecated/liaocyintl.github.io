@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="IPv4アドレス、サブネットワーク、IPアドレッシング、VLSM">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-13T12:50:15.800Z">
+<meta property="og:updated_time" content="2019-07-13T13:33:01.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 04 IPアドレスとサブネット">
 <meta name="twitter:description" content="IPv4アドレス、サブネットワーク、IPアドレッシング、VLSM">
@@ -451,7 +451,78 @@
 </ul>
 </li>
 </ul>
-<h2 id="予約済IPアドレス"><a href="#予約済IPアドレス" class="headerlink" title="予約済IPアドレス"></a>予約済IPアドレス</h2>
+<h2 id="予約済IPアドレス"><a href="#予約済IPアドレス" class="headerlink" title="予約済IPアドレス"></a>予約済IPアドレス</h2><ul>
+<li>ネットワークアドレス<ul>
+<li>特徴：ホスト部のビットをすべて０</li>
+<li>役割：ネットワーク自体を表す</li>
+<li>場合：ルータが経路制御するとき</li>
+</ul>
+</li>
+<li>ブロードキャストアドレス<ul>
+<li>特徴：ホスト部のビットをすべて１</li>
+<li>場合：ネットワーク内すべての端末に送信</li>
+</ul>
+</li>
+<li>ダイレクトブロードキャストアドレス<ul>
+<li>定義：受信者が所属していないネットワークへブロードキャストアドレスへ送信</li>
+<li>特徴：ルートによる伝送可能</li>
+<li>注意：CiscoルータはデフォルトでOFFになっている。</li>
+</ul>
+</li>
+<li>ループバックアドレス<ul>
+<li>特徴：第１オクテットが127で始まる（127.0.0.1～127.255.255.254）</li>
+<li>役割：機器の自分自身を表す仮想的なアドレス</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; ping 127.255.255.254</span><br><span class="line"></span><br><span class="line">正在 Ping 127.255.255.254 具有 32 字节的数据:</span><br><span class="line">来自 127.255.255.254 的回复: 字节=32 时间&lt;1ms TTL=128</span><br><span class="line">来自 127.255.255.254 的回复: 字节=32 时间&lt;1ms TTL=128</span><br><span class="line">来自 127.255.255.254 的回复: 字节=32 时间&lt;1ms TTL=128</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自動設定アドレス APIPA(Automatic Private IP Addressing)<ul>
+<li>場合：DHCPなどからIPアドレス取得に失敗した場合</li>
+<li>範囲：169.254.0.0/16プレフィックス範囲</li>
+<li>特徴：ルータによる伝送できない。同一ネットワーク内でのみ通信を行う。</li>
+<li>別名：リンクローカルアドレス</li>
+</ul>
+</li>
+</ul>
+<h2 id="グローバルアドレスとプライベートIPアドレス"><a href="#グローバルアドレスとプライベートIPアドレス" class="headerlink" title="グローバルアドレスとプライベートIPアドレス"></a>グローバルアドレスとプライベートIPアドレス</h2><ul>
+<li>管理組織：IANA（Internet Assigned Number Authority）</li>
+<li>目的：IPアドレス枯渴（こかつ）の問題を対応するため</li>
+<li>グローバルIP：インタネットで利用可能</li>
+<li>プライベートIPアドレス：組織内部のネットワークでのみ利用可能<ul>
+<li>範囲(RFC1918で定義)：<ul>
+<li>クラスA：10.0.0.0 ～ 10.255.255.255</li>
+<li>クラスB：172.16.0.0 ～ 172.31.255.255</li>
+<li>クラスC：192.168.0.0 ～ 192.168.255.255</li>
+</ul>
+</li>
+<li>NAT：Network Address Translation；送信元アドレスをグローバルIPアドレスに変換；内部ネットワークで使用しているプライベートIPアドレスを、インターネット上で使用可能なグローバルIPアドレスに相互変換する仕組み</li>
+</ul>
+</li>
+</ul>
+<h2 id="サブネットワーク"><a href="#サブネットワーク" class="headerlink" title="サブネットワーク"></a>サブネットワーク</h2><ul>
+<li>定義：ある１つのネットワークを複数に分割した小さなネットワークを指す</li>
+<li>利点：<ul>
+<li>多くの端末数</li>
+<li>ブロードキャストドメインを分割可能</li>
+<li>トラフィックを局所化。パフォーマンス改善</li>
+<li>構成柔軟、管理の手間が軽減</li>
+<li>トラフィック分離、ネットワークセキュリティの適用が容易</li>
+</ul>
+</li>
+<li>サブネットか<ul>
+<li>定義：１つのネットワークを小さなサブネットワークに分割</li>
+<li>注意：ネットワーク部はIANAによって割り当てられているため変更できない</li>
+<li>方法：サブネットワーク部はホスト部のビットから任意のビット長を借りて拡張する。</li>
+<li>計算：<ul>
+<li>$${サブネット数} = 2^s$$ (s=サブネットワーク部のビット数)</li>
+<li>$${ホストアドレス数 = 2^h-2$$ (hはホスト部のビット数)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -664,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4アドレス"><span class="nav-number">1.</span> <span class="nav-text">IPv4アドレス</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#構成要素"><span class="nav-number">1.1.</span> <span class="nav-text">構成要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アドレスクラス"><span class="nav-number">1.2.</span> <span class="nav-text">アドレスクラス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#予約済IPアドレス"><span class="nav-number">1.3.</span> <span class="nav-text">予約済IPアドレス</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4アドレス"><span class="nav-number">1.</span> <span class="nav-text">IPv4アドレス</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#構成要素"><span class="nav-number">1.1.</span> <span class="nav-text">構成要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アドレスクラス"><span class="nav-number">1.2.</span> <span class="nav-text">アドレスクラス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#予約済IPアドレス"><span class="nav-number">1.3.</span> <span class="nav-text">予約済IPアドレス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#グローバルアドレスとプライベートIPアドレス"><span class="nav-number">1.4.</span> <span class="nav-text">グローバルアドレスとプライベートIPアドレス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#サブネットワーク"><span class="nav-number">1.5.</span> <span class="nav-text">サブネットワーク</span></a></li></ol></li></ol></div>
             
 
           </div>
