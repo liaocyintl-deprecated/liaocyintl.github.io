@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-13T05:42:52.668Z">
+<meta property="og:updated_time" content="2019-07-13T08:59:24.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 03 TCP&#x2F;IP">
 <meta name="twitter:description" content="TCP/IPプロトコルスタック、インターネット層、トランスポート層、アプリケーション層プロトコル、DHCP、DNS、HTTPとHTTPS、FTPとTFTP、SMTPとPOP、TelnetとSSH">
@@ -1220,7 +1220,8 @@
 <li>FQDN(Fully Qualified Domain Name): 完全修飾（しゅうしょく）ドメイン名</li>
 <li>管理：ICANN。日本の場合JPNIC(Japan Network Information Center)</li>
 <li>TLD: 国別(.jp. .cn)と一般(com, net, org, edu)と分類</li>
-<li>SLD：略<h2 id="名前解決の仕組み"><a href="#名前解決の仕組み" class="headerlink" title="名前解決の仕組み"></a>名前解決の仕組み</h2></li>
+<li>SLD：略</li>
+<li>ルートサーバ：最上位DNS、世界中13台（A～M）、アメリカ10台、日本はM<h2 id="名前解決の仕組み"><a href="#名前解決の仕組み" class="headerlink" title="名前解決の仕組み"></a>名前解決の仕組み</h2></li>
 <li>方法：DNS、hostsファイル</li>
 <li>構成要素：<ul>
 <li>リゾルバ(resolver)：ドメイン名を基にIPアドレスを検索</li>
@@ -1229,6 +1230,140 @@
 </li>
 <li>ローカルDNSサーバ：企業で用意あるいはISPが管理して、最初に問い合わせるDNSサーバ</li>
 <li>ゾーン情報：ドメイン名とIPアドレスが対応づけられているデータベース</li>
+</ul>
+<h2 id="名前解決の流れ"><a href="#名前解決の流れ" class="headerlink" title="名前解決の流れ"></a>名前解決の流れ</h2><ul>
+<li>ユーザはWebブラウザで[<a href="http://www.example.com]を入力" target="_blank" rel="noopener">http://www.example.com]を入力</a></li>
+<li>ローカルサーバにIPアドレスを問い合わせ</li>
+<li>ローカルサーバに該当する情報のない場合、ルートサーバに問い合わせる。</li>
+<li>ルートサーバのゾーン情報には、com、net、jpなどの下位層情報が登録されているので、下位層DNSサーバのIPアドレスを返事</li>
+<li>ローカルサーバのリゾルバは、教えてもらったIPアドレスのDNSサーバに問い合わせ。</li>
+<li>また、下位のDNSサーバのIPアドレスが返信される。</li>
+<li>また、問い合わせ。</li>
+<li>ドメインのIPが返信されたまで</li>
+<li>Webブラウザは、教えてもらったIPアドレスで目的のWebサーバにアクセスする。</li>
+</ul>
+<h2 id="hostsファイルによる名前解決"><a href="#hostsファイルによる名前解決" class="headerlink" title="hostsファイルによる名前解決"></a>hostsファイルによる名前解決</h2><ul>
+<li>パス：c:\Windows\system32\drivers\etc\hosts</li>
+<li>フォーマット：192.133.219.25 cisco.com</li>
+</ul>
+<h2 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h2><ul>
+<li>役割：DNSを利用してドメイン名とIPアドレスの対応付けを調べる</li>
+<li>用例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; nslookup google.com</span><br><span class="line">服务器:  NETGATE.lan</span><br><span class="line">Address:  192.168.x.x</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    google.com</span><br><span class="line">Addresses:  2404:6800:4004:800::200e</span><br><span class="line">          172.217.161.46</span><br></pre></td></tr></table></figure>
+<h2 id="DNSのトランスポート層プロトコル"><a href="#DNSのトランスポート層プロトコル" class="headerlink" title="DNSのトランスポート層プロトコル"></a>DNSのトランスポート層プロトコル</h2><ul>
+<li>UDP：53ポート；通常の名前解決</li>
+<li>TCP：53ポート；DNSサーバ同士でゾーン情報のファイルを伝送する時</li>
+</ul>
+<h2 id="正引き-せいひき-と逆引き"><a href="#正引き-せいひき-と逆引き" class="headerlink" title="正引き(せいひき)と逆引き"></a>正引き(せいひき)と逆引き</h2><ul>
+<li>正引き：ドメイン名からIPアドレス検索</li>
+<li>逆引き：IPアドレスからドメイン名検索</li>
+</ul>
+<h1 id="HTTPとHTTPS"><a href="#HTTPとHTTPS" class="headerlink" title="HTTPとHTTPS"></a>HTTPとHTTPS</h1><h2 id="HTTP概要"><a href="#HTTP概要" class="headerlink" title="HTTP概要"></a>HTTP概要</h2><ul>
+<li>トランスポート層プロトコル：TCP</li>
+<li>HTTP: Hyper Text Markup Language</li>
+</ul>
+<h2 id="Webアクセスの流れ"><a href="#Webアクセスの流れ" class="headerlink" title="Webアクセスの流れ"></a>Webアクセスの流れ</h2><ul>
+<li>HTTPリクエストを送信</li>
+<li>HTTPリスポンスを受信</li>
+</ul>
+<h2 id="HTTPリクエストメッセージ"><a href="#HTTPリクエストメッセージ" class="headerlink" title="HTTPリクエストメッセージ"></a>HTTPリクエストメッセージ</h2><ul>
+<li>リクエスト行：Webサーバにやってほしいこと<ul>
+<li>GET：データを返信するように要求</li>
+<li>HEAD：データに関する情報を送信するように要求</li>
+<li>POST：サーバにデータを送信</li>
+<li>PUT: 指定したURIにデータファイルをアップロードする</li>
+<li>DELETE：サーバにあるデータの削除を要求する</li>
+</ul>
+</li>
+<li>メッセージヘッダ：詳細な情報をWebサーバに示す</li>
+<li>メッセージボディ：サーバに対してデータを送るときに使用</li>
+</ul>
+<h2 id="HTTPレスポンスメッセージ"><a href="#HTTPレスポンスメッセージ" class="headerlink" title="HTTPレスポンスメッセージ"></a>HTTPレスポンスメッセージ</h2><ul>
+<li>ステータス行：Webサーバの処理結果<ul>
+<li>100：情報。まだ情報ある</li>
+<li>200：成功</li>
+<li>300：別のURLにリダイレクト</li>
+<li>400：クライアントエラー</li>
+<li>500：サーバエラー</li>
+</ul>
+</li>
+<li>メッセージヘッダ：ブラウザに使える詳細な情報。データのタイプ、データの圧縮方法など</li>
+<li>メッセージボディ：データを格納するための領域</li>
+</ul>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><ul>
+<li>Hypertext Transfer Protocol Secure</li>
+<li>定義：HTTPにSSL暗号化機能したプロトコル</li>
+<li>ポート：４４３</li>
+<li>条件：サーバ側にSSLサーバ証明書をインストール</li>
+</ul>
+<h1 id="FTPとTFTP"><a href="#FTPとTFTP" class="headerlink" title="FTPとTFTP"></a>FTPとTFTP</h1><h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><ul>
+<li>File Transfer Protocal</li>
+<li>役割：コンピューターの間でファイル伝送</li>
+<li>プロトコル：TCP</li>
+<li>ポート：20が伝送用、21が制御用</li>
+<li>二つのモード<ul>
+<li>アクティブモード：サーバ側からコネクション要求</li>
+<li>パッシブモード：クライアント側からコネクション要求</li>
+<li>注意：制御用のコネクションはどちらでもクライアント側から<h2 id="TFTP"><a href="#TFTP" class="headerlink" title="TFTP"></a>TFTP</h2></li>
+</ul>
+</li>
+<li>Trivial(adj. 不重要的，琐碎的；琐细的) File Transfer Protocol</li>
+<li>特徴：信頼性を提供なし；効率のよい；確認応答（ACK）機能付き</li>
+<li>ポート：６９利用</li>
+<li>TFTPデータフォーマット<ul>
+<li>2バイト：OPコード</li>
+<li>2バイト：ブロック番号</li>
+<li>512バイト以下：データ</li>
+</ul>
+</li>
+<li>流れ<ul>
+<li>クライアントからダウンロード要求。クライアント側ポート番号はランダム、サーバ側ポート番号は「６９」</li>
+<li>サーバから、クライアントへ送信。サーバ側番号がランダム、クライアント側ポートはクライアント側ポート</li>
+<li>クライアント側は確認応答を送る。クライアント側ポートはクライアント側ポート、サーバ側番号は送信されたポート番号<ul>
+<li>ファイルサイズが512バイトを超える場合、シーケンス番号を１ずつ増加させてデータ伝送を続ける。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="SMTPとPOP"><a href="#SMTPとPOP" class="headerlink" title="SMTPとPOP"></a>SMTPとPOP</h1><h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h2><ul>
+<li>Simple Mail Transfer Protocol</li>
+</ul>
+<h2 id="POP3"><a href="#POP3" class="headerlink" title="POP3"></a>POP3</h2><ul>
+<li>Post Office Protocol V3</li>
+<li>ポート：２５</li>
+<li>流れ<ul>
+<li>ユーザの作成したメールはSMTPを使ってメールサーバに送られる。</li>
+<li>メールサーバは宛先メールアドレスを確認し、さらにSMTPによって送信。</li>
+</ul>
+</li>
+</ul>
+<h2 id="SMTP-1"><a href="#SMTP-1" class="headerlink" title="SMTP"></a>SMTP</h2><ul>
+<li>Internet Mail Access Protocol</li>
+<li>ポート：１１０</li>
+<li>流れ：<ul>
+<li>ユーザ認証</li>
+<li>メールボックスにアクセス</li>
+</ul>
+</li>
+</ul>
+<h1 id="TelnetとSSH"><a href="#TelnetとSSH" class="headerlink" title="TelnetとSSH"></a>TelnetとSSH</h1><h2 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h2><ul>
+<li>プロトコル：TCP</li>
+<li>ポート番号：「23」</li>
+<li>役割：ネットワーク機器の遠隔操作</li>
+<li>ソフトウェア：Tera TermやPuTTY</li>
+</ul>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><ul>
+<li>機能：<ul>
+<li>通信の暗号化</li>
+<li>なりすまし防御（ぼうぎょ）<ul>
+<li>なりすまし：Spoofing, 模仿；哄骗，戏弄；电邮欺骗；干扰；冒充；假扮</li>
+</ul>
+</li>
+<li>認証</li>
+</ul>
+</li>
 </ul>
 
       
@@ -1269,6 +1404,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/13-CCNA/" rel="prev" title="CCNA試験のまとめノート 04 IPアドレスとサブネット">
+                CCNA試験のまとめノート 04 IPアドレスとサブネット <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1357,7 +1496,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
@@ -1443,7 +1582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IPプロトコルスタック"><span class="nav-number">1.</span> <span class="nav-text">TCP/IPプロトコルスタック</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPプロトコルスタック-TCP-IP协议栈"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IPプロトコルスタック(TCP/IP协议栈)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPのカプセルかと非カプセル化"><span class="nav-number">1.2.</span> <span class="nav-text">TCP/IPのカプセルかと非カプセル化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#インターネット層"><span class="nav-number">2.</span> <span class="nav-text">インターネット層</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP"><span class="nav-number">2.1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4ヘッダ"><span class="nav-number">2.2.</span> <span class="nav-text">IPv4ヘッダ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP"><span class="nav-number">2.3.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP-Internet-Control-Message-Protocol"><span class="nav-number">2.4.</span> <span class="nav-text">ICMP (Internet Control Message Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#トランスポート層"><span class="nav-number">2.5.</span> <span class="nav-text">トランスポート層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP-User-Datagram-Protocol"><span class="nav-number">2.6.</span> <span class="nav-text">UDP (User Datagram Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCPとUDPの比較"><span class="nav-number">2.7.</span> <span class="nav-text">TCPとUDPの比較</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アプリケーション層プロトコル"><span class="nav-number">2.8.</span> <span class="nav-text">アプリケーション層プロトコル</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP"><span class="nav-number">3.</span> <span class="nav-text">DHCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">3.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPサーバ"><span class="nav-number">3.2.</span> <span class="nav-text">DHCPサーバ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPクライアント"><span class="nav-number">3.3.</span> <span class="nav-text">DHCPクライアント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPの仕組み"><span class="nav-number">3.4.</span> <span class="nav-text">DHCPの仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPで割り当てるIPアドレス"><span class="nav-number">3.5.</span> <span class="nav-text">DHCPで割り当てるIPアドレス</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">4.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要-1"><span class="nav-number">4.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ドメイン名の仕組み"><span class="nav-number">4.2.</span> <span class="nav-text">ドメイン名の仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名前解決の仕組み"><span class="nav-number">4.3.</span> <span class="nav-text">名前解決の仕組み</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IPプロトコルスタック"><span class="nav-number">1.</span> <span class="nav-text">TCP/IPプロトコルスタック</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPプロトコルスタック-TCP-IP协议栈"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IPプロトコルスタック(TCP/IP协议栈)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IPのカプセルかと非カプセル化"><span class="nav-number">1.2.</span> <span class="nav-text">TCP/IPのカプセルかと非カプセル化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#インターネット層"><span class="nav-number">2.</span> <span class="nav-text">インターネット層</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP"><span class="nav-number">2.1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4ヘッダ"><span class="nav-number">2.2.</span> <span class="nav-text">IPv4ヘッダ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP"><span class="nav-number">2.3.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP-Internet-Control-Message-Protocol"><span class="nav-number">2.4.</span> <span class="nav-text">ICMP (Internet Control Message Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#トランスポート層"><span class="nav-number">2.5.</span> <span class="nav-text">トランスポート層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP-User-Datagram-Protocol"><span class="nav-number">2.6.</span> <span class="nav-text">UDP (User Datagram Protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCPとUDPの比較"><span class="nav-number">2.7.</span> <span class="nav-text">TCPとUDPの比較</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アプリケーション層プロトコル"><span class="nav-number">2.8.</span> <span class="nav-text">アプリケーション層プロトコル</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP"><span class="nav-number">3.</span> <span class="nav-text">DHCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">3.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPサーバ"><span class="nav-number">3.2.</span> <span class="nav-text">DHCPサーバ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPクライアント"><span class="nav-number">3.3.</span> <span class="nav-text">DHCPクライアント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPの仕組み"><span class="nav-number">3.4.</span> <span class="nav-text">DHCPの仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPで割り当てるIPアドレス"><span class="nav-number">3.5.</span> <span class="nav-text">DHCPで割り当てるIPアドレス</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">4.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要-1"><span class="nav-number">4.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ドメイン名の仕組み"><span class="nav-number">4.2.</span> <span class="nav-text">ドメイン名の仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名前解決の仕組み"><span class="nav-number">4.3.</span> <span class="nav-text">名前解決の仕組み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名前解決の流れ"><span class="nav-number">4.4.</span> <span class="nav-text">名前解決の流れ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hostsファイルによる名前解決"><span class="nav-number">4.5.</span> <span class="nav-text">hostsファイルによる名前解決</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nslookup"><span class="nav-number">4.6.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNSのトランスポート層プロトコル"><span class="nav-number">4.7.</span> <span class="nav-text">DNSのトランスポート層プロトコル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正引き-せいひき-と逆引き"><span class="nav-number">4.8.</span> <span class="nav-text">正引き(せいひき)と逆引き</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPとHTTPS"><span class="nav-number">5.</span> <span class="nav-text">HTTPとHTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP概要"><span class="nav-number">5.1.</span> <span class="nav-text">HTTP概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webアクセスの流れ"><span class="nav-number">5.2.</span> <span class="nav-text">Webアクセスの流れ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPリクエストメッセージ"><span class="nav-number">5.3.</span> <span class="nav-text">HTTPリクエストメッセージ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPレスポンスメッセージ"><span class="nav-number">5.4.</span> <span class="nav-text">HTTPレスポンスメッセージ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">5.5.</span> <span class="nav-text">HTTPS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FTPとTFTP"><span class="nav-number">6.</span> <span class="nav-text">FTPとTFTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP"><span class="nav-number">6.1.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TFTP"><span class="nav-number">6.2.</span> <span class="nav-text">TFTP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SMTPとPOP"><span class="nav-number">7.</span> <span class="nav-text">SMTPとPOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP"><span class="nav-number">7.1.</span> <span class="nav-text">SMTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POP3"><span class="nav-number">7.2.</span> <span class="nav-text">POP3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP-1"><span class="nav-number">7.3.</span> <span class="nav-text">SMTP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TelnetとSSH"><span class="nav-number">8.</span> <span class="nav-text">TelnetとSSH</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Telnet"><span class="nav-number">8.1.</span> <span class="nav-text">Telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-number">8.2.</span> <span class="nav-text">SSH</span></a></li></ol></li></ol></div>
             
 
           </div>

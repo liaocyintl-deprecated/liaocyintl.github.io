@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="ノート,">
 
 
 
@@ -83,16 +83,18 @@
 
 
 
-<meta name="description" content="A Tech Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liao&#39;s Blog">
-<meta property="og:url" content="https://liaocy.net/categories/研究-Research/深度学习-Deep-Learning/index.html">
+<meta name="description" content="IPv4アドレス、サブネットワーク、IPアドレッシング、VLSM">
+<meta name="keywords" content="ノート">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCNA試験のまとめノート 04 IPアドレスとサブネット">
+<meta property="og:url" content="https://liaocy.net/2019/07/13-CCNA/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
-<meta property="og:description" content="A Tech Blog">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="IPv4アドレス、サブネットワーク、IPアドレッシング、VLSM">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-07-13T12:50:15.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liao&#39;s Blog">
-<meta name="twitter:description" content="A Tech Blog">
+<meta name="twitter:title" content="CCNA試験のまとめノート 04 IPアドレスとサブネット">
+<meta name="twitter:description" content="IPv4アドレス、サブネットワーク、IPアドレッシング、VLSM">
 
 
 
@@ -108,7 +110,7 @@
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: '著者'
     },
     algolia: {
       applicationID: '',
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://liaocy.net/categories/研究-Research/深度学习-Deep-Learning/">
+  <link rel="canonical" href="https://liaocy.net/2019/07/13-CCNA/">
 
 
 
 
 
-  <title>分类: 深度学习 Deep Learning | Liao's Blog</title>
+  <title>CCNA試験のまとめノート 04 IPアドレスとサブネット | Liao's Blog</title>
   
 
 
@@ -150,14 +152,14 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ja">
 
   
   
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -198,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            ホーム
           </a>
         </li>
       
@@ -208,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            アーカイブ
           </a>
         </li>
       
@@ -218,7 +220,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
+            タグ
           </a>
         </li>
       
@@ -228,7 +230,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            カテゴリ
           </a>
         </li>
       
@@ -238,7 +240,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-language"></i> <br>
             
-            背单词
+            単語表
           </a>
         </li>
       
@@ -251,7 +253,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            検索
           </a>
         </li>
       
@@ -293,131 +295,221 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>深度学习 Deep Learning<small>分类</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2019/07/13-CCNA/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/10/19-tensorflowtutorial04/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow学习（四） -- 基本回归任务</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 04 IPアドレスとサブネット</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-19T13:42:22+09:00" content="2018-10-19">
-          10-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">投稿日</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T20:33:00+09:00">
+                2019-07-13
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/資格試験/" itemprop="url" rel="index">
+                    <span itemprop="name">資格試験</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/資格試験/CCNA/" itemprop="url" rel="index">
+                    <span itemprop="name">CCNA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/13-CCNA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/13-CCNA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/17-tensorflowtutorial03/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow学习（三） -- 基本文本分类任务</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-17T16:10:22+09:00" content="2018-10-17">
-          10-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/20180930-tensorflowtutorial02/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow学习（二） -- 基本分类器</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-30T17:40:22+09:00" content="2018-09-30">
-          09-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/20180929-tensorflowtutorial01/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow学习（一） -- 开篇</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-29T22:05:22+09:00" content="2018-09-29">
-          09-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+        <p>IPv4アドレス、サブネットワーク、IPアドレッシング、VLSM<br><a id="more"></a></p>
+<h1 id="IPv4アドレス"><a href="#IPv4アドレス" class="headerlink" title="IPv4アドレス"></a>IPv4アドレス</h1><h2 id="構成要素"><a href="#構成要素" class="headerlink" title="構成要素"></a>構成要素</h2><ul>
+<li>階層型アドレス：IPアドレスは32ビット；ネットワーク部とホスト部<ul>
+<li>ネットワーク部：所属するネットワークを示す</li>
+<li>ホスト部：ネットワークに所属するホストを識別<h2 id="アドレスクラス"><a href="#アドレスクラス" class="headerlink" title="アドレスクラス"></a>アドレスクラス</h2></li>
+</ul>
+</li>
+<li>クラスA：<ul>
+<li>第１オクテットの先頭は0に固定（00000000～01111111）</li>
+<li>有効な範囲は1.0.0.0　～　126.255.255.255</li>
+<li>ネットワーク部は8ビット、ホスト部は24ビット；ホスト数は2^24-2=16777214</li>
+</ul>
+</li>
+<li>クラスB：<ul>
+<li>第１オクテットの先頭は10に固定（10000000～10111111）</li>
+<li>有効な範囲は128.0.0.0　～　191.255.255.255</li>
+<li>ネットワーク部は16ビット、ホスト部は16ビット；ホスト数は2^16-2=65534</li>
+</ul>
+</li>
+<li>クラスC：<ul>
+<li>第１オクテットの先頭は110に固定（11000000～11011111）</li>
+<li>有効な範囲は192.0.0.0　～　223.255.255.255</li>
+<li>ネットワーク部は24ビット、ホスト部は8ビット；ホスト数は2^8-2=254</li>
+</ul>
+</li>
+<li>クラスD：<ul>
+<li>第１オクテットの先頭は1110に固定（11100000～11101111）</li>
+<li>有効な範囲は224.0.0.0　～　239.255.255.255</li>
+<li>224.0.0.0　～　224.0.0.255は同一ネットワーク上でのみ送信され、ルータによって伝送されない。</li>
+</ul>
+</li>
+</ul>
+<h2 id="予約済IPアドレス"><a href="#予約済IPアドレス" class="headerlink" title="予約済IPアドレス"></a>予約済IPアドレス</h2>
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ノート/" rel="tag"># ノート</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/12-CCNA/" rel="next" title="CCNA試験のまとめノート 03 TCP/IP">
+                <i class="fa fa-chevron-left"></i> CCNA試験のまとめノート 03 TCP/IP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -425,6 +517,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -445,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            見出し
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            概要
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -464,7 +579,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">79</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
             
@@ -475,7 +590,7 @@
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
                   <span class="site-state-item-count">47</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-name">カテゴリ</span>
                 </a>
               </div>
             
@@ -486,7 +601,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">97</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-name">タグ</span>
                 </a>
               </div>
             
@@ -540,6 +655,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4アドレス"><span class="nav-number">1.</span> <span class="nav-text">IPv4アドレス</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#構成要素"><span class="nav-number">1.1.</span> <span class="nav-text">構成要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アドレスクラス"><span class="nav-number">1.2.</span> <span class="nav-text">アドレスクラス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#予約済IPアドレス"><span class="nav-number">1.3.</span> <span class="nav-text">予約済IPアドレス</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -563,7 +694,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -571,7 +702,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -682,6 +813,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -699,6 +834,18 @@
       <script id="dsq-count-scr" src="https://liaocy-net.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://liaocy.net/2019/07/13-CCNA/';
+          this.page.identifier = '2019/07/13-CCNA/';
+          this.page.title = 'CCNA試験のまとめノート 04 IPアドレスとサブネット';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liaocy-net.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
