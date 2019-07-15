@@ -308,6 +308,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180915-androidspeaker/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/20180915-androidspeaker/" itemprop="url">Android 朗读字符串</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T18:44:22+09:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/安卓-Android/" itemprop="url" rel="index">
+                    <span itemprop="name">安卓 Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/20180915-androidspeaker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180915-androidspeaker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在开发一些Handsfree的安卓应用的时候，常常需要系统自动朗读一些字符串，例如“System activated”等等。<br>本文通过使用android.speech.tts.TextToSpeech来实现这个功能。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://stackoverflow.com/questions/2929562/register-application-class-in-manifest" target="_blank" rel="noopener">Register Application class in Manifest?</a></li>
+<li><a href="https://stackoverflow.com/questions/30706780/texttospeech-deprecated-speak-function-in-api-level-21" target="_blank" rel="noopener">TextToSpeech : deprecated speak function in API Level 21</a></li>
+</ul>
+<h2 id="让Android朗读文字"><a href="#让Android朗读文字" class="headerlink" title="让Android朗读文字"></a>让Android朗读文字</h2><p>我们创建一个类Speaker.java来实现朗读功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.liaocy.smartcar.biz;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"><span class="keyword">import</span> android.speech.tts.TextToSpeech;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Speaker</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TextToSpeech speech;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String TAG = <span class="string">"Speaker"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Speaker</span><span class="params">(Application context)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="comment">//init speech</span></span><br><span class="line">        <span class="keyword">this</span>.speech = <span class="keyword">new</span> TextToSpeech(context, <span class="keyword">new</span> TextToSpeech.OnInitListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onInit</span><span class="params">(<span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">                <span class="keyword">if</span> (status == TextToSpeech.SUCCESS) &#123;</span><br><span class="line">                    <span class="keyword">int</span> result = speech.setLanguage(Locale.ENGLISH);</span><br><span class="line">                    <span class="keyword">if</span> (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) &#123;</span><br><span class="line">                        Log.e(TAG, <span class="string">"Not support this language."</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        Log.i(TAG, <span class="string">"Speaker activated!"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//init speech -- end</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在前文朗读完之后，朗读text中的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.speech.speak(text, TextToSpeech.QUEUE_ADD, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 即使前文没有朗读完，也强制朗读text中的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpeakNow</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.speech.speak(text, TextToSpeech.QUEUE_FLUSH, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/biz/Speaker.java" target="_blank" rel="noopener">点击这里</a></p>
+<h2 id="将Speaker作为全局变量加入Application"><a href="#将Speaker作为全局变量加入Application" class="headerlink" title="将Speaker作为全局变量加入Application"></a>将Speaker作为全局变量加入Application</h2><p>我们将Speaker作为全局变量加入Application，可以在APP的任何位置调用朗读方法。</p>
+<p>我们首先创建一个AppContext.java，这是自定义个Application类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.liaocy.smartcar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.liaocy.smartcar.biz.Speaker;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppContext</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppContext instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Speaker speaker;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取得朗读器对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Speaker <span class="title">getSpeaker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.speaker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在任何地方都可以取得这个类的实例</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppContext <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        instance = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//init and start speaker</span></span><br><span class="line">        speaker = <span class="keyword">new</span> Speaker(<span class="keyword">this</span>);</span><br><span class="line">        speaker.Speak(<span class="string">"System activated"</span>);</span><br><span class="line">        <span class="comment">//init and start speaker -- end</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/AppContext.java" target="_blank" rel="noopener">点击这里</a></p>
+<p>将自定义Application注册到AndroidManifest.xml：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"net.liaocy.smartcar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">".AppContext"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">"@mipmap/ic_launcher_round"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".activity.Dashboard"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的”android:name”要和注册类名称相同，用来声明注册类。<br>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/AndroidManifest.xml" target="_blank" rel="noopener">点击这里</a></p>
+<h2 id="在Activity测试朗读"><a href="#在Activity测试朗读" class="headerlink" title="在Activity测试朗读"></a>在Activity测试朗读</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.btnSpeak = <span class="keyword">this</span>.findViewById(R.id.btnSpeak);</span><br><span class="line"><span class="keyword">this</span>.btnSpeak.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        Log.i(TAG, <span class="string">"speak"</span>);</span><br><span class="line"></span><br><span class="line">        appContext.getSpeaker().Speak(<span class="string">"System Activated."</span>);</span><br><span class="line"></span><br><span class="line">        txtMsg.setText(<span class="string">"here"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>源代码：<a href="https://github.com/liaocyintl/SmartCar/blob/master/app/src/main/java/net/liaocy/smartcar/activity/Dashboard.java" target="_blank" rel="noopener">点击这里</a></p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>我是想做一个车载的安卓应用，集成导航，OBD车况检测，传感器数据手机和在线分析等一系列功能。有兴趣的朋友欢迎一起讨论。<br>代码库：<a href="https://github.com/liaocyintl/SmartCar" target="_blank" rel="noopener">https://github.com/liaocyintl/SmartCar</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/27-blockchainheritage/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2038,213 +2217,11 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180720-wordautofurigana/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180720-wordautofurigana/" itemprop="url">自动为Word文档中的日文汉字注音(ふりがな)的VBA脚本</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T22:18:17+09:00">
-                2018-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/日语-Japanese/" itemprop="url" rel="index">
-                    <span itemprop="name">日语 Japanese</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/日语-Japanese/阅读-Reading/" itemprop="url" rel="index">
-                    <span itemprop="name">阅读 Reading</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180720-wordautofurigana/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180720-wordautofurigana/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本文代码基于<a href="https://www.ka-net.org/blog/?p=7576" target="_blank" rel="noopener">きぬあさ的代码</a>进行改良，向原作者表示致敬，转发此文请一并转发原作者地址。</p>
-<p>注：原作者的代码遇到找不到注音的汉字会死循环卡在那里。<br>我修正了这个问题。<br>修正后的版本如果遇到找不到注音的汉字，就跳过它而不是卡在那里。<br>当然这种情况很少，完全不影响阅读，因此可以无人值守地转换Word长文。</p>
-<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>众所周知Word有自动给日文汉字注音的功能：</p>
-<p><img src="/uploads/postimgs/fbcd6570.png" alt="Word中给汉字注音的传统方法1/2"></p>
-<p>点击确定以后，相应的汉字就被注音了：</p>
-<p><img src="/uploads/postimgs/5a5e52ad.png" alt="Word中给汉字注音的传统方法2/2"></p>
-<p>这种方法对日语学习者很有帮助。<br>但是可以发现，这种方法无法对大段的文字同时注音，每次只能注音一两句话。<br>即使你选择了大段的文字，也只能对前一两句话进行注音。<br>为了解决这个问题，我们写一个Word文档内置的Visual Basic for Applications (VBA)脚本，来实现对大段文字或全文的注音。</p>
-<h2 id="开发及测试环境"><a href="#开发及测试环境" class="headerlink" title="开发及测试环境"></a>开发及测试环境</h2><ul>
-<li>Microsoft Office Word 2013</li>
-</ul>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>首先，我们设置文章的语言为日语，否则某些汉字可能被当做中文后标记为汉语拼音。<br>按Ctrl+A全选文本，点击“审阅”选项卡，点击“语言”按钮，在弹出的菜单中选择“设置校对语言”选项。</p>
-<p><img src="/uploads/postimgs/1f84e296.png" alt=""></p>
-<p>在弹出的“语言”对话框中，选择日语，勾选“不检查拼写或语法”，不要勾选“自动检测语言”，点击确定保存：</p>
-<p><img src="/uploads/postimgs/7eb6fb20.png" alt=""></p>
-<p>这样一来，全体文本就被设置为日语了。<br>之后，根据下面步骤对文本进行注音：</p>
-<h3 id="1、-打开Word的“开发工具”菜单"><a href="#1、-打开Word的“开发工具”菜单" class="headerlink" title="1、 打开Word的“开发工具”菜单"></a>1、 打开Word的“开发工具”菜单</h3><p>部分Word的“开发工具”默认是不显示的，我们在设置里打开它：</p>
-<p>首先，点击word左上角的“文件”按钮：</p>
-<p><img src="/uploads/postimgs/d992ce56.png" alt=""></p>
-<p>然后，点击“选项”：</p>
-<p><img src="/uploads/postimgs/b3aab0b3.png" alt=""></p>
-<p>之后，在弹开的“Word选项”对话框中，依次选择“自定义功能区”，勾选“开发工具”，并点击“确定”保存设置：</p>
-<p><img src="/uploads/postimgs/2333e88c.png" alt=""></p>
-<p>最后，可以在Word的顶部菜单中看到“开发工具”选项卡，选择它，并点击按钮“Visual Basic”打开VBA编辑器：</p>
-<p><img src="/uploads/postimgs/548797ff.png" alt=""></p>
-<h3 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h3><p>在打开的VBA编辑器中，粘贴以下代码（按代码下面的图示）：<br><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Option</span> <span class="keyword">Explicit</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Sub</span> FuriganaSelectedRange()</span><br><span class="line">  SetPhoneticRange Selection.Range</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Sub</span> FuriganaAllDocument()</span><br><span class="line">  SetPhoneticRange ActiveDocument.Range</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> SetPhoneticRange(<span class="keyword">ByVal</span> rng <span class="keyword">As</span> Word.Range)</span><br><span class="line">  <span class="keyword">Dim</span> r <span class="keyword">As</span> Word.Range</span><br><span class="line">  <span class="keyword">Dim</span> past_r <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> r <span class="keyword">In</span> rng.Words</span><br><span class="line">    <span class="keyword">If</span> r.Fields.Count &lt; <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="keyword">If</span> ChkKanjiRange(r) = <span class="literal">True</span> <span class="keyword">And</span> r &lt;&gt; past_r <span class="keyword">Then</span></span><br><span class="line">        past_r = r</span><br><span class="line">        r.<span class="keyword">Select</span></span><br><span class="line">        Application.Dialogs(wdDialogPhoneticGuide).Show <span class="number">1</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> r <span class="keyword">In</span> rng.Characters</span><br><span class="line">    <span class="keyword">If</span> r.Fields.Count &lt; <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="keyword">If</span> ChkKanjiRange(r) = <span class="literal">True</span> <span class="keyword">Then</span></span><br><span class="line">        r.<span class="keyword">Select</span></span><br><span class="line">        Application.Dialogs(wdDialogPhoneticGuide).Show <span class="number">1</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> ChkKanjiRange(<span class="keyword">ByVal</span> rng <span class="keyword">As</span> Word.Range) <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">  <span class="keyword">Dim</span> ret <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">  <span class="keyword">Dim</span> i <span class="keyword">As</span> <span class="built_in">Long</span></span><br><span class="line">   </span><br><span class="line">  ret = <span class="literal">True</span></span><br><span class="line">  <span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Len(rng.<span class="keyword">Text</span>)</span><br><span class="line">    <span class="keyword">If</span> IsKanji(<span class="keyword">Mid</span>(rng.<span class="keyword">Text</span>, i, <span class="number">1</span>)) = <span class="literal">False</span> <span class="keyword">Then</span></span><br><span class="line">      ret = <span class="literal">False</span></span><br><span class="line">      <span class="keyword">Exit</span> <span class="keyword">For</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line">  ChkKanjiRange = ret</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> IsKanji(<span class="keyword">ByVal</span> <span class="built_in">char</span> <span class="keyword">As</span> <span class="built_in">String</span>) <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">  Dim cc As Variant</span><br><span class="line">  <span class="keyword">Dim</span> ret <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">   </span><br><span class="line">  ret = <span class="literal">True</span></span><br><span class="line">  cc = Val(<span class="string">"&amp;H"</span> &amp; Hex(AscW(<span class="built_in">char</span>)) &amp; <span class="string">"&amp;"</span>)</span><br><span class="line">  <span class="keyword">Select</span> <span class="keyword">Case</span> cc</span><br><span class="line">    <span class="keyword">Case</span> <span class="number">63744</span> <span class="keyword">To</span> <span class="number">64255</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">13312</span> <span class="keyword">To</span> <span class="number">19903</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">19968</span> <span class="keyword">To</span> <span class="number">40959</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">131072</span> <span class="keyword">To</span> <span class="number">173791</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">173824</span> <span class="keyword">To</span> <span class="number">177983</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">177984</span> <span class="keyword">To</span> <span class="number">178207</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">194560</span> <span class="keyword">To</span> <span class="number">195103</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="keyword">Else</span></span><br><span class="line">      ret = <span class="literal">False</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">Select</span></span><br><span class="line">  IsKanji = ret</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure></p>
-<p>将上面代码粘贴在代码区域，并点击绿色三角形“运行”按钮：</p>
-<p><img src="/uploads/postimgs/8511bcb4.png" alt=""></p>
-<h3 id="3、运行"><a href="#3、运行" class="headerlink" title="3、运行"></a>3、运行</h3><p>点击点击绿色三角形“运行”按钮后，出现对话框：</p>
-<ul>
-<li>选择“FuriganaAllDocument”的话则会对全文档注音（推荐）</li>
-<li>选择“FuriganaSelectedRange”的话则只会对选择文字注音<br>选择完成后点击“运行”：</li>
-</ul>
-<p><img src="/uploads/postimgs/aed595aa.png" alt=""></p>
-<p>点击“运行”后开始注音：</p>
-<p><img src="/uploads/postimgs/wordfurigana.gif" alt=""></p>
-<p>注音过程中点击键盘“ESC”键可以中途退出。<br>该算法支持断点重新开始，所以不用担心中途退出。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.ka-net.org/blog/?p=7576" target="_blank" rel="noopener">代码参考资料</a></p>
-<p><a href="https://jingyan.baidu.com/article/9f7e7ec05965d46f28155496.html" target="_blank" rel="noopener">开发工具菜单开启引用资料</a></p>
-<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2><p>关于执行效率：</p>
-<p>注音夏目漱石的「吾輩は猫である」第一章，包含13,622个字符（包含假名），<br>执行一遍大约需要15分钟。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2292,7 +2269,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
