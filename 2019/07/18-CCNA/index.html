@@ -87,11 +87,11 @@
 <meta name="keywords" content="ノート">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCNA試験のまとめノート 09 VLANとVLAN間ルーティング">
-<meta property="og:url" content="https://liaocy.net/2019/07/17-CCNA02/index.html">
+<meta property="og:url" content="https://liaocy.net/2019/07/18-CCNA/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="キャンパスネットワークの設計、VLANの概要、VLANの動作、スタティックVLANの設定と検証、トランクポートの設定と検証、音声VLAN、VLAN間ルーティング">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-17T06:31:41.045Z">
+<meta property="og:updated_time" content="2019-07-18T06:29:33.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 09 VLANとVLAN間ルーティング">
 <meta name="twitter:description" content="キャンパスネットワークの設計、VLANの概要、VLANの動作、スタティックVLANの設定と検証、トランクポートの設定と検証、音声VLAN、VLAN間ルーティング">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://liaocy.net/2019/07/17-CCNA02/">
+  <link rel="canonical" href="https://liaocy.net/2019/07/18-CCNA/">
 
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2019/07/17-CCNA02/">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2019/07/18-CCNA/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">投稿日</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T14:13:00+09:00">
-                2019-07-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T14:13:00+09:00">
+                2019-07-18
               </time>
             
 
@@ -390,8 +390,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/07/17-CCNA02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/17-CCNA02/" itemprop="commentCount"></span>
+                <a href="/2019/07/18-CCNA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/18-CCNA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -504,14 +504,30 @@
 </li>
 </ul>
 <h2 id="スタティックVLANの設定と検証"><a href="#スタティックVLANの設定と検証" class="headerlink" title="スタティックVLANの設定と検証"></a>スタティックVLANの設定と検証</h2><ul>
-<li>手順<ul>
-<li>VLANの作成</li>
-<li>VLAN名の設定（オプション）</li>
-<li>アクセスオートの設定（オプション）</li>
-<li>スイッチポートにVLANを割り当てる</li>
+<li><p>手順</p>
+<ul>
+<li><p>VLANの作成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Switch#configure terminal </span><br><span class="line">Enter configuration commands, one per line.  End with CNTL/Z.</span><br><span class="line">Switch(config)#vlan 2</span><br><span class="line">Switch(config-vlan)#exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>VLAN名の設定（オプション）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#vlan 2 #Vlan選択</span><br><span class="line">Switch(config-vlan)#name Sales #Vlan名前を付け</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>アクセスオートの設定（オプション）</p>
+<ul>
+<li>定義：タグ VLAN を使う場合はポートにトランクポート (trunk port) という設定を入れる必要があります。トランクポートではないポートはアクセスポート (access port) と呼びます。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#interface fastEthernet 0/1</span><br><span class="line">Switch(config-if)#switchport mode access</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>スイッチポートにVLANを割り当てる</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#switchport access vlan 2</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
+<h2 id="スタティックVLAN検証"><a href="#スタティックVLAN検証" class="headerlink" title="スタティックVLAN検証"></a>スタティックVLAN検証</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#vlan 2</span><br><span class="line">Switch(config-vlan)#name Sales</span><br><span class="line">Switch(config-vlan)#exit</span><br><span class="line">Switch(config)#vlan 3</span><br><span class="line">Switch(config-vlan)#exit</span><br><span class="line"></span><br><span class="line">Switch(config)#interface fastEthernet 0/3</span><br><span class="line">Switch(config-if)#switchport mode access</span><br><span class="line">Switch(config-if)#switchport access vlan 2</span><br><span class="line"></span><br><span class="line">Switch(config-if)#interface fastEthernet 0/4</span><br><span class="line">Switch(config-if)#switchport mode access </span><br><span class="line">Switch(config-if)#switchport access vlan 3</span><br><span class="line">Switch(config-if)#interface fastEthernet 0/5</span><br><span class="line">Switch(config-if)#switchport mode access </span><br><span class="line">Switch(config-if)#switchport access vlan 3</span><br><span class="line">Switch(config-if)#interface fastEthernet 0/6</span><br><span class="line">Switch(config-if)#switchport mode access </span><br><span class="line">Switch(config-if)#switchport access vlan 3</span><br></pre></td></tr></table></figure>
+<p>VLAN情報を出力:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Switch#show vlan</span><br><span class="line"></span><br><span class="line">VLAN Name                             Status    Ports</span><br><span class="line">---- -------------------------------- --------- -------------------------------</span><br><span class="line">1    default                          active    Fa0/1, Fa0/2, Fa0/7, Fa0/8</span><br><span class="line">                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12</span><br><span class="line">                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16</span><br><span class="line">                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20</span><br><span class="line">                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24</span><br><span class="line">                                                Gig0/1, Gig0/2</span><br><span class="line">2    Sales                            active    Fa0/3</span><br><span class="line">3    VLAN0003                         active    Fa0/4, Fa0/5, Fa0/6</span><br><span class="line">1002 fddi-default                     active    </span><br><span class="line">1003 token-ring-default               active    </span><br><span class="line">1004 fddinet-default                  active    </span><br><span class="line">1005 trnet-default                    active</span><br></pre></td></tr></table></figure></p>
+<p>簡潔出力：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch#show vlan brief</span><br></pre></td></tr></table></figure></p>
+<p>特定VLAN　IDで調べる：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Switch#show vlan id 3</span><br><span class="line"></span><br><span class="line">VLAN Name                             Status    Ports</span><br><span class="line">---- -------------------------------- --------- -------------------------------</span><br><span class="line">3    VLAN0003                         active    Fa0/4, Fa0/5, Fa0/6</span><br><span class="line"></span><br><span class="line">VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2</span><br><span class="line">---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------</span><br><span class="line">3    enet  100003     1500  -      -      -        -    -        0      0</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -725,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#キャンパスネットワークの設計"><span class="nav-number">1.</span> <span class="nav-text">キャンパスネットワークの設計</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#キャンパスネットワーク"><span class="nav-number">1.1.</span> <span class="nav-text">キャンパスネットワーク</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#階層型ネットワーク設計の概要"><span class="nav-number">1.2.</span> <span class="nav-text">階層型ネットワーク設計の概要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VLANの概要"><span class="nav-number">2.</span> <span class="nav-text">VLANの概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">2.1.</span> <span class="nav-text">概要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VLANの動作"><span class="nav-number">3.</span> <span class="nav-text">VLANの動作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#動作"><span class="nav-number">3.1.</span> <span class="nav-text">動作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチポートの種類"><span class="nav-number">3.2.</span> <span class="nav-text">スイッチポートの種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スタティックVLANの設定と検証"><span class="nav-number">3.3.</span> <span class="nav-text">スタティックVLANの設定と検証</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#キャンパスネットワークの設計"><span class="nav-number">1.</span> <span class="nav-text">キャンパスネットワークの設計</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#キャンパスネットワーク"><span class="nav-number">1.1.</span> <span class="nav-text">キャンパスネットワーク</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#階層型ネットワーク設計の概要"><span class="nav-number">1.2.</span> <span class="nav-text">階層型ネットワーク設計の概要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VLANの概要"><span class="nav-number">2.</span> <span class="nav-text">VLANの概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">2.1.</span> <span class="nav-text">概要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VLANの動作"><span class="nav-number">3.</span> <span class="nav-text">VLANの動作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#動作"><span class="nav-number">3.1.</span> <span class="nav-text">動作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチポートの種類"><span class="nav-number">3.2.</span> <span class="nav-text">スイッチポートの種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スタティックVLANの設定と検証"><span class="nav-number">3.3.</span> <span class="nav-text">スタティックVLANの設定と検証</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スタティックVLAN検証"><span class="nav-number">3.4.</span> <span class="nav-text">スタティックVLAN検証</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -898,8 +914,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://liaocy.net/2019/07/17-CCNA02/';
-          this.page.identifier = '2019/07/17-CCNA02/';
+          this.page.url = 'https://liaocy.net/2019/07/18-CCNA/';
+          this.page.identifier = '2019/07/18-CCNA/';
           this.page.title = 'CCNA試験のまとめノート 09 VLANとVLAN間ルーティング';
         };
         var d = document, s = d.createElement('script');
