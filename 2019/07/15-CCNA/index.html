@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="Catalystスイッチの初期起動、スイッチの基本設定、スイッチの基本設定の確認、MACアドレステーブル、二重モードと速度の設定">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-18T01:50:30.558Z">
+<meta property="og:updated_time" content="2019-07-18T02:04:24.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 06 Catalystスイッチの導入">
 <meta name="twitter:description" content="Catalystスイッチの初期起動、スイッチの基本設定、スイッチの基本設定の確認、MACアドレステーブル、二重モードと速度の設定">
@@ -535,9 +535,62 @@
 </li>
 </ul>
 <h1 id="スイッチの基本設定"><a href="#スイッチの基本設定" class="headerlink" title="スイッチの基本設定"></a>スイッチの基本設定</h1><h2 id="スイッチの基本設定-1"><a href="#スイッチの基本設定-1" class="headerlink" title="スイッチの基本設定"></a>スイッチの基本設定</h2><ul>
-<li>ホスト名の設定</li>
+<li><p>ホスト名の設定</p>
+<ul>
+<li>63文字<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Switch#configure terminal </span><br><span class="line">Enter configuration commands, one per line.  End with CNTL/Z.</span><br><span class="line">Switch(config)#hostname ASW1 #ホスト名設定</span><br><span class="line">ASW1(config)#hostname Switch-A</span><br><span class="line">Switch-A(config)#no hostname #ホスト名削除</span><br><span class="line">Switch(config)#hostname SW1</span><br><span class="line">SW1(config)#</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Switch#configure terminal </span><br><span class="line">Enter configuration commands, one per line.  End with CNTL/Z.</span><br><span class="line">Switch(config)#hostname ASW1</span><br><span class="line">ASW1(config)#hostna</span><br><span class="line">ASW1(config)#hostname Switch-A</span><br><span class="line">Switch-A(config)#no hostname</span><br><span class="line">Switch(config)#hostname SW1</span><br><span class="line">SW1(config)#</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>管理用IPアドレスの設定</p>
+<ul>
+<li>役割：管理インターフェイスのIPアドレスを設定する。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#interface vlan 1 # 管理Vlanの番号を指定する</span><br><span class="line">Switch(config-if)#ip address 192.168.1.1 255.255.255.0 # IPアドレスを指定</span><br><span class="line">Switch(config-if)#no shutdown # インタフェースを有効化</span><br><span class="line"></span><br><span class="line">Switch(config-if)#</span><br><span class="line">%LINK-5-CHANGED: Interface Vlan1, changed state to up</span><br><span class="line"></span><br><span class="line">Switch(config-if)#</span><br></pre></td></tr></table></figure>
+<ul>
+<li>デフォルトゲートウェイの設定</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#interface vlan 1 #VLANの管理インターフェースに移行</span><br><span class="line">Switch(config-if)#ip address 172.16.1.2 255.255.255.0 #IPアドレスとサブネットマスクを設定</span><br><span class="line">Switch(config-if)#no shutdown #インターフェースを有効化</span><br><span class="line">Switch(config-if)#exit</span><br><span class="line">Switch(config)#ip default-gateway 172.16.1.1 #デフォルトゲートウェイを設定</span><br></pre></td></tr></table></figure>
+<h1 id="スイッチの基本設定の確認"><a href="#スイッチの基本設定の確認" class="headerlink" title="スイッチの基本設定の確認"></a>スイッチの基本設定の確認</h1><h2 id="スイッチ本体情報の表示"><a href="#スイッチ本体情報の表示" class="headerlink" title="スイッチ本体情報の表示"></a>スイッチ本体情報の表示</h2><pre>
+SW1#show version
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)FX, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2005 by Cisco Systems, Inc.
+Compiled Wed 12-Oct-05 22:05 by pt_team
+
+ROM: C2960 Boot Loader (C2960-HBOOT-M) Version 12.2(25r)FX, RELEASE SOFTWARE (fc4)
+
+System returned to ROM by power-on
+
+Cisco WS-C2960-24TT (RC32300) processor (revision C0) with 21039K bytes of memory.
+
+
+24 FastEthernet/IEEE 802.3 interface(s)
+2 Gigabit Ethernet/IEEE 802.3 interface(s)
+
+63488K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : 0002.166C.7C29
+Motherboard assembly number     : 73-9832-06
+Power supply part number        : 341-0097-02
+Motherboard serial number       : FOC103248MJ
+Power supply serial number      : DCA102133JA
+Model revision number           : B0
+Motherboard revision number     : C0
+Model number                    : WS-C2960-24TT
+System serial number            : FOC1033Z1EY
+Top Assembly Part Number        : 800-26671-02
+Top Assembly Revision Number    : B0
+Version ID                      : V02
+CLEI Code Number                : COM3K00BRA
+Hardware Board Revision Number  : 0x01
+
+
+Switch   Ports  Model              SW Version              SW Image
+------   -----  -----              ----------              ----------
+*    1   26     WS-C2960-24TT      12.2                    C2960-LANBASE-M
+
+Configuration register is 0xF
+</pre>
       
     </div>
     
@@ -754,7 +807,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Catalystスイッチの初期起動"><span class="nav-number">1.</span> <span class="nav-text">Catalystスイッチの初期起動</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalystスイッチ"><span class="nav-number">1.1.</span> <span class="nav-text">Catalystスイッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初期起動の流れ"><span class="nav-number">1.2.</span> <span class="nav-text">初期起動の流れ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#セットアップモード"><span class="nav-number">1.3.</span> <span class="nav-text">セットアップモード</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチのインターフェース番号付け規則"><span class="nav-number">1.4.</span> <span class="nav-text">スイッチのインターフェース番号付け規則</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#スイッチの基本設定"><span class="nav-number">2.</span> <span class="nav-text">スイッチの基本設定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチの基本設定-1"><span class="nav-number">2.1.</span> <span class="nav-text">スイッチの基本設定</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Catalystスイッチの初期起動"><span class="nav-number">1.</span> <span class="nav-text">Catalystスイッチの初期起動</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalystスイッチ"><span class="nav-number">1.1.</span> <span class="nav-text">Catalystスイッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初期起動の流れ"><span class="nav-number">1.2.</span> <span class="nav-text">初期起動の流れ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#セットアップモード"><span class="nav-number">1.3.</span> <span class="nav-text">セットアップモード</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチのインターフェース番号付け規則"><span class="nav-number">1.4.</span> <span class="nav-text">スイッチのインターフェース番号付け規則</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#スイッチの基本設定"><span class="nav-number">2.</span> <span class="nav-text">スイッチの基本設定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチの基本設定-1"><span class="nav-number">2.1.</span> <span class="nav-text">スイッチの基本設定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#スイッチの基本設定の確認"><span class="nav-number">3.</span> <span class="nav-text">スイッチの基本設定の確認</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチ本体情報の表示"><span class="nav-number">3.1.</span> <span class="nav-text">スイッチ本体情報の表示</span></a></li></ol></li></ol></div>
             
 
           </div>
