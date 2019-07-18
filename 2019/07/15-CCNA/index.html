@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="Catalystスイッチの初期起動、スイッチの基本設定、スイッチの基本設定の確認、MACアドレステーブル、二重モードと速度の設定">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-15T08:31:20.060Z">
+<meta property="og:updated_time" content="2019-07-18T01:50:30.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCNA試験のまとめノート 06 Catalystスイッチの導入">
 <meta name="twitter:description" content="Catalystスイッチの初期起動、スイッチの基本設定、スイッチの基本設定の確認、MACアドレステーブル、二重モードと速度の設定">
@@ -420,7 +420,124 @@
 
       
         <p>Catalystスイッチの初期起動、スイッチの基本設定、スイッチの基本設定の確認、MACアドレステーブル、二重モードと速度の設定<br><a id="more"></a></p>
-<h1 id="Catalystスイッチの初期起動"><a href="#Catalystスイッチの初期起動" class="headerlink" title="Catalystスイッチの初期起動"></a>Catalystスイッチの初期起動</h1>
+<h1 id="Catalystスイッチの初期起動"><a href="#Catalystスイッチの初期起動" class="headerlink" title="Catalystスイッチの初期起動"></a>Catalystスイッチの初期起動</h1><h2 id="Catalystスイッチ"><a href="#Catalystスイッチ" class="headerlink" title="Catalystスイッチ"></a>Catalystスイッチ</h2><ul>
+<li>Catalystシステム：シスコシステムズが提供するスイッチ製品シリーズの名称。</li>
+<li>分類：<ul>
+<li>モジュール型スイッチ<ul>
+<li>シャーシ（Chassis：n. 底盘，底架）筐体（きょうたい）と呼ばれるスロット部分に、モジュールを挿入</li>
+<li>モジュール<ul>
+<li>スーパバイザエンジン（Supervisor　n. 监督人；管理人；检查员 Engine）</li>
+<li>インターフェイスモジュール</li>
+<li>電源モジュール</li>
+</ul>
+</li>
+<li>特徴：モジュール追加・変更可能；拡張性</li>
+</ul>
+</li>
+<li>固定構成型スイッチ<ul>
+<li>シャーシはなし</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>主なCisco Catalystスイッチシリーズ</p>
+<ul>
+<li>キャンパス　コア　スイッチ<ul>
+<li>Catalyst 6800 シリーズ</li>
+<li>6500</li>
+<li>4500E</li>
+</ul>
+</li>
+<li>キャンパス　ディストリビューション　スイッチ<ul>
+<li>6800-X</li>
+<li>4500-X</li>
+<li>3850</li>
+</ul>
+</li>
+<li>キャンパス　アクセス　スイッチ<ul>
+<li>4500E</li>
+<li>3860</li>
+<li>2960-X</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>キャンパスネットワーク：ビル群をひとまとまりとした構内ネットワークという事ができます。<a href="https://macruby.info/network/cisco-campus-network.html" target="_blank" rel="noopener">参考資料</a></p>
+</li>
+</ul>
+<h2 id="初期起動の流れ"><a href="#初期起動の流れ" class="headerlink" title="初期起動の流れ"></a>初期起動の流れ</h2><ul>
+<li>流れ：<ul>
+<li>ケーブリングを行い、配線を確認</li>
+<li>スイッチに電源ケーブルを接続</li>
+<li>起動（ブート）時のLEDや表示メッセージを確認</li>
+</ul>
+</li>
+<li>LEDの意味：<ul>
+<li>システムLED：スイッチが正常に機能しているか<ul>
+<li>消灯：システムの電源が入っていない</li>
+<li>グリーン：正常に動作している</li>
+<li>オレンジ：正常に動作していない</li>
+</ul>
+</li>
+<li>RPS（リダンダント Redundant Power Supply）<ul>
+<li>消灯：RPS電源OFFか、接続されていないか</li>
+<li>グリーン：バックアップ電力を供給できる状態</li>
+<li>グリーン点滅：別の装置に電力供給中のため使用できない</li>
+<li>オレンジ：RPSがスタンバイモードか障害が発生している</li>
+<li>オレンジ点滅；スイッチの電源装置に障害が発生、RPSからスイッチに電力供給中</li>
+</ul>
+</li>
+<li>ステータスLED：ポートステータスを示す<ul>
+<li>消灯：ケーブル接続なし；ケーブルの種類が適切でない；ポートを管理的にシャットダウンしている；セキュリティ違反などによるerr-disable状態</li>
+<li>グリーン：リンクはあるが、フレームの受送信なし</li>
+<li>グリーン点滅：アクティブな状態、送信中</li>
+<li>グリントとオレンジで交互に点滅：リンク障害（過度のコリジョンcollision　n. （意见，看法）的抵触，冲突　など）</li>
+<li>オレンジ：STPによってブロックされており、フレーム伝送しない<ul>
+<li>STP：Spanning tree protocol: フレームのループを回避して冗長ネットワークを維持するレイヤ２プロトコル</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DUPLEX LED：二重モードを示す<ul>
+<li>消灯：ポートは半二重で動作</li>
+<li>グリーン：ポートは全二重で動作</li>
+</ul>
+</li>
+<li>SPEED LED<ul>
+<li>消灯：ポートは10Mbpsで動作</li>
+<li>グリーン：ポートは100Mbpsで動作</li>
+<li>グリーン点滅：ポートは1000Mbpsで動作</li>
+</ul>
+</li>
+<li>PoE LED: PoE (Power over Ethernet)、IEEE 802.3afの基準、1ポート最大15.4W、<ul>
+<li>消灯：PoEがオフになっている</li>
+<li>グリーン：PoEがオンで、スイッチポートが電力供給中</li>
+<li>グリントとオレンジで交互に点滅：供給電力がスイッチの電力容量を超えるため、PoEが無効になっている</li>
+<li>オレンジ点滅：障害によりPoEがオフになっている</li>
+<li>オレンジ：そのポートのPoEが無効になっている</li>
+<li>MODEボタン：モードをSTAT、DUPLX、SPEED、PoEのいずれかに切り替える</li>
+</ul>
+</li>
+<li>ポーチLED：各ポートに１つずつあり、表示内容はモードによって違う</li>
+</ul>
+</li>
+</ul>
+<h2 id="セットアップモード"><a href="#セットアップモード" class="headerlink" title="セットアップモード"></a>セットアップモード</h2><ul>
+<li>場合：有効なコンフィギュレーションファイルが存在しない</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">         --- System Configuration Dialog ---</span><br><span class="line"></span><br><span class="line">Would you like to enter the initial configuration dialog? [yes/no]: y #初期設定開始</span><br><span class="line"></span><br><span class="line">At any point you may enter a question mark &apos;?&apos; for help.</span><br><span class="line">Use ctrl-c to abort configuration dialog at any prompt.</span><br><span class="line">Default settings are in square brackets &apos;[]&apos;.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Basic management setup configures only enough connectivity</span><br><span class="line">for management of the system, extended setup will ask you</span><br><span class="line">to configure each interface on the system</span><br><span class="line"></span><br><span class="line">Would you like to enter basic management setup? [yes/no]: n #Basic managementとは最小の設定のみ行う</span><br><span class="line">First, would you like to see the current interface summary? [yes]: #インターフェースのステータスを確認</span><br><span class="line"></span><br><span class="line">Current interface summary</span><br><span class="line"></span><br><span class="line">Interface              IP-Address      OK? Method Status                Protocol</span><br><span class="line"></span><br><span class="line">GigabitEthernet0/0/0   unassigned      YES manual administratively down down</span><br><span class="line"></span><br><span class="line">GigabitEthernet0/0/1   unassigned      YES manual administratively down down</span><br><span class="line"></span><br><span class="line">Vlan1                  unassigned      YES manual administratively down down</span><br><span class="line"></span><br><span class="line">Configuring global parameters:</span><br><span class="line"></span><br><span class="line">  Enter host name [Router]: SW1 #スイッチの名前を設定</span><br><span class="line"></span><br><span class="line">  The enable secret is a password used to protect access to</span><br><span class="line">  privileged EXEC and configuration modes. This password, after</span><br><span class="line">  entered, becomes encrypted in the configuration.</span><br><span class="line">  Enter enable secret: cisco #イナーブルシークレットパスワード（Inner Bull Secret Password）設定</span><br><span class="line"></span><br><span class="line">  The enable password is used when you do not specify an</span><br><span class="line">  enable secret password, with some older software versions, and</span><br><span class="line">  some boot images.</span><br></pre></td></tr></table></figure>
+<h2 id="スイッチのインターフェース番号付け規則"><a href="#スイッチのインターフェース番号付け規則" class="headerlink" title="スイッチのインターフェース番号付け規則"></a>スイッチのインターフェース番号付け規則</h2><ul>
+<li>例：FaseEthernet 0/1</li>
+<li>フォマード：インターフェースタイプ　スロット/ポート<ul>
+<li>スロット：固定構成型スイッチの場合、番号は常に０</li>
+<li>ポート：１から</li>
+</ul>
+</li>
+</ul>
+<h1 id="スイッチの基本設定"><a href="#スイッチの基本設定" class="headerlink" title="スイッチの基本設定"></a>スイッチの基本設定</h1><h2 id="スイッチの基本設定-1"><a href="#スイッチの基本設定-1" class="headerlink" title="スイッチの基本設定"></a>スイッチの基本設定</h2><ul>
+<li>ホスト名の設定</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Switch#configure terminal </span><br><span class="line">Enter configuration commands, one per line.  End with CNTL/Z.</span><br><span class="line">Switch(config)#hostname ASW1</span><br><span class="line">ASW1(config)#hostna</span><br><span class="line">ASW1(config)#hostname Switch-A</span><br><span class="line">Switch-A(config)#no hostname</span><br><span class="line">Switch(config)#hostname SW1</span><br><span class="line">SW1(config)#</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -551,7 +668,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
@@ -637,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Catalystスイッチの初期起動"><span class="nav-number">1.</span> <span class="nav-text">Catalystスイッチの初期起動</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Catalystスイッチの初期起動"><span class="nav-number">1.</span> <span class="nav-text">Catalystスイッチの初期起動</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalystスイッチ"><span class="nav-number">1.1.</span> <span class="nav-text">Catalystスイッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初期起動の流れ"><span class="nav-number">1.2.</span> <span class="nav-text">初期起動の流れ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#セットアップモード"><span class="nav-number">1.3.</span> <span class="nav-text">セットアップモード</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチのインターフェース番号付け規則"><span class="nav-number">1.4.</span> <span class="nav-text">スイッチのインターフェース番号付け規則</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#スイッチの基本設定"><span class="nav-number">2.</span> <span class="nav-text">スイッチの基本設定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチの基本設定-1"><span class="nav-number">2.1.</span> <span class="nav-text">スイッチの基本設定</span></a></li></ol></li></ol></div>
             
 
           </div>

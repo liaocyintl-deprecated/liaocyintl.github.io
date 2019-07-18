@@ -308,6 +308,596 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/12/28-1812.08989/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28-1812.08989/" itemprop="url">论文笔记 The Design and Implementation of XiaoIce, an Empathetic Social Chatbot</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T15:53:22+09:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
+                    <span itemprop="name">研究 Research</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/机器学习-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习 Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/28-1812.08989/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/28-1812.08989/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本周重磅论文：<br>L. Zhou, J.F. Gao, D, Li, and H.Y. Shum, “The Design and Implementation of XiaoIce, an Empathetic Social Chatbot Li”, arXiv:1812.08989v1, </p>
+<p><a href="https://arxiv.org/abs/1812.08989" target="_blank" rel="noopener">链接</a></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ul>
+<li><p>他们说小冰具有IQ和EQ的设计</p>
+</li>
+<li><p>聊天使用马卡罗夫决策过程 Markov Decision Processes (MDPs)</p>
+</li>
+<li><p>微软给的评价标准叫做 Conversation-turns Per Session (CPS: 每会话对话转换)</p>
+</li>
+</ul>
+<p><a href="http://www.chuangyejia.com/article-10539906.html" target="_blank" rel="noopener">参考</a></p>
+<p>意思是”聊天机器人与用户在对话场景中的平均对话转换次数”，可能意思是说聊的越长吧，会不会聊天？那种。</p>
+<ul>
+<li><p>小冰是2014年发布的，积累了6亿6千万聊天数据。</p>
+</li>
+<li><p>平均CPS居然能达到23，可见人们有多闲。</p>
+</li>
+</ul>
+<h2 id="Section-1-Introduction"><a href="#Section-1-Introduction" class="headerlink" title="Section 1 Introduction"></a>Section 1 Introduction</h2><ul>
+<li><p>小冰英文名叫 XiaoIce</p>
+</li>
+<li><p>在五个国家落地 中国 日本 美国 印度 印度尼西亚，名字各不相同，比如在日本叫 Rinna</p>
+</li>
+<li><p>进驻超过40个平台，Wechat Facebook LINE啥的</p>
+</li>
+<li><p>目的是和人类建立长期的感情链接。然后举了个例子，就是一个人类跟小冰的聊天吧，刚开始的时候偶尔聊一聊，到了第九周就无话不谈了。</p>
+</li>
+<li><p>小冰采用一个”情感植入计算（empathetic computing）”框架，所以能够了解人的感受。当一个人类喜欢他和小冰之间的关系，我们就认为这个机器是能够”情感植入的”。</p>
+</li>
+</ul>
+<h2 id="Section-2-Design-Principle"><a href="#Section-2-Design-Principle" class="headerlink" title="Section 2 Design Principle"></a>Section 2 Design Principle</h2><h3 id="2-1-IQ-EQ-人格"><a href="#2-1-IQ-EQ-人格" class="headerlink" title="2.1 IQ + EQ + 人格"></a>2.1 IQ + EQ + 人格</h3><ul>
+<li><p>IQ：包括：知识与记忆能力，图像与自然语言理解，推理，Generation（生成话语？），推测。</p>
+</li>
+<li><p>过去五年小冰开发了230项技能（回答问题，推荐电影等）</p>
+</li>
+<li><p>EQ：共鸣和社交能力。能够理解人类的感受。可以换位思考。</p>
+</li>
+<li><p>对话例子：</p>
+</li>
+</ul>
+<p><img src="/uploads/postimgs/3c1d3749.png" alt=""></p>
+<p>这个很厉害了，小冰说每一句话都知道这一句话的潜在语言功能。<br>比如 unconscious 闲聊； Drive 驾驭对话，转移话题； Active Listener 主动聆听； Question 提问； Affirmative 附和 等等。</p>
+<ul>
+<li>人格：小冰的人格设定是一位18岁的姑娘。有同情心，慈爱，幽默。不任性，只显示她的才智和创造性。</li>
+</ul>
+<h3 id="2-2-Social-Chatbot-Metric-CPS-评价标准"><a href="#2-2-Social-Chatbot-Metric-CPS-评价标准" class="headerlink" title="2.2 Social Chatbot Metric: CPS 评价标准"></a>2.2 Social Chatbot Metric: CPS 评价标准</h3><ul>
+<li>微软定义了一个Conversation-turns Per Session (CPS，每会话对话转换)用来评价聊天机器人的性能，其意义是每场聊天中平均的对话次数。CPS越高，则聊天机器人的性能越好</li>
+</ul>
+<h3 id="2-3-Social-Chat-as-Hierarchical-Decision-Making-将聊天看作分层决策"><a href="#2-3-Social-Chat-as-Hierarchical-Decision-Making-将聊天看作分层决策" class="headerlink" title="2.3 Social Chat as Hierarchical Decision-Making 将聊天看作分层决策"></a>2.3 Social Chat as Hierarchical Decision-Making 将聊天看作分层决策</h3><p><img src="/uploads/postimgs/bc1b4ef0.png" alt=""></p>
+<p>上图是说小冰可以采用多样化的聊天模型保持用户兴趣。<br>比如，在第1行使用”基本聊天模型”；在第4行用”音乐聊天模型”选择一个新的主题；在第15行使用”音乐提供技能”：在第18行使用”订票技能”。</p>
+<ul>
+<li><p>小冰采用一种分层的决策机制：</p>
+<ul>
+<li>顶层处理：选择聊天模型（问答模型，订票模型等等）。</li>
+<li>低层处理：受顶层控制并产生聊天片段。</li>
+</ul>
+</li>
+<li><p>这种决策机制在数学上是通过<strong>马尔可夫决策处理（Markov Decision Processes）</strong>实现的。在每一个对话中，机器人观察当前状态，然后选择一个技能形成一个回复。</p>
+</li>
+</ul>
+<p>未完待续</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/12/14-apachewordpresspermalink404/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14-apachewordpresspermalink404/" itemprop="url">用Apache运行Wordpress时 设置permalink后发生404未相应的处理方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T16:52:22+09:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Wordpress/" itemprop="url" rel="index">
+                    <span itemprop="name">Wordpress</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/14-apachewordpresspermalink404/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/14-apachewordpresspermalink404/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>为了对搜索引擎友好，我们往往要设置自定义的permalink。例如 <a href="http://www.mysite.net/mydoc。" target="_blank" rel="noopener">http://www.mysite.net/mydoc。</a><br>本文介绍如何配置permalink环境。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://qiita.com/tackeyy/items/f71d1ded5735a1cca4ef" target="_blank" rel="noopener">パーマリンクの設定 / 404エラー対応メモ</a></li>
+</ul>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>Ubuntu: 18.04 LTS</li>
+<li>Apache: 2+</li>
+<li>Wordpress: 4+</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
+<li><p>打开Apache的rewrite模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a2enmod rewrite</span><br><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑网站目录下的.htaccess文件，保证包含下面内容</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine On</span><br><span class="line">RewriteBase /wordpress/ </span><br><span class="line">RewriteRule ^index.php$ - [L]</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">RewriteRule . /index.php [L]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在网站配置文件中，让Apache读取.htaccess文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apache2/sites-available/000-default.conf</span><br></pre></td></tr></table></figure>
+<p>保证有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">        AllowOverride All</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p>重启服务器即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/12/14-japaneselettercollege/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14-japaneselettercollege/" itemprop="url">日语书信模板（学校篇）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T15:53:22+09:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/日语-Japanese/" itemprop="url" rel="index">
+                    <span itemprop="name">日语 Japanese</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/日语-Japanese/写作-Writing/" itemprop="url" rel="index">
+                    <span itemprop="name">写作 Writing</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/14-japaneselettercollege/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/14-japaneselettercollege/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="给老师的书信"><a href="#给老师的书信" class="headerlink" title="给老师的书信"></a>给老师的书信</h3><h4 id="场景1：给老师递交材料，老师不在，于是你把材料放在秘书那里，之后用邮件通知老师。"><a href="#场景1：给老师递交材料，老师不在，于是你把材料放在秘书那里，之后用邮件通知老师。" class="headerlink" title="场景1：给老师递交材料，老师不在，于是你把材料放在秘书那里，之后用邮件通知老师。"></a>场景1：给老师递交材料，老师不在，于是你把材料放在秘书那里，之后用邮件通知老师。</h4><ul>
+<li><p>参考资料：<a href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1164039786" target="_blank" rel="noopener">先生が不在時のメモについて…。</a></p>
+</li>
+<li><p>模板：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">XX先生</span><br><span class="line"></span><br><span class="line">XXです。　#我是XX</span><br><span class="line">お世話になっております。 #承蒙您的关照</span><br><span class="line"></span><br><span class="line">先ほど、先生の研究室に伺いましたが、 #刚才拜访老师的实验室</span><br><span class="line">ご不在でしたので、 #由于您不在</span><br><span class="line">XXの資料を秘書室にお渡ししました。 #我将资料递交给秘书室了</span><br><span class="line"></span><br><span class="line">よろしくお願い致します。 #请多关照</span><br></pre></td></tr></table></figure>
+<h4 id="场景2：老师帮你修改了论文，给老师回信"><a href="#场景2：老师帮你修改了论文，给老师回信" class="headerlink" title="场景2：老师帮你修改了论文，给老师回信"></a>场景2：老师帮你修改了论文，给老师回信</h4><ul>
+<li><p>参考资料：<a href="https://townwork.net/magazine/skill/50153/#target4" target="_blank" rel="noopener">教授へのメールの書き方と文例が丸わかり！ 返信時のポイントも解説</a></p>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>邮件名用 Re:xxx 即可。</li>
+<li>老师发的邮件必须要回复。</li>
+</ul>
+</li>
+<li><p>模板：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">XX先生</span><br><span class="line"></span><br><span class="line">XXです。</span><br><span class="line">ご指導いただき、ありがとうございます。</span><br><span class="line"></span><br><span class="line">お忙しい時期で、論文にご指導をいただきまして、</span><br><span class="line">ありがとうございました。</span><br><span class="line"></span><br><span class="line">XX先生ご教授いただいた内容を追加し、論文原稿を直します。</span><br><span class="line"></span><br><span class="line">今後ともご指導のほど、何卒よろしくお願い致します。</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/10/30-pythonsshdb/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1552,524 +2142,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180929-tensorflowtutorial01/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20180929-tensorflowtutorial01/" itemprop="url">Tensorflow学习（一） -- 开篇</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T22:05:22+09:00">
-                2018-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/深度学习-Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习 Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/20180929-tensorflowtutorial01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180929-tensorflowtutorial01/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="#">前一篇：无</a></p>
-<p><a href="/2018/09/20180930-tensorflowtutorial02/">后一篇：Tensorflow学习（二） – 基本分类器</a></p>
-<p>练习使用Tensorflow并对官方文档做一些翻译</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
-<li>Tensorflow-gpu: 1.11.0</li>
-<li>Ubuntu: 18.04 LTS</li>
-<li>Anaconda: 5.2.0</li>
-<li>Python: 3.6.5</li>
-</ul>
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
-<li><a href="https://www.tensorflow.org/tutorials/" target="_blank" rel="noopener">原文</a></li>
-<li><a href="https://github.com/liaocyintl/tensorflowtutorial/blob/master/001_get_started.ipynb" target="_blank" rel="noopener">代码</a></li>
-</ul>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><iframe title="Source Code" width="100%" height="500px" frameborder="0" src="/uploads/jupyters/2018/001_get_started.ipynb"><br></iframe>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180928-mongodbhash/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20180928-mongodbhash/" itemprop="url">dbHash，检查MongoDB数据库一致性或数据变更</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T10:53:22+09:00">
-                2018-09-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/MongoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">MongoDB</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/20180928-mongodbhash/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180928-mongodbhash/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在做数据备份或回复，或做数据流（Data Pipline）时，我们常常要检查前后数据的一致性，数据是否发生了变换。<br>这时候需要从数据库的某一个Collection导出其中数据的散列值，作为该数据的指纹。<br>MongoDB提供了一个dbHash方法，用来实现这个功能。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://docs.mongodb.com/manual/reference/command/dbHash/" target="_blank" rel="noopener">dbHash</a></li>
-</ul>
-<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2><p>命令格式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.runCommand ( &#123; dbHash: 1, collections: [ &lt;collection1&gt;, ... ] &#125; )</span><br></pre></td></tr></table></figure></p>
-<p>注意：</p>
-<ul>
-<li>collection是可选项，省略则输出整个数据库和全部collection的散列值，当然速度要慢一些。</li>
-</ul>
-<p>实例，检索test表的散列值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.runCommand(&#123;dbHash:1,collections:[&quot;test&quot;]&#125;)</span><br></pre></td></tr></table></figure></p>
-<p><img src="/uploads/postimgs/f7ba637c.png" alt="输出结果"></p>
-<h2 id="关于性能"><a href="#关于性能" class="headerlink" title="关于性能"></a>关于性能</h2><p>对于1,672,321个文档，大小3,503,632,319的数据表计算散列值，我的笔记本大约需要10秒左右，这个性能相当可观。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20180918-calprobinnormaldistribution/" itemprop="url">Python 计算给定值在给定高斯分布中的概率</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T12:06:22+09:00">
-                2018-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/数据挖掘-Data-Mining/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘 Data Mining</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/20180918-calprobinnormaldistribution/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/20180918-calprobinnormaldistribution/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们用数据拟合一个符合高斯分布的概率密度函数之后，常常需要把另一个值带入该密度函数计算其概率。<br>我们使用Python可以轻松计算出这个数据。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://stackoverflow.com/questions/12412895/calculate-probability-in-normal-distribution-given-mean-std-in-python" target="_blank" rel="noopener">Calculate probability in normal distribution given mean, std in Python</a></li>
-<li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html" target="_blank" rel="noopener">scipy.stats.norm</a></li>
-</ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> scipy.stats</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练数据</span></span><br><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="comment">#测试数据</span></span><br><span class="line">test_value = <span class="number">2</span></span><br><span class="line"><span class="comment">#平均值</span></span><br><span class="line">mu = np.mean(data)</span><br><span class="line"><span class="comment">#标准差</span></span><br><span class="line">std = np.std(data)</span><br><span class="line"><span class="comment">#概率</span></span><br><span class="line">prob = scipy.stats.norm(mu, std).pdf(test_value)</span><br><span class="line">print(<span class="string">"prob."</span>, prob)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output： prob. 0.23745442481665455</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2122,7 +2194,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
