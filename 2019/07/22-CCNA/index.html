@@ -83,20 +83,18 @@
 
 
 
-<meta name="description" content="DHCPによるインターネット接続、NATとPATの概要、NATの設定、PATの設定、NATとPATの検証、NATとPATのトラブルシューティング">
+<meta name="description" content="ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定">
 <meta name="keywords" content="ノート">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CCNA試験のまとめノート 11 インターネット接続">
+<meta property="og:title" content="CCNA試験のまとめノート 13 RIPv2">
 <meta property="og:url" content="https://liaocy.net/2019/07/22-CCNA/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
-<meta property="og:description" content="DHCPによるインターネット接続、NATとPATの概要、NATの設定、PATの設定、NATとPATの検証、NATとPATのトラブルシューティング">
+<meta property="og:description" content="ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定">
 <meta property="og:locale" content="ja">
-<meta property="og:image" content="https://liaocy.net/uploads/postimgs/2019072202.png">
-<meta property="og:updated_time" content="2019-07-22T02:19:06.869Z">
+<meta property="og:updated_time" content="2019-07-22T06:44:18.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CCNA試験のまとめノート 11 インターネット接続">
-<meta name="twitter:description" content="DHCPによるインターネット接続、NATとPATの概要、NATの設定、PATの設定、NATとPATの検証、NATとPATのトラブルシューティング">
-<meta name="twitter:image" content="https://liaocy.net/uploads/postimgs/2019072202.png">
+<meta name="twitter:title" content="CCNA試験のまとめノート 13 RIPv2">
+<meta name="twitter:description" content="ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定">
 
 
 
@@ -132,7 +130,7 @@
 
 
 
-  <title>CCNA試験のまとめノート 11 インターネット接続 | Liao's Blog</title>
+  <title>CCNA試験のまとめノート 13 RIPv2 | Liao's Blog</title>
   
 
 
@@ -328,7 +326,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 11 インターネット接続</h2>
+          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 13 RIPv2</h2>
         
 
         <div class="post-meta">
@@ -421,21 +419,7 @@
       
 
       
-        <p>DHCPによるインターネット接続、NATとPATの概要、NATの設定、PATの設定、NATとPATの検証、NATとPATのトラブルシューティング</p>
-<a id="more"></a>
-<h1 id="DHCPによるインターネット接続"><a href="#DHCPによるインターネット接続" class="headerlink" title="DHCPによるインターネット接続"></a>DHCPによるインターネット接続</h1><h2 id="DHCPクライアント"><a href="#DHCPクライアント" class="headerlink" title="DHCPクライアント"></a>DHCPクライアント</h2><ul>
-<li>スタティックIPアドレスの設定：固定IPアドレスが静的に割り振られる<ul>
-<li>スタティックIPアドレスの設定：ルータの外部インターフェースにスタティックIPアドレスを設定</li>
-<li>デフォルトルートの作成：インターネットへ向かうデフォルトルートを設定</li>
-</ul>
-</li>
-<li>ダイナミックIPアドレスの設定：</li>
-<li>DHCPクライアントの設定</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#interface GigabitEthernet 0/0/0</span><br><span class="line">Router(config-if)#ip address dhcp</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line"></span><br><span class="line">Router#show running-config</span><br><span class="line"></span><br><span class="line">!</span><br><span class="line">interface GigabitEthernet0/0/0</span><br><span class="line"> ip address dhcp</span><br><span class="line"> duplex auto</span><br><span class="line"> speed auto</span><br><span class="line">!</span><br><span class="line"></span><br><span class="line">Router#show dhcp lease #DHCPクライアントに割り当てられたIPアドレスのリース情報を表示する</span><br><span class="line">Temp IP addr: 0.0.0.0 for peer on Interface: GigabitEthernet0/0/0</span><br><span class="line">Temp sub net mask: 0.0.0.0</span><br><span class="line">   DHCP Lease server: 0.0.0.0 , state: Initial</span><br><span class="line">   DHCP Transaction id: 158006C1</span><br><span class="line">   Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs</span><br><span class="line">Temp default-gateway addr: 0.0.0.0</span><br><span class="line">   Next timer fires after: 00:00:36 #リース残り時間</span><br><span class="line">   Retry count: 3  Client-ID:cisco-00E0.F72D.2C01-Gig0/0/0</span><br><span class="line">   Client-ID hex dump: 636973636F2D303045302E463732442E</span><br><span class="line">                       24330312D476967302F302F30</span><br><span class="line">   Hostname: Router</span><br></pre></td></tr></table></figure>
-<h2 id="DHCPサーバの設定"><a href="#DHCPサーバの設定" class="headerlink" title="DHCPサーバの設定"></a>DHCPサーバの設定</h2><p><img src="/uploads/postimgs/2019072202.png" alt="トポロジ"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#interface GigabitEthernet 0/0/0</span><br><span class="line">Router(config-if)#ip address 172.16.10.254 255.255.255.0 #ポートのIP（デフォルトゲートウェイのIPを設定）</span><br><span class="line">Router(config-if)#exit</span><br><span class="line">	</span><br><span class="line">Router(config)#ip dhcp pool LANUser #DHCPプールを作成</span><br><span class="line">Router(dhcp-config)#network 172.16.10.0 255.255.255.0 #ネットワークアドレスの指定</span><br><span class="line">Router(dhcp-config)#default-router 172.16.10.254 #デフォルトゲートウェイの指定</span><br><span class="line">Router(dhcp-config)#domain-name example.com #ドメイン名の指定</span><br><span class="line">Router(dhcp-config)#dns-server 64.0.0.1 #DNSサーバの指定</span><br><span class="line">Router(dhcp-config)#exit</span><br><span class="line"></span><br><span class="line">Router(config)#ip dhcp excluded-address 172.16.10.101 172.16.10.254 #クライアントへ振り当てないアドレス範囲</span><br><span class="line">Router(config)#exit</span><br><span class="line">Router#</span><br><span class="line">%SYS-5-CONFIG_I: Configured from console by console</span><br><span class="line"></span><br><span class="line">Router#show running-config | begin dhcp</span><br><span class="line">!</span><br><span class="line">ip dhcp pool LANUser</span><br><span class="line"> network 172.16.10.0 255.255.255.0</span><br><span class="line"> default-router 172.16.10.254</span><br><span class="line"> dns-server 64.0.0.1</span><br><span class="line"> domain-name example.com</span><br><span class="line">!</span><br><span class="line">interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 172.16.10.254 255.255.255.0 #DHCPクライアントのデフォルトゲートウェイ</span><br><span class="line"> duplex auto</span><br><span class="line"> speed auto</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-<p>DHCPプールの表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Router#show ip dhcp pool</span><br><span class="line"></span><br><span class="line">Pool LANUser :</span><br><span class="line"> Utilization mark (high/low)    : 100 / 0</span><br><span class="line"> Subnet size (first/next)       : 0 / 0 </span><br><span class="line"> Total addresses                : 254</span><br><span class="line"> Leased addresses               : 2</span><br><span class="line"> Excluded addresses             : 1</span><br><span class="line"> Pending event                  : none</span><br><span class="line"></span><br><span class="line"> 1 subnet is currently in the pool</span><br><span class="line"> Current index        IP address range                    Leased/Excluded/Total</span><br><span class="line"> 172.16.10.1          172.16.10.1      - 172.16.10.254     2    / 1     / 254</span><br></pre></td></tr></table></figure></p>
+        <p>ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定<br><a id="more"></a></p>
 
       
     </div>
@@ -466,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/19-CCNA/" rel="next" title="CCNA試験のまとめノート 10 IPv4アクセスリスト">
-                <i class="fa fa-chevron-left"></i> CCNA試験のまとめノート 10 IPv4アクセスリスト
+              <a href="/2019/07/20-CCNA/" rel="next" title="CCNA試験のまとめノート 11 インターネット接続">
+                <i class="fa fa-chevron-left"></i> CCNA試験のまとめノート 11 インターネット接続
               </a>
             
           </div>
@@ -536,17 +520,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            見出し
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            概要
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -563,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
@@ -639,22 +614,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCPによるインターネット接続"><span class="nav-number">1.</span> <span class="nav-text">DHCPによるインターネット接続</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPクライアント"><span class="nav-number">1.1.</span> <span class="nav-text">DHCPクライアント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCPサーバの設定"><span class="nav-number">1.2.</span> <span class="nav-text">DHCPサーバの設定</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -824,7 +783,7 @@
         var disqus_config = function () {
           this.page.url = 'https://liaocy.net/2019/07/22-CCNA/';
           this.page.identifier = '2019/07/22-CCNA/';
-          this.page.title = 'CCNA試験のまとめノート 11 インターネット接続';
+          this.page.title = 'CCNA試験のまとめノート 13 RIPv2';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://liaocy-net.disqus.com/embed.js';
