@@ -308,6 +308,366 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/01-pythonlinuxwinpath/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/01-pythonlinuxwinpath/" itemprop="url">解决Python在Linux环境、Mac环境或Windows环境下，文件路径不同的问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-01T19:02:25+09:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/01-pythonlinuxwinpath/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/01-pythonlinuxwinpath/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f" target="_blank" rel="noopener">本文参考：Python 3 Quick Tip: The easy way to deal with file paths on Windows, Mac and Linux</a></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
+<li>Python 3.6.5</li>
+<li>pathlib 11.1<br><a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noopener">文档</a></li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>操作系统，文件的路径也是不同的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows的文件路径:</span><br><span class="line">C:\some_folder\some_file.txt</span><br><span class="line"></span><br><span class="line">很过其它操作系统的文件:</span><br><span class="line">/some_folder/some_file.txt</span><br></pre></td></tr></table></figure>
+<p>这其实是从上个世纪80年代，从MS-DOS系统遗留下来的疑难杂症。</p>
+<p>这就造成一个问题，如果包含文件路径的Python代码是在Linux上测试的，那Windows下面可能就没法用了。</p>
+<p>还好，可以用一个叫做 <strong>pathlib</strong> 的库来解决。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="安装pathlib"><a href="#安装pathlib" class="headerlink" title="安装pathlib"></a>安装pathlib</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pathlib</span><br></pre></td></tr></table></figure>
+<h3 id="让路径兼容"><a href="#让路径兼容" class="headerlink" title="让路径兼容"></a>让路径兼容</h3><p>假如你的python代码写在my_program.py里，你要定位到下面这个叫raw_data.txt的文件：</p>
+<p><img src="/uploads/postimgs/9c379859.png" alt=""></p>
+<p>你可以这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">data_folder = Path(<span class="string">"source_data/text_files/"</span>)</span><br><span class="line">file_to_open = data_folder / <span class="string">"raw_data.txt"</span></span><br><span class="line">f = open(file_to_open)</span><br><span class="line">print(f.read())</span><br></pre></td></tr></table></figure>
+<p>或者你可以直接写绝对路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br></pre></td></tr></table></figure>
+<p>它甚至可以直接取文件名，扩展名，判断文件是否存在：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br><span class="line">print(filename.name)</span><br><span class="line"><span class="comment"># 输出全部文件名："raw_data.txt"</span></span><br><span class="line">print(filename.suffix)</span><br><span class="line"><span class="comment"># 输出文件扩展名："txt"</span></span><br><span class="line">print(filename.stem)</span><br><span class="line"><span class="comment"># 输出文件名："raw_data"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> filename.exists():</span><br><span class="line">    print(<span class="string">"奥普斯，文件不存在！"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"耶，文件存在！"</span>)</span><br></pre></td></tr></table></figure>
+<p>可以返回Windows格式的路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path, PureWindowsPath</span><br><span class="line">filename = Path(<span class="string">"source_data/text_files/raw_data.txt"</span>)</span><br><span class="line"><span class="comment"># 转换为 Windows 格式</span></span><br><span class="line">path_on_windows = PureWindowsPath(filename)</span><br><span class="line">print(path_on_windows)</span><br><span class="line"><span class="comment"># 输出： "source_data\text_files\raw_data.txt"</span></span><br></pre></td></tr></table></figure>
+<p>便利文件夹里的全部json文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> Path(<span class="string">"dir/dir/"</span>).glob(<span class="string">'*.json'</span>):</span><br><span class="line">    open(file)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/31-ethresource/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31-ethresource/" itemprop="url">以太坊学习资料汇总</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T19:02:25+09:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/区块链-Block-Chain/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链 Block Chain</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/31-ethresource/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/31-ethresource/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="官方一些的资料"><a href="#官方一些的资料" class="headerlink" title="官方一些的资料"></a>官方一些的资料</h2><p><a href="https://ethfans.org/wikis/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%99%BD%E7%9A%AE%E4%B9%A6" target="_blank" rel="noopener">以太坊白皮书</a></p>
+<h2 id="系统学习的资料"><a href="#系统学习的资料" class="headerlink" title="系统学习的资料"></a>系统学习的资料</h2><p><a href="https://github.com/liaocyintl/solidity-zh" target="_blank" rel="noopener">官方文档中文版</a></p>
+<h2 id="Solidity"><a href="#Solidity" class="headerlink" title="Solidity"></a>Solidity</h2><p><a href="https://cryptozombies.io/" target="_blank" rel="noopener">https://cryptozombies.io/</a></p>
+<p><a href="https://cryptozombies.io/是一个新手友好型的以太坊编程教学网站。网站通过互动教程的方式，让学习者在编写以太坊游戏的过程中，学习到" target="_blank" rel="noopener">https://cryptozombies.io/是一个新手友好型的以太坊编程教学网站。网站通过互动教程的方式，让学习者在编写以太坊游戏的过程中，学习到</a> Solidity 的用法。cryptozombies 的意思就是，密码僵尸。来吧，创建一个密码僵尸的游戏吧。</p>
+<h2 id="博客与实例学习"><a href="#博客与实例学习" class="headerlink" title="博客与实例学习"></a>博客与实例学习</h2><h3 id="私链"><a href="#私链" class="headerlink" title="私链"></a>私链</h3><p><a href="https://www.ethereum.org/cli" target="_blank" rel="noopener">GETH &amp; ETH Installation</a></p>
+<p><a href="https://blog.csdn.net/qq_35190319/article/details/79274870" target="_blank" rel="noopener">以太坊区块链学习之搭建私链</a></p>
+<h3 id="虚拟币"><a href="#虚拟币" class="headerlink" title="虚拟币"></a>虚拟币</h3><ul>
+<li><a href="https://blog.csdn.net/anda0109/article/details/79640859" target="_blank" rel="noopener">一步步教你在以太坊发行自己的数字货币</a></li>
+</ul>
+<p>该作者通过智能合约，创建了一个属于自己的虚拟货币，实现了ERC20 Token标准。<br>approve(): 允许用户可花费的代币数。</p>
+<ul>
+<li><a href="https://blog.csdn.net/JAVA_HHHH/article/details/79771752" target="_blank" rel="noopener">基于以太坊发布属于自己的数字货币（代币）完整版</a></li>
+</ul>
+<p>比上一篇更加详细一些，同样是实现ERC20 Token标准。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/30-stockdatamining/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1909,525 +2269,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180712-ubuntureboottoterminal/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180712-ubuntureboottoterminal/" itemprop="url">Ubuntu 18.04 LTS 设置为默认启动命令行模式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T12:39:17+09:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180712-ubuntureboottoterminal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180712-ubuntureboottoterminal/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>使用Desktop版安装Ubuntu非常方便，但如果作为服务器使用，启动Desktop未必太累赘了，因此要将Ubuntu设置成默认启动时进入命令行，不加载Desktop程序。<br>以前的版本可以通过修改 /etc/default/grub 来实现，但18.04LTS版本下似乎不太管用。<br>本文解决这两个问题。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><a href="https://www.systutorials.com/239880/change-systemd-boot-target-linux/" target="_blank" rel="noopener">原文地址</a></p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>众多操作系统，例如RHEL/CentOS 7, Fedora, Ubuntu，使用systemd代替init作为系统初始化。<br>用户可以按“GUI”或“Text”模式启动系统。<br>在以前，可以通过修改‘/etc/inittab’来更改启动级别，但这种方法在sytemd系统上无效。<br>本文介绍一种在sytemd系统上修改“运行级（runlevels）”的方法，以默认启动命令行。</p>
-<p>对于systemd系统，运行级的概念被替换为组（term）的“targets”。<br>这是一种初始化运行级与初始化目标（targets）的对应关系：</p>
-<table>
-<thead>
-<tr>
-<th>运行级</th>
-<th>初始化目标</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>poweroff.target</td>
-</tr>
-<tr>
-<td>1</td>
-<td>rescue.target</td>
-</tr>
-<tr>
-<td>2, 3, 4</td>
-<td>multi-user.target</td>
-</tr>
-<tr>
-<td>5</td>
-<td>graphical.target</td>
-</tr>
-<tr>
-<td>6</td>
-<td>reboot.target</td>
-</tr>
-</tbody>
-</table>
-<p>其中两个Targets是最常用的</p>
-<ul>
-<li>multi-user.target：属于运行级 3， 文字模式（命令行模式）</li>
-<li>graphical.target：属于运行级 5， GUI 模式或桌面模式（X server）</li>
-</ul>
-<p><img src="\uploads\postimgs\7a5c7eea.png" alt="系统架构" title="系统架构"></p>
-
-<h3 id="改变启动后的运行级"><a href="#改变启动后的运行级" class="headerlink" title="改变启动后的运行级"></a>改变启动后的运行级</h3><p>当Linux系统启动并进入一个目标系统后，你可以改变其目标系统及运行级。<br>比如说，改变当前目标系统到“multi-user”：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl isolate multi-user.target</span></span><br></pre></td></tr></table></figure>
-<p>单独使用该命令，它将启动一个命令行并关闭其他全部应用。</p>
-<h3 id="永久改变开机启动运行级与目标系统"><a href="#永久改变开机启动运行级与目标系统" class="headerlink" title="永久改变开机启动运行级与目标系统"></a>永久改变开机启动运行级与目标系统</h3><p>我们尝试改变默认开机启动目标系统。<br>比如，我们让“multi-user.target”成为开机默认运行级别：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable multi-user.target</span></span><br><span class="line"><span class="comment"># systemctl set-default multi-user.target</span></span><br><span class="line"><span class="comment"># reboot</span></span><br></pre></td></tr></table></figure>
-<p>这样，重启后就会进入命令行模式而不是GUI模式。</p>
-<h3 id="复原"><a href="#复原" class="headerlink" title="复原"></a>复原</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable graphical.target</span></span><br><span class="line"><span class="comment"># systemctl set-default graphical.target</span></span><br><span class="line"><span class="comment"># reboot</span></span><br></pre></td></tr></table></figure>
-<p>这样，重启后就会默认进入GUI模式。</p>
-<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180708-websegment/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180708-websegment/" itemprop="url">一种网页分割算法 Web Segment</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T17:22:17+09:00">
-                2018-07-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
-                    <span itemprop="name">研究 Research</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研究-Research/数据挖掘-Data-Mining/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘 Data Mining</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180708-websegment/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180708-websegment/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>HTML文档是一种半结构化（semi-structured）数据，这种数据直接处理是很困难的。<br>我们设计一种网页分割算法，试图自动地将半结构化的HTML文档转换为结构化数据。<br>通过这个算法，一个HTML文档被分割成“分割（Segment）”与“记录（Record）”，分别对应结构化数据库中的“表”和“行”。</p>
-<p>例如下面的事例，一张网页被分割成 Segment 1，其中包含Record 1-6；和Segment 2，其中包括Record 7-12。</p>
-<p><img src="\uploads\postimgs\487e62df.png" alt="网页分割的例子" title="网页分割的例子"></p>
-
-<p>对应到关系型数据库，表示为：</p>
-<p>Segment 1:</p>
-<table>
-<thead>
-<tr>
-<th>Record ID</th>
-<th>Images</th>
-<th>Texts</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="https://img.alicdn.com/imgextr.." target="_blank" rel="noopener">https://img.alicdn.com/imgextr..</a>.</td>
-<td>优美喇叭袖清新碎花…</td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="https://img.alicdn.com/imgextr.." target="_blank" rel="noopener">https://img.alicdn.com/imgextr..</a>.</td>
-<td>D&amp;G紫色手提包</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-</tbody>
-</table>
-<p>Segment 2:</p>
-<table>
-<thead>
-<tr>
-<th>Record ID</th>
-<th>Images</th>
-<th>Texts</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>7</td>
-<td><a href="https://img.alicdn.com/imgextr.." target="_blank" rel="noopener">https://img.alicdn.com/imgextr..</a>.</td>
-<td>潮范时光机</td>
-</tr>
-<tr>
-<td>8</td>
-<td><a href="https://img.alicdn.com/imgextr.." target="_blank" rel="noopener">https://img.alicdn.com/imgextr..</a>.</td>
-<td>放飞自我的兔小姐</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-</tbody>
-</table>
-<p>我们的算法可以自动地将网页转换成上面的形式。</p>
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><ul>
-<li><p>我们的测试环境（本算法也可以兼容Linux或Mac）</p>
-<ul>
-<li>操作系统： Microsoft Windows 10 Pro</li>
-<li>Python： 3.6.5</li>
-<li>Chrome： 67.0.3396.79 (Official Build) (64-bit)</li>
-<li>Chrome-driver: 2.4</li>
-</ul>
-</li>
-<li><p>用下面的命令从Github上克隆代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --recursive https://github.com/liaocyintl/WebSegment.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>调整 setting.py</p>
-<ul>
-<li>CHROME_BINARY_LOCATION 是Chrome的应用程序路径<ul>
-<li>Windows默认安装的情况下是 “C:\Program Files (x86)\Google\Chrome\Application\chrome.exe”</li>
-<li>Linux默认情况下是 “/usr/bin/google-chrome”，安装方法<a href="https://qiita.com/shinsaka/items/37436e256c813d277d6d" target="_blank" rel="noopener">参考这里</a></li>
-<li>Mac OS默认情况下是 “/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary”，安装方法<a href="https://duo.com/decipher/driving-headless-chrome-with-python" target="_blank" rel="noopener">参考这里</a></li>
-</ul>
-</li>
-<li>DRIVER_PATH: 这是Chrome无头浏览器的驱动，您需要<a href="https://chromedriver.storage.googleapis.com/index.html?path=2.40/" target="_blank" rel="noopener">下载对应您操作系统的版本</a>。</li>
-</ul>
-</li>
-<li><p>完成上面的步骤，您可以使用 <strong>demo.py</strong> 中的代码尝试分割一个网页</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> segment <span class="keyword">import</span> Segment</span><br><span class="line">spliter = Segment()</span><br><span class="line">spliter.segment(url=<span class="string">"http://www.sukiya.jp/"</span>, output_folder=<span class="string">"data/sukiya"</span>, is_output_images=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-<p>参数设定：</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td>您需要分割的网页地址</td>
-</tr>
-<tr>
-<td>output_folder</td>
-<td>输出分割结果的文件夹路径</td>
-</tr>
-<tr>
-<td>is_output_images</td>
-<td>是否输出网页图片，默认为”False”</td>
-</tr>
-</tbody>
-</table>
-<h2 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h2><h3 id="result-json"><a href="#result-json" class="headerlink" title="result.json"></a>result.json</h3><p>result.json 是最主要的输出文件，其中包含转化为结构化数据的网页内容。其例子为：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"title"</span>:<span class="string">"淘宝"</span>,</span><br><span class="line">  <span class="attr">"url"</span>:<span class="string">"http://taobao.com/"</span>,</span><br><span class="line">  <span class="attr">"segments"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"records"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"texts"</span>: [<span class="string">"淘宝网"</span>],</span><br><span class="line">          <span class="attr">"css_selectors"</span>: [</span><br><span class="line">            <span class="string">"html &gt; body:nth-child(2) &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; div &gt; div &gt; div"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"links"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"href"</span>: <span class="string">"http://www.taobao.com/"</span></span><br><span class="line">            &#125;</span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"images"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"alt"</span>: <span class="string">""</span>,</span><br><span class="line">              <span class="attr">"src"</span>: <span class="string">"http://www.taobao.com/common/img/hd_logo.png"</span>,</span><br><span class="line">              <span class="attr">"path"</span>: <span class="string">"data/taobao/images/66_0.png"</span>,</span><br><span class="line">              <span class="attr">"bg_color"</span>: <span class="string">"255,255,255"</span></span><br><span class="line">            &#125;</span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"record_id"</span>: <span class="number">66</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"segment_id"</span>: <span class="number">13</span>,</span><br><span class="line">      <span class="attr">"css_selector"</span>: <span class="string">"html &gt; body:nth-child(2) &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; div &gt; div"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其结构为：</p>
-<ul>
-<li>title: 网页的标题</li>
-<li>url: 网页的URL</li>
-<li>segments: Segment的集合，包含多个Record<ul>
-<li>segment_id: 该Segment的ID，在result.json中的唯一标识</li>
-<li>css_selector: 该Segment的css_selector路径（每个Segment仅有一个根节点）</li>
-<li>records: Record的集合，属于该Segment<ul>
-<li>record_id: 该Record的ID，在result.json中的唯一标识</li>
-<li>css_selectors: 该Record的css_selector路径（一个Record可能包含多个根节点）</li>
-<li>texts: Record中包含的文字的集合</li>
-<li>links: Record中包含的超链接的集合<ul>
-<li>href: 超链接的URL (已全部转化为绝对URL)</li>
-</ul>
-</li>
-<li>images: Record中包含的图片集合<ul>
-<li>alt: 图片的alt属性</li>
-<li>src: 图片的URL (已全部转化为绝对URL)</li>
-<li>path: 图片在本地转存的路径（仅当设置is_output_images为True时）</li>
-<li>bg_color: 图片的背景颜色，表示为[R,G,B]</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="screenshot-png"><a href="#screenshot-png" class="headerlink" title="screenshot.png"></a>screenshot.png</h3><p>网页截屏快照</p>
-<h3 id="images-文件夹"><a href="#images-文件夹" class="headerlink" title="images (文件夹)"></a>images (文件夹)</h3><p>当设置is_output_images为True时，网页图片被下载并转存到这里，并全部转化为JPG格式（可在Setting中设置）。<br>文件名格式为“RecodeID_序数.jpg”</p>
-<h2 id="一些算法细节"><a href="#一些算法细节" class="headerlink" title="一些算法细节"></a>一些算法细节</h2><ul>
-<li>某些网页图片会隐藏在节点CSS的Background image当中，当其存在时我们的爬虫会抽取这些图片。</li>
-<li>某些有透明背景的PNG图片会以自身颜色和背景颜色共同显示图案，例如白色文字绿色背景。我们的爬虫会探测其背景颜色，并抽取图层合并后的图片。</li>
-</ul>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>如果您喜欢我们的工作，请引用我们的论文：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@article&#123;websegment,</span><br><span class="line">  title=&#123;An Event Data Extraction Method Based on HTML Structure Analysis and Machine Learning&#125;,</span><br><span class="line">  author=&#123;Liao, Chenyi and Hiroi, Kei and Kaji, Katsuhiko and Kawaguchi, Nobuo&#125;,</span><br><span class="line">  journal=&#123;Computer Software and Applications Conference (COMPSAC)&#125;,</span><br><span class="line">  volume=&#123;3&#125;,</span><br><span class="line">  pages = &#123;217-222&#125;,</span><br><span class="line">  year=&#123;2015&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2480,7 +2321,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

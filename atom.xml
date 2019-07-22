@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liaocy.net/"/>
-  <updated>2019-07-19T02:39:40.999Z</updated>
+  <updated>2019-07-22T02:19:06.869Z</updated>
   <id>https://liaocy.net/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CCNA試験のまとめノート 11 インターネット接続</title>
+    <link href="https://liaocy.net/2019/07/22-CCNA/"/>
+    <id>https://liaocy.net/2019/07/22-CCNA/</id>
+    <published>2019-07-22T01:43:00.000Z</published>
+    <updated>2019-07-22T02:19:06.869Z</updated>
+    
+    <content type="html"><![CDATA[<p>DHCPによるインターネット接続、NATとPATの概要、NATの設定、PATの設定、NATとPATの検証、NATとPATのトラブルシューティング</p><a id="more"></a><h1 id="DHCPによるインターネット接続"><a href="#DHCPによるインターネット接続" class="headerlink" title="DHCPによるインターネット接続"></a>DHCPによるインターネット接続</h1><h2 id="DHCPクライアント"><a href="#DHCPクライアント" class="headerlink" title="DHCPクライアント"></a>DHCPクライアント</h2><ul><li>スタティックIPアドレスの設定：固定IPアドレスが静的に割り振られる<ul><li>スタティックIPアドレスの設定：ルータの外部インターフェースにスタティックIPアドレスを設定</li><li>デフォルトルートの作成：インターネットへ向かうデフォルトルートを設定</li></ul></li><li>ダイナミックIPアドレスの設定：</li><li>DHCPクライアントの設定</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#interface GigabitEthernet 0/0/0</span><br><span class="line">Router(config-if)#ip address dhcp</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line"></span><br><span class="line">Router#show running-config</span><br><span class="line"></span><br><span class="line">!</span><br><span class="line">interface GigabitEthernet0/0/0</span><br><span class="line"> ip address dhcp</span><br><span class="line"> duplex auto</span><br><span class="line"> speed auto</span><br><span class="line">!</span><br><span class="line"></span><br><span class="line">Router#show dhcp lease #DHCPクライアントに割り当てられたIPアドレスのリース情報を表示する</span><br><span class="line">Temp IP addr: 0.0.0.0 for peer on Interface: GigabitEthernet0/0/0</span><br><span class="line">Temp sub net mask: 0.0.0.0</span><br><span class="line">   DHCP Lease server: 0.0.0.0 , state: Initial</span><br><span class="line">   DHCP Transaction id: 158006C1</span><br><span class="line">   Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs</span><br><span class="line">Temp default-gateway addr: 0.0.0.0</span><br><span class="line">   Next timer fires after: 00:00:36 #リース残り時間</span><br><span class="line">   Retry count: 3  Client-ID:cisco-00E0.F72D.2C01-Gig0/0/0</span><br><span class="line">   Client-ID hex dump: 636973636F2D303045302E463732442E</span><br><span class="line">                       24330312D476967302F302F30</span><br><span class="line">   Hostname: Router</span><br></pre></td></tr></table></figure><h2 id="DHCPサーバの設定"><a href="#DHCPサーバの設定" class="headerlink" title="DHCPサーバの設定"></a>DHCPサーバの設定</h2><p><img src="/uploads/postimgs/2019072202.png" alt="トポロジ"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#interface GigabitEthernet 0/0/0</span><br><span class="line">Router(config-if)#ip address 172.16.10.254 255.255.255.0 #ポートのIP（デフォルトゲートウェイのIPを設定）</span><br><span class="line">Router(config-if)#exit</span><br><span class="line"></span><br><span class="line">Router(config)#ip dhcp pool LANUser #DHCPプールを作成</span><br><span class="line">Router(dhcp-config)#network 172.16.10.0 255.255.255.0 #ネットワークアドレスの指定</span><br><span class="line">Router(dhcp-config)#default-router 172.16.10.254 #デフォルトゲートウェイの指定</span><br><span class="line">Router(dhcp-config)#domain-name example.com #ドメイン名の指定</span><br><span class="line">Router(dhcp-config)#dns-server 64.0.0.1 #DNSサーバの指定</span><br><span class="line">Router(dhcp-config)#exit</span><br><span class="line"></span><br><span class="line">Router(config)#ip dhcp excluded-address 172.16.10.101 172.16.10.254 #クライアントへ振り当てないアドレス範囲</span><br><span class="line">Router(config)#exit</span><br><span class="line">Router#</span><br><span class="line">%SYS-5-CONFIG_I: Configured from console by console</span><br><span class="line"></span><br><span class="line">Router#show running-config | begin dhcp</span><br><span class="line">!</span><br><span class="line">ip dhcp pool LANUser</span><br><span class="line"> network 172.16.10.0 255.255.255.0</span><br><span class="line"> default-router 172.16.10.254</span><br><span class="line"> dns-server 64.0.0.1</span><br><span class="line"> domain-name example.com</span><br><span class="line">!</span><br><span class="line">interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 172.16.10.254 255.255.255.0 #DHCPクライアントのデフォルトゲートウェイ</span><br><span class="line"> duplex auto</span><br><span class="line"> speed auto</span><br><span class="line">!</span><br></pre></td></tr></table></figure><p>DHCPプールの表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Router#show ip dhcp pool</span><br><span class="line"></span><br><span class="line">Pool LANUser :</span><br><span class="line"> Utilization mark (high/low)    : 100 / 0</span><br><span class="line"> Subnet size (first/next)       : 0 / 0 </span><br><span class="line"> Total addresses                : 254</span><br><span class="line"> Leased addresses               : 2</span><br><span class="line"> Excluded addresses             : 1</span><br><span class="line"> Pending event                  : none</span><br><span class="line"></span><br><span class="line"> 1 subnet is currently in the pool</span><br><span class="line"> Current index        IP address range                    Leased/Excluded/Total</span><br><span class="line"> 172.16.10.1          172.16.10.1      - 172.16.10.254     2    / 1     / 254</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;DHCPによるインターネット接続、NATとPATの概要、NATの設定、PATの設定、NATとPATの検証、NATとPATのトラブルシューティング&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="資格試験" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/"/>
+    
+      <category term="CCNA" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/CCNA/"/>
+    
+    
+      <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CCNA試験のまとめノート 10 IPv4アクセスリスト</title>
+    <link href="https://liaocy.net/2019/07/19-CCNA/"/>
+    <id>https://liaocy.net/2019/07/19-CCNA/</id>
+    <published>2019-07-19T02:43:00.000Z</published>
+    <updated>2019-07-22T01:39:48.123Z</updated>
+    
+    <content type="html"><![CDATA[<p>IPv4アクセスリストの概要、ワイルドカードマスク、番号付き標準ACL、名前付き標準ACL、ACLの検証、ACLのトラブルシューティング<br><a id="more"></a></p><h1 id="IPv4アクセスリストの概要"><a href="#IPv4アクセスリストの概要" class="headerlink" title="IPv4アクセスリストの概要"></a>IPv4アクセスリストの概要</h1><h2 id="ACLとは"><a href="#ACLとは" class="headerlink" title="ACLとは"></a>ACLとは</h2><ul><li>定義：Access Control List。トラフィックを識別し、制御するため条件を記述したリスト</li><li>役割：特定のホストがネットワーク上のどのノードにアクセスできるかを制御したり、トラフィックの種類ごとに伝送を許可するか拒否するかを指定したりできる。セキュリティ確保できる。<h2 id="種類"><a href="#種類" class="headerlink" title="種類"></a>種類</h2></li><li>標準ACL：送信元IPアドレスだけを指定</li><li>拡張ACL：送信元IP、宛先IP、プロトコル、送信元ポート、宛先ポートを許可または拒否を指定<h2 id="ACLの識別方法"><a href="#ACLの識別方法" class="headerlink" title="ACLの識別方法"></a>ACLの識別方法</h2></li><li>番号付きACL：番号を指定して、作成したACL<ul><li>IPv4標準：1～99, 1300～1999</li><li>IPv4拡張：100～199、2000～2699</li><li>AppleTalk：600～699</li><li>IPX標準：800～899</li><li>IPX拡張：900～999</li></ul></li><li>名前付きACL：任意の名前が付けられる。FTP-Filterなど<h2 id="適用"><a href="#適用" class="headerlink" title="適用"></a>適用</h2></li><li>インターフェースの着信と発信の各方向に１つずつ適用できる</li><li>１つのACLを複数のインターフェースに適用れきる。<h2 id="インバウンドACLとアウトバウンドACL"><a href="#インバウンドACLとアウトバウンドACL" class="headerlink" title="インバウンドACLとアウトバウンドACL"></a>インバウンドACLとアウトバウンドACL</h2></li><li>Inbound:ルータはパケットを受信する時。ACL照合＝＞ルーティングテーブル参照</li><li>Outbound:ルータは発信インターフェイスを決定すると、そのインターフェイスに適用されたアウトバウンドACL。ルーティングテーブル参照＝＞ACL照合<h2 id="ACL設定の注意事項"><a href="#ACL設定の注意事項" class="headerlink" title="ACL設定の注意事項"></a>ACL設定の注意事項</h2></li><li>ステートメントの順番：各ステートメント（条件文）はシーケンスバン番号が指定できる。降順に行う。デフォルト10×i。ステートメントの条件と一致したパケットはその時点で許可または拒否の処理が行われ、以降のステートメントは無視される。</li><li>「暗黙のDeny」：末尾（まつび）に、パケットに拒否するステートメントが存在する。Permit行が最低1行は必要。</li><li>適用インターフェイス</li><li>ACLの配置：送信元と受信元両方配置すること。<ul><li>標準ACL＝＞パケットの宛先近くに配置</li><li>拡張ACL＝＞パケットの送信元近くに配置（推奨）</li></ul></li><li>フィルタリングの対象パケット：ICMPのパケットを対象するなど。</li></ul><h1 id="ワイルドカードマスク"><a href="#ワイルドカードマスク" class="headerlink" title="ワイルドカードマスク"></a>ワイルドカードマスク</h1><ul><li>ACL条件文の中でIPアドレスを指定する場合、ワイルドカードマスクを使用する。<h2 id="ワイルドカードマスク-1"><a href="#ワイルドカードマスク-1" class="headerlink" title="ワイルドカードマスク"></a>ワイルドカードマスク</h2></li><li>ステップ<ul><li>３２ビットの値</li><li>８ビットずつドット（.）で区切って１０進数で表記</li><li>「0」を指定したら、対応するビット一致（チェック）；「1」なら無視（チェックしない）<h2 id="ワイルドカードマスクによるIPアドレスの指定"><a href="#ワイルドカードマスクによるIPアドレスの指定" class="headerlink" title="ワイルドカードマスクによるIPアドレスの指定"></a>ワイルドカードマスクによるIPアドレスの指定</h2></li></ul></li><li>ホストアドレスの指定<ul><li>0.0.0.0:　すべてチェックをする。省略：host</li><li>255.255.255.255: すべて無視をする。省略：any</li></ul></li></ul><h1 id="番号付き標準ACL"><a href="#番号付き標準ACL" class="headerlink" title="番号付き標準ACL"></a>番号付き標準ACL</h1><h2 id="作成"><a href="#作成" class="headerlink" title="作成"></a>作成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config)#access-list ACL番号 &#123;permit | deny | remark&#125; 送信元IP ワイルドカードマスク（省略0.0.0.0） log一致する場合ログメッセージを表示</span><br></pre></td></tr></table></figure><p><img src="/uploads/postimgs/2019072201.png" alt="トポロジ"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">RT1(config)#access-list 1 deny 10.1.1.1 0.0.0.0</span><br><span class="line">RT1(config)#access-list 1 deny host 10.1.1.1</span><br><span class="line"></span><br><span class="line">RT1(config)#access-list 1 deny 10.2.2.1 0.0.0.0</span><br><span class="line">RT1(config)#access-list 1 deny host 10.2.2.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">C:\&gt;ping 10.2.2.1</span><br><span class="line"></span><br><span class="line">Pinging 10.2.2.1 with 32 bytes of data:</span><br><span class="line"></span><br><span class="line">Request timed out.</span><br><span class="line"></span><br><span class="line">Ping statistics for 10.2.2.1:</span><br><span class="line">    Packets: Sent = 2, Received = 0, Lost = 2 (100% loss),</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RT1(config)#access-list 1 permit 0.0.0.0 255.255.255.255</span><br><span class="line">RT1(config)#access-list 1 permit any</span><br><span class="line"></span><br><span class="line">RT1#show access-lists </span><br><span class="line">Standard IP access list 1</span><br><span class="line">    10 deny host 10.1.1.1</span><br><span class="line">    20 deny host 10.2.2.1</span><br><span class="line">    30 permit any</span><br><span class="line"></span><br><span class="line">RT1(config)#no access-list 1 deny 10.2.2.1 0.0.0.0</span><br><span class="line">RT1(config)#no access-list 1 deny host 10.1.1.1</span><br></pre></td></tr></table></figure><h2 id="ACLのインターフェイスの適用"><a href="#ACLのインターフェイスの適用" class="headerlink" title="ACLのインターフェイスの適用"></a>ACLのインターフェイスの適用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#ip access-group &lt;acl-number&gt; &#123;in | out&#125;</span><br></pre></td></tr></table></figure><h1 id="名前付き標準ACL"><a href="#名前付き標準ACL" class="headerlink" title="名前付き標準ACL"></a>名前付き標準ACL</h1><h2 id="名前付きACLの作成"><a href="#名前付きACLの作成" class="headerlink" title="名前付きACLの作成"></a>名前付きACLの作成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(config)#ip access-list standard &lt;acl-name&gt;</span><br><span class="line">(config-std-nacl)#シーケンス番号（オプション） &#123;permit | deny | remark&#125; &lt;source&gt; &lt;wildcard&gt; [log]</span><br></pre></td></tr></table></figure><h2 id="名前付きACLの適用"><a href="#名前付きACLの適用" class="headerlink" title="名前付きACLの適用"></a>名前付きACLの適用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#ip access-group &lt;acl-name&gt; &#123;in | out&#125;</span><br></pre></td></tr></table></figure><h1 id="ACLの検証"><a href="#ACLの検証" class="headerlink" title="ACLの検証"></a>ACLの検証</h1><h2 id="コマンド"><a href="#コマンド" class="headerlink" title="コマンド"></a>コマンド</h2><ul><li>show access-lists: ACL条件の確認</li><li>show ip interface：ACL適用の確認</li><li>show running-config: ACL条件の確認、ACL適用の確認</li></ul><h2 id="ACLカウント数のクリア"><a href="#ACLカウント数のクリア" class="headerlink" title="ACLカウント数のクリア"></a>ACLカウント数のクリア</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#clear access-list counter [&lt;acl-number&gt; | &lt;acl_name&gt;]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;IPv4アクセスリストの概要、ワイルドカードマスク、番号付き標準ACL、名前付き標準ACL、ACLの検証、ACLのトラブルシューティング&lt;br&gt;
+    
+    </summary>
+    
+      <category term="資格試験" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/"/>
+    
+      <category term="CCNA" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/CCNA/"/>
+    
+    
+      <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
+    
+  </entry>
   
   <entry>
     <title>CCNA試験のまとめノート 09 VLANとVLAN間ルーティング</title>
@@ -465,60 +513,6 @@
       <category term="Coder" scheme="https://liaocy.net/tags/Coder/"/>
     
       <category term="IDE" scheme="https://liaocy.net/tags/IDE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vi 命令速查</title>
-    <link href="https://liaocy.net/2019/05/25-vim/"/>
-    <id>https://liaocy.net/2019/05/25-vim/</id>
-    <published>2019-05-25T16:06:00.000Z</published>
-    <updated>2019-07-03T06:56:53.484Z</updated>
-    
-    <content type="html"><![CDATA[<p>我每天都在管理大量的Linux服务器，但是一直以来我竟然不会用vim！！！<br>这次培训刚好有这个机会就顺便学了。<br>说实话我不确定vim就一定比nano好用，有的时候只是为了照顾别的工程师的心情。</p><a id="more"></a><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul><li>CentOS 7</li></ul><h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="insert-mode"><a href="#insert-mode" class="headerlink" title="insert mode"></a>insert mode</h2><ul><li><p>i: change to input mode (insert)</p></li><li><p>a: change to input mode (append)</p></li><li><p>A: change to input mode (append at end of current row)</p></li><li><p>O: change to input mode (Add a row over current row)</p></li><li><p>o: change to input mode (Add a row under current row)</p></li></ul><h2 id="command-mode"><a href="#command-mode" class="headerlink" title="command mode"></a>command mode</h2><ul><li><p>ESC: escape to command mode</p></li><li><p>u: undo</p></li><li><p>ZZ: save and quit</p></li><li><p>(2)dd: delete (2)a row</p></li><li><p>(2)x: delete (2)a cheractor</p></li><li><p>(2)dw: delete (2)a word</p></li><li><p>dG: delete all rows under this row</p></li><li><p>yw: yank(copy) a word</p></li><li><p>p/P: pause deleted/yanked content</p></li><li><p>r + cheractor: replace a cheractor</p></li><li><p>.: repeat last operation</p></li><li><p>/, ?, n, N: search, next, previous</p></li></ul><h3 id="cursor-control"><a href="#cursor-control" class="headerlink" title="cursor control"></a>cursor control</h3><ul><li><p>h, j, k, l: left, top, bottom, right; </p></li><li><p>w: next term</p></li><li><p>^: cursor goes to head of the row</p></li><li><p>G: cursor goes to the last row</p></li><li><p>3G: cursor goes to 3rd row</p></li></ul><h2 id="ex-command-mode"><a href="#ex-command-mode" class="headerlink" title="ex command mode"></a>ex command mode</h2><ul><li><p>:: ex command mode</p></li><li><p>:q: quit this document</p></li><li><p>:q!: quit without save</p></li><li><p>:wq: save and quit</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我每天都在管理大量的Linux服务器，但是一直以来我竟然不会用vim！！！&lt;br&gt;这次培训刚好有这个机会就顺便学了。&lt;br&gt;说实话我不确定vim就一定比nano好用，有的时候只是为了照顾别的工程师的心情。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="开发 Development" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-    
-      <category term="vi" scheme="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/vi/"/>
-    
-    
-      <category term="vi" scheme="https://liaocy.net/tags/vi/"/>
-    
-      <category term="vim" scheme="https://liaocy.net/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 日语英语词汇</title>
-    <link href="https://liaocy.net/2019/05/19-linuxjaen/"/>
-    <id>https://liaocy.net/2019/05/19-linuxjaen/</id>
-    <published>2019-05-20T11:00:00.000Z</published>
-    <updated>2019-07-03T06:57:22.936Z</updated>
-    
-    <content type="html"><![CDATA[<p>整理一些Linux会用到的日语和英语词汇</p><a id="more"></a><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul><li>CentOS 7</li></ul><h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><table><thead><tr><th>日本語</th><th>English</th><th>中文</th></tr></thead><tbody><tr><td>ポストオンリーアダプタ</td><td>Host Only Adapter</td><td>仅主机模式</td></tr><tr><td>タイムシェアリングシステム</td><td>Time Sharing System</td><td>分时系统</td></tr><tr><td>モジューラ哲学</td><td>Modular Philosophy</td><td>组合式哲学</td></tr><tr><td>シェル</td><td>Shell</td><td>命令行</td></tr><tr><td>インタプリタ</td><td>Interpreter</td><td>解释器</td></tr><tr><td></td><td>Bash (Bourne Again Shell)</td><td></td></tr><tr><td>Slackware系</td><td>(openSUSE)</td><td></td></tr><tr><td>Debain系</td><td>(Debain, Ubuntu)</td><td></td></tr><tr><td>Red Hat系</td><td>(Red Hat Enterprise Linux, Cent OS)</td><td></td></tr><tr><td>階層化ファイルシステム</td><td>Layered file system</td><td>分层文件系统</td></tr><tr><td>マルチタスキング</td><td>Multitasking</td><td>多任务</td></tr><tr><td>マルチユーザ</td><td>Multi-user</td><td>多用户</td></tr><tr><td>コンテナ</td><td>Container</td><td>容器</td></tr><tr><td>ディレクトリ</td><td>Directory</td><td>目录</td></tr><tr><td>ワークグループ</td><td>Work Group</td><td>工作组</td></tr><tr><td>POSIX</td><td>Portable Operating System Interface</td><td>可移植操作系统接口</td></tr><tr><td>シェルプロンプト</td><td>Shell Prompt</td><td>Shell提示</td></tr><tr><td>キーシーケンス</td><td>Key Sequence</td><td>键序列</td></tr><tr><td>ファイルキャビネット</td><td>File Cabinet</td><td>文件柜</td></tr><tr><td>アーカイブファイル</td><td>Archive File</td><td>存档文件</td></tr><tr><td>ベンダ</td><td>vendor</td><td>供应商</td></tr><tr><td>スプールファイル</td><td>Spool File</td><td>假脱机文件; 临时文件; 打印文件;</td></tr><tr><td>道筋（みちすじ）</td><td>Path</td><td>路径</td></tr><tr><td>カレントディレクトリ</td><td>Current directory</td><td>当前目录</td></tr><tr><td>パーミッション</td><td>Permission</td><td>权限</td></tr><tr><td>アスキーテキスト</td><td>ASCIIファイル</td><td>ASCII文本</td></tr><tr><td>シンボリック・リンク・ファイル</td><td>Symbolic Link File</td><td>软连接文件</td></tr><tr><td>キャラクタ・デバイス・ファイル</td><td>Character device file</td><td>字符设备文件、也表示硬件设备，但是数据是以字节流发送的，这些设备包括终端设备和串口设备、</td></tr><tr><td>ブロック・デバイス・ファイル</td><td>Block device file</td><td>阻值设备文件</td></tr><tr><td>returnキー</td><td>return key</td><td>回车</td></tr><tr><td>シンボリックリンク</td><td>Symbolic link</td><td>软连接</td></tr><tr><td>たどる</td><td>Follow</td><td>跟随</td></tr><tr><td>ダイジェスト認証</td><td>Digest access authentication</td><td>HTTP摘要认证</td></tr><tr><td>枯渴（こかつ）</td><td>drying up</td><td>枯竭</td></tr><tr><td>リバースプロキシ</td><td>Reverse proxy</td><td>反向代理</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;整理一些Linux会用到的日语和英语词汇&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="日语 Japanese" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
-    
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-    
-    
-      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
-    
-      <category term="Linux" scheme="https://liaocy.net/tags/Linux/"/>
-    
-      <category term="CentOS" scheme="https://liaocy.net/tags/CentOS/"/>
     
   </entry>
   
