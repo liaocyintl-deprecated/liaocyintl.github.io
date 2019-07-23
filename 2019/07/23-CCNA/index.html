@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="KWEKu7-400JMONtPKXdBIPQ4ICpSLiomHWycMvJiiUw">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="wR0oqfu7r3">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next_bk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next_bk.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ノート,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Liao's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Ciscoデバイスの管理機能、Ciscoルータの管理、CiscoIOSイメージの管理、コンフィギュレーションファイルの管理、NTPによる時刻同期、Cisco IOSイメージのライセンス、パスワードリカバリ">
+<meta name="keywords" content="ノート">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCNA試験のまとめノート 14 ネットワークデバイスの管理">
+<meta property="og:url" content="https://liaocy.net/2019/07/23-CCNA/index.html">
+<meta property="og:site_name" content="Liao&#39;s Blog">
+<meta property="og:description" content="Ciscoデバイスの管理機能、Ciscoルータの管理、CiscoIOSイメージの管理、コンフィギュレーションファイルの管理、NTPによる時刻同期、Cisco IOSイメージのライセンス、パスワードリカバリ">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-07-23T02:14:07.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CCNA試験のまとめノート 14 ネットワークデバイスの管理">
+<meta name="twitter:description" content="Ciscoデバイスの管理機能、Ciscoルータの管理、CiscoIOSイメージの管理、コンフィギュレーションファイルの管理、NTPによる時刻同期、Cisco IOSイメージのライセンス、パスワードリカバリ">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '著者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://liaocy.net/2019/07/23-CCNA/">
+
+
+
+
+
+  <title>CCNA試験のまとめノート 14 ネットワークデバイスの管理 | Liao's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0974e06186820775f8d51e33bc87d4dd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ja">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Development & Research</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            ホーム
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            アーカイブ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            タグ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            カテゴリ
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-vocabulary">
+          <a href="/tags/Vocabulary/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-language"></i> <br>
+            
+            単語表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            検索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2019/07/23-CCNA/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 14 ネットワークデバイスの管理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">投稿日</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T09:26:00+09:00">
+                2019-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/資格試験/" itemprop="url" rel="index">
+                    <span itemprop="name">資格試験</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/資格試験/CCNA/" itemprop="url" rel="index">
+                    <span itemprop="name">CCNA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/23-CCNA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/23-CCNA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Ciscoデバイスの管理機能、Ciscoルータの管理、CiscoIOSイメージの管理、コンフィギュレーションファイルの管理、NTPによる時刻同期、Cisco IOSイメージのライセンス、パスワードリカバリ<br><a id="more"></a></p>
+<h1 id="Ciscoデバイスの管理機能"><a href="#Ciscoデバイスの管理機能" class="headerlink" title="Ciscoデバイスの管理機能"></a>Ciscoデバイスの管理機能</h1><h2 id="CDP"><a href="#CDP" class="headerlink" title="CDP"></a>CDP</h2><ul>
+<li>Cisco Discovery Protocol: 隣接するCiscoデバイスを検出し、プロトコルやアドレス情報などを知ることができるシスコ独自のプロトコル</li>
+<li>キーワード：データリンク層、</li>
+<li>情報表示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Router#show cdp neighbors</span><br><span class="line">Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge</span><br><span class="line">                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone</span><br><span class="line">Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID</span><br><span class="line">Switch       Gig 0/1/2        126            S       2960        Gig 0/1</span><br><span class="line">Router       Gig 0/0/0        156            R       ISR4300     Gig 0/0/1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Router#show cdp neighbors</span><br><span class="line">Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge</span><br><span class="line">                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone</span><br><span class="line">Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID</span><br><span class="line">Switch       Gig 0/1/2        126            S       2960        Gig 0/1</span><br><span class="line">Router       Gig 0/0/0        156            R       ISR4300     Gig 0/0/1</span><br><span class="line">Router#show cdp neighbors detail</span><br><span class="line"></span><br><span class="line">Device ID: Switch</span><br><span class="line">Entry address(es): </span><br><span class="line">Platform: cisco 2960, Capabilities: Switch</span><br><span class="line">Interface: GigabitEthernet0/1/2, Port ID (outgoing port): GigabitEthernet0/1</span><br><span class="line">Holdtime: 166</span><br><span class="line"></span><br><span class="line">Version :</span><br><span class="line">Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)FX, RELEASE SOFTWARE (fc1)</span><br><span class="line">Copyright (c) 1986-2005 by Cisco Systems, Inc.</span><br><span class="line">Compiled Wed 12-Oct-05 22:05 by pt_team</span><br><span class="line"></span><br><span class="line">advertisement version: 2</span><br><span class="line">Duplex: full</span><br><span class="line">---------------------------</span><br><span class="line"></span><br><span class="line">Device ID: Router</span><br><span class="line">Entry address(es): </span><br><span class="line">Platform: cisco ISR4300, Capabilities: Router</span><br><span class="line">Interface: GigabitEthernet0/0/0, Port ID (outgoing port): GigabitEthernet0/0/1</span><br><span class="line">Holdtime: 136</span><br><span class="line"></span><br><span class="line">Version :</span><br><span class="line">Cisco IOS XE Software, Version 03.13.04.S - Extended Support Release</span><br><span class="line">Cisco IOS Software, ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.5(3)S5, RELEASE SOFTWARE (fc2)</span><br><span class="line">Technical Support: http://www.cisco.com/techsupport</span><br><span class="line">Copyright (c) 1986-2017 by Cisco Systems, Inc.</span><br><span class="line">Compiled Mon 05-Oct-15 11:24 by mcpre</span><br><span class="line"></span><br><span class="line">advertisement version: 2</span><br><span class="line">Duplex: full</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>デバイスごとCDP情報を出力</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Router#show cdp entry Switch</span><br><span class="line"></span><br><span class="line">Device ID: Switch</span><br><span class="line">Entry address(es): </span><br><span class="line">Platform: cisco 2960, Capabilities: Switch</span><br><span class="line">Interface: GigabitEthernet0/1/2, Port ID (outgoing port): GigabitEthernet0/1</span><br><span class="line">Holdtime: 147</span><br><span class="line"></span><br><span class="line">Version :</span><br><span class="line">Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)FX, RELEASE SOFTWARE (fc1)</span><br><span class="line">Copyright (c) 1986-2005 by Cisco Systems, Inc.</span><br><span class="line">Compiled Wed 12-Oct-05 22:05 by pt_team</span><br><span class="line"></span><br><span class="line">advertisement version: 2</span><br><span class="line">Duplex: full</span><br><span class="line">---------------------------</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CDP情報を出力</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Router#show cdp</span><br><span class="line">Global CDP information:</span><br><span class="line">    Sending CDP packets every 60 seconds</span><br><span class="line">    Sending a holdtime value of 180 seconds</span><br><span class="line">    Sending CDPv2 advertisements is enabled</span><br></pre></td></tr></table></figure>
+<ul>
+<li>CDPが有効なインターフェイス情報を表示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Router#show cdp interface </span><br><span class="line">Vlan1 is administratively down, line protocol is down</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br><span class="line">GigabitEthernet0/0/0 is up, line protocol is up</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br><span class="line">GigabitEthernet0/0/1 is up, line protocol is down</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br><span class="line">GigabitEthernet0/1/0 is up, line protocol is down</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br><span class="line">GigabitEthernet0/1/1 is up, line protocol is up</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br><span class="line">GigabitEthernet0/1/2 is up, line protocol is up</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br><span class="line">GigabitEthernet0/1/3 is up, line protocol is down</span><br><span class="line">  Sending CDP packets every 60 seconds</span><br><span class="line">  Holdtime is 180 seconds</span><br></pre></td></tr></table></figure>
+<ul>
+<li>CDPメッセージの統計情報を表示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router#show cdp traffic</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>無効化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#no cdp run</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>特定のインターフェイスで無効化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config-if)#no cdp enable</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CDPメッセージの送信頻度の設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#cdp timer 60</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CDPのホールドダウンの設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#cdp holdtime 180</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="LLDP"><a href="#LLDP" class="headerlink" title="LLDP"></a>LLDP</h2><ul>
+<li>Link Layer Discovery Protocol: 自身の情報をアドバタイズする近隣探索プロトコル、IEEE 802.1AB。</li>
+<li>メッセージの中身：タイプ（Type）、長さ（Length）、値（Value）</li>
+</ul>
+<p>デバイス全体有効化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#lldp run</span><br></pre></td></tr></table></figure></p>
+<p>デバイス全体無効化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#no lldp run</span><br></pre></td></tr></table></figure></p>
+<p>インターフェイスがLLDPを受信しない：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#no lldp receive</span><br></pre></td></tr></table></figure></p>
+<p>インターフェイスがLLDPを送信しない：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#no lldp transmit</span><br></pre></td></tr></table></figure></p>
+<p>LLDP要約情報を表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Switch#show lldp neighbors </span><br><span class="line">Capability codes:</span><br><span class="line">    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device</span><br><span class="line">    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other</span><br><span class="line">Device ID           Local Intf     Hold-time  Capability      Port ID</span><br><span class="line">Switch              Fa0/17         120        B               Fa0/1</span><br><span class="line">Switch              Fa0/18         120        B               Fa0/1</span><br><span class="line"></span><br><span class="line">Total entries displayed: 2</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Switch#show lldp neighbors detail </span><br><span class="line">------------------------------------------------</span><br><span class="line">Chassis id: 0060.4727.1A01</span><br><span class="line">Port id: Fa0/1</span><br><span class="line">Port Description: FastEthernet0/1</span><br><span class="line">System Name: Switch</span><br><span class="line">System Description:</span><br><span class="line">Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)FX, RELEASE SOFTWARE (fc1)</span><br><span class="line">Copyright (c) 1986-2005 by Cisco Systems, Inc.</span><br><span class="line">Compiled Wed 12-Oct-05 22:05 by pt_team</span><br><span class="line">Time remaining: 90 seconds</span><br><span class="line">System Capabilities: B</span><br><span class="line">Enabled Capabilities: B</span><br><span class="line">Management Addresses - not advertised</span><br><span class="line">Auto Negotiation - supported, enabled</span><br><span class="line">Physical media capabilities:</span><br><span class="line">    100baseT(FD)</span><br><span class="line">    100baseT(HD)</span><br><span class="line">    1000baseT(HD)</span><br><span class="line">Media Attachment Unit type: 10</span><br><span class="line">Vlan ID: 1</span><br><span class="line">------------------------------------------------</span><br><span class="line">Chassis id: 00E0.B0EE.3E01</span><br><span class="line">Port id: Fa0/1</span><br><span class="line">Port Description: FastEthernet0/1</span><br><span class="line">System Name: Switch</span><br><span class="line">System Description:</span><br><span class="line">Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)FX, RELEASE SOFTWARE (fc1)</span><br><span class="line">Copyright (c) 1986-2005 by Cisco Systems, Inc.</span><br><span class="line">Compiled Wed 12-Oct-05 22:05 by pt_team</span><br><span class="line">Time remaining: 90 seconds</span><br><span class="line">System Capabilities: B</span><br><span class="line">Enabled Capabilities: B</span><br><span class="line">Management Addresses - not advertised</span><br><span class="line">Auto Negotiation - supported, enabled</span><br><span class="line">Physical media capabilities:</span><br><span class="line">    100baseT(FD)</span><br><span class="line">    100baseT(HD)</span><br><span class="line">    1000baseT(HD)</span><br><span class="line">Media Attachment Unit type: 10</span><br><span class="line">Vlan ID: 1</span><br><span class="line"></span><br><span class="line">Total entries displayed: 2</span><br></pre></td></tr></table></figure>
+<p>LLDP情報を出力：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Switch#show lldp</span><br><span class="line"></span><br><span class="line">Global LLDP Information:</span><br><span class="line">    Status: ACTIVE</span><br><span class="line">    LLDP advertisements are sent every 30 seconds</span><br><span class="line">    LLDP hold time advertised is 120 seconds</span><br><span class="line">    LLDP interface reinitialisation delay is 2 seconds</span><br></pre></td></tr></table></figure></p>
+<h2 id="名前解決"><a href="#名前解決" class="headerlink" title="名前解決"></a>名前解決</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#ip host RT2 172.16.2.253</span><br><span class="line">Switch(config)#exit</span><br><span class="line">Switch#</span><br><span class="line">%SYS-5-CONFIG_I: Configured from console by console</span><br><span class="line"></span><br><span class="line">Switch#ping RT2</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">Sending 5, 100-byte ICMP Echos to 172.16.2.253, timeout is 2 seconds:</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Switch#show hosts</span><br><span class="line">Default Domain is not set</span><br><span class="line">Name/address lookup uses domain service</span><br><span class="line">Name servers are 255.255.255.255</span><br><span class="line"></span><br><span class="line">Codes: UN - unknown, EX - expired, OK - OK, ?? - revalidate</span><br><span class="line">       temp - temporary, perm - permanent</span><br><span class="line">       NA - Not Applicable None - Not defined</span><br><span class="line"></span><br><span class="line">Host                      Port  Flags      Age Type   Address(es)</span><br><span class="line">RT2                       None  (perm, OK)  0   IP      172.16.2.253</span><br></pre></td></tr></table></figure>
+<h2 id="接続状況確認（ログイン状況）"><a href="#接続状況確認（ログイン状況）" class="headerlink" title="接続状況確認（ログイン状況）"></a>接続状況確認（ログイン状況）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Switch#show users</span><br><span class="line">    Line       User       Host(s)              Idle       Location</span><br><span class="line">*  0 con 0                idle                 00:00:00 </span><br><span class="line"></span><br><span class="line">  Interface    User               Mode         Idle     Peer Address</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>中断しているセッションを表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch#show sessions </span><br><span class="line">% No connections open</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直前のセッションを中断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#disconnection</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Syslog"><a href="#Syslog" class="headerlink" title="Syslog"></a>Syslog</h2><ul>
+<li><p>フォマード：sql no: timestamp : %facility-severity-MINEMONIC : description</p>
+<ul>
+<li>sql no: シーケンス番号</li>
+<li>timestamp: メッセージまたはイベントの日時</li>
+<li>facility: メッセージが参照する昨日</li>
+<li>severity: 重大度0～7のコード</li>
+<li>MNEMONIC: メッセージを一意に示す文字列</li>
+<li>description: レポートされているイベントの詳細を示すテキスト文字列</li>
+</ul>
+</li>
+<li><p>ログ表示の無効化</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#no logging console</span><br></pre></td></tr></table></figure>
+<ul>
+<li>コンソールログ表示のレベルを指定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#logging console [&lt;level&gt;]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Syslogサーバの設定"><a href="#Syslogサーバの設定" class="headerlink" title="Syslogサーバの設定"></a>Syslogサーバの設定</h2><ul>
+<li><p>Syslogサーバを指定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#logging 192.168.0.100</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Syslogメッセージのseverityの設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#logging trap &lt;severity 0-7&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ロギングバッファの設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#logging buffered &lt;size 4096-2147483647&gt; &lt;severity 0-7&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>内部バッファの表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Switch#show logging</span><br><span class="line">Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,</span><br><span class="line">          0 flushes, 0 overruns, xml disabled, filtering disabled)</span><br><span class="line"></span><br><span class="line">No Active Message Discriminator.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">No Inactive Message Discriminator.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Console logging: disabled</span><br><span class="line">    Monitor logging: level debugging, 7 messages logged, xml disabled,</span><br><span class="line">          filtering disabled</span><br><span class="line">    Buffer logging:  level debugging, 0 messages logged, xml disabled,</span><br><span class="line">          filtering disabled</span><br><span class="line"></span><br><span class="line">    Logging Exception size (4096 bytes)</span><br><span class="line">    Count and timestamp logging messages: disabled</span><br><span class="line">    Persistent logging: disabled</span><br><span class="line"></span><br><span class="line">No active filter modules.</span><br><span class="line"></span><br><span class="line">ESM: 0 messages dropped</span><br><span class="line">    Trap logging: level debugging, 9 message lines logged</span><br><span class="line">        Logging to 192.168.0.100  (udp port 514,  audit disabled,</span><br><span class="line">             authentication disabled, encryption disabled, link up),</span><br><span class="line">             2 message lines logged,</span><br><span class="line">             0 message lines rate-limited,</span><br><span class="line">             0 message lines dropped-by-MD,</span><br><span class="line">             xml disabled, sequence number disabled</span><br><span class="line">             filtering disabled</span><br><span class="line">Log Buffer (4096 bytes):</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="デバッグ機能"><a href="#デバッグ機能" class="headerlink" title="デバッグ機能"></a>デバッグ機能</h2><ul>
+<li>デバッグの有効化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Switch#debug ?</span><br><span class="line">  aaa           AAA Authentication, Authorization and Accounting</span><br><span class="line">  crypto        Cryptographic subsystem</span><br><span class="line">  custom-queue  Custom output queueing</span><br><span class="line">  eigrp         EIGRP Protocol information</span><br><span class="line">  ephone        ethernet phone skinny protocol</span><br><span class="line">  frame-relay   Frame Relay</span><br><span class="line">  ip            IP information</span><br><span class="line">  ipv6          IPv6 information</span><br><span class="line">  ntp           NTP information</span><br><span class="line">  ppp           PPP (Point to Point Protocol) information</span><br><span class="line">  standby       Hot Standby Router Protocol (HSRP)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#debug cdp</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>デバッグの停止</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#no debug all</span><br><span class="line">#undebug all</span><br><span class="line">#no debug &lt;options&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>デバッグ情報を表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch#show debugging </span><br><span class="line">ICMP packet debugging is on</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>デバッグおよびごるのタイムスタンプ設定（出力メッセージの先頭には「現在の日付と時刻」、「システムが起動してからの経過時間」）</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(config)#service timestamps debug [uptime | datetime [msec]]</span><br><span class="line">(config)#service timestamps log [uptime | datetime [msec]]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>時間設定</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Switch#clock set 10:44:00 23 july 2019</span><br><span class="line"></span><br><span class="line">Switch#show clock</span><br><span class="line">10:44:6.835 UTC Tue Jul 23 2019</span><br><span class="line"></span><br><span class="line">Switch#show clock detail </span><br><span class="line">10:49:36.146 UTC Tue Jul 23 2019</span><br><span class="line">Time source is user configuration</span><br></pre></td></tr></table></figure>
+<h2 id="プロセス、CPU、メモリの利用状況確認"><a href="#プロセス、CPU、メモリの利用状況確認" class="headerlink" title="プロセス、CPU、メモリの利用状況確認"></a>プロセス、CPU、メモリの利用状況確認</h2><ul>
+<li><p>CPUまたはメモリの利用状況を確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RT1#show processes [cpu | memory]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定プロセスの状況を確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch# show processes | include CDP Protocol</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="時間設定"><a href="#時間設定" class="headerlink" title="時間設定"></a>時間設定</h2><ul>
+<li>時間</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Switch#clock set 10:44:00 23 july 2019</span><br><span class="line"></span><br><span class="line">Switch#show clock</span><br><span class="line">10:44:6.835 UTC Tue Jul 23 2019</span><br><span class="line"></span><br><span class="line">Switch#show clock detail </span><br><span class="line">10:49:36.146 UTC Tue Jul 23 2019</span><br><span class="line">Time source is user configuration</span><br></pre></td></tr></table></figure>
+<ul>
+<li>タイムゾーン設定</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch#clock timezone JST 9</span><br></pre></td></tr></table></figure>
+<h1 id="Ciscoルータの管理"><a href="#Ciscoルータの管理" class="headerlink" title="Ciscoルータの管理"></a>Ciscoルータの管理</h1><h2 id="ルータの内部コンポーネント"><a href="#ルータの内部コンポーネント" class="headerlink" title="ルータの内部コンポーネント"></a>ルータの内部コンポーネント</h2><p>CPU、ROM、Flash、インターフェイス、NVRAM、RAM</p>
+<h2 id="メモリの種類"><a href="#メモリの種類" class="headerlink" title="メモリの種類"></a>メモリの種類</h2><ul>
+<li>ROM: Read Only Memory</li>
+<li>フラッシュメモリ：自由に読み書き可能、電源を切っても内容は消えない。IOSソフトウェア。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Switch#show flash:</span><br><span class="line"></span><br><span class="line">System flash directory:</span><br><span class="line">File  Length   Name/status</span><br><span class="line">  3   8662192  c3560-advipservicesk9-mz.122-37.SE1.bin</span><br><span class="line">  2   28282    sigdef-category.xml</span><br><span class="line">  1   227537   sigdef-default.xml</span><br><span class="line">[8918011 bytes used, 55098373 available, 64016384 total]</span><br><span class="line">63488K bytes of processor board System flash (Read/Write)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NVRAM（Non-Volatile Random Access Memory）：startup-config情報格納</li>
+<li>RAM（Random Access Memory）</li>
+</ul>
+<h2 id="ルータの起動シーケンス"><a href="#ルータの起動シーケンス" class="headerlink" title="ルータの起動シーケンス"></a>ルータの起動シーケンス</h2><ul>
+<li>POST実行（Power-On Self-Test）</li>
+<li>ブートストラップコードのロードと実行</li>
+<li>Cisco　IOSソフトウェアのロード</li>
+<li>コンフィギュレーションファイル</li>
+<li>Cosico IOSソフトウェアの実行</li>
+</ul>
+<h2 id="コンフィギュレーションレジスタ値"><a href="#コンフィギュレーションレジスタ値" class="headerlink" title="コンフィギュレーションレジスタ値"></a>コンフィギュレーションレジスタ値</h2><ul>
+<li>設定：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#config-register 0x2142</span><br></pre></td></tr></table></figure>
+<h1 id="Cisco-IOSイメージの管理"><a href="#Cisco-IOSイメージの管理" class="headerlink" title="Cisco IOSイメージの管理"></a>Cisco IOSイメージの管理</h1><h2 id="Cisco-IOSイメージのロード"><a href="#Cisco-IOSイメージのロード" class="headerlink" title="Cisco IOSイメージのロード"></a>Cisco IOSイメージのロード</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Switch#show version </span><br><span class="line">Cisco IOS Software, C3560 Software (C3560-ADVIPSERVICESK9-M), Version 12.2(37)SE1, RELEASE SOFTWARE (fc1)</span><br><span class="line">Copyright (c) 1986-2007 by Cisco Systems, Inc. &lt;----使用中のIOSソフトウェアのバージョン</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">ROM: C3560 Boot Loader (C3560-HBOOT-M) Version 12.2(25r)SEC, RELEASE SOFTWARE (fc4) &lt;---- ブートに使用されたブートストラップソフトウェアのバージョン</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ノート/" rel="tag"># ノート</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22-CCNA/" rel="next" title="CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ">
+                <i class="fa fa-chevron-left"></i> CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            見出し
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            概要
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Chenyi Liao">
+            
+              <p class="site-author-name" itemprop="name">Chenyi Liao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">ポスト</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">カテゴリ</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-name">タグ</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaocyintl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://theme-next.iissnan.com/" title="Hexo Next Theme" target="_blank">Hexo Next Theme</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ciscoデバイスの管理機能"><span class="nav-number">1.</span> <span class="nav-text">Ciscoデバイスの管理機能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDP"><span class="nav-number">1.1.</span> <span class="nav-text">CDP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LLDP"><span class="nav-number">1.2.</span> <span class="nav-text">LLDP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名前解決"><span class="nav-number">1.3.</span> <span class="nav-text">名前解決</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接続状況確認（ログイン状況）"><span class="nav-number">1.4.</span> <span class="nav-text">接続状況確認（ログイン状況）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syslog"><span class="nav-number">1.5.</span> <span class="nav-text">Syslog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syslogサーバの設定"><span class="nav-number">1.6.</span> <span class="nav-text">Syslogサーバの設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#デバッグ機能"><span class="nav-number">1.7.</span> <span class="nav-text">デバッグ機能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#プロセス、CPU、メモリの利用状況確認"><span class="nav-number">1.8.</span> <span class="nav-text">プロセス、CPU、メモリの利用状況確認</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#時間設定"><span class="nav-number">1.9.</span> <span class="nav-text">時間設定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ciscoルータの管理"><span class="nav-number">2.</span> <span class="nav-text">Ciscoルータの管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ルータの内部コンポーネント"><span class="nav-number">2.1.</span> <span class="nav-text">ルータの内部コンポーネント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#メモリの種類"><span class="nav-number">2.2.</span> <span class="nav-text">メモリの種類</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ルータの起動シーケンス"><span class="nav-number">2.3.</span> <span class="nav-text">ルータの起動シーケンス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#コンフィギュレーションレジスタ値"><span class="nav-number">2.4.</span> <span class="nav-text">コンフィギュレーションレジスタ値</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cisco-IOSイメージの管理"><span class="nav-number">3.</span> <span class="nav-text">Cisco IOSイメージの管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cisco-IOSイメージのロード"><span class="nav-number">3.1.</span> <span class="nav-text">Cisco IOSイメージのロード</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenyi Liao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> and <a href="https://github.com/" style="font-weight: bold">Github</a></p></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://liaocy-net.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://liaocy.net/2019/07/23-CCNA/';
+          this.page.identifier = '2019/07/23-CCNA/';
+          this.page.title = 'CCNA試験のまとめノート 14 ネットワークデバイスの管理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liaocy-net.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

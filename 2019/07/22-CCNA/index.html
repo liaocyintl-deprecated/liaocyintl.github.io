@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定">
+<meta name="description" content="パスワードによる管理アクセスの保護、管理アクセスに対するセキュリティの強化、スイッチのセキュリティ機能、未使用サービスの無効化">
 <meta name="keywords" content="ノート">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CCNA試験のまとめノート 13 RIPv2">
+<meta property="og:title" content="CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ">
 <meta property="og:url" content="https://liaocy.net/2019/07/22-CCNA/index.html">
 <meta property="og:site_name" content="Liao&#39;s Blog">
-<meta property="og:description" content="ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定">
+<meta property="og:description" content="パスワードによる管理アクセスの保護、管理アクセスに対するセキュリティの強化、スイッチのセキュリティ機能、未使用サービスの無効化">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-07-22T06:44:18.013Z">
+<meta property="og:updated_time" content="2019-07-23T00:25:17.171Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CCNA試験のまとめノート 13 RIPv2">
-<meta name="twitter:description" content="ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定">
+<meta name="twitter:title" content="CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ">
+<meta name="twitter:description" content="パスワードによる管理アクセスの保護、管理アクセスに対するセキュリティの強化、スイッチのセキュリティ機能、未使用サービスの無効化">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>CCNA試験のまとめノート 13 RIPv2 | Liao's Blog</title>
+  <title>CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ | Liao's Blog</title>
   
 
 
@@ -326,7 +326,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 13 RIPv2</h2>
+          <h2 class="post-title" itemprop="name headline">CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ</h2>
         
 
         <div class="post-meta">
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">投稿日</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-22T10:43:00+09:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-22T15:45:00+09:00">
                 2019-07-22
               </time>
             
@@ -419,7 +419,113 @@
       
 
       
-        <p>ディスタンスベクター、RIPv2の特徴、RIPv2の特徴、RIPv2のオプション設定<br><a id="more"></a></p>
+        <p>パスワードによる管理アクセスの保護、管理アクセスに対するセキュリティの強化、スイッチのセキュリティ機能、未使用サービスの無効化<br><a id="more"></a></p>
+<h1 id="パスワードによる管理アクセスの保護"><a href="#パスワードによる管理アクセスの保護" class="headerlink" title="パスワードによる管理アクセスの保護"></a>パスワードによる管理アクセスの保護</h1><h2 id="コンソールパスワード"><a href="#コンソールパスワード" class="headerlink" title="コンソールパスワード"></a>コンソールパスワード</h2><p>設定：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#line console 0</span><br><span class="line">Switch(config-line)#password 123456</span><br><span class="line">Switch(config-line)#login</span><br><span class="line">Switch(config-line)#end</span><br></pre></td></tr></table></figure></p>
+<p>確認：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Switch#show running-config</span><br><span class="line">!</span><br><span class="line">line con 0</span><br><span class="line"> password 123456</span><br><span class="line"> login</span><br><span class="line">!</span><br></pre></td></tr></table></figure></p>
+<h2 id="特権モードのパスワード"><a href="#特権モードのパスワード" class="headerlink" title="特権モードのパスワード"></a>特権モードのパスワード</h2><ul>
+<li>イネーブルパスワード：設定したパスワードが暗号化しない</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#enable password 123456</span><br></pre></td></tr></table></figure>
+<ul>
+<li>イネーブルシークレットパスワード：MD5を使って、設定したパスワードを保存する。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#enable secret 12345678</span><br></pre></td></tr></table></figure>
+<h2 id="コンフィギュレーションファイルのパスワード暗号化"><a href="#コンフィギュレーションファイルのパスワード暗号化" class="headerlink" title="コンフィギュレーションファイルのパスワード暗号化"></a>コンフィギュレーションファイルのパスワード暗号化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#service password-encryption</span><br></pre></td></tr></table></figure>
+<h1 id="管理アクセスに対するセキュリティの強化"><a href="#管理アクセスに対するセキュリティの強化" class="headerlink" title="管理アクセスに対するセキュリティの強化"></a>管理アクセスに対するセキュリティの強化</h1><h2 id="ユーザ認証による管理アクセスの保護"><a href="#ユーザ認証による管理アクセスの保護" class="headerlink" title="ユーザ認証による管理アクセスの保護"></a>ユーザ認証による管理アクセスの保護</h2><ul>
+<li>ローカル認証</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#username admin1 password admin1 　&lt;---　ユーザアカウントを作成</span><br><span class="line">Switch(config)#username admin2 secret admin2</span><br><span class="line">Switch(config)#line console 0</span><br><span class="line">Switch(config-line)#login local 　&lt;---　コンソール接続時にローカル認証を行う</span><br><span class="line">Switch(config-line)#line vty 0 4</span><br><span class="line">Switch(config-line)#login local 　&lt;---　Telnet接続時にローカル認証を行う</span><br><span class="line">Switch(config-line)#end</span><br></pre></td></tr></table></figure>
+<h2 id="認証サーバ"><a href="#認証サーバ" class="headerlink" title="認証サーバ"></a>認証サーバ</h2><ul>
+<li><p>認証サーバ</p>
+<ul>
+<li>RADIUS: Remote Authentication Dial-In User Service</li>
+<li>TACACS+: Terminal Access Controller Access-Control System+</li>
+<li>AAA: Authentication、Authorization、Accounting</li>
+</ul>
+</li>
+<li><p>特権：</p>
+<ul>
+<li>0　Router&gt;　5つのコマンド（disable、enable、exit、help、logout）、あまり使わない。</li>
+<li>1　Router&gt;　特権なし</li>
+<li>15 Router#　特権あり。すべての管理者レベルコマンドを含む</li>
+</ul>
+</li>
+<li><p>レベルを指定した特権パスワードの設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#enable secret 15 pass123456</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>現在の特権レベルを表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch#show privilege</span><br><span class="line">Current privilege level is 15</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>特権EXECモードへ移行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch&gt;enable 15</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="SSHを使用した管理アクセス"><a href="#SSHを使用した管理アクセス" class="headerlink" title="SSHを使用した管理アクセス"></a>SSHを使用した管理アクセス</h2><ul>
+<li>ルータの設定：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#username sshuser password cisco   &lt;--ユーザアカウントの設定</span><br><span class="line">Router(config)#hostname RT1   &lt;--ホスト名の設定</span><br><span class="line">RT1(config)#ip domain-name example.com   &lt;--ドメイン名の設定</span><br><span class="line">RT1(config)#crypto key generate rsa   &lt;--公開鍵暗号のためにペアの鍵を生成</span><br><span class="line">The name for the keys will be: RT1.example.com</span><br><span class="line">Choose the size of the key modulus in the range of 360 to 2048 for your</span><br><span class="line">  General Purpose Keys. Choosing a key modulus greater than 512 may take</span><br><span class="line">  a few minutes.</span><br><span class="line"></span><br><span class="line">How many bits in the modulus [512]: 1024   &lt;--鍵の長さを指定</span><br><span class="line">% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RT1(config)#ip ssh version 2   &lt;--SSHバージョンを２に設定</span><br><span class="line">*3 1 0:1:32.797: %SSH-5-ENABLED: SSH 1.99 has been enabled</span><br><span class="line">RT1(config)#line vty 0 4   &lt;--VTY回線の設定モードに入る</span><br><span class="line">RT1(config-line)#transport input ssh   &lt;--SSH接続のみ許可</span><br><span class="line">RT1(config-line)#login local   &lt;--ローカル認証を有効化</span><br><span class="line">RT1(config-line)#end</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>transport input</p>
+<ul>
+<li>transport input ssh: SSHのみ</li>
+<li>transport input telnet: Telnetのみ</li>
+<li>transport input ssh telnet: SSHとTelnet両方を許可</li>
+<li>transport input all: すべて許可</li>
+</ul>
+</li>
+<li><p>SSHサーバ機能の検証</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">RT1#show crypto key mypubkey rsa   &lt;--公開鍵の確認</span><br><span class="line">% Key pair was generated at: 0:1:16 UTC 3 1 1993</span><br><span class="line">Key name: RT1.example.com   &lt;--鍵の名前</span><br><span class="line"> Storage Device: not specified</span><br><span class="line"> Usage: General Purpose Key</span><br><span class="line"> Key is not exportable.</span><br><span class="line"> Key Data:</span><br><span class="line"> 000071f1  00006f29  000074d9  00000cf4  0000258d  000063b3  00005163  0000101c</span><br><span class="line"> 00007c04  000041c0  00000f26  00005a55  00007113  00004caa  00000063  00005fef</span><br><span class="line"> 00002695  0000626e  00000071  00006ef1  0000524a  00004261  00006fa7  4b68</span><br><span class="line">% Key pair was generated at: 0:1:16 UTC 3 1 1993</span><br><span class="line">Key name: RT1.example.com.server</span><br><span class="line">Temporary key</span><br><span class="line"> Usage: Encryption Key</span><br><span class="line"> Key is not exportable.</span><br><span class="line"> Key Data:</span><br><span class="line"> 000038d8  00002c1e  0000267c  000065ff  00005a0f  00006ac3  000023ed  000060d0</span><br><span class="line"> 00003271  0000205d  00007b1f  0000567a  000035f2  000065a0  00004446  00001774</span><br><span class="line"> 000067fc  000011dc  000014c5  000051a1  000034b6  00003f2c  00004297  5624</span><br><span class="line"></span><br><span class="line">RT1#show ip ssh   &lt;--SSHの設定情報を表示</span><br><span class="line">SSH Enabled - version 2.0</span><br><span class="line">Authentication timeout: 120 secs; Authentication retries: 3</span><br><span class="line"></span><br><span class="line">RT1#show ssh   &lt;--SSH接続の状態を表示</span><br><span class="line">%No SSHv2 server connections running.</span><br><span class="line">%No SSHv1 server connections running.</span><br></pre></td></tr></table></figure>
+<p>Attention: for SSH connection, you need to access from any common ethernet port (interface) in IP address.</p>
+<h2 id="EXECセッションのタイムアウト"><a href="#EXECセッションのタイムアウト" class="headerlink" title="EXECセッションのタイムアウト"></a>EXECセッションのタイムアウト</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RT1(config-line)#exec-timeout 15 5 #15分5秒タイムアウト</span><br></pre></td></tr></table></figure>
+<h2 id="バナーメッセージの設定"><a href="#バナーメッセージの設定" class="headerlink" title="バナーメッセージの設定"></a>バナーメッセージの設定</h2><ul>
+<li>定義：ルータに管理接続したときに表示されるメッセージのこと</li>
+<li>分類：<ul>
+<li>motd: 管理者間で共有情報を伝えるメッセージ</li>
+<li>login: 変更頻度の低い情報を使えるときに利用</li>
+<li>exec: 正しいパスワード入力後に表示される</li>
+</ul>
+</li>
+<li>変更：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RT1(config)#banner motd $</span><br><span class="line">Enter TEXT message.  End with the character &apos;$&apos;.</span><br><span class="line"></span><br><span class="line">+++++++++++MOTD BANNER++++++++++</span><br><span class="line"></span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<h1 id="スイッチのセキュリティ機能"><a href="#スイッチのセキュリティ機能" class="headerlink" title="スイッチのセキュリティ機能"></a>スイッチのセキュリティ機能</h1><h2 id="スイッチのポートセキュリティ"><a href="#スイッチのポートセキュリティ" class="headerlink" title="スイッチのポートセキュリティ"></a>スイッチのポートセキュリティ</h2><ul>
+<li>機能：スイッチの物理ポートに許可するMACアドレスを登録し、許可していない送信元MACアドレスのフレームを破棄する機能</li>
+<li>特徴：ルータには設定できない</li>
+<li>セキュアMACアドレスのタイプ<ul>
+<li>スタティック：手動で登録；MACアドレステーブルとrunning-config保存される</li>
+<li>ダイナミック：フレームを受信することで自動収集。再起動時に消去される。</li>
+<li>スティッキー：自動収集でrunning-configに保存される</li>
+</ul>
+</li>
+<li><p>セキュアMACアドレスの最大数を指定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#switchport port-security maximum 1 #デフォルトは１</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>違反モードの設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#switchport port-security violation &#123;protect | restrict | shutdown | shutdown lan&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>セキュアMACアドレスの設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#switchport port-security mac-address &lt;mac-address&gt;</span><br><span class="line">(config-if)#switchport port-security mac-address sticky</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ポートセキュリティ有効化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#switchport port-security</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>セキュアMACアドレスの表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(config-if)#show port-security address</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="未使用サービスの無効化"><a href="#未使用サービスの無効化" class="headerlink" title="未使用サービスの無効化"></a>未使用サービスの無効化</h1><ul>
+<li><p>CDPの無効化:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(config) #no cdp run</span><br><span class="line">または</span><br><span class="line">(config-if) #no cdp enable</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>HTTPS (SSL) を使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># HTTPサーバの無効化</span><br><span class="line">(config) #no ip http server</span><br><span class="line"></span><br><span class="line"># HTTPSサーバの有効化</span><br><span class="line">(config) #ip http secure-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>TCP/UDPスモールサーバの無効化：ルータ内のメモリに常駐して様々なサービスを提供するプログラムであり診断処理などに役に立つ。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># TCPスモールサーバの無効化</span><br><span class="line">(config)# no service tcp-small-servers</span><br><span class="line"></span><br><span class="line">#UDPスモールサーバの無効化</span><br><span class="line">(config)# no service udp-small-servers</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -459,6 +565,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/23-CCNA/" rel="prev" title="CCNA試験のまとめノート 14 ネットワークデバイスの管理">
+                CCNA試験のまとめノート 14 ネットワークデバイスの管理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -520,8 +630,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            見出し
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            概要
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -538,7 +657,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">ポスト</span>
                 </a>
               </div>
@@ -614,6 +733,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#パスワードによる管理アクセスの保護"><span class="nav-number">1.</span> <span class="nav-text">パスワードによる管理アクセスの保護</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#コンソールパスワード"><span class="nav-number">1.1.</span> <span class="nav-text">コンソールパスワード</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特権モードのパスワード"><span class="nav-number">1.2.</span> <span class="nav-text">特権モードのパスワード</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#コンフィギュレーションファイルのパスワード暗号化"><span class="nav-number">1.3.</span> <span class="nav-text">コンフィギュレーションファイルのパスワード暗号化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理アクセスに対するセキュリティの強化"><span class="nav-number">2.</span> <span class="nav-text">管理アクセスに対するセキュリティの強化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ユーザ認証による管理アクセスの保護"><span class="nav-number">2.1.</span> <span class="nav-text">ユーザ認証による管理アクセスの保護</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#認証サーバ"><span class="nav-number">2.2.</span> <span class="nav-text">認証サーバ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSHを使用した管理アクセス"><span class="nav-number">2.3.</span> <span class="nav-text">SSHを使用した管理アクセス</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXECセッションのタイムアウト"><span class="nav-number">2.4.</span> <span class="nav-text">EXECセッションのタイムアウト</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#バナーメッセージの設定"><span class="nav-number">2.5.</span> <span class="nav-text">バナーメッセージの設定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#スイッチのセキュリティ機能"><span class="nav-number">3.</span> <span class="nav-text">スイッチのセキュリティ機能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#スイッチのポートセキュリティ"><span class="nav-number">3.1.</span> <span class="nav-text">スイッチのポートセキュリティ</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未使用サービスの無効化"><span class="nav-number">4.</span> <span class="nav-text">未使用サービスの無効化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -783,7 +918,7 @@
         var disqus_config = function () {
           this.page.url = 'https://liaocy.net/2019/07/22-CCNA/';
           this.page.identifier = '2019/07/22-CCNA/';
-          this.page.title = 'CCNA試験のまとめノート 13 RIPv2';
+          this.page.title = 'CCNA試験のまとめノート 13 ネットワークデバイスのセキュリティ';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://liaocy-net.disqus.com/embed.js';
