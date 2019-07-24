@@ -1190,4 +1190,17 @@
         <tag>网站 Website</tag>
       </tags>
   </entry>
+  <entry>
+    <title><![CDATA[Awesome Network]]></title>
+    <url>%2Fawesome%2Fnw%2F</url>
+    <content type="text"><![CDATA[CertificationCisco ping-t：在线答题系统，CCNA免费。]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Awesome</category>
+      </categories>
+      <tags>
+        <tag>Awesome</tag>
+        <tag>网络工程师</tag>
+      </tags>
+  </entry>
 </search>
