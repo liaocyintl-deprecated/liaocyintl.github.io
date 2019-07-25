@@ -308,6 +308,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180625-pythondatetimetimezone/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/20180625-pythondatetimetimezone/" itemprop="url">Python 初始化 datetime.datetime 时设置时区</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T10:51:17+09:00">
+                2018-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/20180625-pythondatetimetimezone/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180625-pythondatetimetimezone/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在有时区开发需求的情况下，比如将时间对象插入到MongoDB，默认会使用UTC时间。<br>这时候，需要在初始化datetime对象时设置时区。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta, timezone</span><br><span class="line"><span class="comment"># 定义时区，CST中国标准时间，+8区</span></span><br><span class="line">CST = timezone(timedelta(hours=+<span class="number">8</span>), <span class="string">'CST'</span>)</span><br><span class="line"><span class="comment"># 创建时间对象并设置时区tzinfo为CST</span></span><br><span class="line">t = dt.datetime(<span class="number">2018</span>, <span class="number">6</span>, <span class="number">25</span>, <span class="number">10</span>, <span class="number">51</span>, <span class="number">17</span>, tzinfo=CST)</span><br></pre></td></tr></table></figure>
+<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2><p>在开发跨境的网络系统应用，或处理多个时区的时间数据时，时区的设定非常重要。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180623-selectrecordsfromlast24hours/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1928,189 +2093,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180613-wslslow/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180613-wslslow/" itemprop="url">Win10 Linux 子系统(WSL)缓慢及卡顿的解决方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T14:50:17+09:00">
-                2018-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Windows/" itemprop="url" rel="index">
-                    <span itemprop="name">Windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180613-wslslow/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180613-wslslow/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Windows 10 Linux 子系统 (Windows Subsystem for Linux, WSL)允许在windows内建Ubuntu系统并使用Bash命令，极大地方便了用户特别是开发者。</p>
-<p>但是，笔者在使用WSl时发现奇慢，卡顿非常严重。<br>比如说在PowerShell中启动Ubuntu，竟然需要30秒以上；Apt-get更是慢的惊人，半小时以上甚至有时候直接卡死。</p>
-<p>笔者通过以下方法解决了这个问题：</p>
-<h3 id="关闭-Antimalware-Service-Excutable"><a href="#关闭-Antimalware-Service-Excutable" class="headerlink" title="关闭 Antimalware Service Excutable"></a>关闭 Antimalware Service Excutable</h3><p>Antimalware Service Excutable (ASE) 是 Windows 内置的安全防护软件，在运行WSL时，可以看到ASE在后台运行占用CPU。</p>
-<p><img src="/uploads/postimgs/20180613001.png" alt="ASE阻碍WSL" title="ASE阻碍WSL"></p>
-<p>因此我们修改注册表把它关掉。</p>
-<p>注意：关闭ASE会造成一定的安全风险，要慎重。</p>
-<p>操作步骤：</p>
-<ol>
-<li>按Win+R打开运行对话框，输入 regedit 点击确定打开注册表管理器；</li>
-<li>在左侧找到 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender 目录；</li>
-<li>在窗口左侧右击 Windows Defender ，选择 “新建”， 创建一个 DWORD 键值；</li>
-<li>键值名称为 DisableAntiSpyware ， 其值设置为 1；</li>
-<li>重启计算机。</li>
-</ol>
-<p>参考：<a href="https://answers.microsoft.com/en-us/protect/forum/all/how-to-kill-antimalware-service-executable/b5ce5b46-a65b-460c-b4cd-e2cca50358cf?page=1" target="_blank" rel="noopener">《How to kill “Antimalware Service Executable”》</a></p>
-<h3 id="卸载360安全卫士与360杀毒"><a href="#卸载360安全卫士与360杀毒" class="headerlink" title="卸载360安全卫士与360杀毒"></a>卸载360安全卫士与360杀毒</h3><p>实话说360安全卫士与360杀毒都是非常好用的防护软件，这里卸载实属迫不得已。</p>
-<p>另一个挡在WSL前面的进程是“360安全卫士主动防护”，我尝试将WSL加入到360木马防护白名单，但是没有改善。<br>不得已将360安全卫士与360杀毒卸载了用别的杀毒软件代替。</p>
-<p>希望以后360会针对WSL做优化，那时候再回来用。</p>
-<h3 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h3><p>经过以上操作，WSL健步如飞。</p>
-<p>作者不保证这些方法适合所有用户。<br>遇到WSL缓慢或卡顿的读者还是要根据任务管理器中各进程的CPU占用率，<br>自己分析阻碍WSL运行的进程，并采取相应的措施。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2163,7 +2145,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
