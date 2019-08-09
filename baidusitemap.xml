@@ -4,6 +4,56 @@
 
     
   <url>
+    <loc>https://liaocy.net/awesome/data/</loc>
+    <lastmod>2019-08-09T00:32:59.626Z</lastmod>
+    <data>
+        <display>
+        <title>Awesome Data Science</title>
+        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
+        
+        <tag>Data Science</tag>
+         
+        <tag>Awesome</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2019/07/englishvocab/</loc>
+    <lastmod>2019-07-26T06:39:22.532Z</lastmod>
+    <data>
+        <display>
+        <title>2019年07月英语词汇</title>
+        <pubTime>2019-06-30T15:00:00.000Z</pubTime>
+        
+        <tag>Vocabulary</tag>
+         
+        <tag>英语词汇</tag>
+         
+         
+           
+             
+              <breadCrumb title="英语 English" url="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/"/>
+          
+             
+              <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2019/07/japanesevocab/</loc>
     <lastmod>2019-07-26T01:21:49.271Z</lastmod>
     <data>
@@ -22,31 +72,6 @@
           
              
               <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2019/07/englishvocab/</loc>
-    <lastmod>2019-07-25T01:01:18.160Z</lastmod>
-    <data>
-        <display>
-        <title>2019年07月英语词汇</title>
-        <pubTime>2019-06-30T15:00:00.000Z</pubTime>
-        
-        <tag>Vocabulary</tag>
-         
-        <tag>英语词汇</tag>
-         
-         
-           
-             
-              <breadCrumb title="英语 English" url="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/"/>
-          
-             
-              <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
           
         </display>
     </data>
@@ -690,31 +715,6 @@
         <tag>Awesome</tag>
          
         <tag>计算机视觉 Computer Vision</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Awesome" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Awesome/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/awesome/data/</loc>
-    <lastmod>2019-07-03T06:59:05.963Z</lastmod>
-    <data>
-        <display>
-        <title>Awesome Data Science</title>
-        <pubTime>2017-07-06T15:00:00.000Z</pubTime>
-        
-        <tag>Data Science</tag>
-         
-        <tag>Awesome</tag>
          
          
            

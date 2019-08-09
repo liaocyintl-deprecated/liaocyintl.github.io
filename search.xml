@@ -220,7 +220,7 @@
   <entry>
     <title><![CDATA[2019年07月英语词汇]]></title>
     <url>%2F2019%2F07%2Fenglishvocab%2F</url>
-    <content type="text"><![CDATA[2019年06月英语词汇 单词 注音 词性词义 desirable [dɪ’zaɪərəbl] adj. 可取的，值得拥有的，令人向往的；积极获取的。 encapsulation [ɪn,kæpsə’leʃən] n. 封装；包装；密封 brief [brif] adj. 简短的，简洁的；短暂的，草率的 n. 摘要，简报；概要，诉书 transparent [træns’pærənt] adj. 透明的；显然的；坦率的；易懂的]]></content>
+    <content type="text"><![CDATA[2019年06月英语词汇 单词 注音 词性词义 desirable [dɪ’zaɪərəbl] adj. 可取的，值得拥有的，令人向往的；积极获取的。 encapsulation [ɪn,kæpsə’leʃən] n. 封装；包装；密封 brief [brif] adj. 简短的，简洁的；短暂的，草率的 n. 摘要，简报；概要，诉书 transparent [træns’pærənt] adj. 透明的；显然的；坦率的；易懂的 redundancy [rɪ’dʌndənsi] n. [计][数] 冗余（等于redundance）；裁员；人浮于事 Convergence [kən’vɝdʒəns] n. [数] 收敛；会聚，集合 failover [feil’əuvər] n. （计算机）故障切换；失效备援]]></content>
       <categories>
         <category>英语 English</category>
         <category>词汇 Vocabulary</category>
@@ -1103,7 +1103,7 @@
   <entry>
     <title><![CDATA[Awesome Data Science]]></title>
     <url>%2Fawesome%2Fdata%2F</url>
-    <content type="text"><![CDATA[Tutorials pandas_note: 一份关于 Pandas 学习的系列教程 Numpy 100 Question: 100道 Numpy 的官方例题 Visualization OpenRefine: Google开发的关系型数据可视化工具 Tensorflow Colabratory: 谷歌在线的Jupyter notebook，支持Tensorflow，似乎支持GPU加速 OpenStreetMap OL-ext: OpenLayers扩展包 Workflow &amp; Data Pipeline WireCloud: 给予Web的拖拽式数据流处理工具。 Data WarehouseNoSQL Redis: 有名的KVS数据库 Neo4j: 一个节点，图，网络构造数据库，]]></content>
+    <content type="text"><![CDATA[Tutorials pandas_note: 一份关于 Pandas 学习的系列教程 Numpy 100 Question: 100道 Numpy 的官方例题 Visualization OpenRefine: Google开发的关系型数据可视化工具 Tensorflow Colabratory: 谷歌在线的Jupyter notebook，支持Tensorflow，似乎支持GPU加速 OpenStreetMap OL-ext: OpenLayers扩展包 Workflow &amp; Data Pipeline WireCloud: 给予Web的拖拽式数据流处理工具。 Data WarehouseDBMS orchestrator: 一个数据库冗余化管理，重构，拓扑可视化（支持拖拽）工具。 NoSQL Redis: 有名的KVS数据库 Neo4j: 一个节点，图，网络构造数据库，]]></content>
       <categories>
         <category>开发 Development</category>
         <category>Awesome</category>
