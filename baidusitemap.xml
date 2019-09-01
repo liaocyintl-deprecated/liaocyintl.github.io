@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>https://liaocy.net/2019/09/01-zabbixagentinstall/</loc>
+    <lastmod>2019-09-01T14:13:05.275Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix Agent安装在各种系统</title>
+        <pubTime>2019-09-01T13:42:00.000Z</pubTime>
+        
+        <tag>监视 Monitoring</tag>
+         
+        <tag>Zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="运维 Operation" url="https://liaocy.net/categories/%E8%BF%90%E7%BB%B4-Operation/"/>
+          
+             
+              <breadCrumb title="监视 Monitoring" url="https://liaocy.net/categories/%E8%BF%90%E7%BB%B4-Operation/%E7%9B%91%E8%A7%86-Monitoring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/awesome/dev/</loc>
-    <lastmod>2019-08-15T00:18:56.595Z</lastmod>
+    <lastmod>2019-08-15T00:19:05.759Z</lastmod>
     <data>
         <display>
         <title>Awesome Development Tools</title>
