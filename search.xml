@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[基本情報技術者(午前)的一些知识点]]></title>
+    <url>%2F2019%2F09%2F25-FE-points%2F</url>
+    <content type="text"><![CDATA[基本情报的一些知识点备忘 stub：Top-down测试中，用于代替未完成的下层模块，被上层模块调用 driver：Bottom-up测试中，用于代替未完成的上层模块，用来调用下层模块 パレート図：柏拉图，累积百分图，柱状图代表数量，折线图上的任意点代表其左边的积分在总积分中的百分比。 撮影：投影，选择列，select A, B C 選択：选择，WHERE a=a 和：两个集合单纯合并起来，垂直合并]]></content>
+      <categories>
+        <category>資格試験</category>
+        <category>基本情報技術者</category>
+      </categories>
+      <tags>
+        <tag>ノート</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Zabbix Agent安装在各种系统]]></title>
     <url>%2F2019%2F09%2F01-zabbixagentinstall%2F</url>
     <content type="text"><![CDATA[本文介绍如何将Zabbix的Agent安装在各种系统 Ubuntu参考资料 zabbix ubuntu-agentインストール 安装流程安装：123# wget http://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix/zabbix-agent_4.2.5-1%2Bbionic_amd64.deb# dpkg -i zabbix-agent_4.2.5-1+bionic_amd64.deb# apt-get update 防火墙开洞（如果防火墙开启的话）：1# ufw allow 10050 修改配置文件：123456vi /etc/zabbix/zabbix_agentd.conf修改下面必要内容：Server=Zabbix服务器IP地址Hostname=Agent的Host名ServerActive=Zabbix服务器IP地址 重启动：1/etc/init.d/zabbix-agent restart]]></content>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liaocy.net/"/>
-  <updated>2019-09-01T14:13:05.275Z</updated>
+  <updated>2019-09-25T12:25:06.710Z</updated>
   <id>https://liaocy.net/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基本情報技術者(午前)的一些知识点</title>
+    <link href="https://liaocy.net/2019/09/25-FE-points/"/>
+    <id>https://liaocy.net/2019/09/25-FE-points/</id>
+    <published>2019-09-25T12:00:00.000Z</published>
+    <updated>2019-09-25T12:25:06.710Z</updated>
+    
+    <content type="html"><![CDATA[<p>基本情报的一些知识点备忘<br><a id="more"></a></p><ul><li>stub：Top-down测试中，用于代替未完成的下层模块，被上层模块调用</li><li><p>driver：Bottom-up测试中，用于代替未完成的上层模块，用来调用下层模块</p></li><li><p>パレート図：柏拉图，累积百分图，柱状图代表数量，折线图上的任意点代表其左边的积分在总积分中的百分比。</p></li><li><p>撮影：投影，选择列，select A, B C</p></li><li>選択：选择，WHERE a=a</li><li>和：两个集合单纯合并起来，垂直合并</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;基本情报的一些知识点备忘&lt;br&gt;
+    
+    </summary>
+    
+      <category term="資格試験" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/"/>
+    
+      <category term="基本情報技術者" scheme="https://liaocy.net/categories/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85/"/>
+    
+    
+      <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
+    
+  </entry>
   
   <entry>
     <title>Zabbix Agent安装在各种系统</title>
@@ -475,32 +499,6 @@
       <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
     
       <category term="日语词汇" scheme="https://liaocy.net/tags/%E6%97%A5%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019年07月英语词汇</title>
-    <link href="https://liaocy.net/2019/07/englishvocab/"/>
-    <id>https://liaocy.net/2019/07/englishvocab/</id>
-    <published>2019-06-30T15:00:00.000Z</published>
-    <updated>2019-07-26T06:39:22.532Z</updated>
-    
-    <content type="html"><![CDATA[<p>2019年06月英语词汇<br><a id="more"></a></p><table><thead><tr><th>单词</th><th>注音</th><th>词性词义</th></tr></thead><tbody><tr><td>desirable</td><td>[dɪ’zaɪərəbl]</td><td>adj. 可取的，值得拥有的，令人向往的；积极获取的。</td></tr><tr><td>encapsulation</td><td>[ɪn,kæpsə’leʃən]</td><td>n. 封装；包装；密封</td></tr><tr><td>brief</td><td>[brif]</td><td>adj. 简短的，简洁的；短暂的，草率的 <br> n. 摘要，简报；概要，诉书</td></tr><tr><td>transparent</td><td>[træns’pærənt]</td><td>adj. 透明的；显然的；坦率的；易懂的</td></tr><tr><td>redundancy</td><td>[rɪ’dʌndənsi]</td><td>n. [计][数] 冗余（等于redundance）；裁员；人浮于事</td></tr><tr><td>Convergence</td><td>[kən’vɝdʒəns]</td><td>n. [数] 收敛；会聚，集合</td></tr><tr><td>failover</td><td>[feil’əuvər]</td><td>n. （计算机）故障切换；失效备援</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2019年06月英语词汇&lt;br&gt;
-    
-    </summary>
-    
-      <category term="英语 English" scheme="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/"/>
-    
-      <category term="词汇 Vocabulary" scheme="https://liaocy.net/categories/%E8%8B%B1%E8%AF%AD-English/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-    
-    
-      <category term="Vocabulary" scheme="https://liaocy.net/tags/Vocabulary/"/>
-    
-      <category term="英语词汇" scheme="https://liaocy.net/tags/%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87/"/>
     
   </entry>
   
