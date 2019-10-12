@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/09/25-FE-points/</loc>
-    <lastmod>2019-09-30T13:33:04.413Z</lastmod>
+    <lastmod>2019-10-12T06:31:49.657Z</lastmod>
     <data>
         <display>
         <title>基本情報技術者(午前)的一些知识点</title>
@@ -82,9 +82,9 @@
         <title>Awesome Data Science</title>
         <pubTime>2017-07-06T15:00:00.000Z</pubTime>
         
-        <tag>Data Science</tag>
-         
         <tag>Awesome</tag>
+         
+        <tag>Data Science</tag>
          
          
            
@@ -570,6 +570,31 @@
 
     
   <url>
+    <loc>https://liaocy.net/2019/06/japanesevocab/</loc>
+    <lastmod>2019-07-07T11:49:44.108Z</lastmod>
+    <data>
+        <display>
+        <title>2019年06月日语词汇</title>
+        <pubTime>2019-05-31T15:00:00.000Z</pubTime>
+        
+        <tag>Vocabulary</tag>
+         
+        <tag>日语词汇</tag>
+         
+         
+           
+             
+              <breadCrumb title="日语 Japanese" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
+          
+             
+              <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2019/01/08-jupyterbreakpoint/</loc>
     <lastmod>2019-07-03T07:35:22.406Z</lastmod>
     <data>
@@ -726,31 +751,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2019/06/japanesevocab/</loc>
-    <lastmod>2019-07-03T07:01:42.938Z</lastmod>
-    <data>
-        <display>
-        <title>2019年06月日语词汇</title>
-        <pubTime>2019-05-31T15:00:00.000Z</pubTime>
-        
-        <tag>Vocabulary</tag>
-         
-        <tag>日语词汇</tag>
-         
-         
-           
-             
-              <breadCrumb title="日语 Japanese" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/"/>
-          
-             
-              <breadCrumb title="词汇 Vocabulary" url="https://liaocy.net/categories/%E6%97%A5%E8%AF%AD-Japanese/%E8%AF%8D%E6%B1%87-Vocabulary/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2019/06/englishvocab/</loc>
     <lastmod>2019-07-03T07:01:29.746Z</lastmod>
     <data>
@@ -783,9 +783,9 @@
         <title>Awesome Computer Vision</title>
         <pubTime>2017-07-06T15:00:00.000Z</pubTime>
         
-        <tag>Awesome</tag>
-         
         <tag>计算机视觉 Computer Vision</tag>
+         
+        <tag>Awesome</tag>
          
          
            
@@ -1287,6 +1287,29 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/08/24-phpstrcompare/</loc>
+    <lastmod>2019-07-03T04:51:44.424Z</lastmod>
+    <data>
+        <display>
+        <title>相同的长字符串PHP比较结果不同的解决办法</title>
+        <pubTime>2018-08-24T14:04:21.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="PHP" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2018/08/27-blockchainheritage/</loc>
     <lastmod>2019-07-03T04:51:44.424Z</lastmod>
     <data>
@@ -1307,29 +1330,6 @@
           
              
               <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/08/24-phpstrcompare/</loc>
-    <lastmod>2019-07-03T04:51:44.424Z</lastmod>
-    <data>
-        <display>
-        <title>相同的长字符串PHP比较结果不同的解决办法</title>
-        <pubTime>2018-08-24T14:04:21.000Z</pubTime>
-        
-        <tag>PHP</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="PHP" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
           
         </display>
     </data>
@@ -1485,6 +1485,29 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/</loc>
+    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
+    <data>
+        <display>
+        <title>Python 计算给定值在给定高斯分布中的概率</title>
+        <pubTime>2018-09-18T03:06:22.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+          
+             
+              <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2018/09/20180915-androidspeaker/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
@@ -1503,29 +1526,6 @@
           
              
               <breadCrumb title="安卓 Android" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%AE%89%E5%8D%93-Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/</loc>
-    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
-    <data>
-        <display>
-        <title>Python 计算给定值在给定高斯分布中的概率</title>
-        <pubTime>2018-09-18T03:06:22.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
-          
-             
-              <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
           
         </display>
     </data>
