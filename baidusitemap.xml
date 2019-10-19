@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://liaocy.net/2019/09/25-FE-points/</loc>
-    <lastmod>2019-10-12T06:54:57.760Z</lastmod>
+    <lastmod>2019-10-19T08:58:27.351Z</lastmod>
     <data>
         <display>
         <title>基本情報技術者(午前)的一些知识点</title>
@@ -1485,29 +1485,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/</loc>
-    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
-    <data>
-        <display>
-        <title>Python 计算给定值在给定高斯分布中的概率</title>
-        <pubTime>2018-09-18T03:06:22.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
-          
-             
-              <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/09/20180915-androidspeaker/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
@@ -1533,12 +1510,35 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
+    <loc>https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
         <display>
-        <title>Tensorflow学习（一） -- 开篇</title>
-        <pubTime>2018-09-29T13:05:22.000Z</pubTime>
+        <title>Python 计算给定值在给定高斯分布中的概率</title>
+        <pubTime>2018-09-18T03:06:22.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+          
+             
+              <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
+    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
+    <data>
+        <display>
+        <title>Tensorflow学习（二） -- 基本分类器</title>
+        <pubTime>2018-09-30T08:40:22.000Z</pubTime>
         
         <tag>Python</tag>
          
@@ -1560,12 +1560,12 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
+    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
         <display>
-        <title>Tensorflow学习（二） -- 基本分类器</title>
-        <pubTime>2018-09-30T08:40:22.000Z</pubTime>
+        <title>Tensorflow学习（一） -- 开篇</title>
+        <pubTime>2018-09-29T13:05:22.000Z</pubTime>
         
         <tag>Python</tag>
          
@@ -1830,33 +1830,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/20180620-mqttclient/</loc>
-    <lastmod>2019-07-03T04:51:43.972Z</lastmod>
-    <data>
-        <display>
-        <title>Python实现MQTT接收订阅数据</title>
-        <pubTime>2018-06-20T05:40:17.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>消息队列遥测传输 MQTT</tag>
-         
-        <tag>物联网 IoT</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="MQTT" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/MQTT/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/20180621-yamlvalidator/</loc>
     <lastmod>2019-07-03T04:51:43.972Z</lastmod>
     <data>
@@ -1877,6 +1850,33 @@
           
              
               <breadCrumb title="Hexo" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/20180620-mqttclient/</loc>
+    <lastmod>2019-07-03T04:51:43.972Z</lastmod>
+    <data>
+        <display>
+        <title>Python实现MQTT接收订阅数据</title>
+        <pubTime>2018-06-20T05:40:17.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>消息队列遥测传输 MQTT</tag>
+         
+        <tag>物联网 IoT</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="MQTT" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/MQTT/"/>
           
         </display>
     </data>

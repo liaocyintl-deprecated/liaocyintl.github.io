@@ -4,7 +4,7 @@
   <url>
     <loc>https://liaocy.net/2019/09/25-FE-points/</loc>
     
-    <lastmod>2019-10-12T06:54:57.760Z</lastmod>
+    <lastmod>2019-10-19T08:58:27.351Z</lastmod>
     
   </url>
   
@@ -422,13 +422,6 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/</loc>
-    
-    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liaocy.net/2018/09/20180915-androidspeaker/</loc>
     
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
@@ -436,7 +429,7 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
+    <loc>https://liaocy.net/2018/09/20180918-calprobinnormaldistribution/</loc>
     
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     
@@ -444,6 +437,13 @@
   
   <url>
     <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
+    
+    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
     
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     
@@ -513,14 +513,14 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/20180620-mqttclient/</loc>
+    <loc>https://liaocy.net/2018/20180621-yamlvalidator/</loc>
     
     <lastmod>2019-07-03T04:51:43.972Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/20180621-yamlvalidator/</loc>
+    <loc>https://liaocy.net/2018/20180620-mqttclient/</loc>
     
     <lastmod>2019-07-03T04:51:43.972Z</lastmod>
     
