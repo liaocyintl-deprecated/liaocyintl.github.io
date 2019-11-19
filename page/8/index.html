@@ -308,6 +308,214 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180703-detaileditdistance/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/20180703-detaileditdistance/" itemprop="url">一个可以输出具体变化字符的编辑距离改进算法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-03T16:04:00+09:00">
+                2018-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/" itemprop="url" rel="index">
+                    <span itemprop="name">研究 Research</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研究-Research/语言处理-Language-Processing/" itemprop="url" rel="index">
+                    <span itemprop="name">语言处理 Language Processing</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/20180703-detaileditdistance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180703-detaileditdistance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p><a href="https://github.com/liaocyintl/detail_edit_distance" target="_blank" rel="noopener">https://github.com/liaocyintl/detail_edit_distance</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>此算法为编辑距离（Edit Distance）又称莱文斯坦距离(Levenshtein distance, LD [1])算法的改良版本。<br>传统的编辑距离算法，可以得出从原字符串source变更为目标target字符串，所需要最少的变更步骤，或称成本（cost）。<br>我们的改良算法除了能够输出最小成本以外，还可以给出具体那些字符产生了变更，包括插入（insertions），删除（deletions）和交换（substitutions）.</p>
+<p>例如, 字符串”kitten”与”sitting”的编辑距离是3。<br>我们的算法可以具体地给出哪些字符发生了变更，如下：</p>
+<ul>
+<li>kitten → sitten (交换”k”为”s”)</li>
+<li>sitten → sittin (交换”e”为”i”)</li>
+<li>sittin → sitting (插入”g”在最后)</li>
+</ul>
+<p>关于编辑距离:<br>(Levenshtein distance)[<a href="https://en.wikipedia.org/wiki/Levenshtein_distance]" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Levenshtein_distance]</a></p>
+<p>参考文献:<br>[1] LEVENSHTEIN, Vladimir I. Binary codes capable of correcting deletions, insertions, and reversals. Soviet physics doklady. Vol.10, No.8, pp.707-710, 1966.</p>
+<h1 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h1><p><strong>克隆代码到本地</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/liaocyintl/detail_edit_distance</span><br></pre></td></tr></table></figure>
+<p><strong>例1.</strong> 获取字符串”kitten”与”sitting”的详细变化:</p>
+<p>Python code:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> distance <span class="keyword">import</span> ded</span><br><span class="line">source = <span class="string">"kitten"</span></span><br><span class="line">target = <span class="string">"sitting"</span></span><br><span class="line">rs = ded(source=source, target=target)</span><br><span class="line">print(rs)</span><br></pre></td></tr></table></figure></p>
+<p>输出 (rs):<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"detail"</span>: [</span><br><span class="line">      &#123;<span class="attr">"type"</span>: <span class="string">"sub"</span>, <span class="attr">"src_i"</span>: [<span class="number">0</span>], <span class="attr">"tgt"</span>: <span class="string">"s"</span>, <span class="attr">"src"</span>: <span class="string">"k"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">0</span>], <span class="attr">"cost"</span>: <span class="number">1</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"src_i"</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="attr">"tgt"</span>: <span class="string">"itt"</span>, <span class="attr">"src"</span>: <span class="string">"itt"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="attr">"cost"</span>: <span class="number">0</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"type"</span>: <span class="string">"sub"</span>, <span class="attr">"src_i"</span>: [<span class="number">4</span>], <span class="attr">"tgt"</span>: <span class="string">"i"</span>, <span class="attr">"src"</span>: <span class="string">"e"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">4</span>], <span class="attr">"cost"</span>: <span class="number">1</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"src_i"</span>: [<span class="number">5</span>], <span class="attr">"tgt"</span>: <span class="string">"n"</span>, <span class="attr">"src"</span>: <span class="string">"n"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">5</span>], <span class="attr">"cost"</span>: <span class="number">0</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">"type"</span>: <span class="string">"ins"</span>, <span class="attr">"src_i"</span>: [], <span class="attr">"tgt"</span>: <span class="string">"g"</span>, <span class="attr">"src"</span>: <span class="string">""</span>, <span class="attr">"tgt_i"</span>: [<span class="number">6</span>], <span class="attr">"cost"</span>: <span class="number">1</span>&#125;</span><br><span class="line">  ], </span><br><span class="line">  <span class="attr">"cost"</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>“detail”:  字符串”kitten”与”sitting”的详细变化。<ul>
+<li>“type”的值可以是 [“none”, “ins”, “del”, “sub”]， 其中：<ul>
+<li>‘none”:  无变更</li>
+<li>“ins”: 发生了插入</li>
+<li>‘del’: 发生了删除</li>
+<li>“sub”: 发生了交换</li>
+</ul>
+</li>
+<li>“src” and “tgt”: 发生变化的子字符串（原字符串和目标字符串）</li>
+<li>“src_i” and “tgt_i”: 发生变化的子字符串（原字符串和目标字符串）的下脚标</li>
+<li>“cost”: 该变更产生多少成本</li>
+</ul>
+</li>
+<li>“cost”: 总成本</li>
+</ul>
+<p><strong>例2.</strong> 获取分词后字符串的详细变化：</p>
+<p>如果你需要以词为单位比较两个句子，可以把分好词的句子作为输入，例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> distance <span class="keyword">import</span> ded</span><br><span class="line">source = <span class="string">'I have a dream'</span></span><br><span class="line">source = source.split(<span class="string">" "</span>) <span class="comment">#按空格将句子分成["I", "have", "a", "dream"]</span></span><br><span class="line">target = <span class="string">'I had a dream about you'</span></span><br><span class="line">target = target.split(<span class="string">" "</span>)</span><br><span class="line">rs = ded(source=source, target=target)</span><br><span class="line">print(rs)</span><br></pre></td></tr></table></figure></p>
+<p>输出:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cost"</span>: <span class="number">3</span>, </span><br><span class="line">  <span class="attr">"detail"</span>: [</span><br><span class="line">      &#123;<span class="attr">"src_i"</span>: [<span class="number">0</span>], <span class="attr">"src"</span>: <span class="string">"i"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">0</span>], <span class="attr">"tgt"</span>: <span class="string">"i"</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src_i"</span>: [<span class="number">1</span>], <span class="attr">"src"</span>: <span class="string">"have"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">1</span>], <span class="attr">"tgt"</span>: <span class="string">"had"</span>, <span class="attr">"type"</span>: <span class="string">"sub"</span>, <span class="attr">"cost"</span>: <span class="number">1</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src_i"</span>: [<span class="number">2</span>, <span class="number">3</span>], <span class="attr">"src"</span>: <span class="string">"adream"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">2</span>, <span class="number">3</span>], <span class="attr">"tgt"</span>: <span class="string">"adream"</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src_i"</span>: [], <span class="attr">"src"</span>: <span class="string">""</span>, <span class="attr">"tgt_i"</span>: [<span class="number">4</span>, <span class="number">5</span>], <span class="attr">"tgt"</span>: <span class="string">"aboutyou"</span>, <span class="attr">"type"</span>: <span class="string">"ins"</span>, <span class="attr">"cost"</span>: <span class="number">2</span>&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>例3.</strong> 按字符一个一个输出结果，不要把相邻相同的变更进行合并:</p>
+<p>设定 ‘is_combine_LCS’ 为 ‘False’ 则按字符一个一个输出结果，不会把相邻相同的变更进行合并。<br>默认为 ‘True’。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> distance <span class="keyword">import</span> ded</span><br><span class="line">source = <span class="string">"kitten"</span></span><br><span class="line">target = <span class="string">"sitting"</span></span><br><span class="line">rs = ded(source=source, target=target, is_combine_LCS=<span class="keyword">False</span>)</span><br><span class="line">print(rs)</span><br></pre></td></tr></table></figure>
+<p>输出:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cost"</span>: <span class="number">3</span>, </span><br><span class="line">  <span class="attr">"detail"</span>: [</span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">"k"</span>, <span class="attr">"cost"</span>: <span class="number">1</span>, <span class="attr">"type"</span>: <span class="string">"sub"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">0</span>], <span class="attr">"src_i"</span>: [<span class="number">0</span>], <span class="attr">"tgt"</span>: <span class="string">"s"</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">"i"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">1</span>], <span class="attr">"src_i"</span>: [<span class="number">1</span>], <span class="attr">"tgt"</span>: <span class="string">"i"</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">"t"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">2</span>], <span class="attr">"src_i"</span>: [<span class="number">2</span>], <span class="attr">"tgt"</span>: <span class="string">"t"</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">"t"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">3</span>], <span class="attr">"src_i"</span>: [<span class="number">3</span>], <span class="attr">"tgt"</span>: <span class="string">"t"</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">"e"</span>, <span class="attr">"cost"</span>: <span class="number">1</span>, <span class="attr">"type"</span>: <span class="string">"sub"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">4</span>], <span class="attr">"src_i"</span>: [<span class="number">4</span>], <span class="attr">"tgt"</span>: <span class="string">"i"</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">"n"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">5</span>], <span class="attr">"src_i"</span>: [<span class="number">5</span>], <span class="attr">"tgt"</span>: <span class="string">"n"</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">"src"</span>: <span class="string">""</span>, <span class="attr">"cost"</span>: <span class="number">1</span>, <span class="attr">"type"</span>: <span class="string">"ins"</span>, <span class="attr">"tgt_i"</span>: [<span class="number">6</span>], <span class="attr">"src_i"</span>: [], <span class="attr">"tgt"</span>: <span class="string">"g"</span>&#125;</span><br><span class="line">  ]&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出子字符串”itt”被拆分成一个一个单字</p>
+<p><strong>例4.</strong> 按照原字符串的最小成本输出:</p>
+<p>例如在“打字练习”的应用中，我们需要计算用户有效输入的得分。<br>打字练习的教材可能包含很长的内容，用户输入只是其中的一部分。</p>
+<p>这时候，我们将用户输入内容作为source输入；<br>将教材作为target输入；<br>设置 ‘as_least_cost’ 为 ‘True’， 这样算法会按照在source字符串的最小成本进行输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> distance <span class="keyword">import</span> ded</span><br><span class="line">source = <span class="string">"I had a dream that my"</span></span><br><span class="line">target = <span class="string">"I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character."</span></span><br><span class="line">rs = ded(source=source.split(<span class="string">" "</span>), target=target.split(<span class="string">" "</span>), as_least_cost=<span class="keyword">True</span>)</span><br><span class="line">print(rs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"detail"</span>: [</span><br><span class="line">    &#123;<span class="attr">"tgt_i"</span>: [<span class="number">0</span>], <span class="attr">"src"</span>: <span class="string">"i"</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"src_i"</span>: [<span class="number">0</span>], <span class="attr">"tgt"</span>: <span class="string">"i"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>&#125;, </span><br><span class="line">    &#123;<span class="attr">"tgt_i"</span>: [<span class="number">1</span>], <span class="attr">"src"</span>: <span class="string">"had"</span>, <span class="attr">"type"</span>: <span class="string">"sub"</span>, <span class="attr">"src_i"</span>: [<span class="number">1</span>], <span class="attr">"tgt"</span>: <span class="string">"have"</span>, <span class="attr">"cost"</span>: <span class="number">1</span>&#125;, </span><br><span class="line">    &#123;<span class="attr">"tgt_i"</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="attr">"src"</span>: <span class="string">"adreamthatmy"</span>, <span class="attr">"type"</span>: <span class="string">"none"</span>, <span class="attr">"src_i"</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="attr">"tgt"</span>: <span class="string">"adreamthatmy"</span>, <span class="attr">"cost"</span>: <span class="number">0</span>&#125;</span><br><span class="line">  ], </span><br><span class="line">  <span class="attr">"cost"</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，其实在source里面，只有”had”一处错误。<br>因此有效输入单词数量为 len(source) - rs[“cost”] = 6 - 1 = 5</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>如果该算法对您有帮助的话请引用我们的论文：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@article&#123;liao2013,</span><br><span class="line">    title=&#123;Development of the Japanese Input Training System: Four Types of Training and the Fast Algorithm for Automatic Scoring&#125;,</span><br><span class="line">    author=&#123;Liao, Chenyi and Minoura, Emiko and Takeoka, Saori and Ozaki Masahiro&#125;,</span><br><span class="line">    journal=&#123;Proceedings of the 75th National Convention of IPSJ&#125;,</span><br><span class="line">    pages=&#123;655--656&#125;,</span><br><span class="line">    year=&#123;2013&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180630-pregnantjapanese/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2094,175 +2302,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180616-phpexportdatatableexcel/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180616-phpexportdatatableexcel/" itemprop="url">使用PHPExcel将Wordpress数据库中的某个表导出成Excel表格并下载</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-16T21:05:54+09:00">
-                2018-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Wordpress/" itemprop="url" rel="index">
-                    <span itemprop="name">Wordpress</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180616-phpexportdatatableexcel/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180616-phpexportdatatableexcel/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>需要将Wordpress数据库中的某个表导出成Excel表格并下载。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="原料"><a href="#原料" class="headerlink" title="原料"></a>原料</h3><ul>
-<li>PHP 7.0</li>
-<li><a href="https://github.com/PHPOffice/PHPExcel" target="_blank" rel="noopener">PHPExcel</a></li>
-</ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入PHPExcel</span></span><br><span class="line"><span class="keyword">require_once</span> get_template_directory() . <span class="string">'/functions/PHPExcel.php'</span>;</span><br><span class="line">$objPHPExcel = <span class="keyword">new</span> PHPExcel();</span><br><span class="line">$objPHPExcel-&gt;setActiveSheetIndex(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义表头</span></span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">"A1"</span>, <span class="string">"ID"</span>);</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">"B1"</span>, <span class="string">"商品名"</span>);</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">"C1"</span>, <span class="string">"单价"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据库查询</span></span><br><span class="line"><span class="keyword">global</span> $wpdb;</span><br><span class="line">$table_products = $wpdb-&gt;prefix . <span class="string">'products'</span>;</span><br><span class="line">$sql = <span class="string">"SELECT * FROM &#123;$table_products&#125;"</span>;</span><br><span class="line">$rows = $wpdb-&gt;get_results($sql);</span><br><span class="line">$rowCount = <span class="number">2</span>;</span><br><span class="line"><span class="comment">//遍历数据库行</span></span><br><span class="line"><span class="keyword">foreach</span> ($rows <span class="keyword">as</span> $row) &#123;</span><br><span class="line">    <span class="comment">// 从表第二行开始写数据</span></span><br><span class="line">    $objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(<span class="string">'A'</span> . $rowCount, $row-&gt;ID);</span><br><span class="line">    $objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(<span class="string">'B'</span> . $rowCount, $row-&gt;name);</span><br><span class="line">    $objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(<span class="string">'C'</span> . $rowCount, $row-&gt;price);</span><br><span class="line">    $rowCount++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">header(<span class="string">'Content-Type: application/vnd.ms-excel'</span>);</span><br><span class="line"><span class="comment">// filename：定义下载文件名</span></span><br><span class="line">header(<span class="string">'Content-Disposition: attachment;filename="Products_'</span> . date(<span class="string">'Y_m_d'</span>) . <span class="string">'.xlsx"'</span>);</span><br><span class="line">header(<span class="string">'Cache-Control: max-age=0'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出下载数据</span></span><br><span class="line">$objWriter = <span class="keyword">new</span> PHPExcel_Writer_Excel2007($objPHPExcel);</span><br><span class="line">$objWriter-&gt;save(<span class="string">'php://output'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">exit</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2><p>PHPExcel目前已经由<a href="https://github.com/PHPOffice/PhpSpreadsheet" target="_blank" rel="noopener">PhpSpreadsheet</a>代替，有兴趣的读者可以试试。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2315,7 +2354,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
