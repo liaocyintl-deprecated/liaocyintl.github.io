@@ -308,6 +308,217 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180712-ubuntureboottoterminal/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/20180712-ubuntureboottoterminal/" itemprop="url">Ubuntu 18.04 LTS 设置为默认启动命令行模式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T12:39:17+09:00">
+                2018-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/20180712-ubuntureboottoterminal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180712-ubuntureboottoterminal/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>使用Desktop版安装Ubuntu非常方便，但如果作为服务器使用，启动Desktop未必太累赘了，因此要将Ubuntu设置成默认启动时进入命令行，不加载Desktop程序。<br>以前的版本可以通过修改 /etc/default/grub 来实现，但18.04LTS版本下似乎不太管用。<br>本文解决这两个问题。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><a href="https://www.systutorials.com/239880/change-systemd-boot-target-linux/" target="_blank" rel="noopener">原文地址</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>众多操作系统，例如RHEL/CentOS 7, Fedora, Ubuntu，使用systemd代替init作为系统初始化。<br>用户可以按“GUI”或“Text”模式启动系统。<br>在以前，可以通过修改‘/etc/inittab’来更改启动级别，但这种方法在sytemd系统上无效。<br>本文介绍一种在sytemd系统上修改“运行级（runlevels）”的方法，以默认启动命令行。</p>
+<p>对于systemd系统，运行级的概念被替换为组（term）的“targets”。<br>这是一种初始化运行级与初始化目标（targets）的对应关系：</p>
+<table>
+<thead>
+<tr>
+<th>运行级</th>
+<th>初始化目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>poweroff.target</td>
+</tr>
+<tr>
+<td>1</td>
+<td>rescue.target</td>
+</tr>
+<tr>
+<td>2, 3, 4</td>
+<td>multi-user.target</td>
+</tr>
+<tr>
+<td>5</td>
+<td>graphical.target</td>
+</tr>
+<tr>
+<td>6</td>
+<td>reboot.target</td>
+</tr>
+</tbody>
+</table>
+<p>其中两个Targets是最常用的</p>
+<ul>
+<li>multi-user.target：属于运行级 3， 文字模式（命令行模式）</li>
+<li>graphical.target：属于运行级 5， GUI 模式或桌面模式（X server）</li>
+</ul>
+<p><img src="\uploads\postimgs\7a5c7eea.png" alt="系统架构" title="系统架构"></p>
+
+<h3 id="改变启动后的运行级"><a href="#改变启动后的运行级" class="headerlink" title="改变启动后的运行级"></a>改变启动后的运行级</h3><p>当Linux系统启动并进入一个目标系统后，你可以改变其目标系统及运行级。<br>比如说，改变当前目标系统到“multi-user”：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl isolate multi-user.target</span></span><br></pre></td></tr></table></figure>
+<p>单独使用该命令，它将启动一个命令行并关闭其他全部应用。</p>
+<h3 id="永久改变开机启动运行级与目标系统"><a href="#永久改变开机启动运行级与目标系统" class="headerlink" title="永久改变开机启动运行级与目标系统"></a>永久改变开机启动运行级与目标系统</h3><p>我们尝试改变默认开机启动目标系统。<br>比如，我们让“multi-user.target”成为开机默认运行级别：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable multi-user.target</span></span><br><span class="line"><span class="comment"># systemctl set-default multi-user.target</span></span><br><span class="line"><span class="comment"># reboot</span></span><br></pre></td></tr></table></figure>
+<p>这样，重启后就会进入命令行模式而不是GUI模式。</p>
+<h3 id="复原"><a href="#复原" class="headerlink" title="复原"></a>复原</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable graphical.target</span></span><br><span class="line"><span class="comment"># systemctl set-default graphical.target</span></span><br><span class="line"><span class="comment"># reboot</span></span><br></pre></td></tr></table></figure>
+<p>这样，重启后就会默认进入GUI模式。</p>
+<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180708-websegment/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2211,234 +2422,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180618-lcypytools/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180618-lcypytools/" itemprop="url">一个我常用的Python工具包</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T08:50:17+09:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180618-lcypytools/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180618-lcypytools/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h1><p><a href="https://github.com/liaocyintl/lcypytools" target="_blank" rel="noopener">https://github.com/liaocyintl/lcypytools</a></p>
-<h2 id="common-py-包"><a href="#common-py-包" class="headerlink" title="common.py 包"></a><em>common.py</em> 包</h2><ul>
-<li><p>load_csv(path): 从指定路径以二维数组形式返回csv文件。</p>
-</li>
-<li><p>load_lines(file): 从指定路径按行读取文件，并删除全部换行符。</p>
-</li>
-<li><p>prepare_clean_dir(directory): 当不存在时创建文件夹，并清空该文件夹。</p>
-</li>
-<li><p>prepare_dir(directory): 当不存在时创建文件夹。</p>
-</li>
-</ul>
-<ul>
-<li><p>get_filename_and_postfix_from_path(path): 抽取指定路径的文件名和扩展名</p>
-</li>
-<li><p>current_datetime(): 输出当前时间字符串</p>
-</li>
-<li><p>log (class): 写日志到run.log</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> common <span class="keyword">import</span> log</span><br><span class="line">l = log()</span><br><span class="line">l.write(<span class="string">"write a line of log"</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>save_json(path, data): 将一个json对象存储到文件</p>
-</li>
-<li><p>load_json(path, encoding=”utf-8”): 从文件读取python对象</p>
-</li>
-<li><p>clean_folder(folder): 删除一个文件夹下的全部文件</p>
-</li>
-<li><p>save_pickle(path, obj): 将一个对象序列化存储到文件</p>
-</li>
-<li><p>load_pickle(path): 从文件读取序列化后的对象</p>
-</li>
-<li><p>get_hostname_from_url(url): 从URL中抽取主机名</p>
-</li>
-<li><p>is_path_exists(path): 检测路径是否存在</p>
-</li>
-</ul>
-<h2 id="mongo-py-MongoDB操作包"><a href="#mongo-py-MongoDB操作包" class="headerlink" title="mongo,py MongoDB操作包"></a><em>mongo,py</em> MongoDB操作包</h2><ul>
-<li>实例化类</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mongo <span class="keyword">import</span> Mongo</span><br><span class="line">mdb = Mongo(db=<span class="string">"test"</span>, server=<span class="string">'localhost'</span>, port=<span class="number">27017</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>mdb.insert_with_seqid(col, doc): 插入文档doc到集合col, 并从1开始自增自动生成_id。</p>
-</li>
-<li><p>mdb.remove_all_documents(col): 删除集合col中的所有文档。</p>
-</li>
-<li><p>mdb.find_all(col): 查找集合col中的全部文档。</p>
-</li>
-<li><p>mdb.find_one(col, query): 通过query检索集合col中的第一个文档。</p>
-</li>
-<li><p>mdb.save(col, doc): 保存文档doc到集合col，如果_id已经存在则更新它。</p>
-</li>
-<li><p>mdb.find(col, query): 通过query在集合col中查询全部文档。</p>
-</li>
-<li><p>mdb.find_snapshot(col, query, timeout=False): 按快照方式通过query在集合col中查询全部文档。</p>
-</li>
-<li><p>mdb.find_sort(col, query, sortkey, sortorder): 通过query在集合col中查询全部文档并按照sortkey排序。</p>
-</li>
-<li><p>mdb.count(col, query): 按照query统计集合col中的文档数量</p>
-</li>
-<li><p>mdb.aggregate(col, pipeline): 聚合查询</p>
-</li>
-<li><p>mdb.close(): 关闭MongoDB连接</p>
-</li>
-</ul>
-<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2><p>我把开发中常用的方法封装在一起，比如读取json一般要两行，这样一行就可以搞定。<br>增加了效率。</p>
-<p>会持续更新。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2491,7 +2474,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2513,7 +2496,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">104</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

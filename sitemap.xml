@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liaocy.net/2020/03/22-raspi-vnc%20copy/</loc>
+    
+    <lastmod>2020-03-22T13:01:01.590Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liaocy.net/2020/03/22-raspi-vnc/</loc>
     
     <lastmod>2020-03-22T05:58:30.649Z</lastmod>
@@ -408,13 +415,6 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/12/28-1812.08989/</loc>
-    
-    <lastmod>2019-07-03T04:51:44.420Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liaocy.net/2018/08/20-phpmaxinputvars/</loc>
     
     <lastmod>2019-07-03T04:51:44.420Z</lastmod>
@@ -423,6 +423,13 @@
   
   <url>
     <loc>https://liaocy.net/2018/12/14-apachewordpresspermalink404/</loc>
+    
+    <lastmod>2019-07-03T04:51:44.420Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liaocy.net/2018/12/28-1812.08989/</loc>
     
     <lastmod>2019-07-03T04:51:44.420Z</lastmod>
     
@@ -492,13 +499,6 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/10/19-tensorflowtutorial04/</loc>
-    
-    <lastmod>2019-07-03T04:51:44.232Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liaocy.net/2018/10/08-osrmlocalinstance/</loc>
     
     <lastmod>2019-07-03T04:51:44.232Z</lastmod>
@@ -507,6 +507,13 @@
   
   <url>
     <loc>https://liaocy.net/2018/10/30-pythonsshdb/</loc>
+    
+    <lastmod>2019-07-03T04:51:44.232Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liaocy.net/2018/10/19-tensorflowtutorial04/</loc>
     
     <lastmod>2019-07-03T04:51:44.232Z</lastmod>
     
@@ -576,13 +583,6 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/20180612-privatedomain/</loc>
-    
-    <lastmod>2019-07-03T04:51:43.928Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liaocy.net/2018/20180618-lcypytools/</loc>
     
     <lastmod>2019-07-03T04:51:43.928Z</lastmod>
@@ -605,6 +605,13 @@
   
   <url>
     <loc>https://liaocy.net/2018/20180717-gitsubmodule/</loc>
+    
+    <lastmod>2019-07-03T04:51:43.928Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liaocy.net/2018/20180612-privatedomain/</loc>
     
     <lastmod>2019-07-03T04:51:43.928Z</lastmod>
     

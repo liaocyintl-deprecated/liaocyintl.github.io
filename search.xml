@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【折腾】在RaspberryPI上制作Openwrt/LEDE软路由]]></title>
+    <url>%2F2020%2F03%2F22-raspi-vnc%20copy%2F</url>
+    <content type="text"><![CDATA[RaspberryPi·4b有足够的能力作为软路由使用。本文介绍怎么在Raspberry·PI·4B上编译并运行LEDE软路由。 介绍 LEDE是OpenWRT的魔改版本，融入了我国程序员的勤劳和智慧 参考资料LEDE源码 系统环境 硬件：Raspberry Pi 4 B OS：Raspbian 解决方案 创建LEDE目录并克隆（官方解释不要使用root权限编译安装） 1$ git clone https://github.com/coolsnowwolf/lede.git 准备编译 1234$ cd lede$ ./scripts/feeds update -a $ ./scripts/feeds install -a$ make menuconfig menuconfig按照下面设定，这个设定要根据你的RaspberryPI型号而定，我用的是PI·4b。设定后注意一定要先Save，再Exit 123Target System -&gt; Broadcom BCM27xx Subtarget -&gt; BCM2711 boards (64 bit) Target Profile -&gt; Raspberry Pi 4B 编译（大约7小时） 1$ make -j1 V=s]]></content>
+      <categories>
+        <category>开发 Development</category>
+        <category>Raspberry PI</category>
+      </categories>
+      <tags>
+        <tag>物联网 IoT</tag>
+        <tag>Raspberry PI</tag>
+        <tag>软路由</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[树莓派（Raspberry PI）用VNC无法链接显示Error in TightVNC Viewer No security types supported的解决方案]]></title>
     <url>%2F2020%2F03%2F22-raspi-vnc%2F</url>
     <content type="text"><![CDATA[刚刚设置好的树莓派，用Tight VNC链接远程桌面时会显示1Error in TightVNC Viewer: No security types supported. Server sent security types, but we do not support any of their. 因此无法链接VNC服务。本文解决这个问题。 参考资料参考资料1 系统环境 Raspberry Pi 4 B Raspbian 解决方案 用root权限在 /root/.vnc/config.d/vncserver-x11 里面加入下列行 1Authentication=VncAuth 设定 VNC 密码 1# vncpasswd -service 重启 VNC 服务 1# systemctl restart vncserver-x11-serviced.service]]></content>

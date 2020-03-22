@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://liaocy.net/2020/03/22-raspi-vnc%20copy/</loc>
+    <lastmod>2020-03-22T13:01:01.590Z</lastmod>
+    <data>
+        <display>
+        <title>【折腾】在RaspberryPI上制作Openwrt/LEDE软路由</title>
+        <pubTime>2020-03-22T06:19:25.000Z</pubTime>
+        
+        <tag>物联网 IoT</tag>
+         
+        <tag>Raspberry PI</tag>
+         
+        <tag>软路由</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Raspberry PI" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Raspberry-PI/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2020/03/22-raspi-vnc/</loc>
     <lastmod>2020-03-22T05:58:30.649Z</lastmod>
     <data>
@@ -1435,6 +1462,29 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/08/20-phpmaxinputvars/</loc>
+    <lastmod>2019-07-03T04:51:44.420Z</lastmod>
+    <data>
+        <display>
+        <title>调整PHP的POST数量限制</title>
+        <pubTime>2018-08-20T09:50:21.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="PHP" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2018/12/28-1812.08989/</loc>
     <lastmod>2019-07-03T04:51:44.420Z</lastmod>
     <data>
@@ -1455,29 +1505,6 @@
           
              
               <breadCrumb title="机器学习 Machine Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/08/20-phpmaxinputvars/</loc>
-    <lastmod>2019-07-03T04:51:44.420Z</lastmod>
-    <data>
-        <display>
-        <title>调整PHP的POST数量限制</title>
-        <pubTime>2018-08-20T09:50:21.000Z</pubTime>
-        
-        <tag>PHP</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="PHP" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
           
         </display>
     </data>
@@ -1772,33 +1799,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/10/08-osrmlocalinstance/</loc>
-    <lastmod>2019-07-03T04:51:44.232Z</lastmod>
-    <data>
-        <display>
-        <title>创建本地OSRM实例，用OSM做导航数据</title>
-        <pubTime>2018-10-08T08:40:22.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>深度学习 Deep Learning</tag>
-         
-        <tag>OSRM</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Open Street Map (OSM)" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Open-Street-Map-OSM/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/10/30-pythonsshdb/</loc>
     <lastmod>2019-07-03T04:51:44.232Z</lastmod>
     <data>
@@ -1826,26 +1826,26 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/10/17-tensorflowtutorial03/</loc>
-    <lastmod>2019-07-03T04:51:44.208Z</lastmod>
+    <loc>https://liaocy.net/2018/10/08-osrmlocalinstance/</loc>
+    <lastmod>2019-07-03T04:51:44.232Z</lastmod>
     <data>
         <display>
-        <title>Tensorflow学习（三） -- 基本文本分类任务</title>
-        <pubTime>2018-10-17T07:10:22.000Z</pubTime>
+        <title>创建本地OSRM实例，用OSM做导航数据</title>
+        <pubTime>2018-10-08T08:40:22.000Z</pubTime>
         
         <tag>Python</tag>
          
-        <tag>Tensorflow</tag>
-         
         <tag>深度学习 Deep Learning</tag>
+         
+        <tag>OSRM</tag>
          
          
            
              
-              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
           
              
-              <breadCrumb title="深度学习 Deep Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+              <breadCrumb title="Open Street Map (OSM)" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Open-Street-Map-OSM/"/>
           
         </display>
     </data>
@@ -1873,6 +1873,33 @@
           
              
               <breadCrumb title="Ubuntu" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Ubuntu/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/10/17-tensorflowtutorial03/</loc>
+    <lastmod>2019-07-03T04:51:44.208Z</lastmod>
+    <data>
+        <display>
+        <title>Tensorflow学习（三） -- 基本文本分类任务</title>
+        <pubTime>2018-10-17T07:10:22.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Tensorflow</tag>
+         
+        <tag>深度学习 Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+          
+             
+              <breadCrumb title="深度学习 Deep Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
           
         </display>
     </data>
@@ -2067,31 +2094,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/20180612-privatedomain/</loc>
-    <lastmod>2019-07-03T04:51:43.928Z</lastmod>
-    <data>
-        <display>
-        <title>在Hexo + GithubPage中使用个人域名</title>
-        <pubTime>2018-06-12T06:38:17.000Z</pubTime>
-        
-        <tag>Github页面 Github page</tag>
-         
-        <tag>域名 Domain</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Ubuntu" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Ubuntu/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/20180618-lcypytools/</loc>
     <lastmod>2019-07-03T04:51:43.928Z</lastmod>
     <data>
@@ -2193,6 +2195,31 @@
           
              
               <breadCrumb title="Git" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/20180612-privatedomain/</loc>
+    <lastmod>2019-07-03T04:51:43.928Z</lastmod>
+    <data>
+        <display>
+        <title>在Hexo + GithubPage中使用个人域名</title>
+        <pubTime>2018-06-12T06:38:17.000Z</pubTime>
+        
+        <tag>Github页面 Github page</tag>
+         
+        <tag>域名 Domain</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Ubuntu" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Ubuntu/"/>
           
         </display>
     </data>
