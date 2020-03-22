@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liaocy.net/2020/03/22-raspi-vnc/</loc>
+    
+    <lastmod>2020-03-22T04:50:15.076Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liaocy.net/2018/20180717-dockercommon/</loc>
     
     <lastmod>2020-03-17T02:41:11.113Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://liaocy.net/2019/09/01-zabbixagentinstall/</loc>
     
     <lastmod>2020-03-05T12:25:24.574Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://liaocy.net/2020/02/g-exam/</loc>
-    
-    <lastmod>2020-02-03T05:44:48.671Z</lastmod>
     
   </url>
   
