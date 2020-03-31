@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="統計検定 2 級的一些知识点备忘">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2020-03-31T11:19:05.798Z">
+<meta property="og:updated_time" content="2020-03-31T11:36:15.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="統計検定2級メモ">
 <meta name="twitter:description" content="統計検定 2 級的一些知识点备忘">
@@ -599,7 +599,22 @@
 <li>元の時系列：{y_t, t = 1,2,…,T}</li>
 <li>$h$ずらした時系列：{y_{t+h}, t = 1,2,…,T-h}</li>
 <li>自己相関関数 autocorrelation function：上記の二つの相関関係を求める</li>
-<li>$C_h = \frac{1}{T}\sum^{T-h}_{t=1}{(y_t - \bar{y})(y_{t+h}-\bar{y})}$ $h=0,1,2,…$</li>
+<li>$C_h = \frac{1}{T}\sum^{T-h}_{t=1}{(y_t - \bar{y})(y_{t+h}-\bar{y})}$ $(h=0,1,2,…)$</li>
+<li>$r_h = \frac{C_h}{C_0}$</li>
+</ul>
+</li>
+<li>指数の作成と利用<ul>
+<li>機能：異なった時点間または地域間における数量や価格を比較する</li>
+<li>指数 index number：多数の同種のデータを比較するために、ある値を基準にして他の値を基準値に対する比で表したもの</li>
+<li>ラスパイレス指数 (Laspeyres Index)： <ul>
+<li>$\sum_{i}{w_i(p_{ti}/p_{0i})}/\sum_{i}{w_i}$</li>
+<li>$w = pq$</li>
+<li>$p$: 価格</li>
+<li>$q$: 数量</li>
+<li>$p_{ti}$: $t$時点第$i$品目の価格</li>
+<li>$w_i$：$i$品目の重み、i品目の総支出額</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
