@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liaocy.net/"/>
-  <updated>2020-03-31T06:58:39.176Z</updated>
+  <updated>2020-03-31T07:21:14.039Z</updated>
   <id>https://liaocy.net/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://liaocy.net/2020/03/31-toukei-2/"/>
     <id>https://liaocy.net/2020/03/31-toukei-2/</id>
     <published>2020-03-31T06:00:00.000Z</published>
-    <updated>2020-03-31T06:58:39.176Z</updated>
+    <updated>2020-03-31T07:21:14.039Z</updated>
     
-    <content type="html"><![CDATA[<p>統計検定2級的一些知识点备忘<br><a id="more"></a></p><ul><li>データの記述と要約<ul><li>変数の分類<ul><li>個体（ケース）：調査された個個の対象、行</li><li>変数：調整された項目、列、家賃、間取り<ul><li>質的変数：カテゴリで示される変数、間取り、方角<ul><li>名義尺度（名目尺度）：性別、職業、国籍；二値、多値変数；頻度、最頻値；</li><li>順序尺度：成績評価（ABCD）；中央値、四分位数；</li></ul></li><li>量的変数：観測値で示される変数、家賃、面積<ul><li>間隔尺度：0は絶対意味持たない；温度、偏差値；平均、標準偏差；<ul><li>例えば、30℃は15℃の2倍とは言えないから、比例を持たない（絶対基準点０を持たない）</li></ul></li><li>比例尺度：0は絶対意味持つ；身長、体重、年齢；変動係数、幾何平均</li></ul></li></ul></li><li>変数の他の分類<ul><li>離散変数（discrete variable）：1ヶ月読んだ本</li><li>連続変数（continuous Variable）：温度</li></ul></li></ul></li><li>ヒストグラム（Histogram）の作成<ul><li>概念：度数分布表は最小値と最大値の間をいくつかの階級（級、クラス、CLASS）に分け、それぞれの階級に含まれる度数（頻度、frequency）を数え上げ、各階級の割合を示すもの。</li><li>データの大きさ:$N$、$N$；データの数；</li><li>等間隔であるとは限らず<ul><li>ベル型：左右対称</li><li>右に裾（すそ、衣襟，末端）が長い：ピーク左</li><li>左に裾が長い：ピーク右</li><li>一様：範囲内同程度</li></ul></li></ul></li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>統計検定2級的一些知识点备忘<br><a id="more"></a></p><ul><li>データの記述と要約<ul><li>変数の分類<ul><li>個体（ケース）：調査された個個の対象、行</li><li>変数：調整された項目、列、家賃、間取り<ul><li>質的変数：カテゴリで示される変数、間取り、方角<ul><li>名義尺度（名目尺度）：性別、職業、国籍；二値、多値変数；頻度、最頻値；</li><li>順序尺度：成績評価（ABCD）；中央値、四分位数；</li></ul></li><li>量的変数：観測値で示される変数、家賃、面積<ul><li>間隔尺度：0は絶対意味持たない；温度、偏差値；平均、標準偏差；<ul><li>例えば、30℃は15℃の2倍とは言えないから、比例を持たない（絶対基準点０を持たない）</li></ul></li><li>比例尺度：0は絶対意味持つ；身長、体重、年齢；変動係数、幾何平均</li></ul></li></ul></li><li>変数の他の分類<ul><li>離散変数（discrete variable）：1ヶ月読んだ本</li><li>連続変数（continuous Variable）：温度</li></ul></li></ul></li><li>量的データの分布<ul><li>ヒストグラム（Histogram）の作成<ul><li>概念：度数分布表は最小値と最大値の間をいくつかの階級（級、クラス、CLASS）に分け、それぞれの階級に含まれる度数（頻度、frequency）を数え上げ、各階級の割合を示すもの。</li><li>データの大きさ:$n$、$N$で表示；データの数；</li><li>等間隔であるとは限らず<ul><li>ベル型：左右対称</li><li>右に裾（すそ、衣襟，末端）が長い：ピーク左</li><li>左に裾が長い：ピーク右</li><li>一様：範囲内同程度</li></ul></li></ul></li><li>その他の図表の作成<ul><li>幹葉図（みきは・かんよう） stem and leaf plots</li><li>累計相対度数 cumulative ralative frequency: <ul><li>相对度数的累计值，下位开始累计比率</li></ul></li><li>累計分布 cumulative distribution 部件数の割合の累計推移。<ul><li>右のほうが、大きい値が多いと言える</li></ul></li><li>ローレンツ曲線（Lorenz curve, 洛伦兹曲线）：格差評価<ul><li>例：<ul><li>X軸：人数の累計相対係数</li><li>Y軸：年収の累計相対係数</li></ul></li><li>完全平等線、complete equality line: $y=x$</li><li>ジニ係数　Gini’s coefficient：完全平等線と弧（こ）と囲まれた面積の2倍、$gini \in [0,1]$</li></ul></li></ul></li></ul></li></ul></li></ul>]]></content>
     
     <summary type="html">
     
