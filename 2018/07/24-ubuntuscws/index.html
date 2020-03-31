@@ -4,7 +4,7 @@
 
 
 <html class="theme-next gemini" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -155,7 +155,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -165,7 +165,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -307,20 +307,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/24-ubuntuscws/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -363,7 +363,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -374,7 +374,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/SCWS/" itemprop="url" rel="index">
                     <span itemprop="name">SCWS</span>
                   </a>
@@ -442,7 +442,7 @@
 <p>输入以下PHP代码，尝试经典分词案例：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    ini_set(<span class="string">'display_errors'</span>, <span class="number">1</span>);</span><br><span class="line">    $so = scws_new();</span><br><span class="line">    $so-&gt;set_charset(<span class="string">'utf-8'</span>);</span><br><span class="line">    $so-&gt;add_dict(ini_get(<span class="string">'scws.default.fpath'</span>) . <span class="string">'/dict.utf8.xdb'</span>);</span><br><span class="line">    $so-&gt;set_rule(ini_get(<span class="string">'scws.default.fpath'</span>) . <span class="string">'/rules.utf8.ini'</span>);</span><br><span class="line">    $so-&gt;set_ignore(<span class="keyword">true</span>);</span><br><span class="line">    $so-&gt;set_multi(<span class="keyword">false</span>);</span><br><span class="line">    $so-&gt;set_duality(<span class="keyword">false</span>);</span><br><span class="line">    $so-&gt;send_text(<span class="string">"武汉市长江大桥，我们中出了一个叛徒。"</span>);</span><br><span class="line">    $words_array = $so-&gt;get_result();</span><br><span class="line">    $words = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">foreach</span> ($words_array <span class="keyword">as</span> $v) &#123;</span><br><span class="line">       <span class="comment">// 输出分词结果</span></span><br><span class="line">       <span class="keyword">echo</span> var_dump($v) . <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    $so-&gt;close();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>用浏览器访问：</p>
-<p><img src="/uploads/postimgs/2b184cde_2.png" alt=""></p>
+<p><img src="/uploads/postimgs/2b184cde_2.png" alt></p>
 <p>分词成功！（我这儿是因为nano编辑器的原因，所以顺序有点怪）</p>
 <p>说明：</p>
 <ul>
@@ -578,7 +578,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Chenyi Liao">
             
@@ -604,7 +604,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

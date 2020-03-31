@@ -4,7 +4,7 @@
 
 
 <html class="theme-next gemini" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -150,7 +150,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,7 +161,7 @@
   page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -303,20 +303,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/01-pythonlinuxwinpath/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -361,7 +361,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -372,7 +372,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/Python/" itemprop="url" rel="index">
                     <span itemprop="name">Python</span>
                   </a>
@@ -434,7 +434,7 @@
 <p>还好，可以用一个叫做 <strong>pathlib</strong> 的库来解决。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="安装pathlib"><a href="#安装pathlib" class="headerlink" title="安装pathlib"></a>安装pathlib</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pathlib</span><br></pre></td></tr></table></figure>
 <h3 id="让路径兼容"><a href="#让路径兼容" class="headerlink" title="让路径兼容"></a>让路径兼容</h3><p>假如你的python代码写在my_program.py里，你要定位到下面这个叫raw_data.txt的文件：</p>
-<p><img src="/uploads/postimgs/9c379859.png" alt=""></p>
+<p><img src="/uploads/postimgs/9c379859.png" alt></p>
 <p>你可以这样写：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">data_folder = Path(<span class="string">"source_data/text_files/"</span>)</span><br><span class="line">file_to_open = data_folder / <span class="string">"raw_data.txt"</span></span><br><span class="line">f = open(file_to_open)</span><br><span class="line">print(f.read())</span><br></pre></td></tr></table></figure>
 <p>或者你可以直接写绝对路径：</p>
@@ -487,20 +487,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/31-ethresource/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -545,7 +545,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -556,7 +556,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/区块链-Block-Chain/" itemprop="url" rel="index">
                     <span itemprop="name">区块链 Block Chain</span>
                   </a>
@@ -663,20 +663,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/30-stockdatamining/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -721,7 +721,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/研究-Research/" itemprop="url" rel="index">
                     <span itemprop="name">研究 Research</span>
                   </a>
@@ -732,7 +732,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/研究-Research/数据挖掘-Data-Mining/" itemprop="url" rel="index">
                     <span itemprop="name">数据挖掘 Data Mining</span>
                   </a>
@@ -813,7 +813,7 @@
 <li>可拖拽的数据仓库： 拽入其它的数据集</li>
 </ul>
 <p>该框架是可扩展的。</p>
-<h3 id="数据立方体，-多维度，-Facts，-与度量"><a href="#数据立方体，-多维度，-Facts，-与度量" class="headerlink" title="数据立方体， 多维度， Facts， 与度量"></a>数据立方体， 多维度， Facts， 与度量</h3><p>本框架提供对多维度数据立方体的建模。<br><img src="/uploads/postimgs/13a998f7.png" alt=""></p>
+<h3 id="数据立方体，-多维度，-Facts，-与度量"><a href="#数据立方体，-多维度，-Facts，-与度量" class="headerlink" title="数据立方体， 多维度， Facts， 与度量"></a>数据立方体， 多维度， Facts， 与度量</h3><p>本框架提供对多维度数据立方体的建模。<br><img src="/uploads/postimgs/13a998f7.png" alt></p>
 <p>Fact是指数据最基本的单元。Fact可以是一个合同，发货单，开销，任务等等。<br>每一个Fact拥有一个度量：度量是一个可以被测量的属性，比如说价格，数量，收益，持续时间，税，折扣，等等。</p>
 <p>维度为Fact提供上下文，例如：</p>
 <ul>
@@ -886,20 +886,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/25-ubuntuapacheproxy/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -944,7 +944,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -955,7 +955,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/Apache/" itemprop="url" rel="index">
                     <span itemprop="name">Apache</span>
                   </a>
@@ -1067,20 +1067,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/07/24-ubuntuscws/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -1125,7 +1125,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -1136,7 +1136,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/SCWS/" itemprop="url" rel="index">
                     <span itemprop="name">SCWS</span>
                   </a>
@@ -1206,7 +1206,7 @@
 <p>输入以下PHP代码，尝试经典分词案例：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    ini_set(<span class="string">'display_errors'</span>, <span class="number">1</span>);</span><br><span class="line">    $so = scws_new();</span><br><span class="line">    $so-&gt;set_charset(<span class="string">'utf-8'</span>);</span><br><span class="line">    $so-&gt;add_dict(ini_get(<span class="string">'scws.default.fpath'</span>) . <span class="string">'/dict.utf8.xdb'</span>);</span><br><span class="line">    $so-&gt;set_rule(ini_get(<span class="string">'scws.default.fpath'</span>) . <span class="string">'/rules.utf8.ini'</span>);</span><br><span class="line">    $so-&gt;set_ignore(<span class="keyword">true</span>);</span><br><span class="line">    $so-&gt;set_multi(<span class="keyword">false</span>);</span><br><span class="line">    $so-&gt;set_duality(<span class="keyword">false</span>);</span><br><span class="line">    $so-&gt;send_text(<span class="string">"武汉市长江大桥，我们中出了一个叛徒。"</span>);</span><br><span class="line">    $words_array = $so-&gt;get_result();</span><br><span class="line">    $words = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">foreach</span> ($words_array <span class="keyword">as</span> $v) &#123;</span><br><span class="line">       <span class="comment">// 输出分词结果</span></span><br><span class="line">       <span class="keyword">echo</span> var_dump($v) . <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    $so-&gt;close();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>用浏览器访问：</p>
-<p><img src="/uploads/postimgs/2b184cde_2.png" alt=""></p>
+<p><img src="/uploads/postimgs/2b184cde_2.png" alt></p>
 <p>分词成功！（我这儿是因为nano编辑器的原因，所以顺序有点怪）</p>
 <p>说明：</p>
 <ul>
@@ -1263,20 +1263,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180720-wordautofurigana/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -1321,7 +1321,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/日语-Japanese/" itemprop="url" rel="index">
                     <span itemprop="name">日语 Japanese</span>
                   </a>
@@ -1332,7 +1332,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/日语-Japanese/阅读-Reading/" itemprop="url" rel="index">
                     <span itemprop="name">阅读 Reading</span>
                   </a>
@@ -1393,30 +1393,30 @@
 <li>Microsoft Office Word 2013</li>
 </ul>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>首先，我们设置文章的语言为日语，否则某些汉字可能被当做中文后标记为汉语拼音。<br>按Ctrl+A全选文本，点击“审阅”选项卡，点击“语言”按钮，在弹出的菜单中选择“设置校对语言”选项。</p>
-<p><img src="/uploads/postimgs/1f84e296.png" alt=""></p>
+<p><img src="/uploads/postimgs/1f84e296.png" alt></p>
 <p>在弹出的“语言”对话框中，选择日语，勾选“不检查拼写或语法”，不要勾选“自动检测语言”，点击确定保存：</p>
-<p><img src="/uploads/postimgs/7eb6fb20.png" alt=""></p>
+<p><img src="/uploads/postimgs/7eb6fb20.png" alt></p>
 <p>这样一来，全体文本就被设置为日语了。<br>之后，根据下面步骤对文本进行注音：</p>
 <h3 id="1、-打开Word的“开发工具”菜单"><a href="#1、-打开Word的“开发工具”菜单" class="headerlink" title="1、 打开Word的“开发工具”菜单"></a>1、 打开Word的“开发工具”菜单</h3><p>部分Word的“开发工具”默认是不显示的，我们在设置里打开它：</p>
 <p>首先，点击word左上角的“文件”按钮：</p>
-<p><img src="/uploads/postimgs/d992ce56.png" alt=""></p>
+<p><img src="/uploads/postimgs/d992ce56.png" alt></p>
 <p>然后，点击“选项”：</p>
-<p><img src="/uploads/postimgs/b3aab0b3.png" alt=""></p>
+<p><img src="/uploads/postimgs/b3aab0b3.png" alt></p>
 <p>之后，在弹开的“Word选项”对话框中，依次选择“自定义功能区”，勾选“开发工具”，并点击“确定”保存设置：</p>
-<p><img src="/uploads/postimgs/2333e88c.png" alt=""></p>
+<p><img src="/uploads/postimgs/2333e88c.png" alt></p>
 <p>最后，可以在Word的顶部菜单中看到“开发工具”选项卡，选择它，并点击按钮“Visual Basic”打开VBA编辑器：</p>
-<p><img src="/uploads/postimgs/548797ff.png" alt=""></p>
+<p><img src="/uploads/postimgs/548797ff.png" alt></p>
 <h3 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h3><p>在打开的VBA编辑器中，粘贴以下代码（按代码下面的图示）：<br><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Option</span> <span class="keyword">Explicit</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Sub</span> FuriganaSelectedRange()</span><br><span class="line">  SetPhoneticRange Selection.Range</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Sub</span> FuriganaAllDocument()</span><br><span class="line">  SetPhoneticRange ActiveDocument.Range</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> SetPhoneticRange(<span class="keyword">ByVal</span> rng <span class="keyword">As</span> Word.Range)</span><br><span class="line">  <span class="keyword">Dim</span> r <span class="keyword">As</span> Word.Range</span><br><span class="line">  <span class="keyword">Dim</span> past_r <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> r <span class="keyword">In</span> rng.Words</span><br><span class="line">    <span class="keyword">If</span> r.Fields.Count &lt; <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="keyword">If</span> ChkKanjiRange(r) = <span class="literal">True</span> <span class="keyword">And</span> r &lt;&gt; past_r <span class="keyword">Then</span></span><br><span class="line">        past_r = r</span><br><span class="line">        r.<span class="keyword">Select</span></span><br><span class="line">        Application.Dialogs(wdDialogPhoneticGuide).Show <span class="number">1</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> r <span class="keyword">In</span> rng.Characters</span><br><span class="line">    <span class="keyword">If</span> r.Fields.Count &lt; <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="keyword">If</span> ChkKanjiRange(r) = <span class="literal">True</span> <span class="keyword">Then</span></span><br><span class="line">        r.<span class="keyword">Select</span></span><br><span class="line">        Application.Dialogs(wdDialogPhoneticGuide).Show <span class="number">1</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> ChkKanjiRange(<span class="keyword">ByVal</span> rng <span class="keyword">As</span> Word.Range) <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">  <span class="keyword">Dim</span> ret <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">  <span class="keyword">Dim</span> i <span class="keyword">As</span> <span class="built_in">Long</span></span><br><span class="line">   </span><br><span class="line">  ret = <span class="literal">True</span></span><br><span class="line">  <span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Len(rng.<span class="keyword">Text</span>)</span><br><span class="line">    <span class="keyword">If</span> IsKanji(<span class="keyword">Mid</span>(rng.<span class="keyword">Text</span>, i, <span class="number">1</span>)) = <span class="literal">False</span> <span class="keyword">Then</span></span><br><span class="line">      ret = <span class="literal">False</span></span><br><span class="line">      <span class="keyword">Exit</span> <span class="keyword">For</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line">  ChkKanjiRange = ret</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> IsKanji(<span class="keyword">ByVal</span> <span class="built_in">char</span> <span class="keyword">As</span> <span class="built_in">String</span>) <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">  Dim cc As Variant</span><br><span class="line">  <span class="keyword">Dim</span> ret <span class="keyword">As</span> <span class="built_in">Boolean</span></span><br><span class="line">   </span><br><span class="line">  ret = <span class="literal">True</span></span><br><span class="line">  cc = Val(<span class="string">"&amp;H"</span> &amp; Hex(AscW(<span class="built_in">char</span>)) &amp; <span class="string">"&amp;"</span>)</span><br><span class="line">  <span class="keyword">Select</span> <span class="keyword">Case</span> cc</span><br><span class="line">    <span class="keyword">Case</span> <span class="number">63744</span> <span class="keyword">To</span> <span class="number">64255</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">13312</span> <span class="keyword">To</span> <span class="number">19903</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">19968</span> <span class="keyword">To</span> <span class="number">40959</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">131072</span> <span class="keyword">To</span> <span class="number">173791</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">173824</span> <span class="keyword">To</span> <span class="number">177983</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">177984</span> <span class="keyword">To</span> <span class="number">178207</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="number">194560</span> <span class="keyword">To</span> <span class="number">195103</span></span><br><span class="line">    <span class="keyword">Case</span> <span class="keyword">Else</span></span><br><span class="line">      ret = <span class="literal">False</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">Select</span></span><br><span class="line">  IsKanji = ret</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure></p>
 <p>将上面代码粘贴在代码区域，并点击绿色三角形“运行”按钮：</p>
-<p><img src="/uploads/postimgs/8511bcb4.png" alt=""></p>
+<p><img src="/uploads/postimgs/8511bcb4.png" alt></p>
 <h3 id="3、运行"><a href="#3、运行" class="headerlink" title="3、运行"></a>3、运行</h3><p>点击点击绿色三角形“运行”按钮后，出现对话框：</p>
 <ul>
 <li>选择“FuriganaAllDocument”的话则会对全文档注音（推荐）</li>
 <li>选择“FuriganaSelectedRange”的话则只会对选择文字注音<br>选择完成后点击“运行”：</li>
 </ul>
-<p><img src="/uploads/postimgs/aed595aa.png" alt=""></p>
+<p><img src="/uploads/postimgs/aed595aa.png" alt></p>
 <p>点击“运行”后开始注音：</p>
-<p><img src="/uploads/postimgs/wordfurigana.gif" alt=""></p>
+<p><img src="/uploads/postimgs/wordfurigana.gif" alt></p>
 <p>注音过程中点击键盘“ESC”键可以中途退出。<br>该算法支持断点重新开始，所以不用担心中途退出。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.ka-net.org/blog/?p=7576" target="_blank" rel="noopener">代码参考资料</a></p>
 <p><a href="https://jingyan.baidu.com/article/9f7e7ec05965d46f28155496.html" target="_blank" rel="noopener">开发工具菜单开启引用资料</a></p>
@@ -1465,20 +1465,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180717-gitsubmodule/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -1523,7 +1523,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -1534,7 +1534,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/Git/" itemprop="url" rel="index">
                     <span itemprop="name">Git</span>
                   </a>
@@ -1631,20 +1631,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180717-dockercommon/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -1689,7 +1689,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -1700,7 +1700,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/Docker/" itemprop="url" rel="index">
                     <span itemprop="name">Docker</span>
                   </a>
@@ -1866,20 +1866,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180714-airflowdeploy/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -1924,7 +1924,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/" itemprop="url" rel="index">
                     <span itemprop="name">开发 Development</span>
                   </a>
@@ -1935,7 +1935,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/开发-Development/Ariflow/" itemprop="url" rel="index">
                     <span itemprop="name">Ariflow</span>
                   </a>
@@ -2092,20 +2092,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180712-ubuntuwindowsmlserver/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Liao's Blog">
     </span>
 
@@ -2150,7 +2150,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/研究-Research/" itemprop="url" rel="index">
                     <span itemprop="name">研究 Research</span>
                   </a>
@@ -2161,7 +2161,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/研究-Research/机器学习-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">机器学习 Machine Learning</span>
                   </a>
@@ -2310,7 +2310,7 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Chenyi Liao">
             
@@ -2336,7 +2336,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
