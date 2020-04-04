@@ -5,8 +5,8 @@
     <url>%2F2020%2F04%2F04-R-linear-reg%2F</url>
     <content type="text"><![CDATA[R对数据进行线性回归以后，会生成很多参数，本文对这些参数进行说明 参考资料： R语言多元(多重)回归 总结下R语言进行简单多元回归的基本步骤 详细解读回归分析结果 R语言解读一元线性回归模型 $("#ipynb").load( function() { console.log($("#ipynb").contents().find("body").find("#notebook")); document.getElementById('ipynb').height=$("#ipynb").contents().find("#notebook").height()+100; })]]></content>
       <categories>
-        <category>資格試験</category>
-        <category>統計検定</category>
+        <category>Data 数据</category>
+        <category>R语言</category>
       </categories>
       <tags>
         <tag>ノート</tag>
