@@ -308,6 +308,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/20-phpmaxinputvars/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20-phpmaxinputvars/" itemprop="url">调整PHP的POST数量限制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T18:50:21+09:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20-phpmaxinputvars/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/20-phpmaxinputvars/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://thebroodle.com/how-to/how-to-increase-max-input-vars-value-in-php-ubuntu/" target="_blank" rel="noopener">How to Increase max_input_vars value in PHP in Ubuntu</a></li>
+</ul>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>Ubuntu 18.04 LTS</li>
+<li>PHP 7.2</li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>当POST的数量很多的时候，PHP服务器会莫名其妙的不响应。<br>网页正常打开，但用var_dump($_POST)查看时，POST只被提交一部分。<br>特别是在POST变量（提交的表单）特别多的时候会出现这种问题，例如在导入某个大表格时。<br>这是由于PHP设置里有一个 max-input-vars 参数，会限制每次POST时的数量，我们调整这个参数以增加POST最大容许数量。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑PHP配置文件</span></span><br><span class="line">nano /etc/php/7.2/apache2/php.ini</span><br></pre></td></tr></table></figure>
+<p>修改 max-input-vars 参数：</p>
+<p><img src="/uploads/postimgs/c263e960.png" alt></p>
+<p>保存后重载网页服务器即可解决问题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/08/03-cryptozombiesio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2111,232 +2285,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180714-airflowdeploy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180714-airflowdeploy/" itemprop="url">在 Ubuntu 18.04 上安装部署 Airflow 1.9.0</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T16:33:00+09:00">
-                2018-07-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Ariflow/" itemprop="url" rel="index">
-                    <span itemprop="name">Ariflow</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180714-airflowdeploy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180714-airflowdeploy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>Apache Airflow 是Airbnb公司开源的，是用 Python 实现的任务管理、调度、监控工作流的平台[1]。</p>
-<p>因依调度赖于 crontab，Airflow 目前只支持在安装在Linux系统平台。<br>Airflow可以用做data pipeline和 Extract, Transform, Load（ETL），消息队列等监控。<br>本文介绍如何将Airflow 1.9.0 部署在 Ubuntu 18.04 LTS 平台上。</p>
-<p>[1]<a href="https://blog.csdn.net/kk185800961/article/details/78431484" target="_blank" rel="noopener">参考资料：Airflow 1.8 工作流平台搭建</a></p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>Ubuntu 18.04 LTS</li>
-<li>Python 3.6.5 + pip</li>
-<li>Airflow 1.9.0 (20180714最新)</li>
-</ul>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><a href="https://airflow.apache.org/start.html" target="_blank" rel="noopener">官方文档</a></p>
-<h2 id="使用pip安装Airflow"><a href="#使用pip安装Airflow" class="headerlink" title="使用pip安装Airflow"></a>使用pip安装Airflow</h2><ul>
-<li>root登录</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>启用测试网页服务器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># airflow需要一个家目录（home）, 默认为~/airflow,</span></span><br><span class="line"><span class="comment"># 你也可以把它改成你希望的目录</span></span><br><span class="line"><span class="comment"># (可选项目)</span></span><br><span class="line"><span class="built_in">export</span> AIRFLOW_HOME=~/airflow</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用pip安装Airflow</span></span><br><span class="line">pip install apache-airflow</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库</span></span><br><span class="line">airflow initdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启Web服务，默认端口8080</span></span><br><span class="line">airflow webserver -p 8080</span><br></pre></td></tr></table></figure>
-<p><img src="/uploads/postimgs/d0e49f60.png" alt="启动服务器"></p>
-<p>网页服务器已经启动，可以通过浏览器测试：</p>
-<p><img src="/uploads/postimgs/b167208b.png" alt="网页服务器已启动"></p>
-<p>网页能够正常打开证明服务器正常</p>
-<h2 id="在守护程序中后台运行Airflow"><a href="#在守护程序中后台运行Airflow" class="headerlink" title="在守护程序中后台运行Airflow"></a>在守护程序中后台运行Airflow</h2><p><a href="http://site.clairvoyantsoft.com/installing-and-configuring-apache-airflow/" target="_blank" rel="noopener">参考档案1</a></p>
-<p><a href="https://github.com/apache/incubator-airflow/tree/master/scripts/systemd" target="_blank" rel="noopener">参考档案2</a></p>
-<p>注意：由于版本和环境不同，实际执行步骤和参考档案略有不同，请读者举一反三地理解。</p>
-<ul>
-<li><p>root登录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建airflow用户和airflow用户组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser airflow</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>初始化数据文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su airflow</span><br><span class="line">airflow initdb</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>系统会自动创建用户airflow并加入用户组airflow<br><img src="/uploads/postimgs/dfacaf8b.png" alt="创建用户airflow并加入用户组airflow"></p>
-<ul>
-<li><p>把airflow的代码从github上克隆下来</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/apache/incubator-airflow.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署服务文件</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定位到服务文件</span></span><br><span class="line"><span class="built_in">cd</span> incubator-airflow/scripts/systemd/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立Airflow可执行文件的软连接</span></span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/airflow /bin/airflow</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立线程存放文件的目录并修改权限</span></span><br><span class="line">mkdir /run/airflow</span><br><span class="line">chmod 0775 /run/airflow/</span><br><span class="line">chown airflow:airflow /run/airflow/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署airflow.conf</span></span><br><span class="line">cp airflow.conf /etc/tmpfiles.d/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署airflow文件</span></span><br><span class="line">mkdir /etc/sysconfig</span><br><span class="line">cp airflow /etc/sysconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置airflow-*.service文件，你可以设定你想让守护进程启动的用户和用户组，我们这里使用默认的airflow用户</span></span><br><span class="line">cp airflow-*.service /etc/systemd/system/</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>启动守护进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动网页服务器</span></span><br><span class="line">service airflow-webserver start</span><br><span class="line"><span class="comment"># 启动后台服务</span></span><br><span class="line">service airflow-worker start</span><br><span class="line"><span class="comment"># 启动定时服务</span></span><br><span class="line">service airflow-scheduler start</span><br><span class="line"><span class="comment"># 启动Flower服务（可选）</span></span><br><span class="line">service airflow-flower start</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>终止守护进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 终止网页服务器</span></span><br><span class="line">service airflow-webserver stop</span><br><span class="line"><span class="comment"># 终止后台服务</span></span><br><span class="line">service airflow-worker stop</span><br><span class="line"><span class="comment"># 终止定时服务</span></span><br><span class="line">service airflow-scheduler stop</span><br><span class="line"><span class="comment"># 终止Flower服务</span></span><br><span class="line">service airflow-flower stop</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试服务<br>浏览器输入网址，端口号8080，网页显示正常：<br><img src="/uploads/postimgs/a5700957.png" alt="守护进程运行正常"></p>
-</li>
-</ul>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Airflow中无法添加用户"><a href="#Airflow中无法添加用户" class="headerlink" title="Airflow中无法添加用户"></a>Airflow中无法添加用户</h3><ul>
-<li>现象：在网页中添加用户(Admin -&gt; User -&gt; Create)时出现Ooops.错误页面</li>
-</ul>
-<p><img src="/uploads/postimgs/1815a952.png" alt="现象"></p>
-<ul>
-<li>原因：sqlalchemy版本过高</li>
-<li>解决方法：降级sqlalchemy版本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install <span class="string">'sqlalchemy&gt;=1.1.15, &lt;1.2.0'</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2><p>之后写一些关于Airflow配置的文章。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2389,7 +2337,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2400,7 +2348,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2411,7 +2359,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
