@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="本文总结统计学常用公式，便于查询。 参考资料：  统计学辅导教学讲解视频——知识点精讲 LaTeXの特殊文字・特別記号">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-02T07:21:07.436Z">
+<meta property="og:updated_time" content="2020-05-02T08:47:37.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学常用公式汇总">
 <meta name="twitter:description" content="本文总结统计学常用公式，便于查询。 参考资料：  统计学辅导教学讲解视频——知识点精讲 LaTeXの特殊文字・特別記号">
@@ -426,18 +426,18 @@
 <li><a href="http://www.ic.daito.ac.jp/~mizutani/tex/special_characters.html" target="_blank" rel="noopener">LaTeXの特殊文字・特別記号</a></li>
 </ol>
 <a id="more"></a>
-<h1 id="相关分析与回归分析"><a href="#相关分析与回归分析" class="headerlink" title="相关分析与回归分析"></a>相关分析与回归分析</h1><h2 id="变量间相关度的度量"><a href="#变量间相关度的度量" class="headerlink" title="变量间相关度的度量"></a>变量间相关度的度量</h2><h3 id="相关系数"><a href="#相关系数" class="headerlink" title="相关系数"></a>相关系数</h3><blockquote class="blockquote-center"><p>$r_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2} + \sqrt{\sum (y_i - \bar{y})^2}}$</p>
+<h1 id="相关分析与回归分析"><a href="#相关分析与回归分析" class="headerlink" title="相关分析与回归分析"></a>相关分析与回归分析</h1><h2 id="变量间相关度的度量"><a href="#变量间相关度的度量" class="headerlink" title="变量间相关度的度量"></a>变量间相关度的度量</h2><h3 id="相关系数（correlation-coefficient）"><a href="#相关系数（correlation-coefficient）" class="headerlink" title="相关系数（correlation coefficient）"></a>相关系数（correlation coefficient）</h3><p>计算式：<br><blockquote class="blockquote-center"><p>$r_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2} \cdot \sqrt{\sum (y_i - \bar{y})^2}}$</p>
 <p>$=\frac{\sigma^2_{XY}}{\sigma_x \cdot \sigma_y}$</p>
 <p>$= \frac{n \sum{xy} - \sum{x}\sum{y}}{\sqrt{n \sum{x^2 - (\sum{x})^2} \cdot \sqrt{n\sum{y^2}}-(\sum{y})^2}}$</p>
-</blockquote>
+</blockquote></p>
 <p>其中：</p>
 <ul>
-<li>$r$：相关系数（样本）；总体相关系数用$\rho$</li>
-<li>$\sum (x_i - \bar{x})(y_i - \bar{y}) = \sigma^2_{XY}$：协方差</li>
+<li>$r$：样本的相关系数；如果是总体的，相关系数用$\rho$</li>
+<li>$\sigma^2_{XY} = \sum (x_i - \bar{x})(y_i - \bar{y})$：总体X和Y的协方差</li>
 </ul>
 <p>性质：</p>
 <ul>
-<li>$r in [-1, +1]$</li>
+<li>$r \in [-1, +1]$</li>
 <li>$r_{xy} = r_{yx}$</li>
 </ul>
 <p>结论：</p>
@@ -453,12 +453,13 @@
 <li>$H_0$：$\rho = 0$ 不显著</li>
 <li>$H_1$：$\rho \neq 0$ 显著</li>
 </ul>
-<blockquote class="blockquote-center"><p>$t = |r|\sqrt{\frac{n-2}{1 - r^2}} \sim t(n-2)$</p>
-</blockquote>
+<p>采用t检验：<br><blockquote class="blockquote-center"><p>$t = |r|\sqrt{\frac{n-2}{1 - r^2}} \sim t(n-2)$</p>
+</blockquote></p>
 <p>其中：</p>
 <ul>
+<li>$n$：样本容量</li>
 <li>$n-2$：自由度</li>
-<li>$t$：采用t检验</li>
+<li>$r$：相关系数</li>
 </ul>
 <p>结论：</p>
 <ul>
@@ -475,33 +476,41 @@
 <ul>
 <li>$x$：自变量，解释变量，Independent Variable</li>
 <li>$y$：因变量，被解释变量，目标变量，随机变量，响应变量，Dependent Variable</li>
+<li>$\varepsilon$：误差项，随机因素对y的影响；$E(\varepsilon) = 0$；对于所有$y$，误差项的方差$\sigma_{\varepsilon}^2$是相同的。</li>
 <li>$\beta_0$：y轴截距，当x=0时y的期望</li>
 <li>$\beta_1$：斜率，回归系数；当$x_1$变动一个单位时，$y$的变动率</li>
 <li>$\hat{\beta}$：观测样本得到的回归统计量</li>
 </ul>
-<h3 id="最小二乘法（method-of-least-squares）"><a href="#最小二乘法（method-of-least-squares）" class="headerlink" title="最小二乘法（method of least squares）"></a>最小二乘法（method of least squares）</h3><p>待最小化的目标函数：<br><blockquote class="blockquote-center"><p>$\sum{(y_i-hat{y})} = \sum{(y_i - \beta_0 - \beta_1\hat{x}_i)^2}$</p>
+<h3 id="最小二乘法（method-of-least-squares）"><a href="#最小二乘法（method-of-least-squares）" class="headerlink" title="最小二乘法（method of least squares）"></a>最小二乘法（method of least squares）</h3><p>目标函数：<br><blockquote class="blockquote-center"><p>$\sum{(y_i - \hat{y})} = \sum{(y_i - \beta_0 - \beta_1 \hat{x}_i)^2}$</p>
 </blockquote></p>
+<p>其中：</p>
+<ul>
+<li>$y_i$：因变量的推测值</li>
+<li>$y_i$：因变量观测值</li>
+</ul>
 <p>物理意义：</p>
 <ul>
-<li>误差平方和的最小化</li>
+<li>最小化因变量估计值和观测值的误差的平方和</li>
 </ul>
-<p>计算方法：</p>
-<blockquote class="blockquote-center"><p>$\frac{\partial{Q}}{\partial{\beta_0}}|_{\beta_0=\hat{\beta_0}} = -2 \sum{(y_i - \hat{\beta_0} - \beta_1 x_i)} = 0$</p>
+<p>推导方法：<br><blockquote class="blockquote-center"><p>$\frac{\partial{Q}}{\partial{\beta_0}}|_{\beta_0=\hat{\beta_0}} = -2 \sum{(y_i - \hat{\beta_0} - \beta_1 x_i)} = 0$</p>
 <p>$\frac{\partial{Q}}{\partial{\beta_1}}|_{\beta_1=\hat{\beta_1}} = -2 \sum{x_i(y_i - \hat{\beta_0} - \beta_1 x_i)} = 0$</p>
-<p>$\hat{\beta_1}=\frac{n \sum{x_i y_i} - (\sum{x_i})(\sum{y_i})}{n \sum{x_i^2} - (\sum{x_i})^2}$</p>
+</blockquote></p>
+<p>回归系数的计算方法：<br><blockquote class="blockquote-center"><p>$\hat{\beta_1}=\frac{n \sum{x_i y_i} - (\sum{x_i})(\sum{y_i})}{n \sum{x_i^2} - (\sum{x_i})^2}$</p>
 <p>$\hat{\beta_0}=\bar{y} - \hat{\beta_1} \bar{x}$</p>
-</blockquote>
-<h3 id="拟合优度"><a href="#拟合优度" class="headerlink" title="拟合优度"></a>拟合优度</h3><p>总离差平方和：<br><blockquote class="blockquote-center"><p>$\sum{(y_i - \bar{y})^2} = \sum{(\hat{y_i} - \bar{y}) ^ 2} + \sum{(\hat{y} - \bar{y})}$</p>
+</blockquote></p>
+<h3 id="拟合优度指标-总离差平方和"><a href="#拟合优度指标-总离差平方和" class="headerlink" title="拟合优度指标 - 总离差平方和"></a>拟合优度指标 - 总离差平方和</h3><p>计算式：<br><blockquote class="blockquote-center"><p>$\sum{(y_i - \bar{y})^2} = \sum{(\hat{y_i} - \bar{y}) ^ 2} + \sum{(\hat{y} - \bar{y})}$</p>
 <p>$SST = SSR + SSE$</p>
 </blockquote></p>
 <p>其中：</p>
 <ul>
-<li>$SST = \sum{(y_i - \bar{y})^2}$：总平方和，total sum of square</li>
+<li>$\hat{y_i}$：因变量的观测值</li>
+<li>$y_i$：因变量的估计值</li>
+<li>$\bar{y}$：因变量的样本均值</li>
+<li>$SST = \sum{(y_i - \bar{y})^2}$：总离差平方和，total sum of square</li>
 <li>$SSR = \sum{(\hat{y_i} - \bar{y}) ^ 2}$：回归平方和，sum of squares on regression</li>
 <li>$SSE = \sum{(\hat{y} - \bar{y})}$：残差平方和，sum of squares on error</li>
 </ul>
-<p>判定系数$R^2$（coefficient of determination）：</p>
-<blockquote class="blockquote-center"><p>$R^2 = \frac{SSR}{SST}$</p>
+<h3 id="拟合优度指标-判定系数-R-2-（coefficient-of-determination）"><a href="#拟合优度指标-判定系数-R-2-（coefficient-of-determination）" class="headerlink" title="拟合优度指标 - 判定系数$R^2$（coefficient of determination）"></a>拟合优度指标 - 判定系数$R^2$（coefficient of determination）</h3><blockquote class="blockquote-center"><p>$R^2 = \frac{SSR}{SST} = \frac{1}{SSE} \in [0, 1]$</p>
 </blockquote>
 <p>性质：</p>
 <ul>
@@ -509,11 +518,11 @@
 <li>$R^2 \rightarrow 1$：模型优度越好</li>
 <li>$R^2 \rightarrow 0$：模型优度越差</li>
 </ul>
-<p>估计标准误差：<br><blockquote class="blockquote-center"><p>$S_e = \sqrt{\frac{\sum{(y_i - \hat{y_i}) ^ 2}}{n - 2}} = \sqrt{SSE}{n-2} = \sqrt{MSE}$</p>
-</blockquote></p>
+<h3 id="拟合优度指标-估计标准误差"><a href="#拟合优度指标-估计标准误差" class="headerlink" title="拟合优度指标 - 估计标准误差"></a>拟合优度指标 - 估计标准误差</h3><blockquote class="blockquote-center"><p>$S_e = \sqrt{\frac{\sum{(y_i - \hat{y_i}) ^ 2}}{n - 2}} = \frac{SSE}{n-2} = \sqrt{MSE}$</p>
+</blockquote>
 <p>其中：</p>
 <ul>
-<li>$n-2$：一元性回归时的自由度</li>
+<li>$n-2$：一元线性回归时的自由度</li>
 </ul>
 <h3 id="线性关系的检验"><a href="#线性关系的检验" class="headerlink" title="线性关系的检验"></a>线性关系的检验</h3><p>假设：</p>
 <ul>
@@ -529,11 +538,11 @@
 </ul>
 <h3 id="区间估计"><a href="#区间估计" class="headerlink" title="区间估计"></a>区间估计</h3><p>置信区间：<br><blockquote class="blockquote-center"><p>$\hat{y_0} \pm t_{\alpha / 2}(n - 2) S_e \sqrt{\frac{1}{n} + \frac{(x_0 - \bar{x}) ^ 2}{\sum{(x_i - \bar{x})^2}}}$</p>
 </blockquote></p>
-<p>预测区间：<br><blockquote class="blockquote-center"><p>$\hat{y_0} \pm t_{\alpha / 2}(n - 2) S_e \sqrt{1 + \frac{1}{n} + \frac{(x_0 - \bar{x}) ^ 2}{\sum{(x_i - \bar{x})^2}}}$</p>
+<p>估计区间：<br><blockquote class="blockquote-center"><p>$\hat{y_0} \pm t_{\alpha / 2}(n - 2) S_e \sqrt{1 + \frac{1}{n} + \frac{(x_0 - \bar{x}) ^ 2}{\sum{(x_i - \bar{x})^2}}}$</p>
 </blockquote></p>
 <p>物理意义：</p>
 <ul>
-<li>当$x=x_0$时$y$可能落在的置信区间和预测区间</li>
+<li>当$x=x_0$时$y$可能落在的置信区间和估计区间</li>
 </ul>
 <h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><h3 id="回归方程"><a href="#回归方程" class="headerlink" title="回归方程"></a>回归方程</h3><p>理论方程：<br><blockquote class="blockquote-center"><p>$y = \beta_0 + \beta_1 x_1 + … + + \beta_k x_k + \varepsilon$</p>
 </blockquote></p>
@@ -556,7 +565,7 @@
 </blockquote></p>
 <p>物理意义：</p>
 <ul>
-<li>该模型用来预测时的平均误差为$S_e$</li>
+<li>该模型用来估计时的平均误差为$S_e$</li>
 </ul>
 <h3 id="总体显著性检验"><a href="#总体显著性检验" class="headerlink" title="总体显著性检验"></a>总体显著性检验</h3><p>假设：<br>$H_0$：$\beta_1=\beta_2=…=\beta_k=0$ 不显著<br>$H_1$：$\beta_1 \beta_2 … \beta_k$ 至少有一个不等于0</p>
 <p>用F检验：<br><blockquote class="blockquote-center"><p>$F = \frac{SSR / k}{SSE / (n-k-1)} \sim F(k, n-k-1)$</p>
@@ -775,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#相关分析与回归分析"><span class="nav-number">1.</span> <span class="nav-text">相关分析与回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量间相关度的度量"><span class="nav-number">1.1.</span> <span class="nav-text">变量间相关度的度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数"><span class="nav-number">1.1.1.</span> <span class="nav-text">相关系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数显著性检验"><span class="nav-number">1.1.2.</span> <span class="nav-text">相关系数显著性检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单回归分析"><span class="nav-number">1.2.</span> <span class="nav-text">单回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单回归模型（Regression-Model）"><span class="nav-number">1.2.1.</span> <span class="nav-text">单回归模型（Regression Model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘法（method-of-least-squares）"><span class="nav-number">1.2.2.</span> <span class="nav-text">最小二乘法（method of least squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度"><span class="nav-number">1.2.3.</span> <span class="nav-text">拟合优度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性关系的检验"><span class="nav-number">1.2.4.</span> <span class="nav-text">线性关系的检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间估计"><span class="nav-number">1.2.5.</span> <span class="nav-text">区间估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多元线性回归"><span class="nav-number">1.3.</span> <span class="nav-text">多元线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归方程"><span class="nav-number">1.3.1.</span> <span class="nav-text">回归方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重判定系数-R-2-（multiple-coefficient-of-determination）"><span class="nav-number">1.3.2.</span> <span class="nav-text">多重判定系数 $R^2$ （multiple coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修正多重判定系数-R-alpha-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">修正多重判定系数 $R_{\alpha}^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#估计标准误差-S-e"><span class="nav-number">1.3.4.</span> <span class="nav-text">估计标准误差 $S_e$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总体显著性检验"><span class="nav-number">1.3.5.</span> <span class="nav-text">总体显著性检验</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#相关分析与回归分析"><span class="nav-number">1.</span> <span class="nav-text">相关分析与回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量间相关度的度量"><span class="nav-number">1.1.</span> <span class="nav-text">变量间相关度的度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数（correlation-coefficient）"><span class="nav-number">1.1.1.</span> <span class="nav-text">相关系数（correlation coefficient）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数显著性检验"><span class="nav-number">1.1.2.</span> <span class="nav-text">相关系数显著性检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单回归分析"><span class="nav-number">1.2.</span> <span class="nav-text">单回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单回归模型（Regression-Model）"><span class="nav-number">1.2.1.</span> <span class="nav-text">单回归模型（Regression Model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘法（method-of-least-squares）"><span class="nav-number">1.2.2.</span> <span class="nav-text">最小二乘法（method of least squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-总离差平方和"><span class="nav-number">1.2.3.</span> <span class="nav-text">拟合优度指标 - 总离差平方和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-判定系数-R-2-（coefficient-of-determination）"><span class="nav-number">1.2.4.</span> <span class="nav-text">拟合优度指标 - 判定系数$R^2$（coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-估计标准误差"><span class="nav-number">1.2.5.</span> <span class="nav-text">拟合优度指标 - 估计标准误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性关系的检验"><span class="nav-number">1.2.6.</span> <span class="nav-text">线性关系的检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间估计"><span class="nav-number">1.2.7.</span> <span class="nav-text">区间估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多元线性回归"><span class="nav-number">1.3.</span> <span class="nav-text">多元线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归方程"><span class="nav-number">1.3.1.</span> <span class="nav-text">回归方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重判定系数-R-2-（multiple-coefficient-of-determination）"><span class="nav-number">1.3.2.</span> <span class="nav-text">多重判定系数 $R^2$ （multiple coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修正多重判定系数-R-alpha-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">修正多重判定系数 $R_{\alpha}^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#估计标准误差-S-e"><span class="nav-number">1.3.4.</span> <span class="nav-text">估计标准误差 $S_e$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总体显著性检验"><span class="nav-number">1.3.5.</span> <span class="nav-text">总体显著性检验</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
