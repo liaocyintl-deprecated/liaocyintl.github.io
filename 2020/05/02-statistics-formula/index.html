@@ -93,7 +93,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liaocy.net/2020/05/02-statistics-formula/img/01.png">
 <meta property="og:image" content="https://liaocy.net/2020/05/02-statistics-formula/img/02.png">
-<meta property="og:updated_time" content="2020-05-02T10:07:21.015Z">
+<meta property="og:updated_time" content="2020-05-02T10:22:16.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学常用公式汇总">
 <meta name="twitter:description" content="本文总结统计学常用公式，便于查询。 参考资料：  统计学辅导教学讲解视频——知识点精讲 LaTeXの特殊文字・特別記号">
@@ -431,7 +431,7 @@
 <a id="more"></a>
 <h1 id="相关分析与回归分析"><a href="#相关分析与回归分析" class="headerlink" title="相关分析与回归分析"></a>相关分析与回归分析</h1><h2 id="变量间相关度的度量"><a href="#变量间相关度的度量" class="headerlink" title="变量间相关度的度量"></a>变量间相关度的度量</h2><h3 id="相关系数（correlation-coefficient）"><a href="#相关系数（correlation-coefficient）" class="headerlink" title="相关系数（correlation coefficient）"></a>相关系数（correlation coefficient）</h3><p>计算式：<br><blockquote class="blockquote-center"><p>$r_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2} \cdot \sqrt{\sum (y_i - \bar{y})^2}}$</p>
 <p>$=\frac{\sigma^2_{XY}}{\sigma_x \cdot \sigma_y}$</p>
-<p>$= \frac{n \sum{xy} - \sum{x}\sum{y}}{\sqrt{n \sum{x^2 - (\sum{x})^2} \cdot \sqrt{n\sum{y^2}}-(\sum{y})^2}}$</p>
+<p>$= \frac{n \sum{x_i y_i} - \sum{x_i}\sum{y_i}}{\sqrt{n \sum{x^2 - (\sum{x})^2} \cdot \sqrt{n\sum{y_i^2}}-(\sum{y_i})^2}}$</p>
 </blockquote></p>
 <p>其中：</p>
 <ul>
@@ -484,11 +484,18 @@
 <li>$\beta_1$：斜率，回归系数；当$x_1$变动一个单位时，$y$的变动率</li>
 <li>$\hat{\beta}$：观测样本得到的回归统计量</li>
 </ul>
+<p>性质：</p>
+<ul>
+<li>回归方程的均值和样本均值相同<ul>
+<li>$\bar{y} = \hat{\beta_0} + \hat{\beta_1} \bar{x}$</li>
+</ul>
+</li>
+</ul>
 <h3 id="最小二乘法（method-of-least-squares）"><a href="#最小二乘法（method-of-least-squares）" class="headerlink" title="最小二乘法（method of least squares）"></a>最小二乘法（method of least squares）</h3><p>目标函数：<br><blockquote class="blockquote-center"><p>$\sum{(y_i - \hat{y})} = \sum{(y_i - \beta_0 - \beta_1 \hat{x}_i)^2}$</p>
 </blockquote></p>
 <p>其中：</p>
 <ul>
-<li>$y_i$：因变量的推测值</li>
+<li>$\hat{y_i}$：因变量的估计值</li>
 <li>$y_i$：因变量观测值</li>
 </ul>
 <p>物理意义：</p>
@@ -506,8 +513,8 @@
 </blockquote></p>
 <p>其中：</p>
 <ul>
-<li>$\hat{y_i}$：因变量的观测值</li>
-<li>$y_i$：因变量的估计值</li>
+<li>$\hat{y_i}$：因变量的估计值</li>
+<li>$y_i$：因变量的观测值</li>
 <li>$\bar{y}$：因变量的样本均值</li>
 <li>$SST = \sum{(y_i - \bar{y})^2}$：总离差平方和，total sum of square</li>
 <li>$SSR = \sum{(\hat{y_i} - \bar{y}) ^ 2}$：回归平方和，sum of squares on regression</li>
