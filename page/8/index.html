@@ -308,6 +308,241 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180717-dockercommon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyi Liao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/20180717-dockercommon/" itemprop="url">Docker常用命令笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T11:33:17+09:00">
+                2018-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">开发 Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发-Development/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/20180717-dockercommon/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180717-dockercommon/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://legacy.gitbook.com/book/yeasy/docker_practice/details" target="_blank" rel="noopener">Docker Practice</a><br><a href="https://www.jb51.net/article/118396.htm" target="_blank" rel="noopener">Docker如何固定IP设置的方法</a></p>
+<h2 id="全局基本"><a href="#全局基本" class="headerlink" title="全局基本"></a>全局基本</h2><h3 id="查看Docker的占用空间"><a href="#查看Docker的占用空间" class="headerlink" title="查看Docker的占用空间"></a>查看Docker的占用空间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker system df</span><br></pre></td></tr></table></figure>
+<h2 id="镜像基本"><a href="#镜像基本" class="headerlink" title="镜像基本"></a>镜像基本</h2><h3 id="检索Ubuntu有关的镜像"><a href="#检索Ubuntu有关的镜像" class="headerlink" title="检索Ubuntu有关的镜像"></a>检索Ubuntu有关的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br></pre></td></tr></table></figure>
+<h3 id="拉取Ubuntu-18-04到本地"><a href="#拉取Ubuntu-18-04到本地" class="headerlink" title="拉取Ubuntu 18.04到本地"></a>拉取Ubuntu 18.04到本地</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<h3 id="列出已拉取到本地的镜像"><a href="#列出已拉取到本地的镜像" class="headerlink" title="列出已拉取到本地的镜像"></a>列出已拉取到本地的镜像</h3><ul>
+<li>-a 显示中间层镜像 </li>
+<li>ubuntu 显示仓库名为ubuntu的镜像 </li>
+<li>-q 列出镜像ID </li>
+<li>–format 显示ID+仓库名+标签 </li>
+<li>–digests 镜像摘要</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br><span class="line">$ docker image ls -a</span><br><span class="line">$ docker image ls ubuntu</span><br><span class="line">$ docker image ls -q</span><br><span class="line">$ docker image ls --format <span class="string">"&#123;&#123;.ID&#125;&#125;: &#123;&#123;.Repository&#125;&#125;\t&#123;&#123;.Tag&#125;&#125;"</span></span><br><span class="line">$ docker image ls --digests</span><br></pre></td></tr></table></figure>
+<h3 id="删除全部虚悬镜像-dangling-image"><a href="#删除全部虚悬镜像-dangling-image" class="headerlink" title="删除全部虚悬镜像 (dangling image)"></a>删除全部虚悬镜像 (dangling image)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image prune</span><br></pre></td></tr></table></figure>
+<h3 id="删除ID以5e8开头的镜像"><a href="#删除ID以5e8开头的镜像" class="headerlink" title="删除ID以5e8开头的镜像"></a>删除ID以5e8开头的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 5e8</span><br></pre></td></tr></table></figure>
+<h3 id="删除所有仓库名为ubuntu的镜像（Windows和Ubuntu的命令形式不一样）"><a href="#删除所有仓库名为ubuntu的镜像（Windows和Ubuntu的命令形式不一样）" class="headerlink" title="删除所有仓库名为ubuntu的镜像（Windows和Ubuntu的命令形式不一样）"></a>删除所有仓库名为ubuntu的镜像（Windows和Ubuntu的命令形式不一样）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm (docker image ls -q ubuntu)</span><br></pre></td></tr></table></figure>
+<h2 id="容器基本"><a href="#容器基本" class="headerlink" title="容器基本"></a>容器基本</h2><h3 id="启动并运行ubuntu-16-04容器："><a href="#启动并运行ubuntu-16-04容器：" class="headerlink" title="启动并运行ubuntu 16.04容器："></a>启动并运行ubuntu 16.04容器：</h3><ul>
+<li>-it 交互操作+终端 </li>
+<li>–rm 退出时删除容器 </li>
+<li>bash 启动交互式Shell</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm ubuntu:18.04 bash</span><br></pre></td></tr></table></figure>
+<h3 id="启动一个nginx网页服务器容器"><a href="#启动一个nginx网页服务器容器" class="headerlink" title="启动一个nginx网页服务器容器"></a>启动一个nginx网页服务器容器</h3><ul>
+<li>–name 启动后容器名称</li>
+<li>80:80 宿主端口：容器端口映射</li>
+<li>-d 守护程序后台运行模式</li>
+<li>nginx 要启动的镜像名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 80:80 -p 8080:8080 nginx</span><br></pre></td></tr></table></figure>
+<h3 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container stop webserver</span><br></pre></td></tr></table></figure>
+<h3 id="查看Docker容器状态："><a href="#查看Docker容器状态：" class="headerlink" title="查看Docker容器状态："></a>查看Docker容器状态：</h3><ul>
+<li>-a：包括终止的容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps</span><br><span class="line">$ docker ps -a</span><br></pre></td></tr></table></figure>
+<h3 id="接入已启动的容器命令行"><a href="#接入已启动的容器命令行" class="headerlink" title="接入已启动的容器命令行"></a>接入已启动的容器命令行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it ubuntu:18.04 bash</span><br></pre></td></tr></table></figure>
+<h3 id="查看容器的改动"><a href="#查看容器的改动" class="headerlink" title="查看容器的改动"></a>查看容器的改动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker diff webserver</span><br></pre></td></tr></table></figure>
+<h3 id="将容器的存储层保存下来成为镜像"><a href="#将容器的存储层保存下来成为镜像" class="headerlink" title="将容器的存储层保存下来成为镜像"></a>将容器的存储层保存下来成为镜像</h3><ul>
+<li>–author 作者</li>
+<li>–message 信息</li>
+<li>webserver 保存为镜像名</li>
+<li>nginx:v2 仓库和标签</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit --author <span class="string">"Chenyi Liao &lt;info@liaocy.net&gt;"</span> --message <span class="string">"practice"</span> webserver ubuntu:v2</span><br></pre></td></tr></table></figure>
+<h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container rm webserver</span><br></pre></td></tr></table></figure>
+<h2 id="网络基本"><a href="#网络基本" class="headerlink" title="网络基本"></a>网络基本</h2><h3 id="显示现有网络"><a href="#显示现有网络" class="headerlink" title="显示现有网络"></a>显示现有网络</h3><p>网络一览：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network ls</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建一个新的Docker网络"><a href="#创建一个新的Docker网络" class="headerlink" title="创建一个新的Docker网络"></a>创建一个新的Docker网络</h3><p>Ref.: <a href="https://docs.docker.com/engine/reference/commandline/network_create/" target="_blank" rel="noopener">Docker Network Create</a></p>
+<p>命名为my-net：</p>
+<ul>
+<li>-d：指定Docker的网络类型，有bridge和Overlay</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge my-net</span><br></pre></td></tr></table></figure>
+<p>设定网络地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create \</span><br><span class="line">  --driver=bridge \</span><br><span class="line">  --subnet=172.28.0.0/16 \</span><br><span class="line">  --ip-range=172.28.5.0/24 \</span><br><span class="line">  --gateway=172.28.5.254 \</span><br><span class="line">  my-net</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行容器时加入网络"><a href="#运行容器时加入网络" class="headerlink" title="运行容器时加入网络"></a>运行容器时加入网络</h3><p>仅加入网络，自动分配地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name ubuntu --network my-net ubuntu bash</span><br></pre></td></tr></table></figure></p>
+<p>加入网络并指定地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name ubuntu --network my-net --ip 172.28.5.66 ubuntu bash</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看指定容器网址"><a href="#查看指定容器网址" class="headerlink" title="查看指定容器网址"></a>查看指定容器网址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux:</span><br><span class="line">docker inspect &lt;container id&gt; | grep &quot;IPAddress&quot;</span><br><span class="line"></span><br><span class="line"># Windows:</span><br><span class="line">docker inspect --format &apos;&#123;&#123; .NetworkSettings.IPAddress &#125;&#125;&apos; &lt;container id&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="容器例子"><a href="#容器例子" class="headerlink" title="容器例子"></a>容器例子</h2><ol>
+<li>启动一个ubuntu容器，加入docker-net网络，映射SSH端口，以守护进程启动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name my-container -dit --network docker-net -p 2000:22 ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>固定IP<br>docker run –name my-container -dit –network host -ip 172.17.0.1 -p 2000:22 ubuntu:18.04 /bin/bash</p>
+</li>
+<li><p>映射本地文件夹</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name my-container -dit -v d:/:/data ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<h2 id="容器迁移"><a href="#容器迁移" class="headerlink" title="容器迁移"></a>容器迁移</h2><p>建立容器快照：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -p 30b8f18f20b4 container-backup</span><br></pre></td></tr></table></figure></p>
+<p>导出镜像到文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o bk.tar container-backup</span><br></pre></td></tr></table></figure></p>
+<p>导入文件到镜像：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load &lt; bk.tar</span><br></pre></td></tr></table></figure></p>
+<h2 id="DockerFile脚本"><a href="#DockerFile脚本" class="headerlink" title="DockerFile脚本"></a>DockerFile脚本</h2><h3 id="以启动Ubuntu18-04服务器上的Azkaban为例："><a href="#以启动Ubuntu18-04服务器上的Azkaban为例：" class="headerlink" title="以启动Ubuntu18.04服务器上的Azkaban为例："></a>以启动Ubuntu18.04服务器上的Azkaban为例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu:18.04</span><br><span class="line">MAINTAINER Chenyi Liao &lt;info@liaocy.net&gt;</span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y openjdk-8-jdk \</span><br><span class="line">    &amp;&amp; apt-get install -y git \</span><br><span class="line">    &amp;&amp; cd /opt/ \</span><br><span class="line">    &amp;&amp; git clone https://github.com/azkaban/azkaban.git \</span><br><span class="line">    &amp;&amp; cd azkaban \</span><br><span class="line">    &amp;&amp; ./gradlew build -x test installDist</span><br></pre></td></tr></table></figure>
+<h3 id="在Ubuntu18-04上安装LMAP（Linux-MySQL-Apache-PHP）"><a href="#在Ubuntu18-04上安装LMAP（Linux-MySQL-Apache-PHP）" class="headerlink" title="在Ubuntu18.04上安装LMAP（Linux, MySQL, Apache, PHP）"></a>在Ubuntu18.04上安装LMAP（Linux, MySQL, Apache, PHP）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu:18.04</span><br><span class="line">MAINTAINER Chenyi Liao &lt;info@liaocy.net&gt;</span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt install -y apache2 \</span><br><span class="line">    &amp;&amp; apt install -y php7.2 \</span><br><span class="line">    &amp;&amp; apt install -y mysql-server-5.7 \</span><br><span class="line">    &amp;&amp; service mysql start \</span><br><span class="line">    &amp;&amp; service mysql apache2</span><br></pre></td></tr></table></figure>
+<p>※<a href="http://tracpath.com/works/devops/how-to-install-azkaban/" target="_blank" rel="noopener">Azkaban安装参考资料</a></p>
+<h3 id="使用脚本构建镜像"><a href="#使用脚本构建镜像" class="headerlink" title="使用脚本构建镜像"></a>使用脚本构建镜像</h3><p>在 Dockerfile 文件所在目录执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t azkaban:v3 .</span><br></pre></td></tr></table></figure>
+<h3 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs &lt;container&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+        
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180714-airflowdeploy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2336,171 +2571,6 @@
 
 
     
-        
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liaocy.net/2018/20180622-wordpressantisqlinjection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyi Liao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/20180622-wordpressantisqlinjection/" itemprop="url">Wordpress的wpdb查询时防止SQL注入的方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T13:08:17+09:00">
-                2018-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">开发 Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发-Development/Wordpress/" itemprop="url" rel="index">
-                    <span itemprop="name">Wordpress</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/20180622-wordpressantisqlinjection/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/20180622-wordpressantisqlinjection/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在Wordpress二次开发过程中，使用wpdb查询数据库，SQL语句中使用用户输入字段时有SQL注入的风险。<br>本文介绍一种Wordpress推荐的防止SQL注入的方法。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>使用$wpdb-&gt;prepare($sql)防止SQL注入，请参考下面代码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">select_something</span><span class="params">($where)</span></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $wpdb;</span><br><span class="line">    $table_name = $wpdb-&gt;prefix . <span class="string">'table_name'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//当$where为用户输入字段时，直接执行下面的SQL时会有被注入的风险</span></span><br><span class="line">    $sql = <span class="string">"SELECT * FROM &#123;$table_name&#125; WHERE &#123;%s&#125;"</span>;</span><br><span class="line">    <span class="comment">//使用$wpdb-&gt;prepare($sql)方法避免SQL注入</span></span><br><span class="line">    $sql = $wpdb-&gt;prepare($sql, $where);</span><br><span class="line">    <span class="keyword">return</span> $wpdb-&gt;get_results($sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="结果和感想"><a href="#结果和感想" class="headerlink" title="结果和感想"></a>结果和感想</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2553,7 +2623,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2564,7 +2634,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2575,7 +2645,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">106</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
