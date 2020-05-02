@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liaocy.net/"/>
-  <updated>2020-05-02T05:24:10.323Z</updated>
+  <updated>2020-05-02T05:41:19.254Z</updated>
   <id>https://liaocy.net/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计学常用公式汇总</title>
+    <link href="https://liaocy.net/2020/05/02-statistics-formula/"/>
+    <id>https://liaocy.net/2020/05/02-statistics-formula/</id>
+    <published>2020-05-02T05:30:00.000Z</published>
+    <updated>2020-05-02T05:41:19.254Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文总结统计学常用公式，便于查询。</p><p>参考资料：</p><ol><li><a href="https://www.bilibili.com/video/BV1aE411a7gJ?p=1" target="_blank" rel="noopener">统计学辅导教学讲解视频——知识点精讲</a></li></ol><a id="more"></a><h1 id="相关分析与回归分析"><a href="#相关分析与回归分析" class="headerlink" title="相关分析与回归分析"></a>相关分析与回归分析</h1><h2 id="变量间相关度的度量"><a href="#变量间相关度的度量" class="headerlink" title="变量间相关度的度量"></a>变量间相关度的度量</h2><h3 id="相关系数"><a href="#相关系数" class="headerlink" title="相关系数"></a>相关系数</h3><blockquote class="blockquote-center"><p>$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2} + \sqrt{\sum (y_i - \bar{y})^2}}$<br>$= \frac{n \sum{xy} - \sum{x}\sum{y}}{\sqrt{n \sum{x^2 - (\sum{x})^2} \cdot \sqrt{n\sum{y^2}}-(\sum{y})^2}}$</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文总结统计学常用公式，便于查询。&lt;/p&gt;
+&lt;p&gt;参考资料：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1aE411a7gJ?p=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;统计学辅导教学讲解视频——知识点精讲&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="研究 Research" scheme="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+    
+      <category term="统计学" scheme="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
+    
+    
+      <category term="统计学" scheme="https://liaocy.net/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>什么是日本的确定据出年金（確定拠出年金401K）</title>
@@ -71,36 +99,6 @@
     
     
       <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>统计学常用公式汇总</title>
-    <link href="https://liaocy.net/2020/05/02-statistics-formula/"/>
-    <id>https://liaocy.net/2020/05/02-statistics-formula/</id>
-    <published>2020-04-04T06:00:00.000Z</published>
-    <updated>2020-05-02T05:30:05.566Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文总结统计学常用公式，便于查询。</p><p>参考资料：</p><ol><li><a href="https://www.bilibili.com/video/BV1aE411a7gJ?p=1" target="_blank" rel="noopener">统计学辅导教学讲解视频——知识点精讲</a></li></ol><a id="more"></a><h1 id="相关分析与回归分析"><a href="#相关分析与回归分析" class="headerlink" title="相关分析与回归分析"></a>相关分析与回归分析</h1><h2 id="变量间相关度的度量"><a href="#变量间相关度的度量" class="headerlink" title="变量间相关度的度量"></a>变量间相关度的度量</h2><h3 id="相关系数"><a href="#相关系数" class="headerlink" title="相关系数"></a>相关系数</h3><blockquote class="blockquote-center"><p>$a=a$</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文总结统计学常用公式，便于查询。&lt;/p&gt;
-&lt;p&gt;参考资料：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1aE411a7gJ?p=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;统计学辅导教学讲解视频——知识点精讲&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="研究 Research" scheme="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
-    
-      <category term="统计学" scheme="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
-    
-    
-      <category term="ノート" scheme="https://liaocy.net/tags/%E3%83%8E%E3%83%BC%E3%83%88/"/>
-    
-      <category term="统计学" scheme="https://liaocy.net/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
     
   </entry>
   
