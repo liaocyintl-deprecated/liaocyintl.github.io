@@ -91,13 +91,13 @@
 <meta property="og:site_name" content="Liao&#39;s Blog">
 <meta property="og:description" content="本文总结统计学常用公式，便于查询。 参考资料：  统计学辅导教学讲解视频——知识点精讲 LaTeXの特殊文字・特別記号">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://liaocy.net/2020/05/02-statistics-formula/img/01.png">
-<meta property="og:image" content="https://liaocy.net/2020/05/02-statistics-formula/img/02.png">
-<meta property="og:updated_time" content="2020-05-02T10:22:16.330Z">
+<meta property="og:image" content="https://liaocy.net/2020/05/img/01.png">
+<meta property="og:image" content="https://liaocy.net/2020/05/img/02.png">
+<meta property="og:updated_time" content="2020-05-02T12:22:27.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学常用公式汇总">
 <meta name="twitter:description" content="本文总结统计学常用公式，便于查询。 参考资料：  统计学辅导教学讲解视频——知识点精讲 LaTeXの特殊文字・特別記号">
-<meta name="twitter:image" content="https://liaocy.net/2020/05/02-statistics-formula/img/01.png">
+<meta name="twitter:image" content="https://liaocy.net/2020/05/img/01.png">
 
 
 
@@ -536,7 +536,7 @@
 </ul>
 <h3 id="线性关系的检验"><a href="#线性关系的检验" class="headerlink" title="线性关系的检验"></a>线性关系的检验</h3><p>假设：</p>
 <ul>
-<li>$H_0$：$\beta_1 = 0$ 线性关系不显著</li>
+<li>$H_0$：$\beta_1 = 0$ 线性关系不显著，除了常数项其它所有系数都是0</li>
 <li>$H_1$：$\beta_1 \neq 0$ 显著</li>
 </ul>
 <p>计算F统计量：<br><blockquote class="blockquote-center"><p>$F = \frac{SSR / 1}{SSE / (n - 2)} = \frac{MSR}{MSE} \sim F(n-2)$</p>
@@ -578,17 +578,32 @@
 <li>该模型用来估计时的平均误差为$S_e$</li>
 </ul>
 <h3 id="总体显著性检验"><a href="#总体显著性检验" class="headerlink" title="总体显著性检验"></a>总体显著性检验</h3><p>假设：<br>$H_0$：$\beta_1=\beta_2=…=\beta_k=0$ 不显著<br>$H_1$：$\beta_1 \beta_2 … \beta_k$ 至少有一个不等于0</p>
-<p>用F检验：<br><blockquote class="blockquote-center"><p>$F = \frac{SSR / k}{SSE / (n-k-1)} \sim F(k, n-k-1)$</p>
+<p>F统计量：<br><blockquote class="blockquote-center"><p>$F = \frac{SSR / k}{SSE / (n-k-1)} \sim F(k, n-k-1)$</p>
 </blockquote></p>
 <p>结论：<br>$F \geq F_{\alpha}$：拒绝$H_0$， 显著<br>$F &lt; F_{\alpha}$：不拒绝$H_0$，不显著</p>
+<h3 id="任意-beta-统计量的计算例："><a href="#任意-beta-统计量的计算例：" class="headerlink" title="任意$\beta$统计量的计算例："></a>任意$\beta$统计量的计算例：</h3><p>假设：</p>
+<ul>
+<li>$H_0$：$\beta = 1$</li>
+<li>$H_0$：$\beta \ne 1$</li>
+</ul>
+<p>统计量：<br><blockquote class="blockquote-center"><p>$t = \frac{\beta - 1}{\sigma}$</p>
+</blockquote></p>
+<h3 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h3><p>原因：</p>
+<ul>
+<li>自变量之间强相关，含有相同或相近的对因变量说明的信息</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>不能因为是大样本就无视多重共线性问题。</li>
+</ul>
 <h2 id="回归分析的输出结果解读"><a href="#回归分析的输出结果解读" class="headerlink" title="回归分析的输出结果解读"></a>回归分析的输出结果解读</h2><p>通过R语言做回归分析时，对输出结果进行解读</p>
-<h3 id="R语言回归结果解读"><a href="#R语言回归结果解读" class="headerlink" title="R语言回归结果解读"></a>R语言回归结果解读</h3><p><img src="img/01.png" alt="一元回归结果解读"></p>
+<h3 id="R语言回归结果解读"><a href="#R语言回归结果解读" class="headerlink" title="R语言回归结果解读"></a>R语言回归结果解读</h3><p><img src="../img/01.png" alt="一元回归结果解读"></p>
 <ul>
 <li>Coefficients: 回归系数</li>
 <li>Estimate：回归系数</li>
 <li>Std. Error：标准差</li>
 <li>t value：该维度的t统计量</li>
-<li>Pr(&gt;|t|)：显著水准</li>
+<li>Pr(&gt;|t|)：显著水准，比如说这个值比5%小的话，说明这个变量是显著的</li>
 <li>Residual standard error: 1.898 on 44 degrees of freedom：<ul>
 <li>自由度为n-2，本例在44个自由度上。</li>
 <li>残差标准差，就是$\sqrt{SSE/(n-2)}$；</li>
@@ -603,7 +618,7 @@
 </li>
 <li>p-value：弃真概率，$1-p$值就是置信度</li>
 </ul>
-<p><img src="img/02.png" alt="多元回归结果解读"></p>
+<p><img src="../img/02.png" alt="多元回归结果解读"></p>
 <ul>
 <li>跟上面一样，只不过自由度从n-2变成n-1</li>
 </ul>
@@ -820,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#相关分析与回归分析"><span class="nav-number">1.</span> <span class="nav-text">相关分析与回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量间相关度的度量"><span class="nav-number">1.1.</span> <span class="nav-text">变量间相关度的度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数（correlation-coefficient）"><span class="nav-number">1.1.1.</span> <span class="nav-text">相关系数（correlation coefficient）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数显著性检验"><span class="nav-number">1.1.2.</span> <span class="nav-text">相关系数显著性检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单回归分析"><span class="nav-number">1.2.</span> <span class="nav-text">单回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单回归模型（Regression-Model）"><span class="nav-number">1.2.1.</span> <span class="nav-text">单回归模型（Regression Model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘法（method-of-least-squares）"><span class="nav-number">1.2.2.</span> <span class="nav-text">最小二乘法（method of least squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-总离差平方和"><span class="nav-number">1.2.3.</span> <span class="nav-text">拟合优度指标 - 总离差平方和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-判定系数-R-2-（coefficient-of-determination）"><span class="nav-number">1.2.4.</span> <span class="nav-text">拟合优度指标 - 判定系数$R^2$（coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-估计标准误差"><span class="nav-number">1.2.5.</span> <span class="nav-text">拟合优度指标 - 估计标准误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性关系的检验"><span class="nav-number">1.2.6.</span> <span class="nav-text">线性关系的检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间估计"><span class="nav-number">1.2.7.</span> <span class="nav-text">区间估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多元线性回归"><span class="nav-number">1.3.</span> <span class="nav-text">多元线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归方程"><span class="nav-number">1.3.1.</span> <span class="nav-text">回归方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重判定系数-R-2-（multiple-coefficient-of-determination）"><span class="nav-number">1.3.2.</span> <span class="nav-text">多重判定系数 $R^2$ （multiple coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修正多重判定系数-R-alpha-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">修正多重判定系数 $R_{\alpha}^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#估计标准误差-S-e"><span class="nav-number">1.3.4.</span> <span class="nav-text">估计标准误差 $S_e$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总体显著性检验"><span class="nav-number">1.3.5.</span> <span class="nav-text">总体显著性检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回归分析的输出结果解读"><span class="nav-number">1.4.</span> <span class="nav-text">回归分析的输出结果解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R语言回归结果解读"><span class="nav-number">1.4.1.</span> <span class="nav-text">R语言回归结果解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R语言的输出例"><span class="nav-number">1.4.2.</span> <span class="nav-text">R语言的输出例</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#相关分析与回归分析"><span class="nav-number">1.</span> <span class="nav-text">相关分析与回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量间相关度的度量"><span class="nav-number">1.1.</span> <span class="nav-text">变量间相关度的度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数（correlation-coefficient）"><span class="nav-number">1.1.1.</span> <span class="nav-text">相关系数（correlation coefficient）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数显著性检验"><span class="nav-number">1.1.2.</span> <span class="nav-text">相关系数显著性检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单回归分析"><span class="nav-number">1.2.</span> <span class="nav-text">单回归分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单回归模型（Regression-Model）"><span class="nav-number">1.2.1.</span> <span class="nav-text">单回归模型（Regression Model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘法（method-of-least-squares）"><span class="nav-number">1.2.2.</span> <span class="nav-text">最小二乘法（method of least squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-总离差平方和"><span class="nav-number">1.2.3.</span> <span class="nav-text">拟合优度指标 - 总离差平方和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-判定系数-R-2-（coefficient-of-determination）"><span class="nav-number">1.2.4.</span> <span class="nav-text">拟合优度指标 - 判定系数$R^2$（coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合优度指标-估计标准误差"><span class="nav-number">1.2.5.</span> <span class="nav-text">拟合优度指标 - 估计标准误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性关系的检验"><span class="nav-number">1.2.6.</span> <span class="nav-text">线性关系的检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间估计"><span class="nav-number">1.2.7.</span> <span class="nav-text">区间估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多元线性回归"><span class="nav-number">1.3.</span> <span class="nav-text">多元线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归方程"><span class="nav-number">1.3.1.</span> <span class="nav-text">回归方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重判定系数-R-2-（multiple-coefficient-of-determination）"><span class="nav-number">1.3.2.</span> <span class="nav-text">多重判定系数 $R^2$ （multiple coefficient of determination）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修正多重判定系数-R-alpha-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">修正多重判定系数 $R_{\alpha}^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#估计标准误差-S-e"><span class="nav-number">1.3.4.</span> <span class="nav-text">估计标准误差 $S_e$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总体显著性检验"><span class="nav-number">1.3.5.</span> <span class="nav-text">总体显著性检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意-beta-统计量的计算例："><span class="nav-number">1.3.6.</span> <span class="nav-text">任意$\beta$统计量的计算例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重共线性"><span class="nav-number">1.3.7.</span> <span class="nav-text">多重共线性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回归分析的输出结果解读"><span class="nav-number">1.4.</span> <span class="nav-text">回归分析的输出结果解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R语言回归结果解读"><span class="nav-number">1.4.1.</span> <span class="nav-text">R语言回归结果解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R语言的输出例"><span class="nav-number">1.4.2.</span> <span class="nav-text">R语言的输出例</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
