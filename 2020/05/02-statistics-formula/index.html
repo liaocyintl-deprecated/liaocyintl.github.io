@@ -93,7 +93,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liaocy.net/uploads/202005/01.png">
 <meta property="og:image" content="https://liaocy.net/uploads/202005/02.png">
-<meta property="og:updated_time" content="2020-05-17T00:08:01.919Z">
+<meta property="og:updated_time" content="2020-05-17T00:44:22.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学常用公式汇总">
 <meta name="twitter:description" content="本文总结统计学常用公式，便于查询。 参考资料：  统计学辅导教学讲解视频——知识点精讲 LaTeXの特殊文字・特別記号 参数估计与置信区间 正态总体均值与方差的区间估计 样本容量的确定 泊松分布的现实意义是什么，为什么现实生活多数服从于泊松分布？ 怎样用通俗易懂的文字解释正态分布及其意义？ 指数分布公式的含义是什么？ 統計検定2級対応 統計学基礎 (日本語)  方差分析（ANOVA)原理及其实现">
@@ -704,7 +704,7 @@
 </ul>
 <h2 id="方差-sigma-2-标准差-sigma-Variance-amp-Standard-Deviation"><a href="#方差-sigma-2-标准差-sigma-Variance-amp-Standard-Deviation" class="headerlink" title="方差 $\sigma^2$ 标准差 $\sigma$ Variance &amp; Standard Deviation"></a>方差 $\sigma^2$ 标准差 $\sigma$ Variance &amp; Standard Deviation</h2><p>总体方差：<br><blockquote class="blockquote-center"><p>$\sigma^2 = \frac{\sum (x_i - \bar{X}) ^ 2}{N}$</p>
 </blockquote></p>
-<p>样本方差（失去一个自由度）：<br><blockquote class="blockquote-center"><p>$S^2 = \frac{\sum (x_i - \bar{X}) ^ 2}{N}$</p>
+<p>样本方差（失去一个自由度）：<br><blockquote class="blockquote-center"><p>$S^2 = \frac{\sum (x_i - \bar{X}) ^ 2}{N-1}$</p>
 </blockquote></p>
 <h2 id="标准化分数-Standard-Score"><a href="#标准化分数-Standard-Score" class="headerlink" title="标准化分数 Standard Score"></a>标准化分数 Standard Score</h2><blockquote class="blockquote-center"><p>$Z^i = \frac{x_i - \bar{X}}{S}$</p>
 </blockquote>
@@ -740,13 +740,13 @@
 </blockquote>
 <p>物理意义：</p>
 <ul>
-<li>偏态系数是三阶动差 （平均数是一阶；偏态系数是二阶；峰态系数是四阶段；）</li>
+<li>偏态系数是三阶动差 （平均是一阶；方差是二阶；峰态系数是四阶段；）</li>
 </ul>
 <p>性质：</p>
 <ul>
 <li>如果 $sk = 0$，说明数据对称</li>
-<li>如果 $sk &gt; 0$，说明数据右偏</li>
-<li>如果 $sk &lt; 0$，说明数据左偏</li>
+<li>如果 $sk &gt; 0$，说明数据右偏，右侧长尾</li>
+<li>如果 $sk &lt; 0$，说明数据左偏，左侧长尾</li>
 </ul>
 <h2 id="峰态-Kurtosis-kɝ’tosɪs"><a href="#峰态-Kurtosis-kɝ’tosɪs" class="headerlink" title="峰态 Kurtosis [kɝ’tosɪs]"></a>峰态 Kurtosis [kɝ’tosɪs]</h2><blockquote class="blockquote-center"><p>$K = \frac{n \sum (x_i - \bar{X}) ^ 4}{N \sigma ^ 4}$</p>
 </blockquote>
@@ -767,7 +767,7 @@
 <li>$E[X]$：$X$的期望</li>
 <li>$E[Y]$：$Y$的期望</li>
 </ul>
-<h3 id="协方差的放大"><a href="#协方差的放大" class="headerlink" title="协方差的放大"></a>协方差的放大</h3><blockquote class="blockquote-center"><p>$Cov[X, 2Y] = 2Cov[X, Y]$</p>
+<h3 id="协方差的放大"><a href="#协方差的放大" class="headerlink" title="协方差的放大"></a>协方差的放大</h3><blockquote class="blockquote-center"><p>$Cov[3X, 2Y] = 3 \times 2 \times Cov[X, Y]$</p>
 </blockquote>
 <h3 id="指数的期望"><a href="#指数的期望" class="headerlink" title="指数的期望"></a>指数的期望</h3><blockquote class="blockquote-center"><p>$E[X^2] = V[X] + (E[X])^2$</p>
 </blockquote>
@@ -782,7 +782,7 @@
 <li>$Z$：正态统计量</li>
 <li>$\bar{x}$：样本均值</li>
 <li>$\mu$：总体均值</li>
-<li>$\sigma$</li>
+<li>$\sigma$：总体标准差</li>
 </ul>
 <p>物理意义：</p>
 <ul>
@@ -792,7 +792,7 @@
 </blockquote></p>
 <p>其中：</p>
 <ul>
-<li>$Z_{a/2}$：在置信水平$1-\alpha$下的Z统计量的值</li>
+<li>$Z_{a/2}$：在置信水平$1-\alpha$下的Z统计量的值，双尾</li>
 <li>$S$：样本标准差</li>
 <li>$\bar{x}$：样本均值</li>
 </ul>
@@ -1330,22 +1330,21 @@
 <li>t value：该维度的t统计量</li>
 <li>Pr(&gt;|t|)：显著水准，比如说这个值比5%小的话，说明这个变量是显著的</li>
 <li>Residual standard error: 1.878 on 45 degrees of freedom：<ul>
-<li>自由度为n-k；本例在45个自由度上，k=1，所以样本容量是45。</li>
+<li>自由度为n-k；本例在45个自由度上，k=1，所以样本容量是45+1+1=47</li>
 <li>残差标准差，等于$\sqrt{SSE/(n-2)}$；因此$SEE=\sigma^2(n-2)$</li>
 </ul>
 </li>
 <li>Multiple R-squared：多重判定系数$R^2$</li>
-<li>Adjusted R-squared：修正多重判定系数$R_{\alpha}^2$</li>
+<li>Adjusted R-squared：修正多重判定系数$R_{\alpha}^2$，这个值越大，模型越好</li>
+<li>p-value：弃真概率，$1-p$值就是置信度a</li>
+</ul>
+<p><img src="/uploads/202005/02.png" alt="多元回归结果解读"></p>
+<ul>
 <li>F-statistic: 25.53 on 2 and 44 DF：<ul>
 <li>F统计量为25.53</li>
 <li>自由度$k=2$，$n-k-1=44$</li>
 </ul>
 </li>
-<li>p-value：弃真概率，$1-p$值就是置信度</li>
-</ul>
-<p><img src="/uploads/202005/02.png" alt="多元回归结果解读"></p>
-<ul>
-<li>跟上面一样，只不过自由度从n-2变成n-1</li>
 </ul>
 <h3 id="R语言的输出例"><a href="#R语言的输出例" class="headerlink" title="R语言的输出例"></a>R语言的输出例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">R output</span><br><span class="line">&gt; model &lt;- lm(sf ~ year + rain)</span><br><span class="line">&gt; summary(model)</span><br><span class="line">Call: lm(formula = sf ~ year + rain)</span><br><span class="line">Residuals:</span><br><span class="line">Min 1Q Median 3Q Max</span><br><span class="line">-0.61072 -0.20317 0.06129 0.16329 0.51992</span><br><span class="line">Coefficients:</span><br><span class="line">Estimate Std. Error t value Pr(&gt;|t|)</span><br><span class="line">(Intercept) 388.412083 49.573690 7.835 1.41e-05 ***</span><br><span class="line">year -0.195703 0.025112 -7.793 1.48e-05 ***</span><br><span class="line">rain 0.034288 0.009655 3.551 0.00526 **</span><br><span class="line">---</span><br><span class="line">Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line">Residual standard error: 0.3224 on 10 degrees of freedom</span><br><span class="line">Multiple R-Squared: 0.9089, Adjusted R-squared: 0.8906</span><br><span class="line">F-statistic: 49.87 on 2 and 10 DF, p-value: 6.286e-06</span><br></pre></td></tr></table></figure>
 <h1 id="时间序列分析"><a href="#时间序列分析" class="headerlink" title="时间序列分析"></a>时间序列分析</h1><h2 id="时序平均数"><a href="#时序平均数" class="headerlink" title="时序平均数"></a>时序平均数</h2><h3 id="时期数列"><a href="#时期数列" class="headerlink" title="时期数列"></a>时期数列</h3><blockquote class="blockquote-center"><p>$\bar{a} = \frac{a_1 + a_2 + … + a_n}{n} = \frac{\sum{a}}{n}$</p>
