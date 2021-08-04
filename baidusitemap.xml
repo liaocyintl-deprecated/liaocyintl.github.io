@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://liaocy.net/2021/08/04-pyguide/</loc>
-    <lastmod>2021-08-04T05:56:16.253Z</lastmod>
+    <lastmod>2021-08-04T06:43:36.346Z</lastmod>
     <data>
         <display>
         <title>【译】谷歌Python代码规范（翻译中）</title>
@@ -845,9 +845,9 @@
         
         <tag>Apache</tag>
          
-        <tag>CentOS</tag>
-         
         <tag>反向代理 Reverse Proxy</tag>
+         
+        <tag>CentOS</tag>
          
          
            
@@ -1428,6 +1428,31 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/10/30-ubuntumariadb/</loc>
+    <lastmod>2019-07-03T04:51:44.424Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu上配置MariaDB并设置通过密码访问</title>
+        <pubTime>2018-10-30T02:25:22.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>MariaDB</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="MariaDB" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/MariaDB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2018/08/01-pythonlinuxwinpath/</loc>
     <lastmod>2019-07-03T04:51:44.424Z</lastmod>
     <data>
@@ -1494,31 +1519,6 @@
           
              
               <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/10/30-ubuntumariadb/</loc>
-    <lastmod>2019-07-03T04:51:44.424Z</lastmod>
-    <data>
-        <display>
-        <title>在Ubuntu上配置MariaDB并设置通过密码访问</title>
-        <pubTime>2018-10-30T02:25:22.000Z</pubTime>
-        
-        <tag>Ubuntu</tag>
-         
-        <tag>MariaDB</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="MariaDB" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/MariaDB/"/>
           
         </display>
     </data>
@@ -1697,18 +1697,18 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
+    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
         <display>
-        <title>Tensorflow学习（二） -- 基本分类器</title>
-        <pubTime>2018-09-30T08:40:22.000Z</pubTime>
+        <title>Tensorflow学习（一） -- 开篇</title>
+        <pubTime>2018-09-29T13:05:22.000Z</pubTime>
         
         <tag>Python</tag>
          
-        <tag>Tensorflow</tag>
-         
         <tag>深度学习 Deep Learning</tag>
+         
+        <tag>Tensorflow</tag>
          
          
            
@@ -1724,18 +1724,18 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
+    <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
         <display>
-        <title>Tensorflow学习（一） -- 开篇</title>
-        <pubTime>2018-09-29T13:05:22.000Z</pubTime>
+        <title>Tensorflow学习（二） -- 基本分类器</title>
+        <pubTime>2018-09-30T08:40:22.000Z</pubTime>
         
         <tag>Python</tag>
          
-        <tag>Tensorflow</tag>
-         
         <tag>深度学习 Deep Learning</tag>
+         
+        <tag>Tensorflow</tag>
          
          
            
@@ -1744,6 +1744,31 @@
           
              
               <breadCrumb title="深度学习 Deep Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
+    <lastmod>2019-07-03T04:51:44.300Z</lastmod>
+    <data>
+        <display>
+        <title>以太坊学习资料汇总</title>
+        <pubTime>2018-07-31T10:02:25.000Z</pubTime>
+        
+        <tag>以太坊 Ethereum (ETH)</tag>
+         
+        <tag>区块链 Block Chain</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
           
         </display>
     </data>
@@ -1777,31 +1802,6 @@
           
              
               <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
-    <lastmod>2019-07-03T04:51:44.300Z</lastmod>
-    <data>
-        <display>
-        <title>以太坊学习资料汇总</title>
-        <pubTime>2018-07-31T10:02:25.000Z</pubTime>
-        
-        <tag>以太坊 Ethereum (ETH)</tag>
-         
-        <tag>区块链 Block Chain</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
           
         </display>
     </data>
@@ -1845,9 +1845,9 @@
         
         <tag>Python</tag>
          
-        <tag>深度学习 Deep Learning</tag>
-         
         <tag>OSRM</tag>
+         
+        <tag>深度学习 Deep Learning</tag>
          
          
            
@@ -1872,9 +1872,9 @@
         
         <tag>Python</tag>
          
-        <tag>Tensorflow</tag>
-         
         <tag>深度学习 Deep Learning</tag>
+         
+        <tag>Tensorflow</tag>
          
          
            
@@ -1926,9 +1926,9 @@
         
         <tag>Python</tag>
          
-        <tag>Tensorflow</tag>
-         
         <tag>深度学习 Deep Learning</tag>
+         
+        <tag>Tensorflow</tag>
          
          
            
@@ -2077,12 +2077,12 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/20180617-phpimportexcel/</loc>
+    <loc>https://liaocy.net/2018/20180616-phpexportdatatableexcel/</loc>
     <lastmod>2019-07-03T04:51:43.968Z</lastmod>
     <data>
         <display>
-        <title>使用PHPExcel导入Excel数据</title>
-        <pubTime>2018-06-17T00:03:24.000Z</pubTime>
+        <title>使用PHPExcel将Wordpress数据库中的某个表导出成Excel表格并下载</title>
+        <pubTime>2018-06-16T12:05:54.000Z</pubTime>
         
         <tag>PHP</tag>
          
@@ -2104,12 +2104,12 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/20180616-phpexportdatatableexcel/</loc>
+    <loc>https://liaocy.net/2018/20180617-phpimportexcel/</loc>
     <lastmod>2019-07-03T04:51:43.968Z</lastmod>
     <data>
         <display>
-        <title>使用PHPExcel将Wordpress数据库中的某个表导出成Excel表格并下载</title>
-        <pubTime>2018-06-16T12:05:54.000Z</pubTime>
+        <title>使用PHPExcel导入Excel数据</title>
+        <pubTime>2018-06-17T00:03:24.000Z</pubTime>
         
         <tag>PHP</tag>
          
