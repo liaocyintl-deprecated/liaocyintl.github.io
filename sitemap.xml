@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liaocy.net/2021/08/04-pyguide/</loc>
+    
+    <lastmod>2021-08-04T04:53:08.303Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liaocy.net/2020/11/04-IoT/</loc>
+    
+    <lastmod>2020-11-03T15:09:01.552Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liaocy.net/2020/05/02-statistics-formula/</loc>
     
     <lastmod>2020-05-17T00:44:22.268Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://liaocy.net/2020/04/06-defined-contribution-pension/</loc>
     
     <lastmod>2020-05-02T05:24:10.323Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://liaocy.net/2020/04/04-R-linear-reg/</loc>
-    
-    <lastmod>2020-04-04T11:26:28.426Z</lastmod>
     
   </url>
   
@@ -485,13 +492,6 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
-    
-    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
     
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
@@ -499,14 +499,21 @@
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/07/30-stockdatamining/</loc>
+    <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
+    
+    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
     
     <lastmod>2019-07-03T04:51:44.300Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
+    <loc>https://liaocy.net/2018/07/30-stockdatamining/</loc>
     
     <lastmod>2019-07-03T04:51:44.300Z</lastmod>
     

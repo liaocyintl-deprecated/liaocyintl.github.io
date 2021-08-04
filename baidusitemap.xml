@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>https://liaocy.net/2021/08/04-pyguide/</loc>
+    <lastmod>2021-08-04T04:53:08.303Z</lastmod>
+    <data>
+        <display>
+        <title>谷歌Python代码规范（翻译中）</title>
+        <pubTime>2021-08-04T05:30:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Google</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Python" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2020/11/04-IoT/</loc>
+    <lastmod>2020-11-03T15:09:01.552Z</lastmod>
+    <data>
+        <display>
+        <title>IoTシステム技術検定基礎試験　専門用語整理</title>
+        <pubTime>2020-11-04T05:30:00.000Z</pubTime>
+        
+        <tag>IoT</tag>
+         
+         
+           
+             
+              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+          
+             
+              <breadCrumb title="IoT" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/IoT/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2020/05/02-statistics-formula/</loc>
     <lastmod>2020-05-17T00:44:22.268Z</lastmod>
     <data>
@@ -40,29 +88,6 @@
            
              
               <breadCrumb title="日本文化" url="https://liaocy.net/categories/%E6%97%A5%E6%9C%AC%E6%96%87%E5%8C%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2020/04/04-R-linear-reg/</loc>
-    <lastmod>2020-04-04T11:26:28.426Z</lastmod>
-    <data>
-        <display>
-        <title>R语言线性回归参数笔记</title>
-        <pubTime>2020-04-04T06:00:00.000Z</pubTime>
-        
-        <tag>ノート</tag>
-         
-         
-           
-             
-              <breadCrumb title="Data 数据" url="https://liaocy.net/categories/Data-%E6%95%B0%E6%8D%AE/"/>
-          
-             
-              <breadCrumb title="R语言" url="https://liaocy.net/categories/Data-%E6%95%B0%E6%8D%AE/R%E8%AF%AD%E8%A8%80/"/>
           
         </display>
     </data>
@@ -1695,6 +1720,33 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
+    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
+    <data>
+        <display>
+        <title>Tensorflow学习（一） -- 开篇</title>
+        <pubTime>2018-09-29T13:05:22.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Tensorflow</tag>
+         
+        <tag>深度学习 Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+          
+             
+              <breadCrumb title="深度学习 Deep Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2018/09/20180930-tensorflowtutorial02/</loc>
     <lastmod>2019-07-03T04:51:44.304Z</lastmod>
     <data>
@@ -1722,26 +1774,24 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/09/20180929-tensorflowtutorial01/</loc>
-    <lastmod>2019-07-03T04:51:44.304Z</lastmod>
+    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
+    <lastmod>2019-07-03T04:51:44.300Z</lastmod>
     <data>
         <display>
-        <title>Tensorflow学习（一） -- 开篇</title>
-        <pubTime>2018-09-29T13:05:22.000Z</pubTime>
+        <title>以太坊学习资料汇总</title>
+        <pubTime>2018-07-31T10:02:25.000Z</pubTime>
         
-        <tag>Python</tag>
+        <tag>以太坊 Ethereum (ETH)</tag>
          
-        <tag>Tensorflow</tag>
-         
-        <tag>深度学习 Deep Learning</tag>
+        <tag>区块链 Block Chain</tag>
          
          
            
              
-              <breadCrumb title="研究 Research" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/"/>
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
           
              
-              <breadCrumb title="深度学习 Deep Learning" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+              <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
           
         </display>
     </data>
@@ -1775,31 +1825,6 @@
           
              
               <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
-    <lastmod>2019-07-03T04:51:44.300Z</lastmod>
-    <data>
-        <display>
-        <title>以太坊学习资料汇总</title>
-        <pubTime>2018-07-31T10:02:25.000Z</pubTime>
-        
-        <tag>以太坊 Ethereum (ETH)</tag>
-         
-        <tag>区块链 Block Chain</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
           
         </display>
     </data>
