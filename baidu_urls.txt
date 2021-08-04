@@ -1,5 +1,4 @@
 https://liaocy.net/2021/08/04-pyguide/
-https://liaocy.net/2020/11/04-IoT/
 https://liaocy.net/2020/05/02-statistics-formula/
 https://liaocy.net/2020/04/06-defined-contribution-pension/
 https://liaocy.net/2020/03/31-toukei-2/
@@ -8,3 +7,4 @@ https://liaocy.net/2019/11/englishvocab/
 https://liaocy.net/2019/09/25-FE-points/
 https://liaocy.net/2019/09/01-zabbixagentinstall/
 https://liaocy.net/2019/07/24-CCNA/
+https://liaocy.net/2019/07/23-CCNA/
