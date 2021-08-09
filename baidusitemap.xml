@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://liaocy.net/2021/08/04-pyguide/</loc>
-    <lastmod>2021-08-08T07:48:15.343Z</lastmod>
+    <lastmod>2021-08-09T13:19:12.072Z</lastmod>
     <data>
         <display>
         <title>【翻译】谷歌Python风格指南（翻译中）</title>
@@ -845,9 +845,9 @@
         
         <tag>Apache</tag>
          
-        <tag>反向代理 Reverse Proxy</tag>
-         
         <tag>CentOS</tag>
+         
+        <tag>反向代理 Reverse Proxy</tag>
          
          
            
@@ -947,9 +947,9 @@
         <title>Awesome Computer Vision</title>
         <pubTime>2017-07-06T15:00:00.000Z</pubTime>
         
-        <tag>Awesome</tag>
-         
         <tag>计算机视觉 Computer Vision</tag>
+         
+        <tag>Awesome</tag>
          
          
            
@@ -1451,6 +1451,29 @@
 
     
   <url>
+    <loc>https://liaocy.net/2018/08/24-phpstrcompare/</loc>
+    <lastmod>2019-07-03T04:51:44.424Z</lastmod>
+    <data>
+        <display>
+        <title>相同的长字符串PHP比较结果不同的解决办法</title>
+        <pubTime>2018-08-24T14:04:21.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="PHP" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://liaocy.net/2018/08/27-blockchainheritage/</loc>
     <lastmod>2019-07-03T04:51:44.424Z</lastmod>
     <data>
@@ -1471,29 +1494,6 @@
           
              
               <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://liaocy.net/2018/08/24-phpstrcompare/</loc>
-    <lastmod>2019-07-03T04:51:44.424Z</lastmod>
-    <data>
-        <display>
-        <title>相同的长字符串PHP比较结果不同的解决办法</title>
-        <pubTime>2018-08-24T14:04:21.000Z</pubTime>
-        
-        <tag>PHP</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="PHP" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/PHP/"/>
           
         </display>
     </data>
@@ -1751,31 +1751,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
-    <lastmod>2019-07-03T04:51:44.300Z</lastmod>
-    <data>
-        <display>
-        <title>以太坊学习资料汇总</title>
-        <pubTime>2018-07-31T10:02:25.000Z</pubTime>
-        
-        <tag>以太坊 Ethereum (ETH)</tag>
-         
-        <tag>区块链 Block Chain</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/07/30-stockdatamining/</loc>
     <lastmod>2019-07-03T04:51:44.300Z</lastmod>
     <data>
@@ -1802,6 +1777,31 @@
           
              
               <breadCrumb title="数据挖掘 Data Mining" url="https://liaocy.net/categories/%E7%A0%94%E7%A9%B6-Research/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Data-Mining/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/07/31-ethresource/</loc>
+    <lastmod>2019-07-03T04:51:44.300Z</lastmod>
+    <data>
+        <display>
+        <title>以太坊学习资料汇总</title>
+        <pubTime>2018-07-31T10:02:25.000Z</pubTime>
+        
+        <tag>以太坊 Ethereum (ETH)</tag>
+         
+        <tag>区块链 Block Chain</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="区块链 Block Chain" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/%E5%8C%BA%E5%9D%97%E9%93%BE-Block-Chain/"/>
           
         </display>
     </data>
@@ -2057,11 +2057,11 @@
         
         <tag>Ubuntu</tag>
          
-        <tag>Apache</tag>
-         
         <tag>Python</tag>
          
         <tag>Django</tag>
+         
+        <tag>Apache</tag>
          
          
            
@@ -2298,9 +2298,9 @@
         <title>Win10 Linux 子系统(WSL)缓慢及卡顿的解决方法</title>
         <pubTime>2018-06-13T05:50:17.000Z</pubTime>
         
-        <tag>Ubuntu</tag>
-         
         <tag>Windows</tag>
+         
+        <tag>Ubuntu</tag>
          
         <tag>Windows子系统 WLS</tag>
          
@@ -2482,35 +2482,6 @@
 
     
   <url>
-    <loc>https://liaocy.net/2018/20180612-mostsimpleletsencrypt/</loc>
-    <lastmod>2019-07-03T04:51:43.744Z</lastmod>
-    <data>
-        <display>
-        <title>在Ubuntu下使用Let's Encrypt对Apache进行免费HTTPS加密的最简便方法</title>
-        <pubTime>2018-06-12T04:06:22.000Z</pubTime>
-        
-        <tag>Let&#39;s Encrypt</tag>
-         
-        <tag>Ubuntu</tag>
-         
-        <tag>Apache</tag>
-         
-        <tag>HTTPS</tag>
-         
-         
-           
-             
-              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
-          
-             
-              <breadCrumb title="Apache" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Apache/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://liaocy.net/2018/20180623-selectrecordsfromlast24hours/</loc>
     <lastmod>2019-07-03T04:51:43.744Z</lastmod>
     <data>
@@ -2527,6 +2498,35 @@
           
              
               <breadCrumb title="MySQL" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://liaocy.net/2018/20180612-mostsimpleletsencrypt/</loc>
+    <lastmod>2019-07-03T04:51:43.744Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu下使用Let's Encrypt对Apache进行免费HTTPS加密的最简便方法</title>
+        <pubTime>2018-06-12T04:06:22.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>Apache</tag>
+         
+        <tag>Let&#39;s Encrypt</tag>
+         
+        <tag>HTTPS</tag>
+         
+         
+           
+             
+              <breadCrumb title="开发 Development" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/"/>
+          
+             
+              <breadCrumb title="Apache" url="https://liaocy.net/categories/%E5%BC%80%E5%8F%91-Development/Apache/"/>
           
         </display>
     </data>
